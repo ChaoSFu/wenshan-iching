@@ -84,9 +84,12 @@ export function createStripeProvider(): PaymentProvider {
         case "checkout.session.expired":
           return { id: event.id, type: "checkout.expired", sessionId: event.data.object.id };
         case "charge.refunded": {
-          const pi = event.data.object.payment_intent;
+          const charge = event.data.object;
+          const pi = charge.payment_intent;
           const paymentId = typeof pi === "string" ? pi : pi?.id;
-          return paymentId ? { id: event.id, type: "refund.succeeded", paymentId } : { id: event.id, type: "ignored", rawType: event.type };
+          return paymentId
+            ? { id: event.id, type: "refund.succeeded", paymentId, amountRefundedMinor: charge.amount_refunded, currency: charge.currency }
+            : { id: event.id, type: "ignored", rawType: event.type };
         }
         case "charge.dispute.created": {
           const pi = event.data.object.payment_intent;

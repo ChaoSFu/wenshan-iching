@@ -322,6 +322,9 @@ export function ReportView({ reportId }: { reportId: string }) {
             </Notice>
           )}
         </div>
+        <Link href={`/support?type=report_content&report=${report.id}&from=/reports`} className="inline-block text-sm text-qing underline underline-offset-4">
+          反馈这份报告
+        </Link>
         <p className="text-[11px] text-muted/80">
           依据版本：{Object.entries(report.versions).map(([k, v]) => `${k} ${v}`).join(" · ")}
         </p>

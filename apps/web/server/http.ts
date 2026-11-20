@@ -7,6 +7,7 @@ export class HttpError extends Error {
     readonly status: number,
     readonly code: string,
     message?: string,
+    readonly details?: unknown,
   ) {
     super(message ?? code);
   }
@@ -44,7 +45,7 @@ export function handle(fn: (req: Request, ctx: { params: Promise<Record<string, 
     try {
       return await fn(req, ctx);
     } catch (err) {
-      if (err instanceof HttpError) return json({ error: err.code, message: err.message }, err.status);
+      if (err instanceof HttpError) return json({ error: err.code, message: err.message, details: err.details }, err.status);
       console.error(`[api] ${req.method} ${new URL(req.url).pathname} failed:`, err instanceof Error ? err.message : err);
       return json({ error: "internal" }, 500);
     }

@@ -815,3 +815,48 @@ wenshan-iching/
 | 服务端内容 | 主题的报告要求另生成 `apps/web/server/generated/report-rules.json`，不进浏览器内容包 | 浏览器不需要这些字段 |
 | 测试工具 | Vitest 4（Vitest 5 需要 Node 22）；npm 设 `legacy-peer-deps` 绕过依赖解析崩溃 | 本机为 Node 20 |
 
+## 附录 D：首发改造（2026-11-20，基线 9acdd19）
+
+### D.1 改动
+
+| 项 | 实现 |
+|---|---|
+| 冻结付费题意 | `readings.revision`：问题、背景、主题或采用改写时 +1。分流结果绑定修订号与规则版本 `triage@2`，同一修订复用不再调模型。新增决定 `reframe_required`（预测官司、收益，或一次问多件事、看不出问什么）：用户须采用改写（`POST /api/readings/:id/reframe`）并重新分流才能下单。下单时把题意、背景、卦象、获准引用的原文与版本、分流结果冻结进订单（`orders.intent_ct` 密文 + `orders.basis`），报告与追问只读快照 |
+| 重复退款与原订单相互独立 | 撤回按订单进行（`revokeOrderContent`）；共享的阅读数据只在没有有效且未清除的订单时才清除（`releaseReadingIfUnused`）。用户删除报告时，一并清除该卦所有订单快照里的个人内容、分流摘要与追问，账务字段保留 |
+| 交付与退款同一状态机 | 交付在同一事务里先条件更新 `generating → delivered`，成功后才写报告和入队通知；退款或拒付先生效时，晚到的生成结果被丢弃（`discarded`）。部分退款记账但保留访问并标记 `partial_refund`，整单退款撤回访问；退款或拒付回调先于付款到达时返回 503 让支付平台重发；金额或币种异常进入 `needs_review` |
+| 独立 worker | 原因：定时器 `unref()` 导致进程立即退出。现在区分 inline（Web 内，unref）与 standalone（常驻，SIGTERM 后等当前任务结束再退出）。任务租约 `JOB_LEASE_MS`；启动时先做一次维护；`recoverPaidOrders` 为丢了任务的已付款订单重新入队。`orders.generation_calls` 持久化，`MAX_REPORT_CALLS_PER_ORDER`（默认 6）约束全部重试，`OPENAI_MAX_RETRIES`（默认 1）约束 SDK 重试 |
+| 收款开关与审核门槛 | `SALES_ENABLED` 默认关闭；`/api/offer` 是首页、结果页、解锁页和下单接口共用的报价与开放状态。真实收款前 `contentGate` 要求本次必需原文、白话与主题均为 `reviewed`；彖传、大象只纳入已审条目；未审白话不进入提示词。`ALLOW_UNREVIEWED_CONTENT` 只能与模拟支付一起用，`npm run dev:test` 是对应的测试配置 |
+| 旧数据兼容 | 迁移 `0001_launch_readiness` 只加列与表。旧报告照常可读（问题与卦象回退到阅读数据）。维护任务 `backfillLegacyOrders`：阅读在下单后未改过的旧订单补建快照；无法还原的待支付订单作废、已付款订单转 `needs_review`（`legacy_intent_unrecoverable`） |
+| 工单 | `/support` 表单（五类问题；报告问题可标三种原因），游客可提交；先持久化并返回工单号，运营通知异步（`notify_support_ticket`），邮件失败不影响工单；字段校验、按 IP 和用户限流、幂等键防重复；订单与报告只在服务端确认归属后关联，报告工单附模型、Prompt 与内容版本，问卦原文由用户选择是否附上。`/ops` 后台按工单号、类型、状态查找与更新状态，可对关联订单发起原路退款，并显示近 30 天模型成本 |
+| 模型分工 | 分流 `gpt-6.1-terra/low`，报告 `gpt-6.2-sol/low`，追问默认继承报告，可用 `OPENAI_MODEL_FOLLOWUP`、`OPENAI_EFFORT_FOLLOWUP` 覆盖。每次调用记录任务类型、模型、推理档位、Prompt 与内容版本、输入与缓存 token、输出与推理 token、耗时、失败原因（含未购买用户的分流与失败重试）。成本按价格表计算，推理 token 已含在输出 token 内 |
+| 示范与评测 | 报告示范改为取自内容仓库的样例（`report-prompt@2`）。`evals/cases.yaml` 14 个用例；`npm run eval:models` 默认走替身，`-- --live` 才调真实 API，比较通过率、原文依据、无依据数字、行动可执行、是否符合期望、耗时与成本 |
+
+### D.2 新增环境变量
+
+`SALES_ENABLED`、`ALLOW_UNREVIEWED_CONTENT`、`OPENAI_MODEL_FOLLOWUP`、`OPENAI_EFFORT_FOLLOWUP`、`OPENAI_MAX_RETRIES`、`MAX_REPORT_CALLS_PER_ORDER`、`JOB_LEASE_MS`、`WORKER_POLL_MS`、`SUPPORT_EMAIL`、`SUPPORT_NOTIFY_EMAIL`、`OPS_EMAILS`（说明见 `apps/web/.env.example`）。
+
+### D.3 本地验证结果（模型与支付均为替身，不产生真实 token 与扣款）
+
+- `npm test`：9 个测试文件全部通过，其中 `launch.test.ts` 逐条覆盖六项验收，`worker-process.test.ts` 启动真实的独立 worker 子进程，验证它接手"崩溃 worker"留下的任务、持续运行、收到 SIGTERM 后正常退出。
+- `npm run typecheck`、`npm run build`、`npm run content:check` 通过。
+- `npm run content:strict`：906 条错误、退出码 1——450 条原文未对勘、450 条白话为初稿、5 个主题为初稿、求助号码未核实。这是预期的发布拦截。
+- 浏览器验收：默认配置下首页、结果页、解锁页均显示"暂未开放"，免费起卦正常，游客可提交工单，非运营用户访问 `/ops` 得到 404；测试配置下走通登录 → 题意确认 → 模拟支付 → 报告 → "反馈这份报告" → 运营后台看到带版本信息的工单与成本统计。
+
+### D.4 模型费用估算（未实测，按价格表与假设 token 量）
+
+| 环节 | 假设 | 单次 |
+|---|---|---|
+| 分流（terra/low） | 输入约 2.5K，输出约 0.6K | ≈ $0.0055 |
+| 报告（sol/low） | 输入约 8K，输出约 4K（含推理），10% 校验重试 | ≈ $0.062 |
+| 追问（继承 sol/low） | 输入约 7K，输出约 2K | ≈ $0.034；改用 terra 约 $0.017 |
+
+每笔成功交付约 $0.17（三次追问都用 Sol）或 $0.12（追问改 Terra）；若免费到付费的转化率为 20%，每笔还要分摊 5 次分流，约 $0.03。上线前用 `npm run eval:models -- --live` 与 `/ops` 的实际 token 数替换这些估算。
+
+### D.5 真实服务上线前仍需完成
+
+1. Stripe：测试模式密钥与 webhook（`stripe listen`）下，跑一次真实测试卡付款、整单退款、部分退款、拒付测试卡，确认回调顺序变化时的 503 重发与最终状态；确认账户所在地与业务描述（§2-8）。
+2. OpenAI：`npm run check:services` 验证模型与结构化输出参数；`npm run eval:models -- --live` 跑一轮，确认 Sol 报告的通过率、时延（P90 ≤ 25 秒）与费用，再决定追问是否改用 Terra。
+3. 邮件：Resend 验证发件域名；配置 `SUPPORT_EMAIL`、`SUPPORT_NOTIFY_EMAIL`、`OPS_EMAILS`，实测验证码、交付通知与工单通知。
+4. 内容：完成原文对勘、白话与主题审校、求助号码核实，直到 `npm run content:strict` 通过，再打开 `SALES_ENABLED`。
+5. 生产数据库：`npm run db:migrate` 执行迁移 0000、0001；部署独立 worker 时 Web 设 `WORKER_MODE=off`。
+

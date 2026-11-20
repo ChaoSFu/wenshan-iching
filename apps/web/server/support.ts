@@ -1,0 +1,283 @@
+import { randomInt } from "node:crypto";
+import { and, desc, eq, gt, ilike, or, sql, type SQL } from "drizzle-orm";
+import { z } from "zod";
+import pkg from "../package.json";
+import { emailSchema, type SessionUser } from "./auth";
+import { corpus } from "./content";
+import { decrypt, encrypt, keyedHash } from "./crypto";
+import { getDb } from "./db/client";
+import { orders, readings, reports, supportTickets, TICKET_CATEGORIES, TICKET_STATUSES, type TicketCategory, type TicketStatus } from "./db/schema";
+import { env } from "./env";
+import { HttpError } from "./http";
+import { enqueue } from "./jobs/queue";
+import { getMailer } from "./mail";
+import { readIntent } from "./snapshot";
+
+/**
+ * 用户反馈工单（/support）。先持久化、给出工单号，运营通知异步发送；
+ * 不依赖模型和支付服务，它们故障时照样受理。描述、联系邮箱、问卦原文以密文保存。
+ */
+
+export const APP_VERSION = `${pkg.version}+${corpus.version}`;
+export const REPORT_ISSUES = ["bad_citation", "misunderstood", "vague_action"] as const;
+
+export const supportSubmitSchema = z.object({
+  idempotencyKey: z.string().min(8).max(64),
+  category: z.enum(TICKET_CATEGORIES),
+  reportIssues: z.array(z.enum(REPORT_ISSUES)).max(3).default([]),
+  description: z.string().trim().min(5, "请描述一下发生了什么（至少 5 个字）").max(2000),
+  contactEmail: z.string().trim().max(254).optional(),
+  orderId: z.uuid().optional(),
+  reportId: z.uuid().optional(),
+  includeQuestion: z.boolean().default(false),
+  diagnostics: z
+    .object({ page: z.string().max(200).optional(), errorCode: z.string().max(80).optional() })
+    .default({}),
+});
+export type SupportSubmitInput = z.infer<typeof supportSubmitSchema>;
+
+const LIMIT_PER_IP_PER_HOUR = 5;
+const LIMIT_PER_USER_PER_HOUR = 10;
+
+function ticketNo(): string {
+  const d = new Date();
+  const date = `${String(d.getUTCFullYear()).slice(2)}${String(d.getUTCMonth() + 1).padStart(2, "0")}${String(d.getUTCDate()).padStart(2, "0")}`;
+  const alphabet = "23456789ABCDEFGHJKLMNPQRSTUVWXYZ";
+  const tail = Array.from({ length: 5 }, () => alphabet[randomInt(alphabet.length)]).join("");
+  return `WS-${date}-${tail}`;
+}
+
+/** 页面路径只保留 pathname，去掉查询参数，避免带出个人信息 */
+function cleanPage(page?: string): string | undefined {
+  if (!page) return undefined;
+  try {
+    return new URL(page, "http://x").pathname.slice(0, 200);
+  } catch {
+    return undefined;
+  }
+}
+
+export async function submitTicket(
+  input: SupportSubmitInput,
+  ctx: { user: SessionUser | null; ip: string },
+): Promise<{ ticketNo: string; linkedOrder: boolean; linkedReport: boolean }> {
+  const db = await getDb();
+  const ipHash = keyedHash("ip", ctx.ip);
+
+  const [dup] = await db.select().from(supportTickets).where(eq(supportTickets.idempotencyKey, input.idempotencyKey)).limit(1);
+  if (dup) return { ticketNo: dup.ticketNo, linkedOrder: Boolean(dup.orderId), linkedReport: Boolean(dup.reportId) };
+
+  const hourAgo = new Date(Date.now() - 3600_000);
+  const [byIp] = await db
+    .select({ n: sql<number>`count(*)::int` })
+    .from(supportTickets)
+    .where(and(eq(supportTickets.ipHash, ipHash), gt(supportTickets.createdAt, hourAgo)));
+  if ((byIp?.n ?? 0) >= LIMIT_PER_IP_PER_HOUR && !ctx.user) throw new HttpError(429, "too_many_requests", "提交太频繁，请稍后再试");
+  if (ctx.user) {
+    const [byUser] = await db
+      .select({ n: sql<number>`count(*)::int` })
+      .from(supportTickets)
+      .where(and(eq(supportTickets.userId, ctx.user.id), gt(supportTickets.createdAt, hourAgo)));
+    if ((byUser?.n ?? 0) >= LIMIT_PER_USER_PER_HOUR) throw new HttpError(429, "too_many_requests", "提交太频繁，请稍后再试");
+  }
+
+  let contactEmail: string | null = null;
+  if (input.contactEmail) {
+    const parsed = emailSchema.safeParse(input.contactEmail);
+    if (!parsed.success) throw new HttpError(400, "invalid_email", "回复邮箱格式不对");
+    contactEmail = parsed.data;
+  }
+
+  // 关联订单或报告：只在服务端确认属于当前登录用户时才关联
+  let orderId: string | null = null;
+  let reportId: string | null = null;
+  let reportVersions: Record<string, unknown> | null = null;
+  let question: string | null = null;
+  if (ctx.user && input.reportId) {
+    const [r] = await db
+      .select({ id: reports.id, orderId: reports.orderId, versions: reports.versions })
+      .from(reports)
+      .where(and(eq(reports.id, input.reportId), eq(reports.userId, ctx.user.id)))
+      .limit(1);
+    if (r) {
+      reportId = r.id;
+      orderId = r.orderId;
+      reportVersions = r.versions as Record<string, unknown>;
+    }
+  }
+  if (ctx.user && !orderId && input.orderId) {
+    const [o] = await db
+      .select({ id: orders.id })
+      .from(orders)
+      .where(and(eq(orders.id, input.orderId), eq(orders.userId, ctx.user.id)))
+      .limit(1);
+    if (o) orderId = o.id;
+  }
+  // 问卦原文由用户自己决定是否附上
+  if (input.includeQuestion && orderId) {
+    const [o] = await db
+      .select({ intentCt: orders.intentCt, readingQ: readings.questionCt })
+      .from(orders)
+      .innerJoin(readings, eq(readings.id, orders.readingId))
+      .where(eq(orders.id, orderId))
+      .limit(1);
+    question = (o && readIntent(o)?.question) ?? (o?.readingQ ? decrypt(o.readingQ) : null);
+  }
+
+  const diagnostics = {
+    page: cleanPage(input.diagnostics.page),
+    errorCode: input.diagnostics.errorCode,
+    appVersion: APP_VERSION,
+    loggedIn: Boolean(ctx.user),
+  };
+
+  for (let attempt = 0; attempt < 3; attempt++) {
+    const no = ticketNo();
+    try {
+      const created = await db.transaction(async (tx) => {
+        const [t] = await tx
+          .insert(supportTickets)
+          .values({
+            ticketNo: no,
+            idempotencyKey: input.idempotencyKey,
+            category: input.category,
+            reportIssues: input.category === "report_content" ? input.reportIssues : [],
+            descriptionCt: encrypt(input.description),
+            contactEmailCt: contactEmail ? encrypt(contactEmail) : null,
+            userId: ctx.user?.id ?? null,
+            orderId,
+            reportId,
+            diagnostics,
+            reportVersions,
+            questionCt: question ? encrypt(question) : null,
+            ipHash,
+          })
+          .onConflictDoNothing({ target: supportTickets.idempotencyKey })
+          .returning({ id: supportTickets.id, ticketNo: supportTickets.ticketNo });
+        if (!t) return null;
+        await enqueue(tx, "notify_support_ticket", { ticketId: t.id }, { dedupeKey: `ticket-notify:${t.id}` });
+        return t;
+      });
+      if (!created) {
+        const [again] = await db.select().from(supportTickets).where(eq(supportTickets.idempotencyKey, input.idempotencyKey)).limit(1);
+        return { ticketNo: again!.ticketNo, linkedOrder: Boolean(again!.orderId), linkedReport: Boolean(again!.reportId) };
+      }
+      return { ticketNo: created.ticketNo, linkedOrder: Boolean(orderId), linkedReport: Boolean(reportId) };
+    } catch (err) {
+      // 工单号撞车（极少见）时换一个重试
+      if (attempt === 2 || !String((err as Error).message).includes("ticket_no")) throw err;
+    }
+  }
+  throw new Error("unreachable");
+}
+
+/** 任务 notify_support_ticket：通知运营邮箱。失败会重试，不影响工单本身 */
+export async function notifySupportTicket(ticketId: string): Promise<void> {
+  const db = await getDb();
+  const [t] = await db.select().from(supportTickets).where(eq(supportTickets.id, ticketId)).limit(1);
+  if (!t || t.notifiedAt) return;
+  const to = env().SUPPORT_NOTIFY_EMAIL;
+  // 没配置运营邮箱：不发通知，工单只在后台列表里看（notifiedAt 保持为空，如实显示"未通知"）
+  if (!to) return;
+  {
+    await getMailer().send({
+      to,
+      subject: `[问山工单] ${t.ticketNo} · ${CATEGORY_LABEL[t.category]}`,
+      text: `新工单 ${t.ticketNo}（${CATEGORY_LABEL[t.category]}）。\n处理：${env().APP_URL}/ops?ticket=${t.ticketNo}\n\n为保护隐私，邮件不含用户描述，请在后台查看。`,
+    });
+  }
+  await db.update(supportTickets).set({ notifiedAt: new Date() }).where(eq(supportTickets.id, ticketId));
+}
+
+export const CATEGORY_LABEL: Record<TicketCategory, string> = {
+  duplicate_charge_or_refund: "重复扣款或退款",
+  paid_not_delivered: "已付款未收到报告",
+  login_or_page_error: "登录或页面故障",
+  report_content: "报告内容问题",
+  other: "其他",
+};
+
+// ---------- 运营 ----------
+
+export function isOps(user: SessionUser | null): boolean {
+  if (!user) return false;
+  const list = env()
+    .OPS_EMAILS.split(",")
+    .map((s) => s.trim().toLowerCase())
+    .filter(Boolean);
+  return list.includes(user.email.toLowerCase());
+}
+
+export function requireOps(user: SessionUser | null): SessionUser {
+  // 非运营用户与未登录一样返回 404，不暴露后台存在
+  if (!user || !isOps(user)) throw new HttpError(404, "not_found");
+  return user;
+}
+
+export interface TicketView {
+  id: string;
+  ticketNo: string;
+  category: TicketCategory;
+  categoryLabel: string;
+  reportIssues: string[];
+  status: TicketStatus;
+  description: string;
+  contactEmail: string | null;
+  orderId: string | null;
+  orderStatus: string | null;
+  reportId: string | null;
+  reportVersions: Record<string, unknown> | null;
+  question: string | null;
+  diagnostics: Record<string, unknown>;
+  notified: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export async function listTickets(filter: { q?: string; category?: string; status?: string }): Promise<TicketView[]> {
+  const db = await getDb();
+  const conds: SQL[] = [];
+  if (filter.q) conds.push(or(ilike(supportTickets.ticketNo, `%${filter.q.trim()}%`), sql`${supportTickets.orderId}::text = ${filter.q.trim()}`)!);
+  if (filter.category && (TICKET_CATEGORIES as readonly string[]).includes(filter.category)) {
+    conds.push(eq(supportTickets.category, filter.category as TicketCategory));
+  }
+  if (filter.status && (TICKET_STATUSES as readonly string[]).includes(filter.status)) {
+    conds.push(eq(supportTickets.status, filter.status as TicketStatus));
+  }
+  const rows = await db
+    .select({ t: supportTickets, orderStatus: orders.status })
+    .from(supportTickets)
+    .leftJoin(orders, eq(orders.id, supportTickets.orderId))
+    .where(conds.length ? and(...conds) : undefined)
+    .orderBy(desc(supportTickets.createdAt))
+    .limit(100);
+  return rows.map(({ t, orderStatus }) => ({
+    id: t.id,
+    ticketNo: t.ticketNo,
+    category: t.category,
+    categoryLabel: CATEGORY_LABEL[t.category],
+    reportIssues: t.reportIssues as string[],
+    status: t.status,
+    description: t.descriptionCt ? decrypt(t.descriptionCt) : "",
+    contactEmail: t.contactEmailCt ? decrypt(t.contactEmailCt) : null,
+    orderId: t.orderId,
+    orderStatus: orderStatus ?? null,
+    reportId: t.reportId,
+    reportVersions: (t.reportVersions as Record<string, unknown> | null) ?? null,
+    question: t.questionCt ? decrypt(t.questionCt) : null,
+    diagnostics: t.diagnostics as Record<string, unknown>,
+    notified: Boolean(t.notifiedAt),
+    createdAt: t.createdAt.toISOString(),
+    updatedAt: t.updatedAt.toISOString(),
+  }));
+}
+
+export async function updateTicketStatus(ticketId: string, status: TicketStatus): Promise<void> {
+  const db = await getDb();
+  const rows = await db
+    .update(supportTickets)
+    .set({ status, resolvedAt: status === "resolved" ? new Date() : null, updatedAt: new Date() })
+    .where(eq(supportTickets.id, ticketId))
+    .returning({ id: supportTickets.id });
+  if (!rows.length) throw new HttpError(404, "not_found");
+}

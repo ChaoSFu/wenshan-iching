@@ -14,6 +14,9 @@ const schema = z.object({
   PGLITE_DIR: z.string().default(".data/pglite"),
   /** inline：在 Web 进程里跑后台任务（开发与单机部署）；off：交给独立 worker 进程 */
   WORKER_MODE: z.enum(["inline", "off"]).default("inline"),
+  /** 任务租约：worker 崩溃后，running 任务超过这个时长会被重新认领 */
+  JOB_LEASE_MS: z.coerce.number().int().positive().default(10 * 60_000),
+  WORKER_POLL_MS: z.coerce.number().int().positive().default(1000),
 
   /** base64 编码的 32 字节密钥，用于字段加密与验证码哈希 */
   DATA_ENCRYPTION_KEY: z.string().optional(),
@@ -28,6 +31,10 @@ const schema = z.object({
   PRICE_AMOUNT_MINOR: z.coerce.number().int().positive().default(990),
   PRICE_CURRENCY: z.string().length(3).default("usd"),
   PRICE_VERSION: z.string().default("price@2026-11"),
+  /** 收款开关：默认关闭。关闭时页面显示"暂未开放"，下单接口拒绝 */
+  SALES_ENABLED: z.stringbool().default(false),
+  /** 仅测试配置：允许未审核的原文与注释进入付费流程。只能和 PAYMENT_PROVIDER=fake 一起用 */
+  ALLOW_UNREVIEWED_CONTENT: z.stringbool().default(false),
 
   LLM_PROVIDER: z.enum(["fake", "openai"]).default("fake"),
   OPENAI_API_KEY: z.string().optional(),
@@ -35,9 +42,23 @@ const schema = z.object({
   OPENAI_MODEL_TRIAGE: z.string().default("gpt-6.1-terra"),
   OPENAI_EFFORT_REPORT: z.enum(["none", "minimal", "low", "medium", "high"]).default("low"),
   OPENAI_EFFORT_TRIAGE: z.enum(["none", "minimal", "low", "medium", "high"]).default("low"),
+  /** 追问默认继承报告的模型与推理档位，可单独覆盖 */
+  OPENAI_MODEL_FOLLOWUP: z.string().optional(),
+  OPENAI_EFFORT_FOLLOWUP: z.enum(["none", "minimal", "low", "medium", "high"]).optional(),
+  /** SDK 自身的重试次数（429、5xx、网络错误） */
+  OPENAI_MAX_RETRIES: z.coerce.number().int().min(0).max(5).default(1),
+  /** 一笔订单的报告最多调用模型几次（含校验重试与后台重试） */
+  MAX_REPORT_CALLS_PER_ORDER: z.coerce.number().int().min(1).max(20).default(6),
 
   REFUND_AFTER_HOURS: z.coerce.number().positive().default(24),
   REPORT_RETENTION_DAYS: z.coerce.number().int().positive().default(90),
+
+  /** 对用户公开的客服邮箱（网站或数据库故障时的备用联系方式） */
+  SUPPORT_EMAIL: z.string().optional(),
+  /** 新工单通知发到这里（运营邮箱）；不填只在后台列表里看 */
+  SUPPORT_NOTIFY_EMAIL: z.string().optional(),
+  /** 可以访问运营后台的登录邮箱，逗号分隔 */
+  OPS_EMAILS: z.string().default(""),
 });
 
 export type Env = z.infer<typeof schema>;
@@ -70,16 +91,25 @@ export function env(): Env {
     if (parsed.LLM_PROVIDER !== "openai" || !parsed.OPENAI_API_KEY) missing.push("LLM_PROVIDER=openai + OPENAI_API_KEY");
     if (parsed.MAIL_PROVIDER !== "resend" || !parsed.RESEND_API_KEY) missing.push("MAIL_PROVIDER=resend + RESEND_API_KEY");
     if (parsed.MAIL_FROM.includes("example.com")) missing.push("MAIL_FROM（已在 Resend 验证的发件域名）");
+    if (parsed.ALLOW_UNREVIEWED_CONTENT) missing.push("ALLOW_UNREVIEWED_CONTENT 不能在生产环境开启");
     if (missing.length) throw new Error(`production config incomplete: ${missing.join(", ")}`);
+  }
+  if (parsed.ALLOW_UNREVIEWED_CONTENT && parsed.PAYMENT_PROVIDER !== "fake") {
+    throw new Error("ALLOW_UNREVIEWED_CONTENT 只能和 PAYMENT_PROVIDER=fake 一起使用（模拟流程的测试配置）");
   }
   cached = parsed;
   if (parsed.NODE_ENV === "development") {
     // 密钥也可能来自全局环境变量；启动时说清楚用的是真实服务还是替身
     console.info(
-      `[env] payment=${parsed.PAYMENT_PROVIDER} llm=${parsed.LLM_PROVIDER} mail=${parsed.MAIL_PROVIDER} db=${parsed.DATABASE_URL ? "postgres" : "pglite"}`,
+      `[env] payment=${parsed.PAYMENT_PROVIDER} llm=${parsed.LLM_PROVIDER} mail=${parsed.MAIL_PROVIDER} db=${parsed.DATABASE_URL ? "postgres" : "pglite"} sales=${parsed.SALES_ENABLED ? "on" : "off"}${parsed.ALLOW_UNREVIEWED_CONTENT ? " (unreviewed content allowed: test config)" : ""}`,
     );
   }
   return parsed;
+}
+
+/** 仅测试使用：清空缓存，下次 env() 重新读取 process.env */
+export function __resetEnvCache(): void {
+  cached = null;
 }
 
 /** 仅测试使用：覆盖部分配置 */

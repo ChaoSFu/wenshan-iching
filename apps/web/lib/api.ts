@@ -5,6 +5,7 @@ export class ApiError extends Error {
     readonly status: number,
     readonly code: string,
     message: string,
+    readonly details?: unknown,
   ) {
     super(message);
   }
@@ -18,8 +19,8 @@ export async function api<T>(path: string, init: { method?: string; body?: unkno
     body: init.body === undefined ? undefined : JSON.stringify(init.body),
     credentials: "same-origin",
   });
-  const data = (await res.json().catch(() => ({}))) as { error?: string; message?: string };
-  if (!res.ok) throw new ApiError(res.status, data.error ?? "error", data.message ?? "请求失败，请稍后再试");
+  const data = (await res.json().catch(() => ({}))) as { error?: string; message?: string; details?: unknown };
+  if (!res.ok) throw new ApiError(res.status, data.error ?? "error", data.message ?? "请求失败，请稍后再试", data.details);
   return data as T;
 }
 
@@ -36,7 +37,8 @@ export type OrderStatus =
   | "generation_failed"
   | "refund_pending"
   | "refunded"
-  | "disputed";
+  | "disputed"
+  | "needs_review";
 
 export interface OrderView {
   id: string;
@@ -49,6 +51,8 @@ export interface OrderView {
   refundDueAt: string | null;
   refundedAt: string | null;
   failureReason: string | null;
+  reviewReason: string | null;
+  refundedAmountMinor: number;
   checkoutUrl: string | null;
   reportId: string | null;
   clientReadingId: string;
@@ -65,6 +69,7 @@ export const STATUS_LABEL: Record<OrderStatus, string> = {
   refund_pending: "正在退款",
   refunded: "已退款",
   disputed: "支付争议",
+  needs_review: "正在核实",
 };
 
 export function formatMoney(amountMinor: number, currency: string): string {

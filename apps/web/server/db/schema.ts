@@ -73,6 +73,8 @@ export const readings = pgTable(
     selectionVersion: text("selection_version").notNull(),
     corpusVersion: text("corpus_version").notNull(),
     topicsVersion: text("topics_version").notNull(),
+    /** 题意修订号：问题、背景或主题每改一次 +1；分流结果与订单快照都绑定到某个修订 */
+    revision: integer("revision").notNull().default(1),
     modelConsentAt: timestamp("model_consent_at", { withTimezone: true }).notNull(),
     createdAt: created(),
     updatedAt: updated(),
@@ -94,6 +96,8 @@ export const triageResults = pgTable(
     outputCt: text("output_ct"),
     moderationFlagged: boolean("moderation_flagged").notNull().default(false),
     triageVersion: text("triage_version").notNull(),
+    /** 分流针对的题意修订；旧数据为空，视为无效 */
+    readingRevision: integer("reading_revision"),
     model: text("model").notNull(),
     createdAt: created(),
   },
@@ -110,6 +114,8 @@ export const ORDER_STATUSES = [
   "refund_pending",
   "refunded",
   "disputed",
+  /** 金额或币种异常、旧订单无法还原题意等，需要运营核实 */
+  "needs_review",
 ] as const;
 export type OrderStatus = (typeof ORDER_STATUSES)[number];
 
@@ -139,11 +145,24 @@ export const orders = pgTable(
     failureReason: text("failure_reason"),
     followupsTotal: integer("followups_total").notNull().default(3),
     followupsUsed: integer("followups_used").notNull().default(0),
+    /** 下单时冻结的题意修订与所用分流结果 */
+    readingRevision: integer("reading_revision"),
+    triageResultId: uuid("triage_result_id"),
+    /** 冻结的个人内容（密文）：问题、背景、题意摘要、待补信息 */
+    intentCt: text("intent_ct"),
+    /** 冻结的非个人依据：主题版本、卦象、获准引用的原文与版本、分流决定 */
+    basis: jsonb("basis"),
+    /** 这笔订单已经发起的模型调用次数（含后台重试），受上限约束 */
+    generationCalls: integer("generation_calls").notNull().default(0),
+    refundedAmountMinor: integer("refunded_amount_minor").notNull().default(0),
+    reviewReason: text("review_reason"),
+    contentPurgedAt: timestamp("content_purged_at", { withTimezone: true }),
     createdAt: created(),
     updatedAt: updated(),
   },
   (t) => [
     index("orders_user_idx").on(t.userId, t.createdAt),
+    index("orders_reading_idx").on(t.readingId),
     index("orders_session_idx").on(t.providerSessionId),
     index("orders_payment_idx").on(t.providerPaymentId),
     // 同一次起卦只能有一笔有效付款；第二笔会被识别为重复支付并自动退款（技术方案 5.9）
@@ -212,8 +231,14 @@ export const followups = pgTable(
 export const generationAttempts = pgTable("generation_attempts", {
   id: uuid("id").primaryKey().defaultRandom(),
   orderId: uuid("order_id"),
+  /** 分流调用没有订单，用 readingId 关联（未购买用户的分流也计入成本） */
+  readingId: uuid("reading_id"),
   kind: text("kind").notNull(),
   model: text("model").notNull(),
+  effort: text("effort"),
+  promptVersion: text("prompt_version"),
+  contentVersion: text("content_version"),
+  failureReason: text("failure_reason"),
   inputTokens: integer("input_tokens"),
   cachedTokens: integer("cached_tokens"),
   outputTokens: integer("output_tokens"),
@@ -242,4 +267,45 @@ export const jobs = pgTable(
     updatedAt: updated(),
   },
   (t) => [index("jobs_ready_idx").on(t.status, t.runAt)],
+);
+
+export const TICKET_CATEGORIES = [
+  "duplicate_charge_or_refund",
+  "paid_not_delivered",
+  "login_or_page_error",
+  "report_content",
+  "other",
+] as const;
+export type TicketCategory = (typeof TICKET_CATEGORIES)[number];
+export const TICKET_STATUSES = ["open", "in_progress", "resolved"] as const;
+export type TicketStatus = (typeof TICKET_STATUSES)[number];
+
+/** 用户反馈工单（/support）。描述、联系邮箱、问卦原文以密文保存 */
+export const supportTickets = pgTable(
+  "support_tickets",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    ticketNo: text("ticket_no").notNull().unique(),
+    idempotencyKey: text("idempotency_key").notNull().unique(),
+    category: text("category").$type<TicketCategory>().notNull(),
+    reportIssues: jsonb("report_issues").notNull().default([]),
+    descriptionCt: text("description_ct"),
+    contactEmailCt: text("contact_email_ct"),
+    userId: uuid("user_id"),
+    orderId: uuid("order_id"),
+    reportId: uuid("report_id"),
+    /** 页面、错误编号、应用版本等有限诊断信息 */
+    diagnostics: jsonb("diagnostics").notNull().default({}),
+    /** 报告工单：模型、Prompt 与内容版本 */
+    reportVersions: jsonb("report_versions"),
+    /** 用户主动选择附上的问卦原文（密文） */
+    questionCt: text("question_ct"),
+    status: text("status").$type<TicketStatus>().notNull().default("open"),
+    ipHash: text("ip_hash"),
+    notifiedAt: timestamp("notified_at", { withTimezone: true }),
+    resolvedAt: timestamp("resolved_at", { withTimezone: true }),
+    createdAt: created(),
+    updatedAt: updated(),
+  },
+  (t) => [index("tickets_status_idx").on(t.status, t.createdAt), index("tickets_ip_idx").on(t.ipHash, t.createdAt)],
 );

@@ -7,10 +7,12 @@ import { env } from "../env";
  */
 
 export type LlmRoute = "triage" | "report" | "followup";
+export type Effort = "none" | "minimal" | "low" | "medium" | "high";
 
 export interface Usage {
   inputTokens: number | null;
   cachedTokens: number | null;
+  /** 输出 token，已包含推理 token */
   outputTokens: number | null;
   reasoningTokens: number | null;
 }
@@ -27,6 +29,8 @@ export interface StructuredRequest {
   safetyIdentifier: string;
   /** fake 适配层用它产出一份合法的结构化结果 */
   fakeResponse: () => unknown;
+  /** 评测时临时指定模型与推理档位；业务调用不传，用配置 */
+  override?: { model: string; effort: Effort };
 }
 
 interface Meta {
@@ -57,15 +61,39 @@ export class LlmTransientError extends Error {
   override name = "LlmTransientError";
 }
 
-function modelFor(route: LlmRoute): { model: string; effort: "none" | "minimal" | "low" | "medium" | "high" } {
+/**
+ * 三条路由的模型分工（首发配置）：
+ * 分流 gpt-6.1-terra/low；报告 gpt-6.2-sol/low；追问默认继承报告，可用 OPENAI_*_FOLLOWUP 单独覆盖。
+ */
+export function routeConfig(route: LlmRoute): { model: string; effort: Effort } {
   const e = env();
-  return route === "triage"
-    ? { model: e.OPENAI_MODEL_TRIAGE, effort: e.OPENAI_EFFORT_TRIAGE }
-    : { model: e.OPENAI_MODEL_REPORT, effort: e.OPENAI_EFFORT_REPORT };
+  if (route === "triage") return { model: e.OPENAI_MODEL_TRIAGE, effort: e.OPENAI_EFFORT_TRIAGE };
+  if (route === "followup") {
+    return { model: e.OPENAI_MODEL_FOLLOWUP ?? e.OPENAI_MODEL_REPORT, effort: e.OPENAI_EFFORT_FOLLOWUP ?? e.OPENAI_EFFORT_REPORT };
+  }
+  return { model: e.OPENAI_MODEL_REPORT, effort: e.OPENAI_EFFORT_REPORT };
+}
+
+/** 组装 Responses API 请求体（单独导出，便于测试参数是否符合约定） */
+export function buildResponsesRequest(req: StructuredRequest): OpenAI.Responses.ResponseCreateParamsNonStreaming {
+  const { model, effort } = req.override ?? routeConfig(req.route);
+  return {
+    model,
+    input: [
+      { role: "developer", content: req.developer },
+      { role: "user", content: req.user },
+    ],
+    text: { format: { type: "json_schema", name: req.schemaName, schema: req.jsonSchema, strict: true } },
+    reasoning: { effort },
+    // 上下文由我们自己保存，不让 OpenAI 侧保留响应状态（技术方案 8.2）
+    store: false,
+    max_output_tokens: req.maxOutputTokens,
+    safety_identifier: req.safetyIdentifier,
+  };
 }
 
 function createOpenAiProvider(): LlmProvider {
-  const client = new OpenAI({ apiKey: env().OPENAI_API_KEY, timeout: 60_000, maxRetries: 2 });
+  const client = new OpenAI({ apiKey: env().OPENAI_API_KEY, timeout: 60_000, maxRetries: env().OPENAI_MAX_RETRIES });
 
   function wrapError(err: unknown): never {
     if (err instanceof OpenAI.APIConnectionError) throw new LlmTransientError(err.message);
@@ -79,29 +107,17 @@ function createOpenAiProvider(): LlmProvider {
     name: "openai",
 
     async generateStructured(req) {
-      const { model, effort } = modelFor(req.route);
+      const body = buildResponsesRequest(req);
       const started = Date.now();
       let res: OpenAI.Responses.Response;
       try {
-        res = await client.responses.create({
-          model,
-          input: [
-            { role: "developer", content: req.developer },
-            { role: "user", content: req.user },
-          ],
-          text: { format: { type: "json_schema", name: req.schemaName, schema: req.jsonSchema, strict: true } },
-          reasoning: { effort },
-          // 上下文由我们自己保存，不让 OpenAI 侧保留响应状态（技术方案 8.2）
-          store: false,
-          max_output_tokens: req.maxOutputTokens,
-          safety_identifier: req.safetyIdentifier,
-        });
+        res = await client.responses.create(body);
       } catch (err) {
         wrapError(err);
       }
       const meta: Meta = {
-        model: res.model ?? model,
-        effort,
+        model: res.model ?? body.model,
+        effort: String(body.reasoning?.effort ?? ""),
         latencyMs: Date.now() - started,
         usage: {
           inputTokens: res.usage?.input_tokens ?? null,
@@ -145,18 +161,23 @@ function createOpenAiProvider(): LlmProvider {
 
 const FAKE_FLAG_WORDS = ["自杀", "自殺", "不想活", "活不下去", "杀了他", "殺了他"];
 
+/**
+ * 本地替身：不联网，按路由配置报告"本来会用的"模型名，便于核对分工；
+ * token 用量为空（成本统计只计真实调用）。
+ */
 function createFakeProvider(): LlmProvider {
   if (env().NODE_ENV === "production") throw new Error("fake LLM provider is not allowed in production");
   return {
     name: "fake",
     async generateStructured(req) {
       const started = Date.now();
+      const { model, effort } = req.override ?? routeConfig(req.route);
       await new Promise((r) => setTimeout(r, env().NODE_ENV === "test" ? 0 : 1200));
       return {
         kind: "ok",
         data: req.fakeResponse(),
-        model: `fake-${req.route}`,
-        effort: "none",
+        model: `fake:${model}`,
+        effort,
         latencyMs: Date.now() - started,
         usage: { inputTokens: null, cachedTokens: null, outputTokens: null, reasoningTokens: null },
       };

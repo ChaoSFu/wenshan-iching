@@ -1,11 +1,16 @@
 import type { Metadata } from "next";
 import { PageShell } from "@/components/site-chrome";
+import Link from "next/link";
 import { topicsBundle } from "@/lib/content";
+import { env } from "@/server/env";
 
 export const metadata: Metadata = { title: "求助指引" };
 
+export const dynamic = "force-dynamic";
+
 export default function HelpPage() {
   const help = topicsBundle.help;
+  const supportEmail = env().SUPPORT_EMAIL;
   return (
     <PageShell>
       <h1 className="font-serif text-2xl text-ink">求助指引</h1>
@@ -30,6 +35,13 @@ export default function HelpPage() {
         ))}
       </div>
       <p className="mt-4 text-xs text-muted">号码与服务时间以当地官方公布为准。</p>
+      <p className="mt-6 text-sm text-ink-soft">
+        付款、报告或页面问题，请到
+        <Link href="/support" className="mx-1 text-qing underline underline-offset-4">
+          帮助与反馈
+        </Link>
+        提交工单{supportEmail ? `；网站无法访问时，可以发邮件到 ${supportEmail}` : ""}。
+      </p>
     </PageShell>
   );
 }

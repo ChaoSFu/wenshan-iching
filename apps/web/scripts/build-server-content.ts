@@ -10,13 +10,26 @@ import { fileURLToPath } from "node:url";
 import { loadSources } from "@wenshan/content/node";
 
 const src = await loadSources();
+const sampleOf = (id: string) => src.samples.find((s) => s.topic === id);
 const out = {
   contentVersion: src.version,
   topics: Object.fromEntries(
-    src.topics.map((t) => [
-      t.id,
-      { id: t.id, name: t.name, version: t.version, report: t.report, boundaryExamples: t.boundaryExamples },
-    ]),
+    src.topics.map((t) => {
+      const s = sampleOf(t.id);
+      return [
+        t.id,
+        {
+          id: t.id,
+          name: t.name,
+          version: t.version,
+          reviewStatus: t.reviewStatus,
+          report: t.report,
+          boundaryExamples: t.boundaryExamples,
+          // 示范取自内容仓库的样例（samples/*.yaml）：完整报告样例，或同一卦在本主题下的"下一步"
+          example: s ? { question: s.question, paid: s.paid ?? null, nextStep: s.nextStep ?? null } : null,
+        },
+      ];
+    }),
   ),
 };
 const file = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../server/generated/report-rules.json");

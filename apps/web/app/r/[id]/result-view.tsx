@@ -2,10 +2,11 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { composeFreeReading, type CorpusBundle } from "@wenshan/content";
+import { composeFreeReading, contentGate, type CorpusBundle } from "@wenshan/content";
 import { castFromTosses } from "@wenshan/iching-core";
 import { ReadingView } from "@/components/reading-view";
-import { PRICE_LABEL, loadCorpus, topicById, topicsBundle } from "@/lib/content";
+import { loadCorpus, topicById, topicsBundle } from "@/lib/content";
+import { useOffer } from "@/lib/offer";
 import { loadReading, type StoredReading } from "@/lib/reading-store";
 import { track } from "@/lib/track";
 
@@ -14,6 +15,7 @@ export function ResultView({ id }: { id: string }) {
   const [corpus, setCorpus] = useState<CorpusBundle | null>(null);
   const [loadError, setLoadError] = useState(false);
   const tracked = useRef(false);
+  const offer = useOffer();
 
   useEffect(() => {
     setReading(loadReading(id));
@@ -79,18 +81,25 @@ export function ResultView({ id }: { id: string }) {
             报告会从你的处境出发，列出需要核实的现实信息，给出一个七天内可以尝试的行动和回看条件，每处解释都标明依据的原文。
           </p>
           <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2">
-            {free.missingEntries.length > 0 ? (
-              <p className="text-sm text-zhu">这一卦有原文仍在补录，暂时不能购买报告。</p>
+            {offer === undefined ? null : !offer?.salesEnabled ? (
+              <p className="text-sm text-ink-soft">付费报告暂未开放。免费的卦象、原文与简读可以继续查看。</p>
+            ) : free.missingEntries.length > 0 ||
+              (offer.reviewRequired &&
+                corpus &&
+                !contentGate(castFromTosses(reading.tosses), reading.topicId, corpus, topicsBundle).ok) ? (
+              <p className="text-sm text-ink-soft">这一卦的原文与注释仍在审校，暂时不能购买报告。</p>
             ) : (
-              <Link
-                href={`/unlock/${reading.id}`}
-                onClick={() => track("unlock_clicked", { topic: reading.topicId })}
-                className="rounded-full bg-qing px-6 py-2.5 text-paper transition-colors hover:bg-qing-deep"
-              >
-                解锁本次解读 · {PRICE_LABEL}
-              </Link>
+              <>
+                <Link
+                  href={`/unlock/${reading.id}`}
+                  onClick={() => track("unlock_clicked", { topic: reading.topicId })}
+                  className="rounded-full bg-qing px-6 py-2.5 text-paper transition-colors hover:bg-qing-deep"
+                >
+                  解锁本次解读 · {offer.priceLabel}
+                </Link>
+                <p className="text-xs text-muted">一份报告、三次追问、支持回看和导出。一次付款。</p>
+              </>
             )}
-            <p className="text-xs text-muted">一份报告、三次追问、支持回看和导出。一次付款。</p>
           </div>
         </section>
       )}

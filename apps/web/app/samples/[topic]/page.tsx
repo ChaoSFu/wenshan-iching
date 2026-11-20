@@ -6,7 +6,8 @@ import { TOPIC_IDS, composeFreeReading, type CorpusBundle } from "@wenshan/conte
 import { castFromTosses, tossesFromLines } from "@wenshan/iching-core";
 import { ReadingView } from "@/components/reading-view";
 import { PageShell } from "@/components/site-chrome";
-import { PRICE_LABEL, isTopicId, samplesBundle, topicById, topicsBundle } from "@/lib/content";
+import { isTopicId, samplesBundle, topicById, topicsBundle } from "@/lib/content";
+import { PriceTag } from "@/components/price-tag";
 
 const corpus = corpusJson as unknown as CorpusBundle;
 
@@ -53,7 +54,13 @@ export default async function SamplePage({ params }: { params: Promise<{ topic: 
       <ReadingView reading={reading} topicName={topic.name} />
 
       <h2 className="mt-10 mb-3 text-sm font-medium text-ink">
-        {sample.paid ? `解锁后可读（${PRICE_LABEL}）` : "结合主题给出的下一步"}
+        {sample.paid ? (
+          <>
+            解锁后可读<PriceTag prefix="（" suffix="）" />
+          </>
+        ) : (
+          "结合主题给出的下一步"
+        )}
       </h2>
       {sample.paid ? (
         <div className="space-y-3">

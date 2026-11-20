@@ -7,7 +7,7 @@ import { validateReport, type ValidationContext } from "@/server/report/validate
 
 __setEnvForTests({});
 const cast = castFromTosses(tossesFromLines([9, 7, 7, 7, 7, 7]));
-const { passages } = allowedPassages(cast);
+const { passages } = allowedPassages(cast, { includeUnreviewed: true });
 const situation = { topicId: "career" as const, question: "要不要转产品岗？", context: {}, summary: null, missingInfo: [] };
 const ctx: ValidationContext = {
   allowedIds: new Set(passages.map((p) => p.id)),

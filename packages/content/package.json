@@ -12,7 +12,8 @@
     "import": "tsx scripts/import-wikisource.ts",
     "build": "tsx scripts/build.ts",
     "check": "tsx scripts/build.ts --check",
-    "typecheck": "tsc --noEmit -p ."
+    "typecheck": "tsc --noEmit -p .",
+    "check:strict": "tsx scripts/build.ts --check --strict"
   },
   "dependencies": {
     "@wenshan/iching-core": "*",

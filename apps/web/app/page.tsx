@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { QuestionStarter } from "@/components/question-starter";
-import { PRICE_LABEL, topics } from "@/lib/content";
+import { OfferNote } from "@/components/offer-note";
+import { topics } from "@/lib/content";
 
 const STEPS = [
   { title: "写一件事", body: "选主题或直接写下问题，可补充一两项背景。" },
@@ -92,10 +93,7 @@ export default function HomePage() {
             </li>
           ))}
         </ol>
-        <p className="mt-4 text-sm text-muted">
-          免费：起卦、原文与白话简读。付费：结合你的处境给出待核实的信息和七天内可以尝试的行动，一次付款 {PRICE_LABEL}
-          （即将开放）。
-        </p>
+        <OfferNote />
       </section>
     </main>
   );

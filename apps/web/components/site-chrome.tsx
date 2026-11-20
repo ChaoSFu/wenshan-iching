@@ -39,6 +39,9 @@ export function SiteFooter() {
           <Link href="/rules" className="hover:text-qing">
             起卦与选文规则
           </Link>
+          <Link href="/support" className="hover:text-qing">
+            帮助与反馈
+          </Link>
           <Link href="/help" className="hover:text-qing">
             求助指引
           </Link>

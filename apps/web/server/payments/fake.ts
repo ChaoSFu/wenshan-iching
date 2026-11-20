@@ -105,7 +105,14 @@ export function createFakeProvider(): PaymentProvider {
     },
 
     async refund({ paymentId }) {
-      const body = JSON.stringify({ id: `fake_evt_${randomUUID()}`, type: "refund.succeeded", paymentId });
+      const s = [...sessions.values()].find((x) => x.paymentId === paymentId);
+      const body = JSON.stringify({
+        id: `fake_evt_${randomUUID()}`,
+        type: "refund.succeeded",
+        paymentId,
+        amountRefundedMinor: s?.amountMinor ?? 0,
+        currency: s?.currency ?? "usd",
+      });
       fakeRefundEvents.push({ body, signature: signFakeEvent(body) });
       return { status: "pending" as const };
     },

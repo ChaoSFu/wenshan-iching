@@ -100,3 +100,26 @@ describe("composeFreeReading", () => {
     }
   });
 });
+
+describe("contentGate (release review)", () => {
+  it("blocks paid checkout while originals, vernacular or topic are unreviewed", async () => {
+    const { contentGate } = await import("../src");
+    const cast = castFromTosses(tossesFromLines([9, 7, 7, 7, 7, 7]));
+    const gate = contentGate(cast, "career", corpus, topics);
+    expect(gate.ok).toBe(false);
+    expect(gate.pending.map((p) => p.kind)).toEqual(expect.arrayContaining(["original", "vernacular", "topic"]));
+  });
+
+  it("passes once every required item is reviewed", async () => {
+    const { contentGate } = await import("../src");
+    const cast = castFromTosses(tossesFromLines([9, 7, 7, 7, 7, 7]));
+    const reviewed = structuredClone(corpus);
+    for (const id of ["ZY.01.G", "ZY.01.L1", "ZY.44.G"]) {
+      reviewed.entries[id]!.reviewStatus = "reviewed";
+      reviewed.annotations[id]!.reviewStatus = "reviewed";
+    }
+    const t = structuredClone(topics);
+    t.topics.find((x) => x.id === "career")!.reviewStatus = "reviewed";
+    expect(contentGate(cast, "career", reviewed, t)).toEqual({ ok: true, pending: [] });
+  });
+});

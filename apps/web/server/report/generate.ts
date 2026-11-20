@@ -1,16 +1,15 @@
-import { and, asc, desc, eq, inArray, isNull, sql } from "drizzle-orm";
-import type { TopicId } from "@wenshan/content";
-import { corpus, reportRules } from "../content";
-import { decrypt, decryptJson, encrypt, encryptJson, safetyIdentifier } from "../crypto";
+import { and, asc, eq, inArray, isNull, lt, sql } from "drizzle-orm";
+import { reportRules } from "../content";
+import { decrypt, decryptJson, encryptJson, safetyIdentifier } from "../crypto";
 import { getDb } from "../db/client";
-import { followups, generationAttempts, orders, readings, reports, triageResults } from "../db/schema";
+import { followups, orders, reports } from "../db/schema";
 import { env } from "../env";
 import { enqueue } from "../jobs/queue";
-import { getLlm, type StructuredResult } from "../llm";
-import { toPlain, type ReadingPlain } from "../readings";
-import { TRIAGE_VERSION } from "../triage";
+import { getLlm } from "../llm";
+import { recordUsage } from "../llm/usage";
+import { basisCast, readBasis, readIntent, type OrderBasis, type OrderIntent } from "../snapshot";
 import { fakeFollowup, fakeReport } from "./fake";
-import { allowedPassages, castSummary, type AllowedPassage } from "./passages";
+import { castSummary, type AllowedPassage } from "./passages";
 import {
   FOLLOWUP_DEVELOPER_SUFFIX,
   PROMPT_VERSION,
@@ -22,45 +21,25 @@ import {
 import { FOLLOWUP_JSON_SCHEMA, FOLLOWUP_SCHEMA_VERSION, REPORT_JSON_SCHEMA, REPORT_SCHEMA_VERSION, type ReportContent } from "./schema";
 import { VALIDATOR_VERSION, allText, validateFollowup, validateReport, type ValidationContext } from "./validate";
 
-/** 一份报告最多调用两次模型：首次 + 校验失败后重试一次（PRD §7） */
-const MAX_MODEL_CALLS = 2;
+/** 一次生成任务里最多两次模型调用：首次 + 校验失败后重试一次（PRD §7） */
+const CALLS_PER_RUN = 2;
+const FOLLOWUP_CALLS = 2;
 
-async function recordAttempt(orderId: string, kind: string, res: StructuredResult, issues: string[] | null): Promise<void> {
-  const db = await getDb();
-  await db.insert(generationAttempts).values({
-    orderId,
-    kind,
-    model: res.model,
-    inputTokens: res.usage.inputTokens,
-    cachedTokens: res.usage.cachedTokens,
-    outputTokens: res.usage.outputTokens,
-    reasoningTokens: res.usage.reasoningTokens,
-    latencyMs: res.latencyMs,
-    status: res.kind === "ok" ? (issues?.length ? "invalid" : "ok") : res.kind,
-    refused: res.kind === "refusal",
-    validatorErrors: issues,
-  });
-}
-
-async function situationFor(reading: ReadingPlain): Promise<UserSituation> {
-  const db = await getDb();
-  const [t] = await db
-    .select()
-    .from(triageResults)
-    .where(eq(triageResults.readingId, reading.id))
-    .orderBy(desc(triageResults.createdAt))
-    .limit(1);
-  const out = t?.outputCt ? decryptJson<{ question_summary?: string; missing_info?: string[] }>(t.outputCt) : null;
+function situation(basis: OrderBasis, intent: OrderIntent): UserSituation {
   return {
-    topicId: reading.topicId,
-    question: reading.question,
-    context: reading.context,
-    summary: out?.question_summary ?? null,
-    missingInfo: out?.missing_info ?? [],
+    topicId: basis.topicId,
+    question: intent.question,
+    context: intent.context,
+    summary: intent.summary,
+    missingInfo: intent.missingInfo,
   };
 }
 
-function validationContext(passages: AllowedPassage[], s: UserSituation): ValidationContext {
+function contentVersion(basis: OrderBasis): string {
+  return `${basis.corpusVersion}|${basis.topicId}@${basis.topicVersion}|${basis.contentMode}`;
+}
+
+export function validationContext(passages: AllowedPassage[], s: UserSituation): ValidationContext {
   const rules = reportRules(s.topicId);
   return {
     allowedIds: new Set(passages.map((p) => p.id)),
@@ -91,47 +70,70 @@ async function failOrder(orderId: string, reason: string, refundNow: boolean): P
   console.error(`[report] order ${orderId} failed: ${reason}`);
 }
 
-/** 任务 generate_report：一次结构化生成 → 校验 →（失败重试一次）→ 入库并交付 */
-export async function generateReport(orderId: string): Promise<void> {
+/** 占用一次模型调用额度；返回 false 表示这笔订单已达上限（持久化计数，跨重试、跨进程有效） */
+async function reserveCall(orderId: string): Promise<boolean> {
+  const db = await getDb();
+  const rows = await db
+    .update(orders)
+    .set({ generationCalls: sql`${orders.generationCalls} + 1` })
+    .where(and(eq(orders.id, orderId), lt(orders.generationCalls, env().MAX_REPORT_CALLS_PER_ORDER)))
+    .returning({ id: orders.id });
+  return rows.length > 0;
+}
+
+/** 任务 generate_report：只读订单快照 → 一次结构化生成 → 校验（失败重试一次）→ 同一事务内交付 */
+export async function generateReport(orderId: string): Promise<"delivered" | "failed" | "skipped" | "discarded"> {
   const db = await getDb();
   const [order] = await db
     .update(orders)
     .set({ status: "generating", updatedAt: new Date() })
     .where(and(eq(orders.id, orderId), inArray(orders.status, ["paid", "generating", "generation_failed"])))
     .returning();
-  if (!order) return; // 已交付、已退款等，无需生成
+  if (!order) return "skipped"; // 已交付、已退款、拒付、待核实等
 
-  const [row] = await db.select().from(readings).where(eq(readings.id, order.readingId)).limit(1);
-  if (!row?.questionCt) return failOrder(orderId, "reading_deleted", true);
-  const reading = toPlain(row);
-  const { passages, missing } = allowedPassages(reading.cast);
-  if (missing.length) return failOrder(orderId, `missing_corpus:${missing.join(",")}`, true);
+  const basis = readBasis(order);
+  const intent = readIntent(order);
+  if (!basis || !intent) {
+    // 没有题意快照的旧订单：不凭猜测生成，交给运营
+    await db
+      .update(orders)
+      .set({ status: "needs_review", reviewReason: "legacy_intent_unrecoverable", updatedAt: new Date() })
+      .where(and(eq(orders.id, orderId), eq(orders.status, "generating")));
+    return "failed";
+  }
 
-  const situation = await situationFor(reading);
-  const ctx = validationContext(passages, situation);
+  const cast = basisCast(basis);
+  const s = situation(basis, intent);
+  const ctx = validationContext(basis.passages, s);
   const llm = getLlm();
   const started = Date.now();
   let feedback: string[] = [];
 
-  for (let call = 1; call <= MAX_MODEL_CALLS; call++) {
+  for (let call = 1; call <= CALLS_PER_RUN; call++) {
+    if (!(await reserveCall(orderId))) {
+      await failOrder(orderId, "call_limit_reached", false);
+      return "failed";
+    }
     const res = await llm.generateStructured({
       route: "report",
-      developer: developerPrompt(reading.topicId),
-      user: reportUserPrompt({ castSummary: castSummary(reading.cast), passages, situation, feedback }),
+      developer: developerPrompt(basis.topicId),
+      user: reportUserPrompt({ castSummary: castSummary(cast), passages: basis.passages, situation: s, feedback }),
       schemaName: "wenshan_report_v1",
       jsonSchema: REPORT_JSON_SCHEMA as unknown as Record<string, unknown>,
       maxOutputTokens: 6000,
       safetyIdentifier: safetyIdentifier(order.userId),
-      fakeResponse: () => fakeReport(passages, situation),
+      fakeResponse: () => fakeReport(basis.passages, s),
     });
+    const usage = { kind: "report" as const, orderId, readingId: order.readingId, promptVersion: PROMPT_VERSION, contentVersion: contentVersion(basis) };
 
     if (res.kind === "refusal") {
-      await recordAttempt(orderId, "report", res, null);
+      await recordUsage({ ...usage, result: res });
       // 拒答按分流升级处理：不交付，立即退款（技术方案 5.7）
-      return failOrder(orderId, "model_refusal", true);
+      await failOrder(orderId, "model_refusal", true);
+      return "failed";
     }
     if (res.kind === "incomplete") {
-      await recordAttempt(orderId, "report", res, [res.reason]);
+      await recordUsage({ ...usage, result: res });
       feedback = [`输出不完整（${res.reason}），请控制篇幅并输出完整 JSON`];
       continue;
     }
@@ -141,47 +143,60 @@ export async function generateReport(orderId: string): Promise<void> {
       const moderation = await llm.moderate([allText(checked.content)]);
       if (moderation.flagged) issues = [`内容审核未通过：${moderation.categories.join(", ")}`];
     }
-    await recordAttempt(orderId, "report", res, issues.length ? issues : null);
+    await recordUsage({ ...usage, result: res, issues });
     if (checked.ok && issues.length === 0) {
-      await deliver(orderId, order.userId, reading, checked.content, passages, {
+      return deliver(order.id, order.userId, order.readingId, basis, checked.content, {
         model: res.model,
         reasoningEffort: res.effort,
-        attempts: call,
+        attempts: order.generationCalls + call,
         latencyMs: Date.now() - started,
       });
-      return;
     }
     feedback = issues;
   }
   await failOrder(orderId, "validation_failed", false);
+  return "failed";
 }
 
+/**
+ * 交付：先确认订单仍在生成中（没有被退款、拒付），再在同一事务里写报告、改状态、入队通知。
+ * 退款先生效时，晚到的生成结果直接丢弃。
+ */
 async function deliver(
   orderId: string,
   userId: string,
-  reading: ReadingPlain,
+  readingId: string,
+  basis: OrderBasis,
   content: ReportContent,
-  passages: AllowedPassage[],
   meta: { model: string; reasoningEffort: string; attempts: number; latencyMs: number },
-): Promise<void> {
+): Promise<"delivered" | "discarded"> {
   const db = await getDb();
-  const rules = reportRules(reading.topicId);
   const cited = [...new Set(content.observations.flatMap((o) => o.citations))];
-  const snapshot = passages.filter((p) => cited.includes(p.id)).map((p) => ({ id: p.id, title: p.title, text: p.text }));
-  await db.transaction(async (tx) => {
+  const snapshot = basis.passages.filter((p) => cited.includes(p.id)).map((p) => ({ id: p.id, title: p.title, text: p.text }));
+  return db.transaction(async (tx) => {
+    const updated = await tx
+      .update(orders)
+      .set({ status: "delivered", deliveredAt: new Date(), failureReason: null, updatedAt: new Date() })
+      .where(and(eq(orders.id, orderId), eq(orders.status, "generating")))
+      .returning({ id: orders.id });
+    if (!updated.length) {
+      console.warn(`[report] order ${orderId} is no longer deliverable; generated report discarded`);
+      return "discarded" as const;
+    }
     await tx.insert(reports).values({
       orderId,
       userId,
-      readingId: reading.id,
+      readingId,
       contentCt: encryptJson(content),
       citations: cited,
       citationsSnapshotCt: encryptJson(snapshot),
       versions: {
-        topic: `${reading.topicId}@${rules.version}`,
-        cast: reading.cast.ruleVersion,
-        selection: "select@1",
-        corpus: corpus.version,
-        triage: TRIAGE_VERSION,
+        topic: `${basis.topicId}@${basis.topicVersion}`,
+        cast: basis.cast.ruleVersion,
+        selection: basis.selectionVersion,
+        corpus: basis.corpusVersion,
+        contentMode: basis.contentMode,
+        triage: basis.triage.version,
         prompt: PROMPT_VERSION,
         schema: REPORT_SCHEMA_VERSION,
         validator: VALIDATOR_VERSION,
@@ -192,11 +207,8 @@ async function deliver(
       latencyMs: meta.latencyMs,
       expiresAt: new Date(Date.now() + env().REPORT_RETENTION_DAYS * 24 * 3600_000),
     });
-    await tx
-      .update(orders)
-      .set({ status: "delivered", deliveredAt: new Date(), failureReason: null, updatedAt: new Date() })
-      .where(eq(orders.id, orderId));
     await enqueue(tx, "send_report_ready_email", { orderId }, { dedupeKey: `ready-mail:${orderId}` });
+    return "delivered" as const;
   });
 }
 
@@ -209,7 +221,7 @@ const RETRY_EVERY_MS = 30 * 60_000;
 
 /**
  * 生成异常的订单在退款期限前定期重新生成（PRD §8：后台自动重试，用户无需再付款）。
- * 拒答、原文缺失等不会自行好转的原因不重试，已直接退款。
+ * 拒答、原文缺失等不会自行好转的原因不重试；调用次数达到上限的也不再重试，等到期退款。
  */
 export async function retryFailedGenerations(): Promise<number> {
   const db = await getDb();
@@ -221,6 +233,7 @@ export async function retryFailedGenerations(): Promise<number> {
       and(
         eq(orders.status, "generation_failed"),
         inArray(orders.failureReason, ["validation_failed", "llm_unavailable"]),
+        lt(orders.generationCalls, env().MAX_REPORT_CALLS_PER_ORDER),
         sql`${orders.updatedAt} < now() - interval '15 minutes'`,
         sql`${orders.refundDueAt} > now()`,
       ),
@@ -258,15 +271,15 @@ export async function generateFollowup(followupId: string): Promise<void> {
     .from(reports)
     .where(and(eq(reports.orderId, f.orderId), isNull(reports.deletedAt)))
     .limit(1);
-  const [row] = order ? await db.select().from(readings).where(eq(readings.id, order.readingId)).limit(1) : [];
-  if (!order || order.status !== "delivered" || !report?.contentCt || !row?.questionCt) {
+  const basis = order ? readBasis(order) : null;
+  const intent = order ? readIntent(order) : null;
+  if (!order || order.status !== "delivered" || !report?.contentCt || !basis || !intent) {
     return releaseFollowup(f.id, f.orderId, "failed");
   }
 
-  const reading = toPlain(row);
-  const { passages } = allowedPassages(reading.cast);
-  const situation = await situationFor(reading);
-  const ctx = validationContext(passages, situation);
+  const cast = basisCast(basis);
+  const s = situation(basis, intent);
+  const ctx = validationContext(basis.passages, s);
   const question = decrypt(f.questionCt);
   ctx.quotableSources.push(question);
   const previousRows = await db
@@ -280,14 +293,14 @@ export async function generateFollowup(followupId: string): Promise<void> {
 
   const llm = getLlm();
   let feedback: string[] = [];
-  for (let call = 1; call <= MAX_MODEL_CALLS; call++) {
+  for (let call = 1; call <= FOLLOWUP_CALLS; call++) {
     const res = await llm.generateStructured({
       route: "followup",
-      developer: developerPrompt(reading.topicId as TopicId) + FOLLOWUP_DEVELOPER_SUFFIX,
+      developer: developerPrompt(basis.topicId) + FOLLOWUP_DEVELOPER_SUFFIX,
       user: followupUserPrompt({
-        castSummary: castSummary(reading.cast),
-        passages,
-        situation,
+        castSummary: castSummary(cast),
+        passages: basis.passages,
+        situation: s,
         report: decryptJson<ReportContent>(report.contentCt),
         previous,
         question,
@@ -299,12 +312,13 @@ export async function generateFollowup(followupId: string): Promise<void> {
       safetyIdentifier: safetyIdentifier(order.userId),
       fakeResponse: () => fakeFollowup(question),
     });
+    const usage = { kind: "followup" as const, orderId: f.orderId, readingId: order.readingId, promptVersion: PROMPT_VERSION, contentVersion: contentVersion(basis) };
     if (res.kind === "refusal") {
-      await recordAttempt(f.orderId, "followup", res, null);
+      await recordUsage({ ...usage, result: res });
       return releaseFollowup(f.id, f.orderId, "failed");
     }
     if (res.kind === "incomplete") {
-      await recordAttempt(f.orderId, "followup", res, [res.reason]);
+      await recordUsage({ ...usage, result: res });
       feedback = ["输出不完整，请缩短回答并输出完整 JSON"];
       continue;
     }
@@ -314,18 +328,27 @@ export async function generateFollowup(followupId: string): Promise<void> {
       const moderation = await llm.moderate([allText(checked.content)]);
       if (moderation.flagged) issues = [`内容审核未通过：${moderation.categories.join(", ")}`];
     }
-    await recordAttempt(f.orderId, "followup", res, issues.length ? issues : null);
+    await recordUsage({ ...usage, result: res, issues });
     if (checked.ok && issues.length === 0) {
       if (!checked.content.is_same_matter) return releaseFollowup(f.id, f.orderId, "rejected", checked.content);
-      await db
-        .update(followups)
-        .set({
-          status: "done",
-          answerCt: encryptJson(checked.content),
-          versions: { prompt: PROMPT_VERSION, schema: FOLLOWUP_SCHEMA_VERSION, validator: VALIDATOR_VERSION, model: res.model },
-          updatedAt: new Date(),
-        })
-        .where(eq(followups.id, f.id));
+      const content = checked.content;
+      // 写回答前确认订单仍是已交付（期间退款或拒付则丢弃）
+      await db.transaction(async (tx) => {
+        const [o] = await tx.select({ status: orders.status }).from(orders).where(eq(orders.id, f.orderId)).for("update").limit(1);
+        if (o?.status !== "delivered") {
+          await tx.update(followups).set({ status: "failed", updatedAt: new Date() }).where(eq(followups.id, f.id));
+          return;
+        }
+        await tx
+          .update(followups)
+          .set({
+            status: "done",
+            answerCt: encryptJson(content),
+            versions: { prompt: PROMPT_VERSION, schema: FOLLOWUP_SCHEMA_VERSION, validator: VALIDATOR_VERSION, model: res.model, effort: res.effort },
+            updatedAt: new Date(),
+          })
+          .where(eq(followups.id, f.id));
+      });
       return;
     }
     feedback = issues;

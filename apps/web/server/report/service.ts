@@ -1,6 +1,6 @@
 import { and, asc, eq, isNull, lt, sql } from "drizzle-orm";
 import { runLocalTriage } from "@wenshan/content";
-import { lineLabel } from "@wenshan/iching-core";
+import { castFromTosses, lineLabel } from "@wenshan/iching-core";
 import { corpus, topicsBundle } from "../content";
 import { decrypt, decryptJson, encrypt } from "../crypto";
 import { getDb } from "../db/client";
@@ -9,8 +9,8 @@ import { env } from "../env";
 import { HttpError } from "../http";
 import { enqueue } from "../jobs/queue";
 import { getMailer } from "../mail";
-import { purgeOrderContent } from "../orders";
-import { toPlain } from "../readings";
+import { purgeReading, releaseReadingIfUnused, revokeOrderContent } from "../orders";
+import { basisCast, readBasis, readIntent } from "../snapshot";
 import type { FollowupContent, ReportContent } from "./schema";
 
 export interface ReportView {
@@ -34,23 +34,33 @@ async function ownedReport(userId: string, reportId: string) {
     .select({ report: reports, order: orders, reading: readings })
     .from(reports)
     .innerJoin(orders, eq(orders.id, reports.orderId))
-    .innerJoin(readings, eq(readings.id, reports.readingId))
+    .leftJoin(readings, eq(readings.id, reports.readingId))
     .where(and(eq(reports.id, reportId), eq(reports.userId, userId)))
     .limit(1);
   if (!row) throw new HttpError(404, "not_found");
   return row;
 }
 
-/** 报告页数据：只有本人、已交付、未删除、未过期的报告可看（PRD §8） */
+/**
+ * 报告页数据：只有本人、已交付、未删除、未过期的报告可看（PRD §8）。
+ * 问题与卦象读订单快照；迁移前的旧报告没有快照，回退到阅读数据。
+ */
 export async function getReportView(userId: string, reportId: string): Promise<ReportView | { deleted: true; reason: string | null }> {
   const { report, order, reading } = await ownedReport(userId, reportId);
-  if (report.deletedAt || !report.contentCt || order.status !== "delivered" || !reading.questionCt) {
+  if (report.deletedAt || !report.contentCt || order.status !== "delivered") {
     return { deleted: true, reason: report.deleteReason ?? order.status };
   }
   if (report.expiresAt.getTime() < Date.now()) return { deleted: true, reason: "expired" };
 
+  const basis = readBasis(order);
+  const intent = readIntent(order);
+  const question = intent?.question ?? (reading?.questionCt ? decrypt(reading.questionCt) : null);
+  const cast = basis ? basisCast(basis) : reading ? castFromTosses(reading.tosses) : null;
+  if (question === null || !cast) return { deleted: true, reason: "content_unavailable" };
+  const topicId = basis?.topicId ?? reading?.topicId;
+  const topicName = basis?.topicName ?? topicsBundle.topics.find((t) => t.id === topicId)?.name ?? "";
+
   const db = await getDb();
-  const plain = toPlain(reading);
   const snapshot = report.citationsSnapshotCt ? decryptJson<{ id: string; title: string; text: string }[]>(report.citationsSnapshotCt) : [];
   const citations: ReportView["citations"] = {};
   for (const s of snapshot) {
@@ -62,22 +72,21 @@ export async function getReportView(userId: string, reportId: string): Promise<R
     };
   }
   const fus = await db.select().from(followups).where(eq(followups.orderId, order.id)).orderBy(asc(followups.seq));
-  const topic = topicsBundle.topics.find((t) => t.id === plain.topicId);
-  const yang = (pos: number) => plain.cast.lines[pos - 1] === 7 || plain.cast.lines[pos - 1] === 9;
+  const yang = (pos: number) => cast.lines[pos - 1] === 7 || cast.lines[pos - 1] === 9;
   return {
     id: report.id,
     orderId: order.id,
     createdAt: report.createdAt.toISOString(),
     expiresAt: report.expiresAt.toISOString(),
-    topicName: topic?.name ?? plain.topicId,
-    question: plain.question,
+    topicName,
+    question,
     cast: {
-      primary: plain.cast.primary,
-      changed: plain.cast.changed,
-      lines: plain.cast.lines,
-      primaryName: corpus.hexagrams[String(plain.cast.primary)]?.name ?? "",
-      changedName: plain.cast.changed ? (corpus.hexagrams[String(plain.cast.changed)]?.name ?? null) : null,
-      moving: plain.cast.movingLines.map((p) => lineLabel(p, yang(p))),
+      primary: cast.primary,
+      changed: cast.changed,
+      lines: cast.lines,
+      primaryName: corpus.hexagrams[String(cast.primary)]?.name ?? "",
+      changedName: cast.changed ? (corpus.hexagrams[String(cast.changed)]?.name ?? null) : null,
+      moving: cast.movingLines.map((p) => lineLabel(p, yang(p))),
     },
     content: decryptJson<ReportContent>(report.contentCt),
     citations,
@@ -95,11 +104,26 @@ export async function getReportView(userId: string, reportId: string): Promise<R
   };
 }
 
-/** 用户随时删除：清除问题、报告与追问内容，保留订单的账务字段（PRD §8） */
+/**
+ * 用户随时删除：清除这笔订单的报告、追问、快照里的个人内容，以及这一卦的问题、背景和分流摘要；
+ * 同一卦其他订单快照里的个人内容一并清除，未完成的结账作废。账务字段保留（PRD §8）。
+ */
 export async function deleteReport(userId: string, reportId: string): Promise<void> {
   const { order } = await ownedReport(userId, reportId);
   const db = await getDb();
-  await db.transaction((tx) => purgeOrderContent(tx, order.id, "user_deleted"));
+  await db.transaction(async (tx) => {
+    await revokeOrderContent(tx, order.id, "user_deleted");
+    const now = new Date();
+    await tx
+      .update(orders)
+      .set({ intentCt: null, contentPurgedAt: now, updatedAt: now })
+      .where(eq(orders.readingId, order.readingId));
+    await tx
+      .update(orders)
+      .set({ status: "expired", updatedAt: now })
+      .where(and(eq(orders.readingId, order.readingId), eq(orders.status, "pending_payment")));
+    await purgeReading(tx, order.readingId);
+  });
 }
 
 export type FollowupSubmitResult =
@@ -108,7 +132,7 @@ export type FollowupSubmitResult =
 
 export async function submitFollowup(userId: string, reportId: string, question: string, idempotencyKey: string): Promise<FollowupSubmitResult> {
   const { report, order } = await ownedReport(userId, reportId);
-  if (report.deletedAt || order.status !== "delivered" || report.expiresAt.getTime() < Date.now()) {
+  if (report.deletedAt || !report.contentCt || order.status !== "delivered" || report.expiresAt.getTime() < Date.now()) {
     throw new HttpError(409, "report_unavailable", "这份报告已不可追问");
   }
   const local = runLocalTriage(question, topicsBundle.triage);
@@ -127,7 +151,7 @@ export async function submitFollowup(userId: string, reportId: string, question:
     const [reserved] = await tx
       .update(orders)
       .set({ followupsUsed: sql`${orders.followupsUsed} + 1`, updatedAt: new Date() })
-      .where(and(eq(orders.id, order.id), lt(orders.followupsUsed, orders.followupsTotal)))
+      .where(and(eq(orders.id, order.id), eq(orders.status, "delivered"), lt(orders.followupsUsed, orders.followupsTotal)))
       .returning({ used: orders.followupsUsed });
     if (!reserved) throw new HttpError(409, "no_followups_left", "三次追问已经用完");
 
@@ -140,16 +164,19 @@ export async function submitFollowup(userId: string, reportId: string, question:
   });
 }
 
-/** 报告到期（默认交付后 90 天）自动清除内容 */
+/** 报告到期（默认交付后 90 天）自动清除内容；没有其他有效订单时，这一卦的问题也一并清除 */
 export async function purgeExpiredReports(): Promise<number> {
   const db = await getDb();
   const expired = await db
-    .select({ orderId: reports.orderId })
+    .select({ orderId: reports.orderId, readingId: reports.readingId })
     .from(reports)
     .where(and(isNull(reports.deletedAt), lt(reports.expiresAt, new Date())))
     .limit(200);
-  for (const { orderId } of expired) {
-    await db.transaction((tx) => purgeOrderContent(tx, orderId, "expired"));
+  for (const { orderId, readingId } of expired) {
+    await db.transaction(async (tx) => {
+      await revokeOrderContent(tx, orderId, "expired");
+      await releaseReadingIfUnused(tx, readingId);
+    });
   }
   return expired.length;
 }
@@ -164,9 +191,17 @@ export async function sendReportReadyEmail(orderId: string): Promise<void> {
     .where(eq(orders.id, orderId))
     .limit(1);
   if (!row || row.status !== "delivered") return;
+  const support = env().SUPPORT_EMAIL;
   await getMailer().send({
     to: row.email,
     subject: "你的问山报告已生成",
-    text: `你的报告已经生成，可以随时回来查看：\n${env().APP_URL}/orders/${orderId}\n\n报告保留 ${env().REPORT_RETENTION_DAYS} 天，到期前可以导出，也可以随时删除。`,
+    text: [
+      `你的报告已经生成，可以随时回来查看：\n${env().APP_URL}/orders/${orderId}`,
+      `报告保留 ${env().REPORT_RETENTION_DAYS} 天，到期前可以导出，也可以随时删除。`,
+      `付款或报告有问题，可以在这里反馈：${env().APP_URL}/support?type=paid_not_delivered&order=${orderId}`,
+      support ? `网站无法打开时，请发邮件到 ${support}，并附上订单号 ${orderId}。` : null,
+    ]
+      .filter(Boolean)
+      .join("\n\n"),
   });
 }

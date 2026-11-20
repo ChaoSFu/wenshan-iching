@@ -14,6 +14,7 @@
 | 白话注释 | 450/450 条初稿，**待人工审校** |
 | 主题配置、分流词表、求助资源 | 初稿，**待审校**；求助号码上线前须逐条核实 |
 | 付费闭环：邮箱验证码登录、付费前分流、订单与支付、报告生成与校验、三次追问、导出、删除、退款 | 已实现，本地用替身（模拟支付、模拟报告）可走通；**尚未接入真实的 Stripe、OpenAI、邮件服务验证** |
+| 首发改造：题意冻结与订单快照、按订单撤回、交付与退款同一状态机、独立 worker、收款开关与审核门槛、工单、模型分工与成本、评测命令 | 已实现并通过本地验收（见技术方案附录 D）；**收款默认关闭**，内容审核未完成前真实收款会被拒绝 |
 
 ## 目录
 
@@ -35,6 +36,12 @@ npm install
 npm run dev          # http://localhost:3000
 ```
 
+收款默认关闭（`SALES_ENABLED=false`），仓库里的原文与注释也都还是待审状态，所以 `npm run dev` 只能走免费流程。要在本地走通付费流程，用独立的测试配置：
+
+```bash
+npm run dev:test     # 开放收款 + 允许未审核内容进入模拟支付，使用独立数据库 .data/pglite-test；运营后台账号 ops@example.com
+```
+
 不需要任何外部账号即可走通付费流程（配置见 `apps/web/.env.example`）：
 
 - 数据库：内嵌 PGlite，数据在 `apps/web/.data/`，启动时自动迁移。
@@ -45,10 +52,21 @@ npm run dev          # http://localhost:3000
 接入真实服务时，在 `apps/web/.env.local` 里填入 Stripe、OpenAI、Resend 的密钥（填了就自动改用真实服务，留空继续用替身），然后运行 `npm run check:services -w @wenshan/web` 检查配置；生产环境必须配置 `DATABASE_URL` 与 `DATA_ENCRYPTION_KEY`，并先运行 `npm run db:migrate -w @wenshan/web`。Stripe 的 webhook 地址为 `/api/webhooks/payment`。
 
 ```bash
-npm test             # 单元测试（含 4,096 种爻值组合的遍历）与服务端集成测试
+npm test             # 单元测试（含 4,096 种爻值组合的遍历）、服务端集成测试、独立 worker 进程测试
 npm run typecheck
 npm run build
 ```
+
+其他命令：
+
+```bash
+npm run worker -w @wenshan/web          # 独立的后台任务进程（Web 设 WORKER_MODE=off 时使用；PGlite 不能与 dev 同时打开）
+npm run eval:models -w @wenshan/web     # 模型对照评测，默认走替身；加 -- --live 才调用真实 OpenAI
+npm run check:services -w @wenshan/web  # 检查 Stripe、OpenAI、Resend、PostgreSQL 配置
+npm run content:strict                  # 发布标准的内容审核检查（当前初稿会全部报出，这是预期行为）
+```
+
+帮助与反馈在 `/support`（工单），人身安全求助在 `/help`，运营后台在 `/ops`（只对 `OPS_EMAILS` 里的登录邮箱开放）。
 
 ## 内容工作流
 

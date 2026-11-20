@@ -8,13 +8,14 @@ import { jobs } from "../db/schema";
  * 多个 worker 并行时不会重复执行。
  */
 
-export type JobKind = "generate_report" | "generate_followup" | "refund_order" | "send_report_ready_email";
+export type JobKind = "generate_report" | "generate_followup" | "refund_order" | "send_report_ready_email" | "notify_support_ticket";
 
 export interface JobPayloads {
   generate_report: { orderId: string };
   generate_followup: { followupId: string };
   refund_order: { orderId: string; reason: string };
   send_report_ready_email: { orderId: string };
+  notify_support_ticket: { ticketId: string };
 }
 
 type Executor = Pick<DB, "insert">;
@@ -89,10 +90,12 @@ export async function failJob(db: DB, job: ClaimedJob, error: unknown, retryable
   return final;
 }
 
-/** 进程崩溃时留下的 running 任务，10 分钟后放回队列 */
-export async function requeueStale(db: DB): Promise<void> {
-  await db
+/** 进程崩溃时留下的 running 任务：租约到期后放回队列，由其他（或重启后的）worker 接手 */
+export async function requeueStale(db: DB, leaseMs: number): Promise<number> {
+  const rows = await db
     .update(jobs)
     .set({ status: "queued", lockedAt: null, updatedAt: new Date() })
-    .where(and(eq(jobs.status, "running"), lt(jobs.lockedAt, new Date(Date.now() - 10 * 60_000))));
+    .where(and(eq(jobs.status, "running"), lt(jobs.lockedAt, new Date(Date.now() - leaseMs))))
+    .returning({ id: jobs.id });
+  return rows.length;
 }

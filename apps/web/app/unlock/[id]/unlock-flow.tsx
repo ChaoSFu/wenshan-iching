@@ -6,11 +6,13 @@ import type { TopicId } from "@wenshan/content";
 import { LoginForm } from "@/components/login-form";
 import { CrisisPanel, Notice } from "@/components/notice";
 import { ApiError, api, type Me } from "@/lib/api";
-import { PRICE_LABEL, topicById, topicsBundle } from "@/lib/content";
+import { topicById, topicsBundle } from "@/lib/content";
+import { fetchOffer, type ClientOffer } from "@/lib/offer";
 import { loadReading, saveReading, type StoredReading } from "@/lib/reading-store";
 
 interface TriageView {
-  decision: "proceed" | "reframe_suggested" | "block_paid" | "crisis";
+  decision: "proceed" | "reframe_suggested" | "reframe_required" | "block_paid" | "crisis";
+  revision: number;
   confirmedTopic: TopicId;
   topicMismatch: boolean;
   summary: string;
@@ -23,6 +25,7 @@ type Step =
   | { kind: "loading" }
   | { kind: "missing" }
   | { kind: "login" }
+  | { kind: "closed" }
   | { kind: "consent" }
   | { kind: "working"; label: string }
   | { kind: "triage"; readingId: string; triage: TriageView }
@@ -40,12 +43,20 @@ export function UnlockFlow({ clientId }: { clientId: string }) {
   const [step, setStep] = useState<Step>({ kind: "loading" });
   const [agreed, setAgreed] = useState(false);
   const [paying, setPaying] = useState(false);
+  const [offer, setOffer] = useState<ClientOffer | null>(null);
 
   const checkLogin = useCallback(async () => {
     const r = loadReading(clientId);
     setReading(r);
     if (!r || r.revealed < 6) {
       setStep({ kind: "missing" });
+      return;
+    }
+    // 收款开关与价格只认服务端
+    const o = await fetchOffer();
+    setOffer(o);
+    if (!o?.salesEnabled) {
+      setStep({ kind: "closed" });
       return;
     }
     const me = await api<Me>("/api/me");
@@ -93,6 +104,22 @@ export function UnlockFlow({ clientId }: { clientId: string }) {
     }
   }
 
+  /** 采用改写后的问法：服务端修订号 +1，浏览器里的问题同步更新，然后重新确认题意 */
+  async function adopt(readingId: string, question: string) {
+    if (!reading) return;
+    setStep({ kind: "working", label: "正在按新的问法重新确认…" });
+    try {
+      await api(`/api/readings/${readingId}/reframe`, { body: { question } });
+      const next = { ...reading, question };
+      saveReading(next);
+      setReading(next);
+      const triage = await api<TriageView>(`/api/readings/${readingId}/triage`, { body: {} });
+      setStep({ kind: "triage", readingId, triage });
+    } catch (err) {
+      setStep({ kind: "error", message: err instanceof ApiError ? err.message : "网络异常，请稍后再试" });
+    }
+  }
+
   async function checkout(readingId: string) {
     setPaying(true);
     try {
@@ -100,6 +127,11 @@ export function UnlockFlow({ clientId }: { clientId: string }) {
       window.location.assign(checkoutUrl ?? `/orders/${orderId}`);
     } catch (err) {
       setPaying(false);
+      if (err instanceof ApiError && (err.code === "triage_required" || err.code === "reframe_required")) {
+        // 题意在别处被改过：重新确认
+        await uploadAndTriage(reading!);
+        return;
+      }
       setStep({ kind: "error", message: err instanceof ApiError ? err.message : "暂时无法创建订单，请稍后再试" });
     }
   }
@@ -126,6 +158,15 @@ export function UnlockFlow({ clientId }: { clientId: string }) {
         <p className="text-xs text-muted">解锁本次解读 · {topic.name}</p>
         <h1 className="mt-1 font-serif text-xl leading-8 text-ink">「{r.question}」</h1>
       </header>
+
+      {step.kind === "closed" && (
+        <Notice title="付费报告暂未开放">
+          <p>本次的卦象、原文与白话简读可以继续免费查看。开放后会在结果页显示购买入口。</p>
+          <Link href={`/r/${r.id}`} className="mt-2 inline-block text-sm font-medium text-qing underline underline-offset-4">
+            返回本次结果
+          </Link>
+        </Notice>
+      )}
 
       {step.kind === "login" && <LoginForm onDone={() => setStep({ kind: "consent" })} intro="购买前请先登录。登录后报告可以跨设备回看。" />}
 
@@ -173,6 +214,34 @@ export function UnlockFlow({ clientId }: { clientId: string }) {
 
       {step.kind === "triage" && step.triage.decision === "crisis" && <CrisisPanel message={step.triage.message} help={topicsBundle.help} />}
 
+      {step.kind === "triage" && step.triage.decision === "reframe_required" && (
+        <section className="rounded-2xl border border-zhu/40 bg-card p-5">
+          <h2 className="font-serif text-lg text-ink">需要先换一个问法</h2>
+          <p className="mt-2 text-sm text-ink-soft">{step.triage.message}</p>
+          {step.triage.reframe ? (
+            <>
+              <p className="mt-3 border-l-2 border-lu pl-3 font-serif text-base text-ink">「{step.triage.reframe}」</p>
+              <div className="mt-4 flex flex-wrap gap-4">
+                <button
+                  type="button"
+                  onClick={() => void adopt(step.readingId, step.triage.reframe!)}
+                  className="rounded-full bg-qing px-5 py-2 text-paper"
+                >
+                  采用这个问法并重新确认
+                </button>
+                <Link href={`/ask?reading=${r.id}`} className="self-center text-sm text-qing underline underline-offset-4">
+                  自己改写问题
+                </Link>
+              </div>
+            </>
+          ) : (
+            <Link href={`/ask?reading=${r.id}`} className="mt-3 inline-block text-sm text-qing underline underline-offset-4">
+              回去修改问题
+            </Link>
+          )}
+        </section>
+      )}
+
       {step.kind === "triage" && step.triage.decision === "block_paid" && (
         <Notice tone="warn" title="这个问题暂时不提供付费报告">
           <p>{step.triage.message}</p>
@@ -188,9 +257,16 @@ export function UnlockFlow({ clientId }: { clientId: string }) {
             <h2 className="text-xs text-muted">我们理解你想问的是</h2>
             <p className="mt-2 font-serif text-lg leading-8 text-ink">{step.triage.summary}</p>
             {step.triage.reframe && (
-              <p className="mt-3 border-l-2 border-lu pl-3 text-sm text-ink-soft">
-                也可以换个你能掌握的问法：「{step.triage.reframe}」。报告会从你能做的部分出发。
-              </p>
+              <div className="mt-3 border-l-2 border-lu pl-3 text-sm text-ink-soft">
+                <p>也可以换个你能掌握的问法：「{step.triage.reframe}」。报告会从你能做的部分出发。</p>
+                <button
+                  type="button"
+                  onClick={() => void adopt(step.readingId, step.triage.reframe!)}
+                  className="mt-1 text-sm font-medium text-qing underline underline-offset-4"
+                >
+                  用这个问法
+                </button>
+              </div>
             )}
             {step.triage.missingInfo.length > 0 && (
               <div className="mt-3 text-sm text-ink-soft">
@@ -218,7 +294,7 @@ export function UnlockFlow({ clientId }: { clientId: string }) {
           </section>
 
           <section className="rounded-2xl border border-qing/40 bg-card p-5">
-            <h2 className="font-serif text-lg text-ink">一次付款 {PRICE_LABEL}</h2>
+            <h2 className="font-serif text-lg text-ink">一次付款 {offer?.priceLabel}</h2>
             <ul className="mt-3 space-y-1.5 text-sm text-ink">
               {DELIVERABLES.map((d) => (
                 <li key={d} className="flex gap-2">
@@ -238,7 +314,7 @@ export function UnlockFlow({ clientId }: { clientId: string }) {
               onClick={() => void checkout(step.readingId)}
               className="mt-4 rounded-full bg-qing px-6 py-2.5 text-paper transition-colors hover:bg-qing-deep disabled:opacity-60"
             >
-              {paying ? "正在前往支付…" : `去支付 ${PRICE_LABEL}`}
+              {paying ? "正在前往支付…" : `去支付 ${offer?.priceLabel ?? ""}`}
             </button>
           </section>
         </>

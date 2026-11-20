@@ -19,11 +19,24 @@ export const uploadReadingSchema = z.object({
 });
 export type UploadReadingInput = z.infer<typeof uploadReadingSchema>;
 
+function cleanContext(topicId: TopicId, raw: Record<string, string>): Record<string, string> {
+  const topic = topicsBundle.topics.find((t) => t.id === topicId)!;
+  const allowedKeys = new Set(topic.contextFields.map((f) => f.key));
+  return Object.fromEntries(Object.entries(raw).filter(([k, v]) => allowedKeys.has(k) && v));
+}
+
+function sameContext(a: Record<string, string>, b: Record<string, string>): boolean {
+  const ka = Object.keys(a).sort();
+  const kb = Object.keys(b).sort();
+  return ka.length === kb.length && ka.every((k, i) => k === kb[i] && a[k] === b[k]);
+}
+
 /**
  * 用户同意发送后，把浏览器里的这一卦上传（PRD §6：付费前由服务端按原始值复算并锁定版本）。
- * 同一用户对同一 clientReadingId 重复上传是幂等的；卦象不可更改，问题与主题可以更新。
+ * 同一用户对同一 clientReadingId 重复上传是幂等的；卦象不可更改。
+ * 问题、背景或主题有任何变化，题意修订号 +1，之前的分流结果随之失效，需要重新确认题意。
  */
-export async function uploadReading(userId: string, input: UploadReadingInput): Promise<{ readingId: string }> {
+export async function uploadReading(userId: string, input: UploadReadingInput): Promise<{ readingId: string; revision: number }> {
   let cast: Cast;
   try {
     cast = castFromTosses(input.tosses);
@@ -31,9 +44,7 @@ export async function uploadReading(userId: string, input: UploadReadingInput): 
     if (err instanceof CastValidationError) throw new HttpError(400, "invalid_tosses", err.message);
     throw err;
   }
-  const topic = topicsBundle.topics.find((t) => t.id === input.topicId)!;
-  const allowedKeys = new Set(topic.contextFields.map((f) => f.key));
-  const context = Object.fromEntries(Object.entries(input.context).filter(([k, v]) => allowedKeys.has(k) && v));
+  const context = cleanContext(input.topicId, input.context);
 
   const db = await getDb();
   const [existing] = await db
@@ -46,18 +57,29 @@ export async function uploadReading(userId: string, input: UploadReadingInput): 
     if (JSON.stringify(existing.tosses) !== JSON.stringify(cast.tosses)) {
       throw new HttpError(409, "cast_immutable", "这一卦已经锁定，不能更换爻值");
     }
-    await db
+    const unchanged =
+      existing.questionCt !== null &&
+      existing.topicId === input.topicId &&
+      decrypt(existing.questionCt) === input.question &&
+      sameContext(existing.contextCt ? decryptJson<Record<string, string>>(existing.contextCt) : {}, context);
+    const [row] = await db
       .update(readings)
-      .set({
-        topicId: input.topicId,
-        questionCt: encrypt(input.question),
-        contextCt: encryptJson(context),
-        modelConsentAt: new Date(),
-        updatedAt: sql`now()`,
-        deletedAt: null,
-      })
-      .where(eq(readings.id, existing.id));
-    return { readingId: existing.id };
+      .set(
+        unchanged
+          ? { modelConsentAt: new Date() }
+          : {
+              topicId: input.topicId,
+              questionCt: encrypt(input.question),
+              contextCt: encryptJson(context),
+              revision: sql`${readings.revision} + 1`,
+              modelConsentAt: new Date(),
+              updatedAt: sql`now()`,
+              deletedAt: null,
+            },
+      )
+      .where(eq(readings.id, existing.id))
+      .returning({ revision: readings.revision });
+    return { readingId: existing.id, revision: row!.revision };
   }
 
   const [row] = await db
@@ -80,8 +102,8 @@ export async function uploadReading(userId: string, input: UploadReadingInput): 
       topicsVersion: topicsBundle.version,
       modelConsentAt: new Date(),
     })
-    .returning({ id: readings.id });
-  return { readingId: row!.id };
+    .returning({ id: readings.id, revision: readings.revision });
+  return { readingId: row!.id, revision: row!.revision };
 }
 
 export interface ReadingPlain {
@@ -95,6 +117,7 @@ export interface ReadingPlain {
   context: Record<string, string>;
   cast: Cast;
   corpusVersion: string;
+  revision: number;
   updatedAt: Date;
 }
 
@@ -121,13 +144,38 @@ export function toPlain(r: typeof readings.$inferSelect): ReadingPlain {
     context: r.contextCt ? decryptJson<Record<string, string>>(r.contextCt) : {},
     cast: castFromTosses(r.tosses),
     corpusVersion: r.corpusVersion,
+    revision: r.revision,
     updatedAt: r.updatedAt,
   };
 }
 
-export async function changeTopic(userId: string, readingId: string, topicId: TopicId): Promise<void> {
+/** 纠正主题：复用同一组爻值（PRD §4），但题意修订号 +1，需要重新确认题意 */
+export async function changeTopic(userId: string, readingId: string, topicId: TopicId): Promise<{ revision: number }> {
+  const reading = await loadOwnedReading(userId, readingId);
+  if (reading.topicId === topicId) return { revision: reading.revision };
+  const db = await getDb();
+  const [row] = await db
+    .update(readings)
+    .set({
+      topicId,
+      contextCt: encryptJson(cleanContext(topicId, reading.context)),
+      revision: sql`${readings.revision} + 1`,
+      updatedAt: sql`now()`,
+    })
+    .where(eq(readings.id, readingId))
+    .returning({ revision: readings.revision });
+  return { revision: row!.revision };
+}
+
+/** 用户确认采用建议的改写：问题更新为改写后的问法，修订号 +1，需要重新分流 */
+export async function adoptReframe(userId: string, readingId: string, question: string): Promise<{ revision: number }> {
+  const text = z.string().trim().min(4).max(200).parse(question);
   await loadOwnedReading(userId, readingId);
   const db = await getDb();
-  // 纠正主题时复用同一组爻值（PRD §4）
-  await db.update(readings).set({ topicId, updatedAt: sql`now()` }).where(eq(readings.id, readingId));
+  const [row] = await db
+    .update(readings)
+    .set({ questionCt: encrypt(text), revision: sql`${readings.revision} + 1`, updatedAt: sql`now()` })
+    .where(eq(readings.id, readingId))
+    .returning({ revision: readings.revision });
+  return { revision: row!.revision };
 }

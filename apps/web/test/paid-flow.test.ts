@@ -163,7 +163,7 @@ describe("paid flow (fake payment + fake model)", () => {
     expect((await getOrderView(user.id, second.orderId)).status).toBe("refunded");
   });
 
-  it("does not mark an order paid when the amount does not match", async () => {
+  it("moves an order with a mismatched amount to needs_review instead of delivering", async () => {
     const user = await login("mismatch@example.com");
     const readingId = await preparedReading(user);
     await runTriage(user.id, readingId);
@@ -171,8 +171,10 @@ describe("paid flow (fake payment + fake model)", () => {
     await db.update(orders).set({ amountMinor: 1990 }).where(eq(orders.id, orderId));
     await pay(orderId);
     const v = await getOrderView(user.id, orderId);
-    expect(v.status).toBe("pending_payment");
-    expect(v.failureReason).toBe("amount_mismatch");
+    expect(v.status).toBe("needs_review");
+    expect(v.reviewReason).toBe("amount_mismatch");
+    await drainJobs();
+    expect((await getOrderView(user.id, orderId)).status).toBe("needs_review");
   });
 });
 
@@ -250,7 +252,7 @@ describe("pre-purchase triage", () => {
     const healthId = await preparedReading(user, "我确诊了，手术后还能回去上班吗？");
     const health = await runTriage(user.id, healthId);
     expect(health.decision).toBe("block_paid");
-    await expect(createOrderForReading(user, healthId)).rejects.toMatchObject({ code: "triage_required" });
+    await expect(createOrderForReading(user, healthId)).rejects.toMatchObject({ code: "not_purchasable" });
   });
 
   it("keeps the cast locked once uploaded", async () => {

@@ -35,4 +35,3 @@ export function loadCorpus(): Promise<CorpusBundle> {
   return corpusPromise;
 }
 
-export const PRICE_LABEL = "US$9.90";

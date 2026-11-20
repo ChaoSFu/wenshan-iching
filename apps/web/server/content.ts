@@ -12,6 +12,12 @@ export interface TopicReportRules {
   version: number;
   report: { mustVerify: string[]; deliverables: string[]; actionStyle: string };
   boundaryExamples: { q: string; note: string }[];
+  reviewStatus: string;
+  example: {
+    question: string;
+    paid: { situation: string; observation: string; toVerify: string; sevenDayAction: string; followupExample: string } | null;
+    nextStep: string | null;
+  } | null;
 }
 
 const rules = rulesJson as unknown as { contentVersion: string; topics: Record<string, TopicReportRules> };

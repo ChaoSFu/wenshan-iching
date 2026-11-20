@@ -1,5 +1,5 @@
 import { castFromTosses, tossesFromLines, type LineValue } from "@wenshan/iching-core";
-import { __setEnvForTests } from "@/server/env";
+import { __setEnvForTests, type Env } from "@/server/env";
 import { __setDbForTests, createMemoryDb, type DB } from "@/server/db/client";
 import { __setMailerForTests, type MailMessage } from "@/server/mail";
 import { __setLlmForTests } from "@/server/llm";
@@ -9,8 +9,15 @@ import { requestOtp, verifyOtp } from "@/server/auth";
 export const sentMail: MailMessage[] = [];
 
 /** 每个测试文件一个全新的内存数据库，外部服务全部用本地替身 */
-export async function setupTestServer(): Promise<DB> {
-  __setEnvForTests({ PGLITE_DIR: "memory", APP_URL: "http://localhost:3000" });
+export async function setupTestServer(overrides: Partial<Env> = {}): Promise<DB> {
+  __setEnvForTests({
+    PGLITE_DIR: "memory",
+    APP_URL: "http://localhost:3000",
+    // 测试配置：开放收款，并允许模拟支付使用未审核内容（仓库里的初稿保持真实审核状态）
+    SALES_ENABLED: true,
+    ALLOW_UNREVIEWED_CONTENT: true,
+    ...overrides,
+  });
   __setMailerForTests({ send: async (m) => void sentMail.push(m) });
   __setLlmForTests(null);
   __setPaymentProviderForTests(null);

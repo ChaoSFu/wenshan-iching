@@ -34,7 +34,8 @@ export interface CheckoutState {
 export type PaymentEvent =
   | { id: string; type: "checkout.completed"; sessionId: string }
   | { id: string; type: "checkout.expired"; sessionId: string }
-  | { id: string; type: "refund.succeeded"; paymentId: string }
+  /** amountRefundedMinor 是这笔付款累计已退金额，用来区分部分退款与整单退款 */
+  | { id: string; type: "refund.succeeded"; paymentId: string; amountRefundedMinor: number; currency: string }
   | { id: string; type: "dispute.created"; paymentId: string }
   | { id: string; type: "ignored"; rawType: string };
 

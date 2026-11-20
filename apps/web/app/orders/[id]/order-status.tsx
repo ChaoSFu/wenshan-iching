@@ -124,7 +124,20 @@ export function OrderStatus({ orderId }: { orderId: string }) {
           </>
         )}
         {order.status === "disputed" && <p>这笔付款存在支付争议，报告暂停访问。如有疑问请联系我们，并附上订单号。</p>}
+        {order.status === "needs_review" && (
+          <p>我们收到了付款，但需要人工核实这笔订单（例如金额与订单不一致）。核实后会继续交付或原路退款，无需再次付款。</p>
+        )}
+        {order.refundedAmountMinor > 0 && order.status !== "refunded" && (
+          <p className="mt-2 text-xs text-muted">已部分退款 {formatMoney(order.refundedAmountMinor, order.currency)}。</p>
+        )}
       </section>
+
+      <Link
+        href={`/support?type=${order.status === "refunded" || order.status === "refund_pending" ? "duplicate_charge_or_refund" : "paid_not_delivered"}&order=${order.id}&from=/orders`}
+        className="inline-block text-sm text-qing underline underline-offset-4"
+      >
+        付款或交付有问题
+      </Link>
 
       <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 text-xs text-muted">
         <dt>金额</dt>
