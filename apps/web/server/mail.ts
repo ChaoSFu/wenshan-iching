@@ -24,7 +24,11 @@ const resendMailer: Mailer = {
       headers: { Authorization: `Bearer ${env().RESEND_API_KEY}`, "Content-Type": "application/json" },
       body: JSON.stringify({ from: env().MAIL_FROM, to: [msg.to], subject: msg.subject, text: msg.text }),
     });
-    if (!res.ok) throw new Error(`mail send failed: HTTP ${res.status}`);
+    if (!res.ok) {
+      // Resend 的错误说明（如发件域名未验证），不含收件人与正文
+      const detail = (await res.json().catch(() => null)) as { message?: string } | null;
+      throw new Error(`mail send failed: HTTP ${res.status} ${detail?.message ?? ""}`.trim());
+    }
   },
 };
 

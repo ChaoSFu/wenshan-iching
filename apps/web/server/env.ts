@@ -44,9 +44,21 @@ export type Env = z.infer<typeof schema>;
 
 let cached: Env | null = null;
 
+/** 没有显式指定时：填了密钥就用真实服务，否则用本地替身 */
+function withProviderDefaults(source: NodeJS.ProcessEnv): Record<string, string | undefined> {
+  const raw: Record<string, string | undefined> = { ...source };
+  const has = (k: string) => Boolean(raw[k]?.trim());
+  raw.PAYMENT_PROVIDER ||= has("STRIPE_SECRET_KEY") ? "stripe" : undefined;
+  raw.LLM_PROVIDER ||= has("OPENAI_API_KEY") ? "openai" : undefined;
+  raw.MAIL_PROVIDER ||= has("RESEND_API_KEY") ? "resend" : undefined;
+  // .env 文件里留空的项按未配置处理
+  for (const k of Object.keys(raw)) if (raw[k] === "") delete raw[k];
+  return raw;
+}
+
 export function env(): Env {
   if (cached) return cached;
-  const parsed = schema.parse(process.env);
+  const parsed = schema.parse(withProviderDefaults(process.env));
   if (parsed.NODE_ENV === "production") {
     const missing: string[] = [];
     if (!parsed.DATABASE_URL) missing.push("DATABASE_URL");
@@ -57,9 +69,16 @@ export function env(): Env {
     }
     if (parsed.LLM_PROVIDER !== "openai" || !parsed.OPENAI_API_KEY) missing.push("LLM_PROVIDER=openai + OPENAI_API_KEY");
     if (parsed.MAIL_PROVIDER !== "resend" || !parsed.RESEND_API_KEY) missing.push("MAIL_PROVIDER=resend + RESEND_API_KEY");
+    if (parsed.MAIL_FROM.includes("example.com")) missing.push("MAIL_FROM（已在 Resend 验证的发件域名）");
     if (missing.length) throw new Error(`production config incomplete: ${missing.join(", ")}`);
   }
   cached = parsed;
+  if (parsed.NODE_ENV === "development") {
+    // 密钥也可能来自全局环境变量；启动时说清楚用的是真实服务还是替身
+    console.info(
+      `[env] payment=${parsed.PAYMENT_PROVIDER} llm=${parsed.LLM_PROVIDER} mail=${parsed.MAIL_PROVIDER} db=${parsed.DATABASE_URL ? "postgres" : "pglite"}`,
+    );
+  }
   return parsed;
 }
 

@@ -107,6 +107,7 @@ export function createFakeProvider(): PaymentProvider {
     async refund({ paymentId }) {
       const body = JSON.stringify({ id: `fake_evt_${randomUUID()}`, type: "refund.succeeded", paymentId });
       fakeRefundEvents.push({ body, signature: signFakeEvent(body) });
+      return { status: "pending" as const };
     },
 
     parseWebhook(rawBody, headers): PaymentEvent {

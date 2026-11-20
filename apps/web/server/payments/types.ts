@@ -46,7 +46,8 @@ export interface PaymentProvider {
   readonly name: "stripe" | "fake";
   createCheckout(input: CreateCheckoutInput): Promise<CheckoutSession>;
   retrieveCheckout(sessionId: string): Promise<CheckoutState>;
-  refund(input: { paymentId: string; idempotencyKey: string }): Promise<void>;
+  /** 发起原路退款；succeeded 表示支付平台已确认，pending 表示等待回调 */
+  refund(input: { paymentId: string; idempotencyKey: string }): Promise<{ status: "succeeded" | "pending" | "failed" }>;
   /** 校验签名并解析回调；签名不对时抛 WebhookSignatureError */
   parseWebhook(rawBody: string, headers: Headers): PaymentEvent;
 }

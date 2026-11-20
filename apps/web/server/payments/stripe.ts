@@ -9,7 +9,8 @@ import {
   type PaymentProvider,
 } from "./types";
 
-const CHECKOUT_TTL_MS = 30 * 60_000; // Stripe 允许的最短有效期
+// Stripe 要求至少 30 分钟；留 1 分钟余量，避免请求耗时导致被拒
+const CHECKOUT_TTL_MS = 31 * 60_000;
 
 export function createStripeProvider(): PaymentProvider {
   const stripe = new Stripe(env().STRIPE_SECRET_KEY ?? "");
@@ -39,6 +40,8 @@ export function createStripeProvider(): PaymentProvider {
           success_url: input.successUrl,
           cancel_url: input.cancelUrl,
           expires_at: Math.floor(expiresAt.getTime() / 1000),
+          // 价格固定为美元（PRD §8）；关闭按本地货币展示，避免回调金额、币种与订单不一致
+          adaptive_pricing: { enabled: false },
         },
         { idempotencyKey: input.idempotencyKey },
       );
@@ -61,7 +64,8 @@ export function createStripeProvider(): PaymentProvider {
     },
 
     async refund({ paymentId, idempotencyKey }) {
-      await stripe.refunds.create({ payment_intent: paymentId }, { idempotencyKey });
+      const refund = await stripe.refunds.create({ payment_intent: paymentId }, { idempotencyKey });
+      return { status: refund.status === "succeeded" ? "succeeded" : refund.status === "failed" ? "failed" : "pending" };
     },
 
     parseWebhook(rawBody: string, headers: Headers): PaymentEvent {

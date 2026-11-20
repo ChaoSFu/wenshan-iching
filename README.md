@@ -42,7 +42,7 @@ npm run dev          # http://localhost:3000
 - 支付：跳到 `/dev/checkout/...` 模拟支付页，可模拟成功、取消、超时。
 - 报告：生成标有「演示内容」的模拟报告，走同一套校验与交付流程。
 
-接入真实服务时，在 `apps/web/.env.local` 里设置 `PAYMENT_PROVIDER=stripe`、`LLM_PROVIDER=openai`、`MAIL_PROVIDER=resend` 和对应的密钥；生产环境必须配置 `DATABASE_URL` 与 `DATA_ENCRYPTION_KEY`，并先运行 `npm run db:migrate -w @wenshan/web`。Stripe 的 webhook 地址为 `/api/webhooks/payment`。
+接入真实服务时，在 `apps/web/.env.local` 里填入 Stripe、OpenAI、Resend 的密钥（填了就自动改用真实服务，留空继续用替身），然后运行 `npm run check:services -w @wenshan/web` 检查配置；生产环境必须配置 `DATABASE_URL` 与 `DATA_ENCRYPTION_KEY`，并先运行 `npm run db:migrate -w @wenshan/web`。Stripe 的 webhook 地址为 `/api/webhooks/payment`。
 
 ```bash
 npm test             # 单元测试（含 4,096 种爻值组合的遍历）与服务端集成测试

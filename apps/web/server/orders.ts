@@ -299,7 +299,10 @@ export async function runRefund(orderId: string): Promise<void> {
     await db.update(orders).set({ status: "refund_pending", updatedAt: new Date() }).where(eq(orders.id, orderId));
   }
   const provider = getPaymentProvider();
-  await provider.refund({ paymentId: order.providerPaymentId, idempotencyKey: `refund:${orderId}` });
+  const { status } = await provider.refund({ paymentId: order.providerPaymentId, idempotencyKey: `refund:${orderId}` });
+  if (status === "failed") throw new Error(`refund failed for order ${orderId}`);
+  // 支付平台已确认的退款立即记账；之后到达的退款回调是幂等的
+  if (status === "succeeded") await markRefunded(order.providerPaymentId);
   // fake 支付立即产生退款回调；Stripe 的回调稍后经 webhook 到达
   if (provider.name === "fake") {
     for (const ev of fakeRefundEvents.splice(0)) {
