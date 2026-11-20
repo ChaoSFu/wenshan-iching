@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 12
+entries:
+  - entryId: ZY.12.G
+    vernacular: 否是闭塞不通。卦辞说：闭塞之时，人与人不相往来，不利于君子坚持正道，付出的大，得来的小。比喻沟通渠道堵塞时，用力多而收效少，宜守住自己，不急于求成。
+    angles: [wait, restrain]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.12.L1
+    vernacular: 拔起茅草，根须相连，一同带起，守正吉利，亨通。比喻困境中和同伴一起守住正道，不随波逐流。
+    angles: [persevere, cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.12.L2
+    vernacular: 包容顺承，对迎合者来说吉利；有志向的人则宁可处于闭塞，也不随波逐流，终会亨通。比喻在不顺的环境里，与其委曲求全，不如守住原则。
+    angles: [persevere, restrain]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.12.L3
+    vernacular: 包藏着羞耻。比喻勉强待在不正当的位置上，心里难安；需要反思自己所处的位置与做法。
+    angles: [reflect]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.12.L4
+    vernacular: 奉行使命，没有过错，同类的人都会得到福祉。比喻闭塞开始松动时，顺应时机行事，并带上志同道合的人。
+    angles: [advance, cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.12.L5
+    vernacular: 闭塞的局面停止，大人吉利；要时时警醒自己可能失败，才能像系在丛生的桑树上一样稳固。比喻局面好转时保持忧患意识，才能稳住成果。
+    angles: [caution, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.12.L6
+    vernacular: 闭塞的局面被推翻，先是闭塞，后来欢喜。比喻困局到了尽头会转变，主动推动改变，能迎来转机。
+    angles: [advance, adjust]
+    authorship: self
+    reviewStatus: draft

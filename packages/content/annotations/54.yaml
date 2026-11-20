@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 54
+entries:
+  - entryId: ZY.54.G
+    vernacular: 归妹本指古代女子出嫁。卦辞说：急于前进有凶险，没有什么好处；原文借不合礼序的婚配说明位置不当。比喻在关系或合作中，出发点和位置不对，越急着推进越不利。
+    angles: [caution, reflect]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.54.L1
+    vernacular: 原文说以从属的身份随嫁，就像跛脚的人仍能行走，前进吉利。比喻处在次要的位置，只要安守本分、尽力辅助，也能有所作为。
+    angles: [persevere, cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.54.L2
+    vernacular: 眼睛不好仍能看见，利于安静淡泊的人守正。比喻条件有限、不被重视时，守住自己的操守。
+    angles: [persevere, restrain]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.54.L3
+    vernacular: 原文说本想以正式的身份出嫁，却只能等待，最后以从属的身份出嫁。比喻期望过高而条件不足时，不妨降低姿态，接受现实的位置。
+    angles: [adjust, reflect]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.54.L4
+    vernacular: 原文说结亲的日子一再延误，迟一些是在等待合适的时机。比喻不急于成就某件事，宁可等待合适的对象与时机。
+    angles: [wait]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.54.L5
+    vernacular: 商王帝乙嫁妹，她的衣饰还不如随嫁者的华美；月亮将要满圆，吉利。比喻身份尊贵却不讲排场、朴素谦和，反而受人敬重。
+    angles: [restrain, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.54.L6
+    vernacular: 原文说一方捧着的竹筐里空无一物，另一方宰羊却不见血，没有什么好处。比喻徒有形式、缺乏实质的结合或承诺，难有结果。
+    angles: [reflect, caution]
+    authorship: self
+    reviewStatus: draft

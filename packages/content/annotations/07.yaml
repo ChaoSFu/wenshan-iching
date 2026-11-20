@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 7
+entries:
+  - entryId: ZY.07.G
+    vernacular: 师指军队，也可引申为众人的组织。卦辞说：守持正道，由德高望重、有经验的人统领，吉利，没有过错。比喻组织一群人做大事，要有正当的目的和可靠的带头人。
+    angles: [cooperate, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.07.L1
+    vernacular: 出兵要有纪律，纪律不好，就有凶险。比喻团队行动之初就要立好规则，规则松散，事情很难成功。
+    angles: [prepare, caution]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.07.L2
+    vernacular: 统帅身处军中，持中得当，吉利，没有过错，君王多次嘉奖。比喻带头人深入一线、处事公允，能赢得信任与支持。
+    angles: [persevere, cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.07.L3
+    vernacular: 军队或许会载着尸体归来，凶险。比喻指挥不当、多头领导，可能导致失败；需要重新理清责任。
+    angles: [caution, reflect]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.07.L4
+    vernacular: 军队退后驻扎，没有过错。比喻形势不利时暂时后退、保存实力，是明智的选择。
+    angles: [restrain, wait]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.07.L5
+    vernacular: 田里有禽兽侵害庄稼，适合去捕捉，没有过错；由有经验的人统领，若让不够格的人分权干预，就会载尸而归，坚持下去有凶险。比喻应对问题理由正当，还要用对人、统一指挥。
+    angles: [caution, cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.07.L6
+    vernacular: 君主颁布命令，论功封赏，让有功的人开国承家；但不要重用品行不端的人。比喻事情完成后论功行赏，同时要慎选承担后续责任的人。
+    angles: [reflect, caution]
+    authorship: self
+    reviewStatus: draft

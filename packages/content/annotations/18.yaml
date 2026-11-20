@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 18
+entries:
+  - entryId: ZY.18.G
+    vernacular: 蛊本义是器皿中生虫，引申为积弊、需要整治的事。卦辞说：大为亨通，利于渡过大河；在甲日之前三天和之后三天都要审慎筹划。比喻面对长期积累的问题，下决心整治，事前谋划、事后巩固。
+    angles: [adjust, prepare]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.18.L1
+    vernacular: 整治上一代留下的积弊，有能承担的后人，前人也就没有过错；虽有危险，最终吉利。比喻接手旧摊子，勇于改正前人的问题，开头难，结局好。
+    angles: [adjust, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.18.L2
+    vernacular: 整治上一代留下的积弊，原文以母辈为喻，指需要顾及情面的问题，不可过于刚直。比喻处理敏感的旧问题时，要讲方式、留余地。
+    angles: [adjust, restrain]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.18.L3
+    vernacular: 整治上一代留下的积弊，稍有悔恨，但没有大的过错。比喻改革中难免操之过急，方向对了就不必过于自责。
+    angles: [adjust, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.18.L4
+    vernacular: 宽容放任上一代留下的积弊，前往会有遗憾。比喻对已经发现的问题姑息拖延，会越积越难处理。
+    angles: [caution, reflect]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.18.L5
+    vernacular: 整治上一代留下的积弊，因此获得赞誉。比喻以温和得当的方式纠正旧问题，能赢得认可。
+    angles: [adjust, cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.18.L6
+    vernacular: 不去侍奉王侯，把自己的志向看得高尚。比喻功成之后或时局不合时，选择退出，保持独立的操守。
+    angles: [reflect, restrain]
+    authorship: self
+    reviewStatus: draft

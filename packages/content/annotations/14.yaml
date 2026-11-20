@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 14
+entries:
+  - entryId: ZY.14.G
+    vernacular: 大有是大有收获、丰盛富有。卦辞说：大为亨通。比喻资源丰盛、条件成熟，可以有所作为，同时更要善于运用和分享。
+    angles: [advance, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.14.L1
+    vernacular: 不与有害的事物交往，就没有过错；时时记得艰难，就不会有过错。比喻刚有起色时，远离诱惑，记住起步的不易。
+    angles: [caution, restrain]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.14.L2
+    vernacular: 用大车装载，有所前往，没有过错。比喻能力足以承担重任，可以放心去做。
+    angles: [advance]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.14.L3
+    vernacular: 公侯向天子献礼并得到款待，小人做不到这一点。比喻有了成就要懂得回馈与奉献，若只想据为己有，就承受不起。
+    angles: [reflect, cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.14.L4
+    vernacular: 不倚仗自己的强盛，没有过错。比喻在丰盛时自我节制，不炫耀、不膨胀。
+    angles: [restrain, caution]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.14.L5
+    vernacular: 以诚信与人交往，又有威严，吉利。比喻既真诚待人，又有原则和分寸，能赢得尊重。
+    angles: [persevere, cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.14.L6
+    vernacular: 得到上天的佑助，吉利，没有不利。比喻顺应正道、诚信谦和，外部的助力也会随之而来。
+    angles: [persevere, cooperate]
+    authorship: self
+    reviewStatus: draft

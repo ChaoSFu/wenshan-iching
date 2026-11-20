@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 23
+entries:
+  - entryId: ZY.23.G
+    vernacular: 剥是剥落、侵蚀。卦辞说：不利于有所前往。比喻正面的力量被一点点消耗时，不宜贸然行动，先保存自己，静待转机。
+    angles: [wait, caution]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.23.L1
+    vernacular: 床脚开始被剥蚀，正道受到损害，凶险。比喻问题已在根基处出现，要尽早察觉、及时修补。
+    angles: [caution, prepare]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.23.L2
+    vernacular: 剥蚀到了床身与床脚相接的地方，正道受到损害，凶险。比喻侵蚀在扩大，这时不能再忽视，要寻求支援。
+    angles: [caution, cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.23.L3
+    vernacular: 身处剥落之时，却能与侵蚀的一方割离，没有过错。比喻在不良的环境里守住立场，与不正的风气保持距离。
+    angles: [persevere, adjust]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.23.L4
+    vernacular: 剥蚀到了床面，触及身体肌肤，凶险。比喻损害已经切身，需要正视处境，尽快止损。
+    angles: [caution, adjust]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.23.L5
+    vernacular: 像鱼一样排成一串，有序地率领众人得到恩宠，没有不利。比喻在衰退的局面中，带领大家有序地接受正确的引导，能化险为夷。
+    angles: [cooperate, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.23.L6
+    vernacular: 硕大的果实没有被吃掉；君子得之受到众人拥戴，小人得之连房屋都被剥掉。比喻保留下来的那份核心价值，善用就是重新开始的种子。
+    angles: [persevere, prepare]
+    authorship: self
+    reviewStatus: draft

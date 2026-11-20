@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 42
+entries:
+  - entryId: ZY.42.G
+    vernacular: 益是增益。卦辞说：利于有所前往，利于渡过大河。比喻条件在增长，正是积极行动、做成事情的好时机。
+    angles: [advance, cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.42.L1
+    vernacular: 利于做大事，大吉，没有过错。比喻得到助力时，可以放手做一件有分量的事，但要做好才算无过。
+    angles: [advance, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.42.L2
+    vernacular: 有人送来价值十朋的大龟，无法推辞，长久守正吉利；君王用来祭祀天帝，吉利。比喻收到帮助时保持谦逊和恒心，这份增益才会长久。
+    angles: [persevere, cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.42.L3
+    vernacular: 把增益用在救助凶难之事上，没有过错；心怀诚信、行事中正，手持玉圭向王公禀报。比喻资源用于化解危难是正当的，过程要公开透明。
+    angles: [caution, cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.42.L4
+    vernacular: 行事中正，向王公禀报会被听从；利于依靠众人迁移国都。比喻做大的变动时，要秉持公心、获得认可，再借助各方力量推进。
+    angles: [cooperate, adjust]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.42.L5
+    vernacular: 心怀诚信、惠及他人，不用问也是大吉；别人也会以诚信回报我的德行。比喻真心为别人着想，善意会被回应。
+    angles: [persevere, cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.42.L6
+    vernacular: 没有人增益他，反而有人攻击他；立心不恒，凶险。比喻只想得到而不付出、心意又反复无常，会失去支持。
+    angles: [reflect, caution]
+    authorship: self
+    reviewStatus: draft

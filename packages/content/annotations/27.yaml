@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 27
+entries:
+  - entryId: ZY.27.G
+    vernacular: 颐是面颊，引申为颐养。卦辞说：守正吉利；观察一个人如何颐养，看他自己如何求取食物。比喻照顾好身心、用正当的方式获取所需，也要留意自己吸收什么、说出什么。
+    angles: [reflect, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.27.L1
+    vernacular: 舍弃你自己的灵龟，却盯着我鼓动腮帮吃东西，凶险。比喻放着自己的长处和资源不用，去羡慕别人，反而失去自我。
+    angles: [reflect, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.27.L2
+    vernacular: 反过来向下求养，违背常理；向高丘上的人求养，前往凶险。比喻依赖不该依赖的对象，或者路子不正，都难以长久。
+    angles: [reflect, adjust]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.27.L3
+    vernacular: 违背颐养的正道，即使坚持也有凶险，十年不能施用，没有好处。比喻以不健康的方式满足自己，越坚持伤得越深。
+    angles: [adjust, caution]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.27.L4
+    vernacular: 反过来向下求养却吉利；像老虎那样专注地注视，欲求持续不断，没有过错。比喻为了正当的目标去寻求帮助，专注而持久，是可以的。
+    angles: [cooperate, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.27.L5
+    vernacular: 违背常理，安居守正吉利，不可以渡过大河。比喻自身力量不足时依靠他人，守住现状，不宜冒大的风险。
+    angles: [restrain, cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.27.L6
+    vernacular: 众人依赖他而得到颐养，虽有危险但吉利，利于渡过大河。比喻承担起照顾众人的责任，心存敬畏，能做成大事。
+    angles: [advance, caution]
+    authorship: self
+    reviewStatus: draft

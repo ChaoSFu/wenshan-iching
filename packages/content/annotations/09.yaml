@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 9
+entries:
+  - entryId: ZY.09.G
+    vernacular: 小畜是小有积蓄、以小蓄大的意思。卦辞说：亨通；浓云密布却不下雨，云从西郊升起。比喻条件正在积聚，但还没到发挥作用的时候，需要继续积累。
+    angles: [prepare, wait]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.09.L1
+    vernacular: 回到自己的正道上，有什么过错呢，吉利。比喻察觉偏离后及时回到本来的方向。
+    angles: [adjust, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.09.L2
+    vernacular: 被人牵引着回到正道，吉利。比喻和志同道合的人相互提醒，一起回到正轨。
+    angles: [cooperate, adjust]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.09.L3
+    vernacular: 车厢与车轴脱开，伴侣反目。比喻关系或合作中力量失衡，强行前进只会出故障，需要停下来修复。
+    angles: [reflect, adjust]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.09.L4
+    vernacular: 心怀诚信，流血的伤害远去，忧惧消散，没有过错。比喻以诚相待，可以化解紧张的局面，让心里的担忧退去。
+    angles: [persevere, cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.09.L5
+    vernacular: 心怀诚信，与他人紧密相连，和邻居共享富足。比喻真诚地与周围的人分享资源，彼此都会更有力量。
+    angles: [cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.09.L6
+    vernacular: 雨已经下了，也已经停了，积蓄的德行足以承载；但这时即使守正也有危险，月亮接近满圆，君子再前进有凶险。比喻积累已到顶点，宜知足守成，不宜贸然推进。
+    angles: [restrain, caution]
+    authorship: self
+    reviewStatus: draft

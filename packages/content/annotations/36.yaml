@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 36
+entries:
+  - entryId: ZY.36.G
+    vernacular: 明夷是光明受到损伤，像太阳落入地下。卦辞说：利于在艰难中守正。比喻处在不被理解或环境压抑的时期，收敛锋芒，守住内心的光亮。
+    angles: [persevere, restrain]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.36.L1
+    vernacular: 光明受损时的鸟在飞，垂下了翅膀；君子赶路，三天不吃饭；有所前往，会受到主人的责备。比喻处境不利时尽早离开，即使辛苦、不被理解，也比留下受伤好。
+    angles: [adjust, caution]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.36.L2
+    vernacular: 光明受损，伤在左腿，借助强壮的马来救援，吉利。比喻受到伤害时，及时借助有力的帮助，能够脱离困境。
+    angles: [cooperate, adjust]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.36.L3
+    vernacular: 在南方狩猎时光明受损，却捕获了首恶；不能操之过急地求正。比喻有机会扭转局面时，也要循序渐进，不能急于求成。
+    angles: [restrain, caution]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.36.L4
+    vernacular: 进入左腹，了解了光明受损的内情，于是走出门庭。比喻看清了问题的实质之后，果断离开。
+    angles: [adjust, reflect]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.36.L5
+    vernacular: 像箕子那样在黑暗中隐藏自己的光明，利于守正。箕子是商末贤臣，在暴政下佯狂自保。比喻在不利的环境里韬光养晦，守住原则。
+    angles: [persevere, restrain]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.36.L6
+    vernacular: 不发光明反而昏暗，起初升上天空，后来坠入地下。比喻不明事理却身居高位，终究会跌落。
+    angles: [reflect, caution]
+    authorship: self
+    reviewStatus: draft

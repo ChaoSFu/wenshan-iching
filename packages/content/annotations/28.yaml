@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 28
+entries:
+  - entryId: ZY.28.G
+    vernacular: 大过是大的过度，像房屋的栋梁被压弯。卦辞说：栋梁弯曲，利于有所前往，亨通。比喻负担过重、局面失衡时，要果断采取行动加以扭转。
+    angles: [adjust, advance]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.28.L1
+    vernacular: 用洁白的茅草垫在下面，没有过错。比喻在非常时期格外谨慎、做好铺垫，就不容易出错。
+    angles: [caution, prepare]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.28.L2
+    vernacular: 枯萎的杨树长出新芽；原文说年长的一方得到年轻的伴侣，没有不利。比喻在衰败中引入新的活力，可以重新焕发生机。
+    angles: [adjust, cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.28.L3
+    vernacular: 栋梁弯曲，凶险。比喻过于刚强、不肯接受辅助，承重的地方终会撑不住。
+    angles: [caution, cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.28.L4
+    vernacular: 栋梁隆起，吉利；若另有牵挂，就会有遗憾。比喻能够撑起局面，但要专注，不被别的事分心。
+    angles: [persevere, caution]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.28.L5
+    vernacular: 枯萎的杨树开出花朵；原文说年长的一方与年轻的伴侣结合，没有过错，也没有称誉。比喻表面的繁荣难以长久，并不能解决根本问题。
+    angles: [reflect, caution]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.28.L6
+    vernacular: 涉水过深，淹没了头顶，凶险，但没有过错。比喻为了正当的目标承担了超出能力的风险，结果虽不好，动机却无可指责。
+    angles: [caution, reflect]
+    authorship: self
+    reviewStatus: draft

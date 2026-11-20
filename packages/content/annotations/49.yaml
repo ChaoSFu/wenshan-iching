@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 49
+entries:
+  - entryId: ZY.49.G
+    vernacular: 革是变革，像皮革去毛而成。卦辞说：到了合适的日子，变革才能取信于人，大为亨通，利于守正，悔恨消失。比喻改变要选对时机，取得信任之后再推进。
+    angles: [adjust, wait]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.49.L1
+    vernacular: 用黄牛的皮革牢牢捆住。比喻变革的时机还没到，先稳住，不轻举妄动。
+    angles: [wait, restrain]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.49.L2
+    vernacular: 到了合适的日子就进行变革，前进吉利，没有过错。比喻时机成熟时，果断行动。
+    angles: [advance, adjust]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.49.L3
+    vernacular: 急于前进有凶险，固执也有危险；关于变革的主张经过多次商议、形成共识，才能取信于人。比喻变革之前要反复论证、多方沟通。
+    angles: [cooperate, caution]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.49.L4
+    vernacular: 悔恨消失，心怀诚信去改变旧的命令，吉利。比喻有了信任作基础，可以推动实质性的改变。
+    angles: [advance, adjust]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.49.L5
+    vernacular: 大人像老虎换毛一样焕然一新，不用占卜就有人信服。比喻带头的人以身作则带来鲜明的改变，自然赢得信任。
+    angles: [advance, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.49.L6
+    vernacular: 君子像豹子换毛一样变得有文采，小人也改换了面貌；此时再前进有凶险，安居守正吉利。比喻变革已经完成，宜巩固成果，不宜再折腾。
+    angles: [restrain, persevere]
+    authorship: self
+    reviewStatus: draft

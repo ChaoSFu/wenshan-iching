@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 39
+entries:
+  - entryId: ZY.39.G
+    vernacular: 蹇是行走艰难。卦辞说：利于往西南平坦之地，不利于往东北险阻之地；利于去见德高望重的人，守正吉利。比喻困难当前时，选平稳的方向，找能帮助自己的人，守住正道。
+    angles: [adjust, cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.39.L1
+    vernacular: 前往会遇到艰难，回来则获得赞誉。比喻困难面前先停下来，等待时机，反而受人称许。
+    angles: [wait, restrain]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.39.L2
+    vernacular: 君王的臣子历经重重艰难，不是为了自己的缘故。比喻为了共同的责任承受辛苦，问心无愧。
+    angles: [persevere, cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.39.L3
+    vernacular: 前往会遇到艰难，回来便返归原处。比喻前路不通时，退回到自己可依靠的地方，重新积蓄力量。
+    angles: [adjust, wait]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.39.L4
+    vernacular: 前往会遇到艰难，回来则可以联合他人。比喻独自难以突破时，先回头联合伙伴。
+    angles: [cooperate, wait]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.39.L5
+    vernacular: 遇到大的艰难，朋友纷纷前来相助。比喻守住中正、真诚待人，在困境中会得到支援。
+    angles: [cooperate, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.39.L6
+    vernacular: 前往会遇到艰难，回来则有大的收获，吉利；利于去见德高望重的人。比喻转身回来，向更有经验的人求助，会大有所得。
+    angles: [cooperate, adjust]
+    authorship: self
+    reviewStatus: draft

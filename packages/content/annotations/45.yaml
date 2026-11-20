@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 45
+entries:
+  - entryId: ZY.45.G
+    vernacular: 萃是聚集。卦辞说：君王到宗庙祭祀，利于见德高望重的人，亨通，利于守正；用大的牲畜献祭吉利，利于有所前往。比喻众人聚在一起时，需要共同的信念和有分量的带头人，诚意要足。
+    angles: [cooperate, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.45.L1
+    vernacular: 心有诚信却不能坚持到底，于是时乱时聚；如果大声呼号，一握手就转为欢笑，不必忧虑，前往没有过错。比喻关系中的反复是常事，真诚表达、主动沟通，就能重新聚拢。
+    angles: [cooperate, adjust]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.45.L2
+    vernacular: 被人引荐而相聚，吉利，没有过错；只要心怀诚信，简朴的祭祀也有利。比喻有人牵线时顺势而为，真诚比排场更重要。
+    angles: [cooperate, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.45.L3
+    vernacular: 想要聚合却只能叹息，没有什么好处；前往没有过错，稍有遗憾。比喻融入群体受挫时，主动去找合适的人，虽有些尴尬也值得。
+    angles: [probe, cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.45.L4
+    vernacular: 大吉，才能没有过错。比喻众人聚集在你身边时，要做到公正无私，才配得上这份信任。
+    angles: [persevere, caution]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.45.L5
+    vernacular: 因为地位而聚集众人，没有过错；如果还没获得信任，就要长久守正，悔恨才会消失。比喻靠职位凝聚人心只是开始，要靠长期的诚信赢得真心。
+    angles: [persevere, reflect]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.45.L6
+    vernacular: 叹息哀伤、涕泪交流，没有过错。比喻聚不到人、深感孤独时，真诚的忧虑与反省可以避免更大的过失。
+    angles: [reflect]
+    authorship: self
+    reviewStatus: draft

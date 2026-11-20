@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 46
+entries:
+  - entryId: ZY.46.G
+    vernacular: 升是上升，像树木从地中生长。卦辞说：大为亨通，适合去见德高望重的人，不必忧虑，向南前进吉利。比喻处在稳步成长的阶段，主动寻求指引，一步步向上走。
+    angles: [advance, cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.46.L1
+    vernacular: 得到信任而上升，大吉。比喻得到前辈或上级的信任，与他们志同道合，成长之路会顺畅许多。
+    angles: [advance, cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.46.L2
+    vernacular: 心怀诚信，简朴的祭祀也有利，没有过错。比喻真诚比形式重要，踏实的付出会被看到。
+    angles: [persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.46.L3
+    vernacular: 上升进入一座空城，毫无阻碍。比喻前路畅通，可以放心推进，但也要留意是否过于顺利。
+    angles: [advance, caution]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.46.L4
+    vernacular: 君王在岐山举行祭祀，吉利，没有过错。比喻在上升中保持敬畏与感恩，能稳稳立足。
+    angles: [persevere, reflect]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.46.L5
+    vernacular: 守正吉利，像登台阶一样逐级上升。比喻循序渐进、按部就班，能够达到目标。
+    angles: [persevere, advance]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.46.L6
+    vernacular: 昏昧地一味上升，利于不停息地守持正道。比喻往上走到了顶点仍不知止，要把劲头转到修养自身上。
+    angles: [restrain, reflect]
+    authorship: self
+    reviewStatus: draft

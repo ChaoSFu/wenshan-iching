@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 62
+entries:
+  - entryId: ZY.62.G
+    vernacular: 小过是小有过度。卦辞说：亨通，利于守正；可以做小事，不可做大事；飞鸟留下鸣声，不宜向上飞，宜向下栖，大吉。比喻小事上稍过一点无妨，大事要谨慎，宁可低调务实，不要好高骛远。
+    angles: [restrain, caution]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.62.L1
+    vernacular: 鸟还不该飞时就飞，有凶险。比喻时机未到、根基不稳就急于高飞，会受挫。
+    angles: [wait, restrain]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.62.L2
+    vernacular: 越过祖父，遇到祖母；够不上君主，遇到臣子；没有过错。比喻不越级、不过分，在合适的层面与人交往，就不会出错。
+    angles: [restrain, cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.62.L3
+    vernacular: 不肯多加防备，随后可能遭到伤害，凶险。比喻对潜在风险掉以轻心会吃亏，必要时要多加防范。
+    angles: [caution, prepare]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.62.L4
+    vernacular: 没有过错，不过分地去应对；前往有危险，必须戒备，不要长久固执。比喻处境微妙时适可而止，灵活应变，不要死守一种做法。
+    angles: [caution, adjust]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.62.L5
+    vernacular: 浓云密布却不下雨，云从西郊升起；王公用带绳的箭射取洞穴里的猎物。比喻条件尚未成熟时，借助他人之力，先从可行的小事做起。
+    angles: [cooperate, wait]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.62.L6
+    vernacular: 不去相遇而一味超越，像飞鸟飞得太高而被罗网缠住，凶险，这就是灾祸。比喻过度追求、不知收手，会招致失败。
+    angles: [restrain, caution]
+    authorship: self
+    reviewStatus: draft

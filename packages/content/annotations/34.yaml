@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 34
+entries:
+  - entryId: ZY.34.G
+    vernacular: 大壮是强盛、壮大。卦辞说：利于守正。比喻力量强盛的时候，更要守住正道，不滥用力量。
+    angles: [restrain, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.34.L1
+    vernacular: 力量只壮在脚趾上就急于前进，有凶险，这一点确实如此。比喻刚有一点实力就冒进，容易受挫。
+    angles: [restrain, caution]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.34.L2
+    vernacular: 守正吉利。九二刚而居中，强而不过。比喻力量强盛时守中而不过度，事情就会顺利。
+    angles: [persevere, restrain]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.34.L3
+    vernacular: 小人恃强用力，君子则不这样做，坚持下去有危险；公羊顶撞篱笆，角被缠住。比喻凭蛮力硬碰，往往把自己困住。
+    angles: [restrain, caution]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.34.L4
+    vernacular: 守正吉利，悔恨消失；篱笆被撞开，角也不再被缠住，力量强大如同大车的车轴。比喻守住正道再发力，障碍自然打开。
+    angles: [advance, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.34.L5
+    vernacular: 在田界边丢失了羊，没有悔恨。比喻放下好斗的习气，即使失去一点也无妨。
+    angles: [restrain, adjust]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.34.L6
+    vernacular: 公羊顶撞篱笆，角被卡住，不能后退也不能前进，没有好处；在艰难中反思，会转为吉利。比喻陷入进退两难时，正视困难、调整方法就有转机。
+    angles: [adjust, reflect]
+    authorship: self
+    reviewStatus: draft

@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 53
+entries:
+  - entryId: ZY.53.G
+    vernacular: 渐是循序渐进。卦辞说：原文以古代婚嫁礼节步步有序作比，吉利，利于守正。比喻无论建立关系还是做事，一步步来才稳妥。
+    angles: [persevere, prepare]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.53.L1
+    vernacular: 鸿雁渐渐飞到水边，年轻人遇到危险，招来闲话，没有过错。比喻刚起步时根基不稳，难免受人议论，谨慎前行即可。
+    angles: [caution, prepare]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.53.L2
+    vernacular: 鸿雁渐渐飞到岸边的大石上，饮食和乐，吉利。比喻找到了稳固的立足点，可以安心享受成果。
+    angles: [persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.53.L3
+    vernacular: 鸿雁渐渐飞到高地上；原文说远行的人一去不回，家中的新生命也没能保住，凶险；利于抵御外敌。比喻冒进而脱离根本，会失去所依；此时宜守不宜攻。
+    angles: [restrain, caution]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.53.L4
+    vernacular: 鸿雁渐渐飞到树上，也许能找到平直的枝杈栖身，没有过错。比喻身处不太适合自己的环境，灵活找到安身之处即可。
+    angles: [adjust, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.53.L5
+    vernacular: 鸿雁渐渐飞到山陵上；原文以伴侣多年未能有子为喻，但终究没有什么能阻挡他们，吉利。比喻好事多磨，暂时的阻隔挡不住真心，守住正道，终能走到一起。
+    angles: [persevere, wait]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.53.L6
+    vernacular: 鸿雁渐渐飞到高高的陆地上，它的羽毛可以用作仪式的装饰，吉利。比喻经过一步步积累到达高处，成为别人的榜样。
+    angles: [persevere, reflect]
+    authorship: self
+    reviewStatus: draft

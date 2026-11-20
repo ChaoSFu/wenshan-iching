@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 57
+entries:
+  - entryId: ZY.57.G
+    vernacular: 巽是风，代表顺从、渗入。卦辞说：小有亨通，利于有所前往，利于见德高望重的人。比喻以柔和、渐进的方式深入，并跟随正确的引导，事情可以推进。
+    angles: [cooperate, probe]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.57.L1
+    vernacular: 进退犹豫，利于像武人那样果断守正。比喻过于顺从会举棋不定，这时需要拿出决断。
+    angles: [advance, adjust]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.57.L2
+    vernacular: 谦卑地伏在床下，请史官和巫师纷纷祷告，吉利，没有过错。比喻真诚地放低姿态，多方求教、表达诚意，可以化解问题。
+    angles: [cooperate, reflect]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.57.L3
+    vernacular: 频繁地屈从，有遗憾。比喻反复迁就、委屈自己，并非真心顺服，终会难受。
+    angles: [reflect, adjust]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.57.L4
+    vernacular: 悔恨消失，打猎捕获三类猎物。比喻顺应形势、各方照顾周全，会有丰富的收获。
+    angles: [advance, cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.57.L5
+    vernacular: 守正吉利，悔恨消失，没有不利；起初不顺，最终有好结局；在庚日前三天和后三天谨慎筹划，吉利。比喻推行改变时要事前叮嘱、事后检查，开头难，结尾好。
+    angles: [adjust, prepare]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.57.L6
+    vernacular: 卑躬屈膝地伏在床下，失掉了钱财和利斧，坚持下去有凶险。比喻过分顺从、失去主见和底线，会丧失自己的根本。
+    angles: [reflect, caution]
+    authorship: self
+    reviewStatus: draft

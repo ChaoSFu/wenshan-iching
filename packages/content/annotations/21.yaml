@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 21
+entries:
+  - entryId: ZY.21.G
+    vernacular: 噬嗑是咬合，像口中有东西隔着，咬断才能合拢。卦辞说：亨通，利于施用刑狱。比喻面对阻碍和是非，需要明确规则、果断处理，才能恢复通畅。
+    angles: [advance, caution]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.21.L1
+    vernacular: 脚上套着刑具，遮没了脚趾，没有过错。比喻小错受到小的惩戒，及时止步，就不会酿成大错。
+    angles: [restrain, reflect]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.21.L2
+    vernacular: 咬柔软的肉，连鼻子都陷了进去，没有过错。比喻处理问题时下手重了些，但事情本身不难，无大碍；留意分寸即可。
+    angles: [restrain, adjust]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.21.L3
+    vernacular: 咬坚硬的陈年干肉，还中了毒；小有遗憾，没有过错。比喻处理棘手的旧问题时遇到反弹，会有些不快，但并非做错。
+    angles: [caution, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.21.L4
+    vernacular: 咬带骨的干肉，得到金属箭头；利于在艰难中守正，吉利。比喻啃硬骨头时保持刚直的原则，会有收获。
+    angles: [persevere, advance]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.21.L5
+    vernacular: 咬干肉，得到黄金；守正而心存危惧，没有过错。比喻处理难事时既守住中正，又保持警惕，能够妥善解决。
+    angles: [persevere, caution]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.21.L6
+    vernacular: 肩扛刑具，遮没了耳朵，凶险。比喻错误一再累积、又听不进劝告，最终会招致严重的后果。
+    angles: [caution, reflect]
+    authorship: self
+    reviewStatus: draft

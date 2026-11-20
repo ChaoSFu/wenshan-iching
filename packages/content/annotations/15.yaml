@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 15
+entries:
+  - entryId: ZY.15.G
+    vernacular: 谦是谦虚、谦让。卦辞说：亨通，君子能保持谦虚到底，会有好的结局。比喻有能力而不自满，能走得长远。
+    angles: [restrain, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.15.L1
+    vernacular: 谦而又谦的君子，可以渡过大河，吉利。比喻以低调谦和的姿态面对困难，更容易得到帮助、渡过难关。
+    angles: [restrain, advance]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.15.L2
+    vernacular: 谦虚的名声传扬在外，守正吉利。比喻谦和发自内心，自然会被人认可。
+    angles: [persevere, reflect]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.15.L3
+    vernacular: 有功劳而谦虚的君子，最终吉利。比喻做出成绩后不居功，能长久地得到信任。
+    angles: [persevere, restrain]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.15.L4
+    vernacular: 没有不利，进一步发挥谦虚的美德。比喻处在上下之间，无论对谁都保持谦和，事情都会顺。
+    angles: [restrain, cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.15.L5
+    vernacular: 不靠富有也能团结邻里，适合讨伐不服从的一方，没有不利。比喻谦和并不等于软弱，必要时要坚定地处理问题。
+    angles: [advance, cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.15.L6
+    vernacular: 谦虚的名声远扬，适合出兵，征讨自己的城邑。比喻谦虚到了极点，宜用来约束和整顿自身，而不是向外用力。
+    angles: [reflect, restrain]
+    authorship: self
+    reviewStatus: draft

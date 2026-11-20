@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 64
+entries:
+  - entryId: ZY.64.G
+    vernacular: 未济是事情尚未完成，像渡河还没到对岸。卦辞说：亨通；小狐狸快要渡过河时沾湿了尾巴，没有什么好处。比喻快到终点时最容易松懈，要坚持到底，善始善终。
+    angles: [persevere, caution]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.64.L1
+    vernacular: 小狐狸渡河，沾湿了尾巴，有遗憾。比喻能力还不足就贸然开始，容易半途受挫。
+    angles: [prepare, caution]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.64.L2
+    vernacular: 拖住车轮不急于前行，守正吉利。比喻适当放慢脚步、稳住节奏，按正道一步步前进。
+    angles: [restrain, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.64.L3
+    vernacular: 事情尚未完成，急于前进有凶险，但利于渡过大河。比喻条件还不充分时不宜硬推，可以借助外力或换个方式渡过难关。
+    angles: [adjust, cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.64.L4
+    vernacular: 守正吉利，悔恨消失；以雷霆之势征伐鬼方，三年后得到大国的封赏。比喻下定决心、长期投入，努力终会被认可。
+    angles: [persevere, advance]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.64.L5
+    vernacular: 守正吉利，没有悔恨；这是君子的光辉，心怀诚信，吉利。比喻以真诚和德行做事，成果会自然显现。
+    angles: [persevere, cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.64.L6
+    vernacular: 心怀诚信地饮酒庆贺，没有过错；若喝得沉醉，连头都沾湿了，即使有诚信也会失去分寸。比喻可以庆祝，但要节制，不要乐极生悲。
+    angles: [restrain, caution]
+    authorship: self
+    reviewStatus: draft

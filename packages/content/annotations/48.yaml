@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 48
+entries:
+  - entryId: ZY.48.G
+    vernacular: 井是水井。卦辞说：城邑可以迁移，水井却不会移动，汲取不减、不汲不增，人们往来取用；汲水的绳子快到井口时打翻了水瓶，凶险。比喻持久稳定地提供价值，做事要善始善终，功亏一篑最可惜。
+    angles: [persevere, caution]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.48.L1
+    vernacular: 井底满是淤泥，水不能喝；废弃的旧井连鸟都不来。比喻长期不更新、不清理，再好的资源也会被弃置。
+    angles: [adjust, reflect]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.48.L2
+    vernacular: 井底的泉水只能射到小鱼，汲水的瓮又破又漏。比喻能力或工具不足，用不上力，需要先修整。
+    angles: [adjust, prepare]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.48.L3
+    vernacular: 井已经淘洗干净，却没有人来饮用，让人心中难过；可以汲用了，君王若是明察，大家都能受益。比喻有能力却未被发现，可以等待有识之人，也可以主动展示。
+    angles: [wait, probe]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.48.L4
+    vernacular: 用砖修砌井壁，没有过错。比喻暂时不对外发挥作用，先修整自身，打好基础。
+    angles: [prepare]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.48.L5
+    vernacular: 井水清冽，寒凉的泉水可供饮用。比喻能力和品格都已成熟，可以真正地服务他人。
+    angles: [advance, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.48.L6
+    vernacular: 井水汲上来，不要盖住井口，心怀诚信，大吉。比喻把成果开放分享，惠及更多的人。
+    angles: [cooperate, persevere]
+    authorship: self
+    reviewStatus: draft

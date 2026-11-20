@@ -1,5 +1,5 @@
 {
- "version": "2026.11.0+72ea3d62",
+ "version": "2026.11.0+ffd93ed0",
  "hexagrams": {
   "1": {
    "number": 1,
@@ -6245,6 +6245,2579 @@
    ],
    "reviewStatus": "draft"
   },
+  "ZY.03.G": {
+   "entryId": "ZY.03.G",
+   "vernacular": "屯是初生艰难的意思，像草木刚刚破土。卦辞说：大为亨通，利于守正；暂时不宜急着远行，适合先建立根基、安排可依靠的人手。比喻新事刚起步，先打基础、搭班子，比急于扩张更要紧。",
+   "angles": [
+    "prepare",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.03.L1": {
+   "entryId": "ZY.03.L1",
+   "vernacular": "徘徊难进，适合安守正道，适合建立根基。比喻起步时遇到阻碍，不妨稳住阵脚，先把根基和人心打牢。",
+   "angles": [
+    "prepare",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.03.L2": {
+   "entryId": "ZY.03.L2",
+   "vernacular": "艰难徘徊，骑马盘旋不进；来的不是敌人，而是来求亲的。原文说守正的一方不急于许婚，过了很久才定下来。比喻有人主动示好或提出合作时，不必急着答应，等关系和条件成熟再做决定。",
+   "angles": [
+    "wait",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.03.L3": {
+   "entryId": "ZY.03.L3",
+   "vernacular": "追鹿却没有熟悉山林的向导，只会深陷树林；明智的人察觉苗头，不如放弃，执意前往会有遗憾。比喻缺少必要的信息和帮助时，及时收手比硬闯更好。",
+   "angles": [
+    "restrain",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.03.L4": {
+   "entryId": "ZY.03.L4",
+   "vernacular": "骑马盘旋不进，于是主动去求亲，前往吉利，没有不利。比喻自己力量不足时，主动寻找合适的伙伴，合作会带来转机。",
+   "angles": [
+    "cooperate",
+    "advance"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.03.L5": {
+   "entryId": "ZY.03.L5",
+   "vernacular": "积聚了恩泽却难以施展开来；在小事上守正吉利，在大事上固执则有凶险。比喻资源和影响还有限时，先从小处做起，不宜一下铺得太大。",
+   "angles": [
+    "restrain",
+    "prepare"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.03.L6": {
+   "entryId": "ZY.03.L6",
+   "vernacular": "骑马盘旋不进，哭得血泪涟涟。比喻困在原地太久、看不到出路时的悲伤；这种状态难以长久，需要考虑换一条路。",
+   "angles": [
+    "adjust",
+    "reflect"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.04.G": {
+   "entryId": "ZY.04.G",
+   "vernacular": "蒙是蒙昧与启蒙。卦辞说：亨通；不是老师去求学生，而是求学的人主动来请教；初次诚心发问给予解答，一再重复就是轻慢，便不再回答。比喻学习和求助要真诚专注，反复追问而不行动，反而得不到答案。",
+   "angles": [
+    "reflect",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.04.L1": {
+   "entryId": "ZY.04.L1",
+   "vernacular": "启发蒙昧，适合借助规矩来约束，也要及时解除束缚人的枷锁；一味严厉下去会有遗憾。比喻刚开始学习或带新人时，需要立规矩，但不能只靠惩罚。",
+   "angles": [
+    "prepare",
+    "restrain"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.04.L2": {
+   "entryId": "ZY.04.L2",
+   "vernacular": "包容蒙昧的人，吉利；原文以迎娶配偶、子女能够持家作比，同样吉利。比喻以宽厚的态度接纳不同的人，能把一个家或一个团队撑起来。",
+   "angles": [
+    "cooperate",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.04.L3": {
+   "entryId": "ZY.04.L3",
+   "vernacular": "原文以婚配为喻：一个人见到有钱有势者就失了分寸、不顾自身，这样的结合没有好处。比喻选择伙伴或合作对象时，警惕只被利益吸引、缺乏原则的关系。",
+   "angles": [
+    "caution",
+    "reflect"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.04.L4": {
+   "entryId": "ZY.04.L4",
+   "vernacular": "困在蒙昧之中，有所遗憾。比喻远离能指点自己的人和资源，独自困惑；这时要主动走出去求教。",
+   "angles": [
+    "reflect",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.04.L5": {
+   "entryId": "ZY.04.L5",
+   "vernacular": "像孩童一样虚心求教，吉利。比喻放下架子、保持好奇与谦虚，学习和成长都会顺利。",
+   "angles": [
+    "cooperate",
+    "reflect"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.04.L6": {
+   "entryId": "ZY.04.L6",
+   "vernacular": "用强力去打破蒙昧；不宜像强盗那样侵犯，适合用来抵御外来的侵害。比喻纠正错误要有分寸，目的是防止伤害，而不是变成攻击。",
+   "angles": [
+    "restrain",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.05.G": {
+   "entryId": "ZY.05.G",
+   "vernacular": "需是等待的意思：前方有险，需要耐心等候。卦辞说：心怀诚信，光明亨通，守正吉利，利于渡过大河。比喻遇到暂时过不去的坎，带着信心等待合适时机，最终能够跨过去。",
+   "angles": [
+    "wait",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.05.L1": {
+   "entryId": "ZY.05.L1",
+   "vernacular": "在郊外等待，离危险还远，适合保持恒心，没有过错。比喻事情尚未逼近，就照常生活、按部就班，不必提前焦虑。",
+   "angles": [
+    "wait",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.05.L2": {
+   "entryId": "ZY.05.L2",
+   "vernacular": "在沙滩上等待，离险境近了一些，会有些闲言碎语，最终吉利。比喻等待中难免听到议论，保持从容，结果会好。",
+   "angles": [
+    "wait",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.05.L3": {
+   "entryId": "ZY.05.L3",
+   "vernacular": "在泥泞中等待，招来了强盗。比喻离风险太近、陷入被动，容易引来麻烦；这时要加倍谨慎，防患于未然。",
+   "angles": [
+    "caution",
+    "wait"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.05.L4": {
+   "entryId": "ZY.05.L4",
+   "vernacular": "在血泊中等待，终能从洞穴中脱身。比喻已经身处险境，冷静下来、顺势而为、不硬拼，能找到出路。",
+   "angles": [
+    "caution",
+    "adjust"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.05.L5": {
+   "entryId": "ZY.05.L5",
+   "vernacular": "在酒食中等待，守正吉利。比喻条件安稳时，照顾好自己和身边的人，以平和的心态等待时机。",
+   "angles": [
+    "wait",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.05.L6": {
+   "entryId": "ZY.05.L6",
+   "vernacular": "进入洞穴，有三位不请自来的客人到来，恭敬对待，最终吉利。比喻意外的人或事出现时，以尊重和开放的态度接纳，可能带来转机。",
+   "angles": [
+    "cooperate",
+    "adjust"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.06.G": {
+   "entryId": "ZY.06.G",
+   "vernacular": "讼是争讼、争执。卦辞说：心有诚信却受到阻塞，保持警惕，适可而止吉利，争到底则凶；利于去见公正有德的人，不利于冒险渡河。比喻陷入争执时，见好就收、寻求公正的第三方，比一争到底更好。",
+   "angles": [
+    "restrain",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.06.L1": {
+   "entryId": "ZY.06.L1",
+   "vernacular": "不把争执拖长，虽有些言语摩擦，最终吉利。比喻矛盾刚起时及早放下，避免小事变成大事。",
+   "angles": [
+    "restrain",
+    "adjust"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.06.L2": {
+   "entryId": "ZY.06.L2",
+   "vernacular": "争讼不能取胜，回去躲避；他所在城邑的三百户人家也免于灾祸。比喻力量不对等时及时退让，可以保全自己和身边的人。",
+   "angles": [
+    "adjust",
+    "restrain"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.06.L3": {
+   "entryId": "ZY.06.L3",
+   "vernacular": "依靠原有的德业过活，守正虽有危险，最终吉利；如果参与公家的事务，不要居功求成。比喻安守本分、不与人争，踏实做事，不急于邀功。",
+   "angles": [
+    "persevere",
+    "restrain"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.06.L4": {
+   "entryId": "ZY.06.L4",
+   "vernacular": "争讼不能取胜，回头接受正理，改变主意，安守正道吉利。比喻意识到自己理亏或不值得争时，转变态度反而心安。",
+   "angles": [
+    "adjust",
+    "reflect"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.06.L5": {
+   "entryId": "ZY.06.L5",
+   "vernacular": "争讼得到公正的裁决，大吉。比喻有公正的人或规则来裁断，分歧可以得到妥善解决。",
+   "angles": [
+    "cooperate",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.06.L6": {
+   "entryId": "ZY.06.L6",
+   "vernacular": "即使因争讼获赐华贵的腰带，一个早上也会被三次剥夺。比喻靠争强好胜得来的东西难以长久，不值得为此耗尽心力。",
+   "angles": [
+    "reflect",
+    "restrain"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.07.G": {
+   "entryId": "ZY.07.G",
+   "vernacular": "师指军队，也可引申为众人的组织。卦辞说：守持正道，由德高望重、有经验的人统领，吉利，没有过错。比喻组织一群人做大事，要有正当的目的和可靠的带头人。",
+   "angles": [
+    "cooperate",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.07.L1": {
+   "entryId": "ZY.07.L1",
+   "vernacular": "出兵要有纪律，纪律不好，就有凶险。比喻团队行动之初就要立好规则，规则松散，事情很难成功。",
+   "angles": [
+    "prepare",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.07.L2": {
+   "entryId": "ZY.07.L2",
+   "vernacular": "统帅身处军中，持中得当，吉利，没有过错，君王多次嘉奖。比喻带头人深入一线、处事公允，能赢得信任与支持。",
+   "angles": [
+    "persevere",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.07.L3": {
+   "entryId": "ZY.07.L3",
+   "vernacular": "军队或许会载着尸体归来，凶险。比喻指挥不当、多头领导，可能导致失败；需要重新理清责任。",
+   "angles": [
+    "caution",
+    "reflect"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.07.L4": {
+   "entryId": "ZY.07.L4",
+   "vernacular": "军队退后驻扎，没有过错。比喻形势不利时暂时后退、保存实力，是明智的选择。",
+   "angles": [
+    "restrain",
+    "wait"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.07.L5": {
+   "entryId": "ZY.07.L5",
+   "vernacular": "田里有禽兽侵害庄稼，适合去捕捉，没有过错；由有经验的人统领，若让不够格的人分权干预，就会载尸而归，坚持下去有凶险。比喻应对问题理由正当，还要用对人、统一指挥。",
+   "angles": [
+    "caution",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.07.L6": {
+   "entryId": "ZY.07.L6",
+   "vernacular": "君主颁布命令，论功封赏，让有功的人开国承家；但不要重用品行不端的人。比喻事情完成后论功行赏，同时要慎选承担后续责任的人。",
+   "angles": [
+    "reflect",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.08.G": {
+   "entryId": "ZY.08.G",
+   "vernacular": "比是亲近、相互依附。卦辞说：吉利；仔细审察后，选择可以长久守正的对象，没有过错；不安的人纷纷前来，迟迟不来的有凶险。比喻选择亲近的人和群体要审慎，确定后真诚投入，犹豫太久会错失时机。",
+   "angles": [
+    "cooperate",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.08.L1": {
+   "entryId": "ZY.08.L1",
+   "vernacular": "以诚信亲近他人，没有过错；诚信像注满瓦缶一样充实，最终会有意外的好处，吉利。比喻建立关系的根基是真诚，这份真诚会带来回报。",
+   "angles": [
+    "cooperate",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.08.L2": {
+   "entryId": "ZY.08.L2",
+   "vernacular": "从内心出发去亲近他人，守正吉利。比喻发自本心、不失自我地与人相处，关系才会稳固。",
+   "angles": [
+    "persevere",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.08.L3": {
+   "entryId": "ZY.08.L3",
+   "vernacular": "亲近了不该亲近的人。比喻交往对象选错了，要及时觉察，调整关系的远近。",
+   "angles": [
+    "reflect",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.08.L4": {
+   "entryId": "ZY.08.L4",
+   "vernacular": "向外亲近贤明的人，守正吉利。比喻主动走出去，向值得学习的人靠拢。",
+   "angles": [
+    "cooperate",
+    "advance"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.08.L5": {
+   "entryId": "ZY.08.L5",
+   "vernacular": "光明正大地亲近他人。君王打猎时三面围合、网开一面，任前面的禽兽逃走，城中百姓也不必戒备，吉利。比喻以开放、不强求的态度团结他人，愿来的来，想走的走。",
+   "angles": [
+    "cooperate",
+    "restrain"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.08.L6": {
+   "entryId": "ZY.08.L6",
+   "vernacular": "想亲近却没有好的开端，凶险。比喻错过了建立关系的时机，或者找不到可以依靠的核心，事情难成；需要反省原因。",
+   "angles": [
+    "reflect",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.09.G": {
+   "entryId": "ZY.09.G",
+   "vernacular": "小畜是小有积蓄、以小蓄大的意思。卦辞说：亨通；浓云密布却不下雨，云从西郊升起。比喻条件正在积聚，但还没到发挥作用的时候，需要继续积累。",
+   "angles": [
+    "prepare",
+    "wait"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.09.L1": {
+   "entryId": "ZY.09.L1",
+   "vernacular": "回到自己的正道上，有什么过错呢，吉利。比喻察觉偏离后及时回到本来的方向。",
+   "angles": [
+    "adjust",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.09.L2": {
+   "entryId": "ZY.09.L2",
+   "vernacular": "被人牵引着回到正道，吉利。比喻和志同道合的人相互提醒，一起回到正轨。",
+   "angles": [
+    "cooperate",
+    "adjust"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.09.L3": {
+   "entryId": "ZY.09.L3",
+   "vernacular": "车厢与车轴脱开，伴侣反目。比喻关系或合作中力量失衡，强行前进只会出故障，需要停下来修复。",
+   "angles": [
+    "reflect",
+    "adjust"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.09.L4": {
+   "entryId": "ZY.09.L4",
+   "vernacular": "心怀诚信，流血的伤害远去，忧惧消散，没有过错。比喻以诚相待，可以化解紧张的局面，让心里的担忧退去。",
+   "angles": [
+    "persevere",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.09.L5": {
+   "entryId": "ZY.09.L5",
+   "vernacular": "心怀诚信，与他人紧密相连，和邻居共享富足。比喻真诚地与周围的人分享资源，彼此都会更有力量。",
+   "angles": [
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.09.L6": {
+   "entryId": "ZY.09.L6",
+   "vernacular": "雨已经下了，也已经停了，积蓄的德行足以承载；但这时即使守正也有危险，月亮接近满圆，君子再前进有凶险。比喻积累已到顶点，宜知足守成，不宜贸然推进。",
+   "angles": [
+    "restrain",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.10.G": {
+   "entryId": "ZY.10.G",
+   "vernacular": "履是践行，也指行事的礼节。卦辞说：踩到了老虎的尾巴，老虎却没有咬人，亨通。比喻身处险境或面对强势的一方时，举止得体、小心谨慎，可以平安通过。",
+   "angles": [
+    "caution",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.10.L1": {
+   "entryId": "ZY.10.L1",
+   "vernacular": "以朴素的本色行事，前往没有过错。比喻按自己本来的样子、不做作地开始一件事。",
+   "angles": [
+    "persevere",
+    "advance"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.10.L2": {
+   "entryId": "ZY.10.L2",
+   "vernacular": "走在平坦的大路上，安静淡泊的人守正吉利。比喻不求虚名、心境平和，路会走得顺。",
+   "angles": [
+    "persevere",
+    "restrain"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.10.L3": {
+   "entryId": "ZY.10.L3",
+   "vernacular": "眼睛不好却自以为看得清，腿脚不便却自以为走得稳，踩了老虎尾巴被咬，凶险；就像只有勇力的人想要当君主。比喻高估自己、能力不足却硬要冒险，容易受伤。",
+   "angles": [
+    "reflect",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.10.L4": {
+   "entryId": "ZY.10.L4",
+   "vernacular": "踩到了老虎尾巴，恐惧谨慎，最终吉利。比喻知道局面危险而保持敬畏，小心应对就能渡过。",
+   "angles": [
+    "caution",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.10.L5": {
+   "entryId": "ZY.10.L5",
+   "vernacular": "果断地一意前行，即使守正也有危险。比喻身居要位时过于刚断，要警惕独断专行。",
+   "angles": [
+    "caution",
+    "reflect"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.10.L6": {
+   "entryId": "ZY.10.L6",
+   "vernacular": "回顾走过的路，仔细考察其中的得失，若能周全圆满，大吉。比喻一段路程结束时认真复盘、总结经验，会有好的结果。",
+   "angles": [
+    "reflect"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.11.G": {
+   "entryId": "ZY.11.G",
+   "vernacular": "泰是通泰、安泰。卦辞说：付出的小，得来的大，吉利亨通。比喻上下沟通、内外顺畅，事情容易推进。",
+   "angles": [
+    "advance",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.11.L1": {
+   "entryId": "ZY.11.L1",
+   "vernacular": "拔起茅草，根须相连，一同带起，前进吉利。比喻同伴一起行动，相互带动，事半功倍。",
+   "angles": [
+    "advance",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.11.L2": {
+   "entryId": "ZY.11.L2",
+   "vernacular": "包容荒秽，敢于徒步渡河，不遗弃远方的人，不结私党，能合乎中正之道。比喻心胸宽广、有勇气，又不拉帮结派，做事公允。",
+   "angles": [
+    "persevere",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.11.L3": {
+   "entryId": "ZY.11.L3",
+   "vernacular": "没有只平不斜的地，没有只去不回的事；在艰难中守正就没有过错。不必担忧诚信，自有福分。比喻顺境中要明白盛衰会转换，提早做好准备。",
+   "angles": [
+    "caution",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.11.L4": {
+   "entryId": "ZY.11.L4",
+   "vernacular": "像鸟儿轻快地飞下来，不靠富有也能与邻里相亲，不用告诫也能诚信相待。比喻放下身段与人平等交往，彼此自然信任。",
+   "angles": [
+    "cooperate",
+    "restrain"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.11.L5": {
+   "entryId": "ZY.11.L5",
+   "vernacular": "商王帝乙把妹妹嫁给臣下，以联姻结好，因而得福，大吉。比喻身处高位者愿意放下身段、以诚意与他人结合，能带来长久的福分。",
+   "angles": [
+    "cooperate",
+    "restrain"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.11.L6": {
+   "entryId": "ZY.11.L6",
+   "vernacular": "城墙倒塌在护城河里；这时不要动用军队，只在自己的城邑内发布命令，即使守正也有遗憾。比喻好时光走到尽头，硬撑无益，先收拾内部、调整心态。",
+   "angles": [
+    "adjust",
+    "reflect"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.12.G": {
+   "entryId": "ZY.12.G",
+   "vernacular": "否是闭塞不通。卦辞说：闭塞之时，人与人不相往来，不利于君子坚持正道，付出的大，得来的小。比喻沟通渠道堵塞时，用力多而收效少，宜守住自己，不急于求成。",
+   "angles": [
+    "wait",
+    "restrain"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.12.L1": {
+   "entryId": "ZY.12.L1",
+   "vernacular": "拔起茅草，根须相连，一同带起，守正吉利，亨通。比喻困境中和同伴一起守住正道，不随波逐流。",
+   "angles": [
+    "persevere",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.12.L2": {
+   "entryId": "ZY.12.L2",
+   "vernacular": "包容顺承，对迎合者来说吉利；有志向的人则宁可处于闭塞，也不随波逐流，终会亨通。比喻在不顺的环境里，与其委曲求全，不如守住原则。",
+   "angles": [
+    "persevere",
+    "restrain"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.12.L3": {
+   "entryId": "ZY.12.L3",
+   "vernacular": "包藏着羞耻。比喻勉强待在不正当的位置上，心里难安；需要反思自己所处的位置与做法。",
+   "angles": [
+    "reflect"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.12.L4": {
+   "entryId": "ZY.12.L4",
+   "vernacular": "奉行使命，没有过错，同类的人都会得到福祉。比喻闭塞开始松动时，顺应时机行事，并带上志同道合的人。",
+   "angles": [
+    "advance",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.12.L5": {
+   "entryId": "ZY.12.L5",
+   "vernacular": "闭塞的局面停止，大人吉利；要时时警醒自己可能失败，才能像系在丛生的桑树上一样稳固。比喻局面好转时保持忧患意识，才能稳住成果。",
+   "angles": [
+    "caution",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.12.L6": {
+   "entryId": "ZY.12.L6",
+   "vernacular": "闭塞的局面被推翻，先是闭塞，后来欢喜。比喻困局到了尽头会转变，主动推动改变，能迎来转机。",
+   "angles": [
+    "advance",
+    "adjust"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.13.G": {
+   "entryId": "ZY.13.G",
+   "vernacular": "同人是与人和同、团结众人。卦辞说：在旷野中与人和同，亨通；利于渡过大河，利于君子守正。比喻以开阔、无私的胸怀联合他人，能共同克服大的困难。",
+   "angles": [
+    "cooperate",
+    "advance"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.13.L1": {
+   "entryId": "ZY.13.L1",
+   "vernacular": "一出门就与人和同，没有过错。比喻走出自己的小圈子，主动与人交往。",
+   "angles": [
+    "cooperate",
+    "probe"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.13.L2": {
+   "entryId": "ZY.13.L2",
+   "vernacular": "只在宗族内部和同，有遗憾。比喻只和同一个圈子的人抱团，视野和格局会受限。",
+   "angles": [
+    "reflect",
+    "adjust"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.13.L3": {
+   "entryId": "ZY.13.L3",
+   "vernacular": "把兵埋伏在草丛中，登上高坡观望，三年也不敢发动。比喻心存戒备、暗中较劲，反而迟迟没有进展；不如放下猜疑。",
+   "angles": [
+    "reflect",
+    "adjust"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.13.L4": {
+   "entryId": "ZY.13.L4",
+   "vernacular": "已经登上城墙，却不去进攻，吉利。比喻占据有利位置时懂得适可而止，回到正理上来。",
+   "angles": [
+    "restrain",
+    "reflect"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.13.L5": {
+   "entryId": "ZY.13.L5",
+   "vernacular": "与人和同，先是痛哭，后来欢笑；大军克敌之后才得以相会。比喻志同道合的人一时被阻隔，经过努力最终相聚。",
+   "angles": [
+    "persevere",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.13.L6": {
+   "entryId": "ZY.13.L6",
+   "vernacular": "在郊外与人和同，没有悔恨。比喻虽然没能广泛团结众人，但守住了本心，无怨无悔。",
+   "angles": [
+    "reflect",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.14.G": {
+   "entryId": "ZY.14.G",
+   "vernacular": "大有是大有收获、丰盛富有。卦辞说：大为亨通。比喻资源丰盛、条件成熟，可以有所作为，同时更要善于运用和分享。",
+   "angles": [
+    "advance",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.14.L1": {
+   "entryId": "ZY.14.L1",
+   "vernacular": "不与有害的事物交往，就没有过错；时时记得艰难，就不会有过错。比喻刚有起色时，远离诱惑，记住起步的不易。",
+   "angles": [
+    "caution",
+    "restrain"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.14.L2": {
+   "entryId": "ZY.14.L2",
+   "vernacular": "用大车装载，有所前往，没有过错。比喻能力足以承担重任，可以放心去做。",
+   "angles": [
+    "advance"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.14.L3": {
+   "entryId": "ZY.14.L3",
+   "vernacular": "公侯向天子献礼并得到款待，小人做不到这一点。比喻有了成就要懂得回馈与奉献，若只想据为己有，就承受不起。",
+   "angles": [
+    "reflect",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.14.L4": {
+   "entryId": "ZY.14.L4",
+   "vernacular": "不倚仗自己的强盛，没有过错。比喻在丰盛时自我节制，不炫耀、不膨胀。",
+   "angles": [
+    "restrain",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.14.L5": {
+   "entryId": "ZY.14.L5",
+   "vernacular": "以诚信与人交往，又有威严，吉利。比喻既真诚待人，又有原则和分寸，能赢得尊重。",
+   "angles": [
+    "persevere",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.14.L6": {
+   "entryId": "ZY.14.L6",
+   "vernacular": "得到上天的佑助，吉利，没有不利。比喻顺应正道、诚信谦和，外部的助力也会随之而来。",
+   "angles": [
+    "persevere",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.15.G": {
+   "entryId": "ZY.15.G",
+   "vernacular": "谦是谦虚、谦让。卦辞说：亨通，君子能保持谦虚到底，会有好的结局。比喻有能力而不自满，能走得长远。",
+   "angles": [
+    "restrain",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.15.L1": {
+   "entryId": "ZY.15.L1",
+   "vernacular": "谦而又谦的君子，可以渡过大河，吉利。比喻以低调谦和的姿态面对困难，更容易得到帮助、渡过难关。",
+   "angles": [
+    "restrain",
+    "advance"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.15.L2": {
+   "entryId": "ZY.15.L2",
+   "vernacular": "谦虚的名声传扬在外，守正吉利。比喻谦和发自内心，自然会被人认可。",
+   "angles": [
+    "persevere",
+    "reflect"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.15.L3": {
+   "entryId": "ZY.15.L3",
+   "vernacular": "有功劳而谦虚的君子，最终吉利。比喻做出成绩后不居功，能长久地得到信任。",
+   "angles": [
+    "persevere",
+    "restrain"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.15.L4": {
+   "entryId": "ZY.15.L4",
+   "vernacular": "没有不利，进一步发挥谦虚的美德。比喻处在上下之间，无论对谁都保持谦和，事情都会顺。",
+   "angles": [
+    "restrain",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.15.L5": {
+   "entryId": "ZY.15.L5",
+   "vernacular": "不靠富有也能团结邻里，适合讨伐不服从的一方，没有不利。比喻谦和并不等于软弱，必要时要坚定地处理问题。",
+   "angles": [
+    "advance",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.15.L6": {
+   "entryId": "ZY.15.L6",
+   "vernacular": "谦虚的名声远扬，适合出兵，征讨自己的城邑。比喻谦虚到了极点，宜用来约束和整顿自身，而不是向外用力。",
+   "angles": [
+    "reflect",
+    "restrain"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.16.G": {
+   "entryId": "ZY.16.G",
+   "vernacular": "豫是安乐、愉悦，也有预备之意。卦辞说：利于建立诸侯、出兵行师。比喻人心欢悦、众人愿意跟随时，适合启动大事，也要事先做好准备。",
+   "angles": [
+    "advance",
+    "prepare"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.16.L1": {
+   "entryId": "ZY.16.L1",
+   "vernacular": "把自己的安乐张扬出来，凶险。比喻得意忘形、到处炫耀，会招来麻烦。",
+   "angles": [
+    "restrain",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.16.L2": {
+   "entryId": "ZY.16.L2",
+   "vernacular": "耿介如石，不等一天结束就能觉察，守正吉利。比喻在安逸中保持清醒，见到苗头立即调整。",
+   "angles": [
+    "caution",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.16.L3": {
+   "entryId": "ZY.16.L3",
+   "vernacular": "仰视讨好以求安乐，会有悔恨；迟迟不醒悟，也会悔恨。比喻依附他人求得舒适，不如早些回到自己的立场。",
+   "angles": [
+    "reflect",
+    "adjust"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.16.L4": {
+   "entryId": "ZY.16.L4",
+   "vernacular": "众人因他而得安乐，大有收获；不必猜疑，朋友会像头发被簪子束起一样聚拢。比喻真诚担当，能凝聚身边的人。",
+   "angles": [
+    "cooperate",
+    "advance"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.16.L5": {
+   "entryId": "ZY.16.L5",
+   "vernacular": "长期有病，却一直不至于死。比喻长期承受压力或困扰，虽然难受，但还撑得住；要留意身心，寻找缓解的办法。",
+   "angles": [
+    "caution",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.16.L6": {
+   "entryId": "ZY.16.L6",
+   "vernacular": "沉迷于安乐，事情已成定局但仍能改变，没有过错。比喻沉溺享乐已久，只要醒悟改正，仍来得及。",
+   "angles": [
+    "adjust",
+    "reflect"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.17.G": {
+   "entryId": "ZY.17.G",
+   "vernacular": "随是随从、顺随。卦辞说：大为亨通，利于守正，没有过错。比喻顺应时势、跟随正确的方向，同时要守住原则，不盲从。",
+   "angles": [
+    "adjust",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.17.L1": {
+   "entryId": "ZY.17.L1",
+   "vernacular": "职守有所变化，守正吉利；出门与人交往会有成就。比喻情况变了要随之调整，走出去广泛交流。",
+   "angles": [
+    "adjust",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.17.L2": {
+   "entryId": "ZY.17.L2",
+   "vernacular": "依附了不成熟的小人物，失去了真正可靠的人。比喻跟随的对象选错了，会因小失大。",
+   "angles": [
+    "reflect",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.17.L3": {
+   "entryId": "ZY.17.L3",
+   "vernacular": "依附了可靠的人，失去了小人物；这样跟随可以有所求得，利于安居守正。比喻做出选择就要有所舍弃，跟随正确的方向会有收获。",
+   "angles": [
+    "persevere",
+    "adjust"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.17.L4": {
+   "entryId": "ZY.17.L4",
+   "vernacular": "随从的人有所收获，坚持下去有凶险；心怀诚信、合乎正道，又光明磊落，有什么过错呢。比喻得到太多追随或利益时，要以诚信和透明来避免猜疑。",
+   "angles": [
+    "caution",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.17.L5": {
+   "entryId": "ZY.17.L5",
+   "vernacular": "对美善的事物心怀诚信，吉利。比喻真诚地追随美好的事物，会有好的结果。",
+   "angles": [
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.17.L6": {
+   "entryId": "ZY.17.L6",
+   "vernacular": "把它捆绑起来，再紧紧维系住；君王在西山设祭。比喻关系或信念维系得极其牢固，可以用庄重的方式表达忠诚与感恩。",
+   "angles": [
+    "persevere",
+    "reflect"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.18.G": {
+   "entryId": "ZY.18.G",
+   "vernacular": "蛊本义是器皿中生虫，引申为积弊、需要整治的事。卦辞说：大为亨通，利于渡过大河；在甲日之前三天和之后三天都要审慎筹划。比喻面对长期积累的问题，下决心整治，事前谋划、事后巩固。",
+   "angles": [
+    "adjust",
+    "prepare"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.18.L1": {
+   "entryId": "ZY.18.L1",
+   "vernacular": "整治上一代留下的积弊，有能承担的后人，前人也就没有过错；虽有危险，最终吉利。比喻接手旧摊子，勇于改正前人的问题，开头难，结局好。",
+   "angles": [
+    "adjust",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.18.L2": {
+   "entryId": "ZY.18.L2",
+   "vernacular": "整治上一代留下的积弊，原文以母辈为喻，指需要顾及情面的问题，不可过于刚直。比喻处理敏感的旧问题时，要讲方式、留余地。",
+   "angles": [
+    "adjust",
+    "restrain"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.18.L3": {
+   "entryId": "ZY.18.L3",
+   "vernacular": "整治上一代留下的积弊，稍有悔恨，但没有大的过错。比喻改革中难免操之过急，方向对了就不必过于自责。",
+   "angles": [
+    "adjust",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.18.L4": {
+   "entryId": "ZY.18.L4",
+   "vernacular": "宽容放任上一代留下的积弊，前往会有遗憾。比喻对已经发现的问题姑息拖延，会越积越难处理。",
+   "angles": [
+    "caution",
+    "reflect"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.18.L5": {
+   "entryId": "ZY.18.L5",
+   "vernacular": "整治上一代留下的积弊，因此获得赞誉。比喻以温和得当的方式纠正旧问题，能赢得认可。",
+   "angles": [
+    "adjust",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.18.L6": {
+   "entryId": "ZY.18.L6",
+   "vernacular": "不去侍奉王侯，把自己的志向看得高尚。比喻功成之后或时局不合时，选择退出，保持独立的操守。",
+   "angles": [
+    "reflect",
+    "restrain"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.19.G": {
+   "entryId": "ZY.19.G",
+   "vernacular": "临是来临，也指居上临下、带领督导。卦辞说：大为亨通，利于守正；但到了八月会有凶险。比喻形势好转、影响力增长时，也要想到盛极而衰的时候，提前防备。",
+   "angles": [
+    "advance",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.19.L1": {
+   "entryId": "ZY.19.L1",
+   "vernacular": "以感化的方式去临近、带领他人，守正吉利。比喻用真诚去影响别人，而不是靠强迫。",
+   "angles": [
+    "cooperate",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.19.L2": {
+   "entryId": "ZY.19.L2",
+   "vernacular": "以相互感应的方式临近他人，吉利，没有不利。比喻上下彼此信任、相互回应，事情推进顺畅。",
+   "angles": [
+    "cooperate",
+    "advance"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.19.L3": {
+   "entryId": "ZY.19.L3",
+   "vernacular": "用甜言蜜语去临近他人，没有好处；如果已经为此忧虑并改正，就没有过错。比喻靠讨好和空话去带人、交往行不通，觉察后及时调整就好。",
+   "angles": [
+    "reflect",
+    "adjust"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.19.L4": {
+   "entryId": "ZY.19.L4",
+   "vernacular": "亲自到场、亲近下面的人，没有过错。比喻亲力亲为、深入实际，能把事情做好。",
+   "angles": [
+    "advance",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.19.L5": {
+   "entryId": "ZY.19.L5",
+   "vernacular": "以智慧临近和统领他人，这是君主应有的方式，吉利。比喻知人善任、懂得放手，而不是事事亲为。",
+   "angles": [
+    "cooperate",
+    "reflect"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.19.L6": {
+   "entryId": "ZY.19.L6",
+   "vernacular": "以敦厚的态度临近他人，吉利，没有过错。比喻待人宽厚踏实，关系会长久。",
+   "angles": [
+    "persevere",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.20.G": {
+   "entryId": "ZY.20.G",
+   "vernacular": "观是观察，也是被人瞻仰。卦辞说：祭祀时洗净双手，还没献上祭品，心中的诚敬已让人肃然起敬。比喻真诚庄重的态度本身就有感染力，先看清、先端正自己，比急着行动更重要。",
+   "angles": [
+    "reflect",
+    "probe"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.20.L1": {
+   "entryId": "ZY.20.L1",
+   "vernacular": "像孩童一样浅近地观看，对普通人来说没有过错，对君子来说就有遗憾。比喻只看表面在小事上无妨，承担重要责任时就需要看得更深。",
+   "angles": [
+    "reflect",
+    "probe"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.20.L2": {
+   "entryId": "ZY.20.L2",
+   "vernacular": "从门缝里窥看外面，原文认为这只适合古代深居内室的人守正。比喻视角狭窄、信息有限；需要做大的判断时，要走出去看清全貌。",
+   "angles": [
+    "probe",
+    "reflect"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.20.L3": {
+   "entryId": "ZY.20.L3",
+   "vernacular": "观察自己的所作所为，来决定进退。比喻在关键选择之前，先审视自己的状态与能力，再定行止。",
+   "angles": [
+    "reflect",
+    "adjust"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.20.L4": {
+   "entryId": "ZY.20.L4",
+   "vernacular": "观察一个国家的光彩风貌，适合作为宾客去辅佐君王。比喻走近优秀的平台和人，了解其风貌，可以寻求被接纳和施展的机会。",
+   "angles": [
+    "probe",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.20.L5": {
+   "entryId": "ZY.20.L5",
+   "vernacular": "观察自己的所作所为，君子没有过错。比喻担当重要角色时，常常检视自己的言行对他人的影响。",
+   "angles": [
+    "reflect",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.20.L6": {
+   "entryId": "ZY.20.L6",
+   "vernacular": "观察他人的所作所为，自己也被他人观察，君子没有过错。比喻即使退居一旁，也仍被人看在眼里，要保持自省。",
+   "angles": [
+    "reflect",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.21.G": {
+   "entryId": "ZY.21.G",
+   "vernacular": "噬嗑是咬合，像口中有东西隔着，咬断才能合拢。卦辞说：亨通，利于施用刑狱。比喻面对阻碍和是非，需要明确规则、果断处理，才能恢复通畅。",
+   "angles": [
+    "advance",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.21.L1": {
+   "entryId": "ZY.21.L1",
+   "vernacular": "脚上套着刑具，遮没了脚趾，没有过错。比喻小错受到小的惩戒，及时止步，就不会酿成大错。",
+   "angles": [
+    "restrain",
+    "reflect"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.21.L2": {
+   "entryId": "ZY.21.L2",
+   "vernacular": "咬柔软的肉，连鼻子都陷了进去，没有过错。比喻处理问题时下手重了些，但事情本身不难，无大碍；留意分寸即可。",
+   "angles": [
+    "restrain",
+    "adjust"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.21.L3": {
+   "entryId": "ZY.21.L3",
+   "vernacular": "咬坚硬的陈年干肉，还中了毒；小有遗憾，没有过错。比喻处理棘手的旧问题时遇到反弹，会有些不快，但并非做错。",
+   "angles": [
+    "caution",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.21.L4": {
+   "entryId": "ZY.21.L4",
+   "vernacular": "咬带骨的干肉，得到金属箭头；利于在艰难中守正，吉利。比喻啃硬骨头时保持刚直的原则，会有收获。",
+   "angles": [
+    "persevere",
+    "advance"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.21.L5": {
+   "entryId": "ZY.21.L5",
+   "vernacular": "咬干肉，得到黄金；守正而心存危惧，没有过错。比喻处理难事时既守住中正，又保持警惕，能够妥善解决。",
+   "angles": [
+    "persevere",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.21.L6": {
+   "entryId": "ZY.21.L6",
+   "vernacular": "肩扛刑具，遮没了耳朵，凶险。比喻错误一再累积、又听不进劝告，最终会招致严重的后果。",
+   "angles": [
+    "caution",
+    "reflect"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.22.G": {
+   "entryId": "ZY.22.G",
+   "vernacular": "贲是装饰、文饰。卦辞说：亨通，在小事上有所前往是有利的。比喻适当的修饰能让事情更顺，但装饰只是辅助，不能代替实质。",
+   "angles": [
+    "probe",
+    "restrain"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.22.L1": {
+   "entryId": "ZY.22.L1",
+   "vernacular": "装饰自己的脚趾，舍弃车子而步行。比喻宁可朴素踏实，也不贪图不合身份的排场。",
+   "angles": [
+    "restrain",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.22.L2": {
+   "entryId": "ZY.22.L2",
+   "vernacular": "修饰自己的胡须。胡须依附于面颊，随之而动。比喻修饰要依附于实质，跟着真正有分量的人或事一起行动。",
+   "angles": [
+    "cooperate",
+    "reflect"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.22.L3": {
+   "entryId": "ZY.22.L3",
+   "vernacular": "装饰得光鲜润泽，长久守正吉利。比喻条件优渥、看上去很好时，更要守住本心，不被表面的光彩迷惑。",
+   "angles": [
+    "persevere",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.22.L4": {
+   "entryId": "ZY.22.L4",
+   "vernacular": "装饰得素白，骑着白马飞奔而来；来的不是敌人，而是来求亲的。比喻对方以朴素真诚的方式靠近，不必怀疑其来意。",
+   "angles": [
+    "cooperate",
+    "probe"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.22.L5": {
+   "entryId": "ZY.22.L5",
+   "vernacular": "在山丘园林中装点，所用的布帛又少又薄，看似寒酸，最终吉利。比喻以俭朴代替铺张，起初或许不被看好，最终会有好结果。",
+   "angles": [
+    "restrain",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.22.L6": {
+   "entryId": "ZY.22.L6",
+   "vernacular": "以素白为装饰，没有过错。比喻返璞归真，回到事物的本色，最好的修饰是不刻意修饰。",
+   "angles": [
+    "reflect",
+    "restrain"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.23.G": {
+   "entryId": "ZY.23.G",
+   "vernacular": "剥是剥落、侵蚀。卦辞说：不利于有所前往。比喻正面的力量被一点点消耗时，不宜贸然行动，先保存自己，静待转机。",
+   "angles": [
+    "wait",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.23.L1": {
+   "entryId": "ZY.23.L1",
+   "vernacular": "床脚开始被剥蚀，正道受到损害，凶险。比喻问题已在根基处出现，要尽早察觉、及时修补。",
+   "angles": [
+    "caution",
+    "prepare"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.23.L2": {
+   "entryId": "ZY.23.L2",
+   "vernacular": "剥蚀到了床身与床脚相接的地方，正道受到损害，凶险。比喻侵蚀在扩大，这时不能再忽视，要寻求支援。",
+   "angles": [
+    "caution",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.23.L3": {
+   "entryId": "ZY.23.L3",
+   "vernacular": "身处剥落之时，却能与侵蚀的一方割离，没有过错。比喻在不良的环境里守住立场，与不正的风气保持距离。",
+   "angles": [
+    "persevere",
+    "adjust"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.23.L4": {
+   "entryId": "ZY.23.L4",
+   "vernacular": "剥蚀到了床面，触及身体肌肤，凶险。比喻损害已经切身，需要正视处境，尽快止损。",
+   "angles": [
+    "caution",
+    "adjust"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.23.L5": {
+   "entryId": "ZY.23.L5",
+   "vernacular": "像鱼一样排成一串，有序地率领众人得到恩宠，没有不利。比喻在衰退的局面中，带领大家有序地接受正确的引导，能化险为夷。",
+   "angles": [
+    "cooperate",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.23.L6": {
+   "entryId": "ZY.23.L6",
+   "vernacular": "硕大的果实没有被吃掉；君子得之受到众人拥戴，小人得之连房屋都被剥掉。比喻保留下来的那份核心价值，善用就是重新开始的种子。",
+   "angles": [
+    "persevere",
+    "prepare"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.24.G": {
+   "entryId": "ZY.24.G",
+   "vernacular": "复是回复、复归。卦辞说：亨通；出入都没有疾患，朋友到来没有过错；沿着道路往返，七天就会回来，利于有所前往。比喻低谷之后会回升，顺着节律重新开始，可以有所行动。",
+   "angles": [
+    "adjust",
+    "advance"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.24.L1": {
+   "entryId": "ZY.24.L1",
+   "vernacular": "走得不远就返回，不至于后悔，大吉。比喻发现偏差及时回头，付出的代价最小。",
+   "angles": [
+    "adjust",
+    "reflect"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.24.L2": {
+   "entryId": "ZY.24.L2",
+   "vernacular": "美好地回复正道，吉利。比喻向身边的好榜样看齐，虚心接受善意的提醒，自然回到正轨。",
+   "angles": [
+    "adjust",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.24.L3": {
+   "entryId": "ZY.24.L3",
+   "vernacular": "屡次偏离又屡次返回，有危险，但没有过错。比喻反复犯错又改正，虽然不够稳定，只要能回来就好。",
+   "angles": [
+    "adjust",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.24.L4": {
+   "entryId": "ZY.24.L4",
+   "vernacular": "在众人之中行走，独自返回正道。比喻不随大流，能独立判断，回到自己认为对的方向。",
+   "angles": [
+    "adjust",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.24.L5": {
+   "entryId": "ZY.24.L5",
+   "vernacular": "以敦厚诚恳的态度回复正道，没有悔恨。比喻真诚反省、踏实改正，内心无愧。",
+   "angles": [
+    "reflect",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.24.L6": {
+   "entryId": "ZY.24.L6",
+   "vernacular": "迷失方向而不能回复，凶险，有灾祸；用来出兵，最终大败，连累君主，以至十年都无法出征。比喻执迷不悟、一错到底，会让损失长久难以挽回。",
+   "angles": [
+    "reflect",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.25.G": {
+   "entryId": "ZY.25.G",
+   "vernacular": "无妄是不妄为、真实无虚。卦辞说：大为亨通，利于守正；如果不守正道就会有灾祸，不利于有所前往。比喻依照真实与本分行事，不存侥幸，不起妄念。",
+   "angles": [
+    "persevere",
+    "restrain"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.25.L1": {
+   "entryId": "ZY.25.L1",
+   "vernacular": "没有虚妄之心，前往吉利。比喻出于真诚的初心去做事，不投机、不取巧，路会走得顺。",
+   "angles": [
+    "persevere",
+    "advance"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.25.L2": {
+   "entryId": "ZY.25.L2",
+   "vernacular": "不想着刚耕种就要收获，不想着刚开荒就得熟田，这样就利于有所前往。比喻专注于做事本身，不急于计较回报。",
+   "angles": [
+    "persevere",
+    "restrain"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.25.L3": {
+   "entryId": "ZY.25.L3",
+   "vernacular": "意外的灾祸：有人把牛拴在路边，路人顺手牵走，城里的人却受到怀疑。比喻有些麻烦并非自己造成，保持平静、做好防范即可。",
+   "angles": [
+    "caution",
+    "reflect"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.25.L4": {
+   "entryId": "ZY.25.L4",
+   "vernacular": "能守持正道，没有过错。比喻处境未明时，坚持原有的正当做法，不随意改变，也不贸然行动。",
+   "angles": [
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.25.L5": {
+   "entryId": "ZY.25.L5",
+   "vernacular": "并非因妄为而得的病，不用吃药也会有好转。比喻有些波折来得偶然，不必过度折腾，给它一点时间自行平复。",
+   "angles": [
+    "wait",
+    "restrain"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.25.L6": {
+   "entryId": "ZY.25.L6",
+   "vernacular": "即使没有妄念，此时行动也会有灾祸，没有好处。比喻时机不对时，动机再好也宜暂缓。",
+   "angles": [
+    "wait",
+    "restrain"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.26.G": {
+   "entryId": "ZY.26.G",
+   "vernacular": "大畜是大有积蓄，也指蓄养贤才。卦辞说：利于守正；不在家中自食，而是出来受到任用，吉利；利于渡过大河。比喻积累了足够的实力之后，可以走出去承担更大的事。",
+   "angles": [
+    "prepare",
+    "advance"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.26.L1": {
+   "entryId": "ZY.26.L1",
+   "vernacular": "前进有危险，适合停下来。比喻遇到阻力时先停一停，不要硬冲，等积蓄够了再走。",
+   "angles": [
+    "restrain",
+    "wait"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.26.L2": {
+   "entryId": "ZY.26.L2",
+   "vernacular": "车厢与车轴脱开，车子停下来。比喻主动停下脚步，暂时不前进，以免受损。",
+   "angles": [
+    "restrain",
+    "wait"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.26.L3": {
+   "entryId": "ZY.26.L3",
+   "vernacular": "驾着良马追逐，利于在艰难中守正，吉利；每天练习驾车和防卫，利于有所前往。比喻条件允许前进时，也要持续训练、做好防护。",
+   "angles": [
+    "advance",
+    "prepare"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.26.L4": {
+   "entryId": "ZY.26.L4",
+   "vernacular": "在小牛的角上绑上横木，大吉。比喻在问题还小的时候就加以约束，事半功倍。",
+   "angles": [
+    "prepare",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.26.L5": {
+   "entryId": "ZY.26.L5",
+   "vernacular": "被阉割的猪，牙齿就不再伤人，吉利。比喻从根源上化解冲突，比硬碰硬更有效。",
+   "angles": [
+    "adjust",
+    "restrain"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.26.L6": {
+   "entryId": "ZY.26.L6",
+   "vernacular": "多么通达的天上大路，亨通。比喻积累到位后，道路豁然开朗，可以放手去做。",
+   "angles": [
+    "advance"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.27.G": {
+   "entryId": "ZY.27.G",
+   "vernacular": "颐是面颊，引申为颐养。卦辞说：守正吉利；观察一个人如何颐养，看他自己如何求取食物。比喻照顾好身心、用正当的方式获取所需，也要留意自己吸收什么、说出什么。",
+   "angles": [
+    "reflect",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.27.L1": {
+   "entryId": "ZY.27.L1",
+   "vernacular": "舍弃你自己的灵龟，却盯着我鼓动腮帮吃东西，凶险。比喻放着自己的长处和资源不用，去羡慕别人，反而失去自我。",
+   "angles": [
+    "reflect",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.27.L2": {
+   "entryId": "ZY.27.L2",
+   "vernacular": "反过来向下求养，违背常理；向高丘上的人求养，前往凶险。比喻依赖不该依赖的对象，或者路子不正，都难以长久。",
+   "angles": [
+    "reflect",
+    "adjust"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.27.L3": {
+   "entryId": "ZY.27.L3",
+   "vernacular": "违背颐养的正道，即使坚持也有凶险，十年不能施用，没有好处。比喻以不健康的方式满足自己，越坚持伤得越深。",
+   "angles": [
+    "adjust",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.27.L4": {
+   "entryId": "ZY.27.L4",
+   "vernacular": "反过来向下求养却吉利；像老虎那样专注地注视，欲求持续不断，没有过错。比喻为了正当的目标去寻求帮助，专注而持久，是可以的。",
+   "angles": [
+    "cooperate",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.27.L5": {
+   "entryId": "ZY.27.L5",
+   "vernacular": "违背常理，安居守正吉利，不可以渡过大河。比喻自身力量不足时依靠他人，守住现状，不宜冒大的风险。",
+   "angles": [
+    "restrain",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.27.L6": {
+   "entryId": "ZY.27.L6",
+   "vernacular": "众人依赖他而得到颐养，虽有危险但吉利，利于渡过大河。比喻承担起照顾众人的责任，心存敬畏，能做成大事。",
+   "angles": [
+    "advance",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.28.G": {
+   "entryId": "ZY.28.G",
+   "vernacular": "大过是大的过度，像房屋的栋梁被压弯。卦辞说：栋梁弯曲，利于有所前往，亨通。比喻负担过重、局面失衡时，要果断采取行动加以扭转。",
+   "angles": [
+    "adjust",
+    "advance"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.28.L1": {
+   "entryId": "ZY.28.L1",
+   "vernacular": "用洁白的茅草垫在下面，没有过错。比喻在非常时期格外谨慎、做好铺垫，就不容易出错。",
+   "angles": [
+    "caution",
+    "prepare"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.28.L2": {
+   "entryId": "ZY.28.L2",
+   "vernacular": "枯萎的杨树长出新芽；原文说年长的一方得到年轻的伴侣，没有不利。比喻在衰败中引入新的活力，可以重新焕发生机。",
+   "angles": [
+    "adjust",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.28.L3": {
+   "entryId": "ZY.28.L3",
+   "vernacular": "栋梁弯曲，凶险。比喻过于刚强、不肯接受辅助，承重的地方终会撑不住。",
+   "angles": [
+    "caution",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.28.L4": {
+   "entryId": "ZY.28.L4",
+   "vernacular": "栋梁隆起，吉利；若另有牵挂，就会有遗憾。比喻能够撑起局面，但要专注，不被别的事分心。",
+   "angles": [
+    "persevere",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.28.L5": {
+   "entryId": "ZY.28.L5",
+   "vernacular": "枯萎的杨树开出花朵；原文说年长的一方与年轻的伴侣结合，没有过错，也没有称誉。比喻表面的繁荣难以长久，并不能解决根本问题。",
+   "angles": [
+    "reflect",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.28.L6": {
+   "entryId": "ZY.28.L6",
+   "vernacular": "涉水过深，淹没了头顶，凶险，但没有过错。比喻为了正当的目标承担了超出能力的风险，结果虽不好，动机却无可指责。",
+   "angles": [
+    "caution",
+    "reflect"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.29.G": {
+   "entryId": "ZY.29.G",
+   "vernacular": "坎是陷、险，上下都是水，险中有险。卦辞说：心怀诚信，内心亨通，行动会受到崇尚。比喻身处重重困难时，守住内心的信念与诚意，能找到前行的路。",
+   "angles": [
+    "persevere",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.29.L1": {
+   "entryId": "ZY.29.L1",
+   "vernacular": "险上加险，落入陷坑深处，凶险。比喻在困境中越陷越深，要先停下来，别再往里走。",
+   "angles": [
+    "caution",
+    "wait"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.29.L2": {
+   "entryId": "ZY.29.L2",
+   "vernacular": "陷坑中有危险，追求小的目标可以有所得。比喻难关之中不求一步到位，先争取小的进展。",
+   "angles": [
+    "restrain",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.29.L3": {
+   "entryId": "ZY.29.L3",
+   "vernacular": "前进后退都是险坑，危险而且无可依靠，落入深坑，不要有所作为。比喻四面受阻时暂不行动，先保全自己。",
+   "angles": [
+    "wait",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.29.L4": {
+   "entryId": "ZY.29.L4",
+   "vernacular": "一樽酒、一簋饭，用瓦器盛着，从窗口简单地递进去，最终没有过错。比喻困境中以简朴真诚的方式沟通，不拘形式，反而有效。",
+   "angles": [
+    "cooperate",
+    "adjust"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.29.L5": {
+   "entryId": "ZY.29.L5",
+   "vernacular": "坑中的水还没有满溢出来，只要已经平稳，就没有过错。比喻困难尚未完全过去，先求平稳，不要冒进。",
+   "angles": [
+    "restrain",
+    "wait"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.29.L6": {
+   "entryId": "ZY.29.L6",
+   "vernacular": "被绳索捆绑，囚禁在荆棘丛中，三年不得解脱，凶险。比喻深陷困局而又不知反省，会被长期困住；需要寻找根本的改变。",
+   "angles": [
+    "reflect",
+    "adjust"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.30.G": {
+   "entryId": "ZY.30.G",
+   "vernacular": "离是附丽，也象征火与光明。卦辞说：利于守正，亨通；畜养母牛吉利。比喻依附正确的事物，保持柔顺温和，光亮才能长久。",
+   "angles": [
+    "persevere",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.30.L1": {
+   "entryId": "ZY.30.L1",
+   "vernacular": "脚步交错杂乱，恭敬谨慎就没有过错。比喻刚开始时千头万绪，保持敬慎，可以避免失误。",
+   "angles": [
+    "caution",
+    "prepare"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.30.L2": {
+   "entryId": "ZY.30.L2",
+   "vernacular": "黄色的光明，大吉。黄色象征中正。比喻守住中道、温和明亮，事情会非常顺利。",
+   "angles": [
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.30.L3": {
+   "entryId": "ZY.30.L3",
+   "vernacular": "太阳偏西时的光，不敲着瓦缶唱歌自得其乐，就会像年迈的人那样嗟叹，凶险。比喻面对盛衰变化，与其哀叹，不如坦然接受、过好当下。",
+   "angles": [
+    "reflect",
+    "adjust"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.30.L4": {
+   "entryId": "ZY.30.L4",
+   "vernacular": "突然到来，像火焰一样猛烈燃烧，随即熄灭，被人抛弃。比喻来势太猛、急于表现，往往难以持久。",
+   "angles": [
+    "restrain",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.30.L5": {
+   "entryId": "ZY.30.L5",
+   "vernacular": "泪流满面，忧伤叹息，吉利。比喻身处压力之中保持忧患与真诚，反而能得到支持、转危为安。",
+   "angles": [
+    "reflect",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.30.L6": {
+   "entryId": "ZY.30.L6",
+   "vernacular": "君王出兵征伐，嘉奖斩获首领的人，俘获的不是一般的随从，没有过错。比喻解决问题要抓住关键，严于首要而宽待从属。",
+   "angles": [
+    "advance",
+    "restrain"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.31.G": {
+   "entryId": "ZY.31.G",
+   "vernacular": "咸是感应、交感。卦辞说：亨通，利于守正，缔结婚姻吉利。比喻人与人之间真诚地相互感应，关系才能顺畅；建立亲密关系时，也要以正为本。",
+   "angles": [
+    "cooperate",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.31.L1": {
+   "entryId": "ZY.31.L1",
+   "vernacular": "感应在脚的大拇趾上。比喻感应还很浅，只是刚有触动，不必急于行动。",
+   "angles": [
+    "wait",
+    "probe"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.31.L2": {
+   "entryId": "ZY.31.L2",
+   "vernacular": "感应在小腿上，急于行动有凶险，安居吉利。比喻心动了但时机未到，先按住冲动。",
+   "angles": [
+    "wait",
+    "restrain"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.31.L3": {
+   "entryId": "ZY.31.L3",
+   "vernacular": "感应在大腿上，执意随从他人，前往会有遗憾。比喻缺乏主见、一味跟着别人走，容易后悔。",
+   "angles": [
+    "reflect",
+    "restrain"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.31.L4": {
+   "entryId": "ZY.31.L4",
+   "vernacular": "守正吉利，悔恨消失；心神不定地来来往往，朋友们只顺从你的想法。比喻带着私心交往，只能吸引同类；心正才有广泛的感应。",
+   "angles": [
+    "reflect",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.31.L5": {
+   "entryId": "ZY.31.L5",
+   "vernacular": "感应在背上，没有悔恨。比喻感应虽浅，但不为私情所动，也就没有遗憾。",
+   "angles": [
+    "restrain",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.31.L6": {
+   "entryId": "ZY.31.L6",
+   "vernacular": "感应在牙床、面颊和舌头上。比喻只停留在口头上的交流，难以真正打动人心。",
+   "angles": [
+    "reflect",
+    "adjust"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.32.G": {
+   "entryId": "ZY.32.G",
+   "vernacular": "恒是恒久。卦辞说：亨通，没有过错，利于守正，利于有所前往。比喻在正确的方向上持之以恒，事情能够长久顺利。",
+   "angles": [
+    "persevere",
+    "advance"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.32.L1": {
+   "entryId": "ZY.32.L1",
+   "vernacular": "一开始就深求恒久，即使守正也有凶险，没有好处。比喻关系或事业刚起步就要求太多、太深，反而难以持续。",
+   "angles": [
+    "restrain",
+    "adjust"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.32.L2": {
+   "entryId": "ZY.32.L2",
+   "vernacular": "悔恨消失。九二以刚爻居中，象征持中守常。比喻能守住中道、不走极端，就能长久而无悔。",
+   "angles": [
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.32.L3": {
+   "entryId": "ZY.32.L3",
+   "vernacular": "不能长久保持德行，可能会承受羞辱，坚持下去有遗憾。比喻三心二意、反复无常，会失去别人的信任。",
+   "angles": [
+    "reflect",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.32.L4": {
+   "entryId": "ZY.32.L4",
+   "vernacular": "打猎却没有猎物。比喻在不对的地方用力，坚持再久也没有收获，需要换个方向。",
+   "angles": [
+    "adjust",
+    "reflect"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.32.L5": {
+   "entryId": "ZY.32.L5",
+   "vernacular": "长久保持柔顺的德行，守正；原文按古代家庭角色说，顺从对一方吉利，对需要拿主意的一方则凶。比喻一味顺从并不适合所有角色，要看自己承担的责任。",
+   "angles": [
+    "reflect",
+    "adjust"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.32.L6": {
+   "entryId": "ZY.32.L6",
+   "vernacular": "以躁动不安的方式求恒久，凶险。比喻频繁折腾、坐立不安，难以成事。",
+   "angles": [
+    "restrain",
+    "reflect"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.33.G": {
+   "entryId": "ZY.33.G",
+   "vernacular": "遁是退避、隐退。卦辞说：亨通，在小事上守正有利。比喻形势不利时，适时退让是保全自己的方法，退一步也能通达。",
+   "angles": [
+    "restrain",
+    "wait"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.33.L1": {
+   "entryId": "ZY.33.L1",
+   "vernacular": "退避时落在了后面，有危险，不要有所前往。比喻该撤时撤得太晚，会陷于被动，这时不宜再有动作。",
+   "angles": [
+    "caution",
+    "wait"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.33.L2": {
+   "entryId": "ZY.33.L2",
+   "vernacular": "用黄牛皮把它捆住，没有人能够解脱。比喻意志坚定、立场牢固，不轻易动摇。",
+   "angles": [
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.33.L3": {
+   "entryId": "ZY.33.L3",
+   "vernacular": "想退避又有所牵挂，会有疾患和危险；照料身边依附自己的人则吉利。比喻因牵绊而退不干净，适合把精力放在照顾身边的小事上。",
+   "angles": [
+    "caution",
+    "restrain"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.33.L4": {
+   "entryId": "ZY.33.L4",
+   "vernacular": "心有所好却能毅然退避，君子吉利，小人做不到。比喻能放下喜欢的东西及时抽身，需要很强的自制力。",
+   "angles": [
+    "restrain",
+    "adjust"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.33.L5": {
+   "entryId": "ZY.33.L5",
+   "vernacular": "美好适时地退避，守正吉利。比喻在恰当的时机、以体面的方式退出，可以保全彼此。",
+   "angles": [
+    "restrain",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.33.L6": {
+   "entryId": "ZY.33.L6",
+   "vernacular": "从容宽裕地退隐，没有不利。比喻心无挂碍地退出，不再被得失牵绊，反而海阔天空。",
+   "angles": [
+    "restrain",
+    "reflect"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.34.G": {
+   "entryId": "ZY.34.G",
+   "vernacular": "大壮是强盛、壮大。卦辞说：利于守正。比喻力量强盛的时候，更要守住正道，不滥用力量。",
+   "angles": [
+    "restrain",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.34.L1": {
+   "entryId": "ZY.34.L1",
+   "vernacular": "力量只壮在脚趾上就急于前进，有凶险，这一点确实如此。比喻刚有一点实力就冒进，容易受挫。",
+   "angles": [
+    "restrain",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.34.L2": {
+   "entryId": "ZY.34.L2",
+   "vernacular": "守正吉利。九二刚而居中，强而不过。比喻力量强盛时守中而不过度，事情就会顺利。",
+   "angles": [
+    "persevere",
+    "restrain"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.34.L3": {
+   "entryId": "ZY.34.L3",
+   "vernacular": "小人恃强用力，君子则不这样做，坚持下去有危险；公羊顶撞篱笆，角被缠住。比喻凭蛮力硬碰，往往把自己困住。",
+   "angles": [
+    "restrain",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.34.L4": {
+   "entryId": "ZY.34.L4",
+   "vernacular": "守正吉利，悔恨消失；篱笆被撞开，角也不再被缠住，力量强大如同大车的车轴。比喻守住正道再发力，障碍自然打开。",
+   "angles": [
+    "advance",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.34.L5": {
+   "entryId": "ZY.34.L5",
+   "vernacular": "在田界边丢失了羊，没有悔恨。比喻放下好斗的习气，即使失去一点也无妨。",
+   "angles": [
+    "restrain",
+    "adjust"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.34.L6": {
+   "entryId": "ZY.34.L6",
+   "vernacular": "公羊顶撞篱笆，角被卡住，不能后退也不能前进，没有好处；在艰难中反思，会转为吉利。比喻陷入进退两难时，正视困难、调整方法就有转机。",
+   "angles": [
+    "adjust",
+    "reflect"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.35.G": {
+   "entryId": "ZY.35.G",
+   "vernacular": "晋是前进、上升，像太阳升出地面。卦辞说：安邦的诸侯受赐众多良马，一天之内被君王三次接见。比喻能力得到认可、处在上升期，可以积极进取，也要珍惜这份信任。",
+   "angles": [
+    "advance",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.35.L1": {
+   "entryId": "ZY.35.L1",
+   "vernacular": "想要前进却受到挫折，守正吉利；暂时得不到信任，宽裕从容就没有过错。比喻起步时不被看好，不必急躁，保持从容，继续努力。",
+   "angles": [
+    "persevere",
+    "wait"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.35.L2": {
+   "entryId": "ZY.35.L2",
+   "vernacular": "前进时心怀忧愁，守正吉利；将从祖母那里得到大福。比喻上升途中有焦虑很正常，守住正道，会得到长辈或前辈的支持。",
+   "angles": [
+    "persevere",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.35.L3": {
+   "entryId": "ZY.35.L3",
+   "vernacular": "得到众人的信任，悔恨消失。比喻自己的方向获得周围人的认同，可以安心前行。",
+   "angles": [
+    "cooperate",
+    "advance"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.35.L4": {
+   "entryId": "ZY.35.L4",
+   "vernacular": "像鼫鼠那样贪婪而畏缩地前进，即使守正也有危险。比喻占着位置却贪心、能力又不足，处境并不稳固。",
+   "angles": [
+    "reflect",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.35.L5": {
+   "entryId": "ZY.35.L5",
+   "vernacular": "悔恨消失，不必计较得失，前往吉利，没有不利。比喻放下对得失的担忧，专注于该做的事。",
+   "angles": [
+    "advance",
+    "reflect"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.35.L6": {
+   "entryId": "ZY.35.L6",
+   "vernacular": "前进到了角尖上，只适合用来征讨自己的城邑；虽有危险但吉利，没有过错，一直这样下去则有遗憾。比喻进到极限时，把力量用在整顿自身，而不是继续向外冲。",
+   "angles": [
+    "restrain",
+    "reflect"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.36.G": {
+   "entryId": "ZY.36.G",
+   "vernacular": "明夷是光明受到损伤，像太阳落入地下。卦辞说：利于在艰难中守正。比喻处在不被理解或环境压抑的时期，收敛锋芒，守住内心的光亮。",
+   "angles": [
+    "persevere",
+    "restrain"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.36.L1": {
+   "entryId": "ZY.36.L1",
+   "vernacular": "光明受损时的鸟在飞，垂下了翅膀；君子赶路，三天不吃饭；有所前往，会受到主人的责备。比喻处境不利时尽早离开，即使辛苦、不被理解，也比留下受伤好。",
+   "angles": [
+    "adjust",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.36.L2": {
+   "entryId": "ZY.36.L2",
+   "vernacular": "光明受损，伤在左腿，借助强壮的马来救援，吉利。比喻受到伤害时，及时借助有力的帮助，能够脱离困境。",
+   "angles": [
+    "cooperate",
+    "adjust"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.36.L3": {
+   "entryId": "ZY.36.L3",
+   "vernacular": "在南方狩猎时光明受损，却捕获了首恶；不能操之过急地求正。比喻有机会扭转局面时，也要循序渐进，不能急于求成。",
+   "angles": [
+    "restrain",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.36.L4": {
+   "entryId": "ZY.36.L4",
+   "vernacular": "进入左腹，了解了光明受损的内情，于是走出门庭。比喻看清了问题的实质之后，果断离开。",
+   "angles": [
+    "adjust",
+    "reflect"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.36.L5": {
+   "entryId": "ZY.36.L5",
+   "vernacular": "像箕子那样在黑暗中隐藏自己的光明，利于守正。箕子是商末贤臣，在暴政下佯狂自保。比喻在不利的环境里韬光养晦，守住原则。",
+   "angles": [
+    "persevere",
+    "restrain"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.36.L6": {
+   "entryId": "ZY.36.L6",
+   "vernacular": "不发光明反而昏暗，起初升上天空，后来坠入地下。比喻不明事理却身居高位，终究会跌落。",
+   "angles": [
+    "reflect",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.37.G": {
+   "entryId": "ZY.37.G",
+   "vernacular": "家人讲的是家庭之道。卦辞说：利于守正，原文特别指古代主持家务的女子。比喻家庭的稳定靠成员各自尽责、守住本分。",
+   "angles": [
+    "persevere",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.37.L1": {
+   "entryId": "ZY.37.L1",
+   "vernacular": "为家庭立好防范和规矩，悔恨消失。比喻一个家或团队从一开始就把规矩说清楚，日后少些后悔。",
+   "angles": [
+    "prepare",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.37.L2": {
+   "entryId": "ZY.37.L2",
+   "vernacular": "不擅自作主，专心料理家中饮食，守正吉利。比喻把手头本职的事做好，就是对整体最大的支持。",
+   "angles": [
+    "persevere",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.37.L3": {
+   "entryId": "ZY.37.L3",
+   "vernacular": "治家过于严厉，家人叫苦，虽有悔恨和危险，终究吉利；如果家人嘻嘻哈哈、放纵无度，最终会有遗憾。比喻管教严一点胜过放任，但要把握分寸。",
+   "angles": [
+    "restrain",
+    "reflect"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.37.L4": {
+   "entryId": "ZY.37.L4",
+   "vernacular": "使家庭富足，大吉。比喻勤俭经营、量入为出，家中成员各尽其力，家道自然兴旺。",
+   "angles": [
+    "persevere",
+    "prepare"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.37.L5": {
+   "entryId": "ZY.37.L5",
+   "vernacular": "君王以美德感化家人，不必忧虑，吉利。比喻以身作则、以爱相待，比强行管理更有用。",
+   "angles": [
+    "cooperate",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.37.L6": {
+   "entryId": "ZY.37.L6",
+   "vernacular": "心怀诚信，又有威严，最终吉利。比喻在家庭或团队里，既真诚又有原则，才能长久。",
+   "angles": [
+    "persevere",
+    "reflect"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.38.G": {
+   "entryId": "ZY.38.G",
+   "vernacular": "睽是乖离、相背，像火向上燃、泽水向下流。卦辞说：做小事吉利。比喻意见不合、彼此疏离时，先从小处求同，不急于做大的决定。",
+   "angles": [
+    "restrain",
+    "adjust"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.38.L1": {
+   "entryId": "ZY.38.L1",
+   "vernacular": "悔恨消失；丢了马不必去追，它自己会回来；见到不友善的人，没有过错。比喻有些失去的东西不必强求，对立的人也可以平常相待。",
+   "angles": [
+    "wait",
+    "restrain"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.38.L2": {
+   "entryId": "ZY.38.L2",
+   "vernacular": "在小巷里遇到了主人，没有过错。比喻在不正式的场合或另辟途径与人沟通，能化解隔阂。",
+   "angles": [
+    "adjust",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.38.L3": {
+   "entryId": "ZY.38.L3",
+   "vernacular": "看见车子被拖住，拉车的牛受阻，驾车的人受了刑伤；起初不顺，最终有好结果。比喻开头处处受阻，只要守住正道，后来会好转。",
+   "angles": [
+    "persevere",
+    "wait"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.38.L4": {
+   "entryId": "ZY.38.L4",
+   "vernacular": "乖离孤立时遇到了刚正的人，彼此以诚相交，虽有危险但没有过错。比喻孤立无援时，找到一个真诚可信的伙伴，就能渡过难关。",
+   "angles": [
+    "cooperate",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.38.L5": {
+   "entryId": "ZY.38.L5",
+   "vernacular": "悔恨消失；同宗的亲人像咬柔软的肉一样容易亲近，前往有什么过错呢。比喻与真正的自己人和好并不难，主动迈出一步即可。",
+   "angles": [
+    "cooperate",
+    "advance"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.38.L6": {
+   "entryId": "ZY.38.L6",
+   "vernacular": "乖离孤立，疑心重重：仿佛看见满身泥污的猪、一车鬼怪，先张弓欲射，后又放下；原来对方是来求亲的，前往遇雨吉利。比喻猜疑会扭曲判断，放下戒心，误会就能消解。",
+   "angles": [
+    "reflect",
+    "adjust"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.39.G": {
+   "entryId": "ZY.39.G",
+   "vernacular": "蹇是行走艰难。卦辞说：利于往西南平坦之地，不利于往东北险阻之地；利于去见德高望重的人，守正吉利。比喻困难当前时，选平稳的方向，找能帮助自己的人，守住正道。",
+   "angles": [
+    "adjust",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.39.L1": {
+   "entryId": "ZY.39.L1",
+   "vernacular": "前往会遇到艰难，回来则获得赞誉。比喻困难面前先停下来，等待时机，反而受人称许。",
+   "angles": [
+    "wait",
+    "restrain"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.39.L2": {
+   "entryId": "ZY.39.L2",
+   "vernacular": "君王的臣子历经重重艰难，不是为了自己的缘故。比喻为了共同的责任承受辛苦，问心无愧。",
+   "angles": [
+    "persevere",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.39.L3": {
+   "entryId": "ZY.39.L3",
+   "vernacular": "前往会遇到艰难，回来便返归原处。比喻前路不通时，退回到自己可依靠的地方，重新积蓄力量。",
+   "angles": [
+    "adjust",
+    "wait"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.39.L4": {
+   "entryId": "ZY.39.L4",
+   "vernacular": "前往会遇到艰难，回来则可以联合他人。比喻独自难以突破时，先回头联合伙伴。",
+   "angles": [
+    "cooperate",
+    "wait"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.39.L5": {
+   "entryId": "ZY.39.L5",
+   "vernacular": "遇到大的艰难，朋友纷纷前来相助。比喻守住中正、真诚待人，在困境中会得到支援。",
+   "angles": [
+    "cooperate",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.39.L6": {
+   "entryId": "ZY.39.L6",
+   "vernacular": "前往会遇到艰难，回来则有大的收获，吉利；利于去见德高望重的人。比喻转身回来，向更有经验的人求助，会大有所得。",
+   "angles": [
+    "cooperate",
+    "adjust"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.40.G": {
+   "entryId": "ZY.40.G",
+   "vernacular": "解是解除、缓解，像雷雨过后万物舒展。卦辞说：利于西南；没有必要前往时，回来恢复原状吉利；有所前往，及早行动吉利。比喻困难化解之后，尽快恢复秩序，该做的事趁早去做。",
+   "angles": [
+    "adjust",
+    "advance"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.40.L1": {
+   "entryId": "ZY.40.L1",
+   "vernacular": "没有过错。困难刚刚化解，处在柔顺无争的位置。比喻先安静休养、恢复元气，就不会出问题。",
+   "angles": [
+    "wait",
+    "restrain"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.40.L2": {
+   "entryId": "ZY.40.L2",
+   "vernacular": "打猎捕获三只狐狸，得到黄色的箭，守正吉利。比喻清除了隐患，又守住了中正之道，事情会顺利。",
+   "angles": [
+    "advance",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.40.L3": {
+   "entryId": "ZY.40.L3",
+   "vernacular": "背着东西又乘着车，招来了强盗，即使守正也有遗憾。比喻名不副实、炫耀与自己不相称的东西，容易招惹麻烦。",
+   "angles": [
+    "caution",
+    "reflect"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.40.L4": {
+   "entryId": "ZY.40.L4",
+   "vernacular": "解开你脚拇趾上的束缚，朋友到来才能以诚相待。比喻摆脱不良的牵连，真正的伙伴才会靠近。",
+   "angles": [
+    "adjust",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.40.L5": {
+   "entryId": "ZY.40.L5",
+   "vernacular": "君子能够解除困难，吉利；以此取信于小人，使他们退去。比喻以正道化解问题，不正当的势力自然退却。",
+   "angles": [
+    "persevere",
+    "adjust"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.40.L6": {
+   "entryId": "ZY.40.L6",
+   "vernacular": "王公在高墙上射中隼鸟，捕获了它，没有不利。比喻时机成熟、准备充分时，果断清除最后的障碍。",
+   "angles": [
+    "advance",
+    "prepare"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.41.G": {
+   "entryId": "ZY.41.G",
+   "vernacular": "损是减损。卦辞说：心怀诚信，大吉，没有过错，可以守正，利于有所前往；用什么来祭祀呢，两簋简单的食物就够了。比喻适度减少、删繁就简，只要真诚，简单也足够。",
+   "angles": [
+    "restrain",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.41.L1": {
+   "entryId": "ZY.41.L1",
+   "vernacular": "停下自己的事务，尽快前往相助，没有过错，但要斟酌减损的分寸。比喻帮助别人要量力而行，不要损害自己太多。",
+   "angles": [
+    "cooperate",
+    "restrain"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.41.L2": {
+   "entryId": "ZY.41.L2",
+   "vernacular": "利于守正，急于前进有凶险；不减损自己，也能使对方受益。比喻帮助别人不一定要牺牲自己，守住本分也是贡献。",
+   "angles": [
+    "persevere",
+    "restrain"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.41.L3": {
+   "entryId": "ZY.41.L3",
+   "vernacular": "三个人同行，就会减少一个人；一个人独行，就会得到朋友。比喻关系里人多容易生分歧，专注真诚反而容易找到伙伴。",
+   "angles": [
+    "cooperate",
+    "reflect"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.41.L4": {
+   "entryId": "ZY.41.L4",
+   "vernacular": "减损自己的毛病，让它尽快好转，就有喜事，没有过错。比喻尽早改掉坏习惯，身边的人也会为你高兴。",
+   "angles": [
+    "adjust",
+    "reflect"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.41.L5": {
+   "entryId": "ZY.41.L5",
+   "vernacular": "有人送来价值十朋的大龟，无法推辞，大吉。比喻虚心谦和，外来的帮助和机会往往会随之而来。",
+   "angles": [
+    "cooperate",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.41.L6": {
+   "entryId": "ZY.41.L6",
+   "vernacular": "不减损他人而使他人受益，没有过错，守正吉利，利于有所前往，得到众人归附，不分彼此。比喻真正的利他不靠牺牲，能赢得广泛的支持。",
+   "angles": [
+    "cooperate",
+    "advance"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.42.G": {
+   "entryId": "ZY.42.G",
+   "vernacular": "益是增益。卦辞说：利于有所前往，利于渡过大河。比喻条件在增长，正是积极行动、做成事情的好时机。",
+   "angles": [
+    "advance",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.42.L1": {
+   "entryId": "ZY.42.L1",
+   "vernacular": "利于做大事，大吉，没有过错。比喻得到助力时，可以放手做一件有分量的事，但要做好才算无过。",
+   "angles": [
+    "advance",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.42.L2": {
+   "entryId": "ZY.42.L2",
+   "vernacular": "有人送来价值十朋的大龟，无法推辞，长久守正吉利；君王用来祭祀天帝，吉利。比喻收到帮助时保持谦逊和恒心，这份增益才会长久。",
+   "angles": [
+    "persevere",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.42.L3": {
+   "entryId": "ZY.42.L3",
+   "vernacular": "把增益用在救助凶难之事上，没有过错；心怀诚信、行事中正，手持玉圭向王公禀报。比喻资源用于化解危难是正当的，过程要公开透明。",
+   "angles": [
+    "caution",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.42.L4": {
+   "entryId": "ZY.42.L4",
+   "vernacular": "行事中正，向王公禀报会被听从；利于依靠众人迁移国都。比喻做大的变动时，要秉持公心、获得认可，再借助各方力量推进。",
+   "angles": [
+    "cooperate",
+    "adjust"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.42.L5": {
+   "entryId": "ZY.42.L5",
+   "vernacular": "心怀诚信、惠及他人，不用问也是大吉；别人也会以诚信回报我的德行。比喻真心为别人着想，善意会被回应。",
+   "angles": [
+    "persevere",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.42.L6": {
+   "entryId": "ZY.42.L6",
+   "vernacular": "没有人增益他，反而有人攻击他；立心不恒，凶险。比喻只想得到而不付出、心意又反复无常，会失去支持。",
+   "angles": [
+    "reflect",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.43.G": {
+   "entryId": "ZY.43.G",
+   "vernacular": "夬是决断、决除。卦辞说：在王庭上公开揭示问题，诚恳号召众人，同时心存危惧；先在自己城邑中说明，不宜诉诸武力，利于有所前往。比喻解决问题要公开讲理、争取共识，而不是硬来。",
+   "angles": [
+    "advance",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.43.L1": {
+   "entryId": "ZY.43.L1",
+   "vernacular": "强壮在前脚趾上，前往而不能取胜，就是过错。比喻准备不足就冲在前面，容易失败。",
+   "angles": [
+    "restrain",
+    "prepare"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.43.L2": {
+   "entryId": "ZY.43.L2",
+   "vernacular": "警惕地呼号，深夜里有敌兵来袭，也不必忧虑。比喻平时保持警觉、做好准备，突发情况来了也能从容应对。",
+   "angles": [
+    "caution",
+    "prepare"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.43.L3": {
+   "entryId": "ZY.43.L3",
+   "vernacular": "强壮表现在脸颊上，有凶险；君子果断决绝，独自前行遇雨被淋湿，虽然恼怒，但没有过错。比喻情绪外露有风险；坚持决断时被误解，也要沉住气。",
+   "angles": [
+    "restrain",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.43.L4": {
+   "entryId": "ZY.43.L4",
+   "vernacular": "臀部没有皮肤，走路艰难犹豫；像牵羊一样跟随众人，悔恨就会消失，可惜听到这话却不肯相信。比喻独行受阻时，跟上大家的节奏更好，但要放得下固执。",
+   "angles": [
+    "cooperate",
+    "reflect"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.43.L5": {
+   "entryId": "ZY.43.L5",
+   "vernacular": "像铲除马齿苋一样果断，行事中正，没有过错。比喻决断要坚决，但要守住中道，不过分。",
+   "angles": [
+    "advance",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.43.L6": {
+   "entryId": "ZY.43.L6",
+   "vernacular": "没有可以呼号求助的地方，最终有凶险。比喻一意孤行、孤立无援，难有好结局；要早些反省。",
+   "angles": [
+    "reflect",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
   "ZY.44.G": {
    "entryId": "ZY.44.G",
    "vernacular": "姤是相遇的意思：一根阴爻从下方出现，与上面的众阳相遇。卦辞借古代婚嫁说明，一方势头过盛的相遇，不宜贸然结成长久关系。放在今天，可以理解为面对突然出现的机会或关系，先看清再投入。",
@@ -6305,6 +8878,1258 @@
    "angles": [
     "adjust",
     "reflect"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.45.G": {
+   "entryId": "ZY.45.G",
+   "vernacular": "萃是聚集。卦辞说：君王到宗庙祭祀，利于见德高望重的人，亨通，利于守正；用大的牲畜献祭吉利，利于有所前往。比喻众人聚在一起时，需要共同的信念和有分量的带头人，诚意要足。",
+   "angles": [
+    "cooperate",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.45.L1": {
+   "entryId": "ZY.45.L1",
+   "vernacular": "心有诚信却不能坚持到底，于是时乱时聚；如果大声呼号，一握手就转为欢笑，不必忧虑，前往没有过错。比喻关系中的反复是常事，真诚表达、主动沟通，就能重新聚拢。",
+   "angles": [
+    "cooperate",
+    "adjust"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.45.L2": {
+   "entryId": "ZY.45.L2",
+   "vernacular": "被人引荐而相聚，吉利，没有过错；只要心怀诚信，简朴的祭祀也有利。比喻有人牵线时顺势而为，真诚比排场更重要。",
+   "angles": [
+    "cooperate",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.45.L3": {
+   "entryId": "ZY.45.L3",
+   "vernacular": "想要聚合却只能叹息，没有什么好处；前往没有过错，稍有遗憾。比喻融入群体受挫时，主动去找合适的人，虽有些尴尬也值得。",
+   "angles": [
+    "probe",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.45.L4": {
+   "entryId": "ZY.45.L4",
+   "vernacular": "大吉，才能没有过错。比喻众人聚集在你身边时，要做到公正无私，才配得上这份信任。",
+   "angles": [
+    "persevere",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.45.L5": {
+   "entryId": "ZY.45.L5",
+   "vernacular": "因为地位而聚集众人，没有过错；如果还没获得信任，就要长久守正，悔恨才会消失。比喻靠职位凝聚人心只是开始，要靠长期的诚信赢得真心。",
+   "angles": [
+    "persevere",
+    "reflect"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.45.L6": {
+   "entryId": "ZY.45.L6",
+   "vernacular": "叹息哀伤、涕泪交流，没有过错。比喻聚不到人、深感孤独时，真诚的忧虑与反省可以避免更大的过失。",
+   "angles": [
+    "reflect"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.46.G": {
+   "entryId": "ZY.46.G",
+   "vernacular": "升是上升，像树木从地中生长。卦辞说：大为亨通，适合去见德高望重的人，不必忧虑，向南前进吉利。比喻处在稳步成长的阶段，主动寻求指引，一步步向上走。",
+   "angles": [
+    "advance",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.46.L1": {
+   "entryId": "ZY.46.L1",
+   "vernacular": "得到信任而上升，大吉。比喻得到前辈或上级的信任，与他们志同道合，成长之路会顺畅许多。",
+   "angles": [
+    "advance",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.46.L2": {
+   "entryId": "ZY.46.L2",
+   "vernacular": "心怀诚信，简朴的祭祀也有利，没有过错。比喻真诚比形式重要，踏实的付出会被看到。",
+   "angles": [
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.46.L3": {
+   "entryId": "ZY.46.L3",
+   "vernacular": "上升进入一座空城，毫无阻碍。比喻前路畅通，可以放心推进，但也要留意是否过于顺利。",
+   "angles": [
+    "advance",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.46.L4": {
+   "entryId": "ZY.46.L4",
+   "vernacular": "君王在岐山举行祭祀，吉利，没有过错。比喻在上升中保持敬畏与感恩，能稳稳立足。",
+   "angles": [
+    "persevere",
+    "reflect"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.46.L5": {
+   "entryId": "ZY.46.L5",
+   "vernacular": "守正吉利，像登台阶一样逐级上升。比喻循序渐进、按部就班，能够达到目标。",
+   "angles": [
+    "persevere",
+    "advance"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.46.L6": {
+   "entryId": "ZY.46.L6",
+   "vernacular": "昏昧地一味上升，利于不停息地守持正道。比喻往上走到了顶点仍不知止，要把劲头转到修养自身上。",
+   "angles": [
+    "restrain",
+    "reflect"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.47.G": {
+   "entryId": "ZY.47.G",
+   "vernacular": "困是困顿、穷困，像泽中无水。卦辞说：亨通；守正的大人吉利，没有过错；此时说的话不会被人相信。比喻身处困境时，少辩解、多做事，守住信念能熬过去。",
+   "angles": [
+    "persevere",
+    "restrain"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.47.L1": {
+   "entryId": "ZY.47.L1",
+   "vernacular": "臀部困在树桩上，进入幽深的山谷，三年不见人。比喻陷入低谷时容易自我封闭，要试着走出去，不要越躲越深。",
+   "angles": [
+    "adjust",
+    "reflect"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.47.L2": {
+   "entryId": "ZY.47.L2",
+   "vernacular": "困在酒食之中，显贵的任命正要到来，适合举行祭祀；急于前进有凶险，但没有过错。比喻物质不缺却内心困顿时，保持诚敬与耐心，机会会出现。",
+   "angles": [
+    "wait",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.47.L3": {
+   "entryId": "ZY.47.L3",
+   "vernacular": "被石头困住，靠在蒺藜上，回到家中却不见自己的伴侣，凶险。比喻进退失据、四处碰壁时，连最亲近的支持也可能失去，要冷静检讨处境。",
+   "angles": [
+    "reflect",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.47.L4": {
+   "entryId": "ZY.47.L4",
+   "vernacular": "来得迟缓，被困在金车之中，有遗憾，但终有结果。比喻被现实条件束缚、行动迟缓，坚持下去仍可完成。",
+   "angles": [
+    "persevere",
+    "wait"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.47.L5": {
+   "entryId": "ZY.47.L5",
+   "vernacular": "受到割鼻断足的刑罚，被困于显贵的地位，慢慢地会有喜悦，适合举行祭祀。比喻身居高位却处处受制，以诚意和耐心慢慢化解。",
+   "angles": [
+    "wait",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.47.L6": {
+   "entryId": "ZY.47.L6",
+   "vernacular": "被葛藤缠绕，处境动摇不安，心想一动就会后悔；如果能悔悟，前进就吉利。比喻困局快到尽头，只要肯反思并行动，就能走出来。",
+   "angles": [
+    "adjust",
+    "reflect"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.48.G": {
+   "entryId": "ZY.48.G",
+   "vernacular": "井是水井。卦辞说：城邑可以迁移，水井却不会移动，汲取不减、不汲不增，人们往来取用；汲水的绳子快到井口时打翻了水瓶，凶险。比喻持久稳定地提供价值，做事要善始善终，功亏一篑最可惜。",
+   "angles": [
+    "persevere",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.48.L1": {
+   "entryId": "ZY.48.L1",
+   "vernacular": "井底满是淤泥，水不能喝；废弃的旧井连鸟都不来。比喻长期不更新、不清理，再好的资源也会被弃置。",
+   "angles": [
+    "adjust",
+    "reflect"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.48.L2": {
+   "entryId": "ZY.48.L2",
+   "vernacular": "井底的泉水只能射到小鱼，汲水的瓮又破又漏。比喻能力或工具不足，用不上力，需要先修整。",
+   "angles": [
+    "adjust",
+    "prepare"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.48.L3": {
+   "entryId": "ZY.48.L3",
+   "vernacular": "井已经淘洗干净，却没有人来饮用，让人心中难过；可以汲用了，君王若是明察，大家都能受益。比喻有能力却未被发现，可以等待有识之人，也可以主动展示。",
+   "angles": [
+    "wait",
+    "probe"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.48.L4": {
+   "entryId": "ZY.48.L4",
+   "vernacular": "用砖修砌井壁，没有过错。比喻暂时不对外发挥作用，先修整自身，打好基础。",
+   "angles": [
+    "prepare"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.48.L5": {
+   "entryId": "ZY.48.L5",
+   "vernacular": "井水清冽，寒凉的泉水可供饮用。比喻能力和品格都已成熟，可以真正地服务他人。",
+   "angles": [
+    "advance",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.48.L6": {
+   "entryId": "ZY.48.L6",
+   "vernacular": "井水汲上来，不要盖住井口，心怀诚信，大吉。比喻把成果开放分享，惠及更多的人。",
+   "angles": [
+    "cooperate",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.49.G": {
+   "entryId": "ZY.49.G",
+   "vernacular": "革是变革，像皮革去毛而成。卦辞说：到了合适的日子，变革才能取信于人，大为亨通，利于守正，悔恨消失。比喻改变要选对时机，取得信任之后再推进。",
+   "angles": [
+    "adjust",
+    "wait"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.49.L1": {
+   "entryId": "ZY.49.L1",
+   "vernacular": "用黄牛的皮革牢牢捆住。比喻变革的时机还没到，先稳住，不轻举妄动。",
+   "angles": [
+    "wait",
+    "restrain"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.49.L2": {
+   "entryId": "ZY.49.L2",
+   "vernacular": "到了合适的日子就进行变革，前进吉利，没有过错。比喻时机成熟时，果断行动。",
+   "angles": [
+    "advance",
+    "adjust"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.49.L3": {
+   "entryId": "ZY.49.L3",
+   "vernacular": "急于前进有凶险，固执也有危险；关于变革的主张经过多次商议、形成共识，才能取信于人。比喻变革之前要反复论证、多方沟通。",
+   "angles": [
+    "cooperate",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.49.L4": {
+   "entryId": "ZY.49.L4",
+   "vernacular": "悔恨消失，心怀诚信去改变旧的命令，吉利。比喻有了信任作基础，可以推动实质性的改变。",
+   "angles": [
+    "advance",
+    "adjust"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.49.L5": {
+   "entryId": "ZY.49.L5",
+   "vernacular": "大人像老虎换毛一样焕然一新，不用占卜就有人信服。比喻带头的人以身作则带来鲜明的改变，自然赢得信任。",
+   "angles": [
+    "advance",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.49.L6": {
+   "entryId": "ZY.49.L6",
+   "vernacular": "君子像豹子换毛一样变得有文采，小人也改换了面貌；此时再前进有凶险，安居守正吉利。比喻变革已经完成，宜巩固成果，不宜再折腾。",
+   "angles": [
+    "restrain",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.50.G": {
+   "entryId": "ZY.50.G",
+   "vernacular": "鼎是古代烹饪和祭祀的重器，象征稳固与新的建立。卦辞说：大吉，亨通。比喻在变革之后确立新的秩序，以稳定的方式养育人才、成就事业。",
+   "angles": [
+    "persevere",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.50.L1": {
+   "entryId": "ZY.50.L1",
+   "vernacular": "鼎被倒过来，正好倒出里面的污物；原文又以身份卑微的人因后代而受到尊重作比，没有过错。比喻清除积垢、不拘出身，看似反常的变动反而带来新机。",
+   "angles": [
+    "adjust",
+    "reflect"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.50.L2": {
+   "entryId": "ZY.50.L2",
+   "vernacular": "鼎中装满了食物，我的对手心怀嫉恨，却不能靠近我，吉利。比喻自身有实力又谨慎自守，别人的敌意伤不到你。",
+   "angles": [
+    "persevere",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.50.L3": {
+   "entryId": "ZY.50.L3",
+   "vernacular": "鼎耳坏了，鼎无法移动，鲜美的野鸡汤吃不到；等到下雨，悔恨减少，最终吉利。比喻才能一时未被使用，调整之后会有转机。",
+   "angles": [
+    "wait",
+    "adjust"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.50.L4": {
+   "entryId": "ZY.50.L4",
+   "vernacular": "鼎足折断，倒翻了王公的美食，弄得一片狼藉，凶险。比喻承担了超出能力的重任，会把事情搞砸；要量力而行。",
+   "angles": [
+    "restrain",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.50.L5": {
+   "entryId": "ZY.50.L5",
+   "vernacular": "鼎配着黄色的鼎耳和金属的提杠，利于守正。比喻处中守正，又有可靠的帮手辅佐，事情能稳稳推进。",
+   "angles": [
+    "persevere",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.50.L6": {
+   "entryId": "ZY.50.L6",
+   "vernacular": "鼎配着玉制的提杠，大吉，没有不利。玉温润而坚，象征刚柔相济。比喻做事恰到好处、刚柔并用，能有圆满的成就。",
+   "angles": [
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.51.G": {
+   "entryId": "ZY.51.G",
+   "vernacular": "震是雷，代表震动与惊惧。卦辞说：亨通；雷声袭来让人惶恐，事后却能谈笑自若；雷声震惊百里，主祭的人仍没有失落手中的祭器。比喻突发冲击来临时保持镇定、守住要紧的事，事后能从容面对。",
+   "angles": [
+    "caution",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.51.L1": {
+   "entryId": "ZY.51.L1",
+   "vernacular": "雷声袭来时惶恐不安，事后谈笑自若，吉利。比喻受到惊吓后能警醒反省，反而变得更加稳健。",
+   "angles": [
+    "caution",
+    "reflect"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.51.L2": {
+   "entryId": "ZY.51.L2",
+   "vernacular": "雷声袭来有危险，估计会丧失财物，登上高高的山陵躲避；不必追寻，七天后会失而复得。比喻遇到冲击时先保全自己，暂时的损失不必急着追回。",
+   "angles": [
+    "caution",
+    "wait"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.51.L3": {
+   "entryId": "ZY.51.L3",
+   "vernacular": "雷声让人惶惶不安，因受震惊而谨慎行动，就没有灾祸。比喻受到冲击后不慌乱，把惊惧化为行动上的小心。",
+   "angles": [
+    "caution",
+    "adjust"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.51.L4": {
+   "entryId": "ZY.51.L4",
+   "vernacular": "雷声震动，却陷入了泥中。比喻受惊之后失去了振作的力量，陷在原地；需要找到重新站起来的支点。",
+   "angles": [
+    "adjust",
+    "reflect"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.51.L5": {
+   "entryId": "ZY.51.L5",
+   "vernacular": "雷声来来往往，处境危险；估计不会有大的损失，能保有自己的事业。比喻在反复的冲击中，守住中心和本职，就能稳住。",
+   "angles": [
+    "persevere",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.51.L6": {
+   "entryId": "ZY.51.L6",
+   "vernacular": "雷声让人畏缩不安、惊慌四顾，前进有凶险；震动还没到自己身上，只落在邻居那里，提早戒备就没有过错，但结亲之事会有些闲话。比喻从别人的遭遇中提前警觉，不要盲动。",
+   "angles": [
+    "caution",
+    "wait"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.52.G": {
+   "entryId": "ZY.52.G",
+   "vernacular": "艮是山，代表静止。卦辞说：止于背部，不被自身的欲望牵动；走在庭院里，看不见他人，没有过错。比喻该停的时候停下来，不被外界和欲念干扰，内心安定。",
+   "angles": [
+    "restrain",
+    "reflect"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.52.L1": {
+   "entryId": "ZY.52.L1",
+   "vernacular": "止住脚趾，没有过错，利于长久守正。比喻在行动刚开始时就止住不当的念头，最为省力。",
+   "angles": [
+    "restrain",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.52.L2": {
+   "entryId": "ZY.52.L2",
+   "vernacular": "止住小腿，却不能挽救所跟随的人，心中不快。比喻自己停住了，却无法改变别人的走向，难免郁闷。",
+   "angles": [
+    "restrain",
+    "reflect"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.52.L3": {
+   "entryId": "ZY.52.L3",
+   "vernacular": "止住腰部，撕裂了脊背的肌肉，危险让人心如火焚。比喻强行压抑、僵硬地停止，反而伤及自身；节制也要讲方法。",
+   "angles": [
+    "adjust",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.52.L4": {
+   "entryId": "ZY.52.L4",
+   "vernacular": "止住整个身体，没有过错。比喻能够约束自己的言行，安守本分，不越出自己该在的位置。",
+   "angles": [
+    "restrain",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.52.L5": {
+   "entryId": "ZY.52.L5",
+   "vernacular": "止住口舌，说话有条理，悔恨消失。比喻谨慎言语，说出口的话有分寸，就少有后悔。",
+   "angles": [
+    "restrain",
+    "reflect"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.52.L6": {
+   "entryId": "ZY.52.L6",
+   "vernacular": "以敦厚笃实的态度止于该止之处，吉利。比喻知道在哪里停下，并且坚持到底，能有好的结果。",
+   "angles": [
+    "persevere",
+    "restrain"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.53.G": {
+   "entryId": "ZY.53.G",
+   "vernacular": "渐是循序渐进。卦辞说：原文以古代婚嫁礼节步步有序作比，吉利，利于守正。比喻无论建立关系还是做事，一步步来才稳妥。",
+   "angles": [
+    "persevere",
+    "prepare"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.53.L1": {
+   "entryId": "ZY.53.L1",
+   "vernacular": "鸿雁渐渐飞到水边，年轻人遇到危险，招来闲话，没有过错。比喻刚起步时根基不稳，难免受人议论，谨慎前行即可。",
+   "angles": [
+    "caution",
+    "prepare"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.53.L2": {
+   "entryId": "ZY.53.L2",
+   "vernacular": "鸿雁渐渐飞到岸边的大石上，饮食和乐，吉利。比喻找到了稳固的立足点，可以安心享受成果。",
+   "angles": [
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.53.L3": {
+   "entryId": "ZY.53.L3",
+   "vernacular": "鸿雁渐渐飞到高地上；原文说远行的人一去不回，家中的新生命也没能保住，凶险；利于抵御外敌。比喻冒进而脱离根本，会失去所依；此时宜守不宜攻。",
+   "angles": [
+    "restrain",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.53.L4": {
+   "entryId": "ZY.53.L4",
+   "vernacular": "鸿雁渐渐飞到树上，也许能找到平直的枝杈栖身，没有过错。比喻身处不太适合自己的环境，灵活找到安身之处即可。",
+   "angles": [
+    "adjust",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.53.L5": {
+   "entryId": "ZY.53.L5",
+   "vernacular": "鸿雁渐渐飞到山陵上；原文以伴侣多年未能有子为喻，但终究没有什么能阻挡他们，吉利。比喻好事多磨，暂时的阻隔挡不住真心，守住正道，终能走到一起。",
+   "angles": [
+    "persevere",
+    "wait"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.53.L6": {
+   "entryId": "ZY.53.L6",
+   "vernacular": "鸿雁渐渐飞到高高的陆地上，它的羽毛可以用作仪式的装饰，吉利。比喻经过一步步积累到达高处，成为别人的榜样。",
+   "angles": [
+    "persevere",
+    "reflect"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.54.G": {
+   "entryId": "ZY.54.G",
+   "vernacular": "归妹本指古代女子出嫁。卦辞说：急于前进有凶险，没有什么好处；原文借不合礼序的婚配说明位置不当。比喻在关系或合作中，出发点和位置不对，越急着推进越不利。",
+   "angles": [
+    "caution",
+    "reflect"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.54.L1": {
+   "entryId": "ZY.54.L1",
+   "vernacular": "原文说以从属的身份随嫁，就像跛脚的人仍能行走，前进吉利。比喻处在次要的位置，只要安守本分、尽力辅助，也能有所作为。",
+   "angles": [
+    "persevere",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.54.L2": {
+   "entryId": "ZY.54.L2",
+   "vernacular": "眼睛不好仍能看见，利于安静淡泊的人守正。比喻条件有限、不被重视时，守住自己的操守。",
+   "angles": [
+    "persevere",
+    "restrain"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.54.L3": {
+   "entryId": "ZY.54.L3",
+   "vernacular": "原文说本想以正式的身份出嫁，却只能等待，最后以从属的身份出嫁。比喻期望过高而条件不足时，不妨降低姿态，接受现实的位置。",
+   "angles": [
+    "adjust",
+    "reflect"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.54.L4": {
+   "entryId": "ZY.54.L4",
+   "vernacular": "原文说结亲的日子一再延误，迟一些是在等待合适的时机。比喻不急于成就某件事，宁可等待合适的对象与时机。",
+   "angles": [
+    "wait"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.54.L5": {
+   "entryId": "ZY.54.L5",
+   "vernacular": "商王帝乙嫁妹，她的衣饰还不如随嫁者的华美；月亮将要满圆，吉利。比喻身份尊贵却不讲排场、朴素谦和，反而受人敬重。",
+   "angles": [
+    "restrain",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.54.L6": {
+   "entryId": "ZY.54.L6",
+   "vernacular": "原文说一方捧着的竹筐里空无一物，另一方宰羊却不见血，没有什么好处。比喻徒有形式、缺乏实质的结合或承诺，难有结果。",
+   "angles": [
+    "reflect",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.55.G": {
+   "entryId": "ZY.55.G",
+   "vernacular": "丰是丰盛、盛大。卦辞说：亨通；君王达到了丰盛的境地，不必忧虑，适宜像正午的太阳那样普照四方。比喻事业兴盛时，要把光亮分享出去，同时明白盛极会转。",
+   "angles": [
+    "advance",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.55.L1": {
+   "entryId": "ZY.55.L1",
+   "vernacular": "遇到与自己相匹配的主人，虽然彼此相当，也没有过错，前往会受到崇尚。比喻遇到能力相当、互补的伙伴，合作能够成事。",
+   "angles": [
+    "cooperate",
+    "advance"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.55.L2": {
+   "entryId": "ZY.55.L2",
+   "vernacular": "用草席遮蔽得很严，正午时都能看见北斗星；前往会被猜疑，若以诚信启发对方，吉利。比喻沟通被遮蔽、被人误解时，以真诚慢慢打开局面。",
+   "angles": [
+    "persevere",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.55.L3": {
+   "entryId": "ZY.55.L3",
+   "vernacular": "遮蔽得更加严密，正午时连小星都能看见；折断了右臂，没有过错。比喻环境闭塞、难以施展时，暂时收手，不必勉强。",
+   "angles": [
+    "restrain",
+    "wait"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.55.L4": {
+   "entryId": "ZY.55.L4",
+   "vernacular": "用草席遮蔽得很严，正午时都能看见北斗星；遇到志同道合的主人，吉利。比喻处境昏暗时，找到同道之人一起努力。",
+   "angles": [
+    "cooperate",
+    "adjust"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.55.L5": {
+   "entryId": "ZY.55.L5",
+   "vernacular": "招来有才华的人，有喜庆和美誉，吉利。比喻能吸纳人才、虚心采纳意见，事业会更兴盛。",
+   "angles": [
+    "cooperate",
+    "advance"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.55.L6": {
+   "entryId": "ZY.55.L6",
+   "vernacular": "房屋高大丰盛，却把家遮蔽起来，从门缝里窥看，寂静无人，三年都不见人影，凶险。比喻在兴盛中自我封闭、远离众人，终会陷入孤立。",
+   "angles": [
+    "reflect",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.56.G": {
+   "entryId": "ZY.56.G",
+   "vernacular": "旅是旅行、客居他乡。卦辞说：小有亨通，在旅途中守正吉利。比喻身处陌生环境或过渡阶段，低调守礼、不求过多，能平稳度过。",
+   "angles": [
+    "restrain",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.56.L1": {
+   "entryId": "ZY.56.L1",
+   "vernacular": "旅途中猥琐计较，这是自取灾祸。比喻在新环境里对小事斤斤计较，反而惹出麻烦。",
+   "angles": [
+    "reflect",
+    "restrain"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.56.L2": {
+   "entryId": "ZY.56.L2",
+   "vernacular": "旅途中住进客舍，怀里带着钱财，得到忠实的帮手，守正。比喻在外有安身之处、有资源、有可靠的帮手，就能安稳。",
+   "angles": [
+    "persevere",
+    "prepare"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.56.L3": {
+   "entryId": "ZY.56.L3",
+   "vernacular": "旅途中客舍被焚，失去了帮手，坚持下去有危险。比喻在外过于强势、待人苛刻，会失去立足点和支持。",
+   "angles": [
+    "reflect",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.56.L4": {
+   "entryId": "ZY.56.L4",
+   "vernacular": "旅途中暂得安身之处，也有了钱财和工具，心里却不愉快。比喻虽然有了暂时的着落，但还没有真正找到归属，心有不甘。",
+   "angles": [
+    "reflect",
+    "wait"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.56.L5": {
+   "entryId": "ZY.56.L5",
+   "vernacular": "射野鸡时失掉一支箭，最终得到美誉和任命。比喻付出一点代价，换来认可和机会，是值得的。",
+   "angles": [
+    "advance",
+    "probe"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.56.L6": {
+   "entryId": "ZY.56.L6",
+   "vernacular": "鸟巢被烧毁，旅人先笑后哭；在田界边丢失了牛，凶险。比喻在外得意忘形、高傲自大，会失去根本。",
+   "angles": [
+    "restrain",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.57.G": {
+   "entryId": "ZY.57.G",
+   "vernacular": "巽是风，代表顺从、渗入。卦辞说：小有亨通，利于有所前往，利于见德高望重的人。比喻以柔和、渐进的方式深入，并跟随正确的引导，事情可以推进。",
+   "angles": [
+    "cooperate",
+    "probe"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.57.L1": {
+   "entryId": "ZY.57.L1",
+   "vernacular": "进退犹豫，利于像武人那样果断守正。比喻过于顺从会举棋不定，这时需要拿出决断。",
+   "angles": [
+    "advance",
+    "adjust"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.57.L2": {
+   "entryId": "ZY.57.L2",
+   "vernacular": "谦卑地伏在床下，请史官和巫师纷纷祷告，吉利，没有过错。比喻真诚地放低姿态，多方求教、表达诚意，可以化解问题。",
+   "angles": [
+    "cooperate",
+    "reflect"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.57.L3": {
+   "entryId": "ZY.57.L3",
+   "vernacular": "频繁地屈从，有遗憾。比喻反复迁就、委屈自己，并非真心顺服，终会难受。",
+   "angles": [
+    "reflect",
+    "adjust"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.57.L4": {
+   "entryId": "ZY.57.L4",
+   "vernacular": "悔恨消失，打猎捕获三类猎物。比喻顺应形势、各方照顾周全，会有丰富的收获。",
+   "angles": [
+    "advance",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.57.L5": {
+   "entryId": "ZY.57.L5",
+   "vernacular": "守正吉利，悔恨消失，没有不利；起初不顺，最终有好结局；在庚日前三天和后三天谨慎筹划，吉利。比喻推行改变时要事前叮嘱、事后检查，开头难，结尾好。",
+   "angles": [
+    "adjust",
+    "prepare"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.57.L6": {
+   "entryId": "ZY.57.L6",
+   "vernacular": "卑躬屈膝地伏在床下，失掉了钱财和利斧，坚持下去有凶险。比喻过分顺从、失去主见和底线，会丧失自己的根本。",
+   "angles": [
+    "reflect",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.58.G": {
+   "entryId": "ZY.58.G",
+   "vernacular": "兑是喜悦，也象征泽。卦辞说：亨通，利于守正。比喻真诚的喜悦与交流能让事情顺利，但快乐要建立在正当的基础上。",
+   "angles": [
+    "cooperate",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.58.L1": {
+   "entryId": "ZY.58.L1",
+   "vernacular": "和顺地喜悦，吉利。比喻心态平和、与人相处融洽，不刻意也不攀附，事情自然顺利。",
+   "angles": [
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.58.L2": {
+   "entryId": "ZY.58.L2",
+   "vernacular": "以诚信为基础的喜悦，吉利，悔恨消失。比喻发自真心的欢喜，经得起时间的检验。",
+   "angles": [
+    "persevere",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.58.L3": {
+   "entryId": "ZY.58.L3",
+   "vernacular": "主动前来讨好以求喜悦，凶险。比喻刻意讨好、迎合别人来换取快乐，会失去自我。",
+   "angles": [
+    "reflect",
+    "restrain"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.58.L4": {
+   "entryId": "ZY.58.L4",
+   "vernacular": "斟酌该取哪种喜悦，心里不得安宁；隔绝不良的诱惑，会有喜事。比喻面对诱惑犹豫不决时，果断远离不健康的欢乐。",
+   "angles": [
+    "caution",
+    "restrain"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.58.L5": {
+   "entryId": "ZY.58.L5",
+   "vernacular": "信任了会剥蚀自己的人，有危险。比喻被甜言蜜语迷惑而轻信，需要提高警惕。",
+   "angles": [
+    "caution",
+    "reflect"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.58.L6": {
+   "entryId": "ZY.58.L6",
+   "vernacular": "引诱他人一起寻欢作乐。比喻沉迷于追逐快乐，被欲望牵着走，要警觉其中的风险。",
+   "angles": [
+    "restrain",
+    "reflect"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.59.G": {
+   "entryId": "ZY.59.G",
+   "vernacular": "涣是离散，也指化解，像风吹过水面使冰消散。卦辞说：亨通；君王到宗庙祭祀，利于渡过大河，利于守正。比喻人心涣散时，用共同的信念重新凝聚，可以度过难关。",
+   "angles": [
+    "cooperate",
+    "adjust"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.59.L1": {
+   "entryId": "ZY.59.L1",
+   "vernacular": "借助强壮的马来救援，吉利，悔恨消失。比喻离散刚开始时，尽早寻求有力的帮助，可以迅速挽回。",
+   "angles": [
+    "cooperate",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.59.L2": {
+   "entryId": "ZY.59.L2",
+   "vernacular": "在离散之时奔向可以依靠的几案，悔恨消失。比喻在动荡中赶紧找到稳固的依靠。",
+   "angles": [
+    "adjust",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.59.L3": {
+   "entryId": "ZY.59.L3",
+   "vernacular": "化解自身的私心，没有悔恨。比喻放下个人得失与面子，投入共同的事业，心里也更坦然。",
+   "angles": [
+    "reflect",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.59.L4": {
+   "entryId": "ZY.59.L4",
+   "vernacular": "解散小的群体，大吉；离散之后又聚成山丘一样的大集体，这不是常人能想到的。比喻打破小圈子，可以凝聚更大的力量。",
+   "angles": [
+    "adjust",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.59.L5": {
+   "entryId": "ZY.59.L5",
+   "vernacular": "像出汗一样发布重大的号令，散发君王的积蓄，没有过错。比喻关键时刻果断发布清晰的指令，并把资源分给需要的人。",
+   "angles": [
+    "advance",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.59.L6": {
+   "entryId": "ZY.59.L6",
+   "vernacular": "化解流血的伤害，远远地离开，没有过错。比喻远离危险的源头，避免自己和他人受到伤害。",
+   "angles": [
+    "caution",
+    "adjust"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.60.G": {
+   "entryId": "ZY.60.G",
+   "vernacular": "节是节制、节度，像竹节一样有分寸。卦辞说：亨通；过分苦涩的节制不能长久坚持。比喻适度节制让生活有序，但过度约束反而难以持续。",
+   "angles": [
+    "restrain",
+    "adjust"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.60.L1": {
+   "entryId": "ZY.60.L1",
+   "vernacular": "不走出内院的门户，没有过错。比喻时机未到时谨言慎行，守在自己的范围之内。",
+   "angles": [
+    "wait",
+    "restrain"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.60.L2": {
+   "entryId": "ZY.60.L2",
+   "vernacular": "不走出外院的大门，凶险。比喻时机已到却仍然固守不动，会错失机会。",
+   "angles": [
+    "advance",
+    "adjust"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.60.L3": {
+   "entryId": "ZY.60.L3",
+   "vernacular": "不知节制，就会嗟叹后悔；能自己反省，就没有过错。比喻放纵之后的懊悔，如果能转为改正，就还来得及。",
+   "angles": [
+    "reflect",
+    "restrain"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.60.L4": {
+   "entryId": "ZY.60.L4",
+   "vernacular": "安然地遵守节制，亨通。比喻把节制变成自然而然的习惯，不觉勉强，事情会顺利。",
+   "angles": [
+    "restrain",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.60.L5": {
+   "entryId": "ZY.60.L5",
+   "vernacular": "以节制为甘美，吉利；前往会受到崇尚。比喻乐于自我约束、以身作则，会赢得尊重。",
+   "angles": [
+    "restrain",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.60.L6": {
+   "entryId": "ZY.60.L6",
+   "vernacular": "过分苦涩的节制，坚持下去有凶险；如果能改正，悔恨就会消失。比喻对自己或他人约束过严，要适当放松。",
+   "angles": [
+    "adjust",
+    "restrain"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.61.G": {
+   "entryId": "ZY.61.G",
+   "vernacular": "中孚是内心诚信。卦辞说：诚信能感化到小猪和鱼，吉利；利于渡过大河，利于守正。比喻真诚的力量能打动最难打动的人，靠它可以渡过难关。",
+   "angles": [
+    "persevere",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.61.L1": {
+   "entryId": "ZY.61.L1",
+   "vernacular": "安守诚信吉利，若另有他念，就不得安宁。比喻对人对事一心一意，三心二意会让自己不安。",
+   "angles": [
+    "persevere",
+    "reflect"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.61.L2": {
+   "entryId": "ZY.61.L2",
+   "vernacular": "鹤在树荫下鸣叫，小鹤应声相和；我有好酒，愿与你共饮。比喻发自真心的声音，自然会得到回应，也乐于与人分享。",
+   "angles": [
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.61.L3": {
+   "entryId": "ZY.61.L3",
+   "vernacular": "遇到对手，时而击鼓进攻，时而罢兵停下，时而哭泣，时而歌唱。比喻情绪随外界起伏，内心缺少定力；要找回自己的中心。",
+   "angles": [
+    "reflect",
+    "restrain"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.61.L4": {
+   "entryId": "ZY.61.L4",
+   "vernacular": "月亮将满，同驾的马走失了一匹，没有过错。比喻在接近圆满时舍弃私党、不结派，保持忠诚，没有过错。",
+   "angles": [
+    "restrain",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.61.L5": {
+   "entryId": "ZY.61.L5",
+   "vernacular": "心怀诚信，与他人紧密相连，没有过错。比喻以真诚维系彼此，关系稳固。",
+   "angles": [
+    "cooperate",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.61.L6": {
+   "entryId": "ZY.61.L6",
+   "vernacular": "鸡的鸣声想要飞上天，坚持下去有凶险。比喻名声超过实际、言过其实，难以长久。",
+   "angles": [
+    "restrain",
+    "reflect"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.62.G": {
+   "entryId": "ZY.62.G",
+   "vernacular": "小过是小有过度。卦辞说：亨通，利于守正；可以做小事，不可做大事；飞鸟留下鸣声，不宜向上飞，宜向下栖，大吉。比喻小事上稍过一点无妨，大事要谨慎，宁可低调务实，不要好高骛远。",
+   "angles": [
+    "restrain",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.62.L1": {
+   "entryId": "ZY.62.L1",
+   "vernacular": "鸟还不该飞时就飞，有凶险。比喻时机未到、根基不稳就急于高飞，会受挫。",
+   "angles": [
+    "wait",
+    "restrain"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.62.L2": {
+   "entryId": "ZY.62.L2",
+   "vernacular": "越过祖父，遇到祖母；够不上君主，遇到臣子；没有过错。比喻不越级、不过分，在合适的层面与人交往，就不会出错。",
+   "angles": [
+    "restrain",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.62.L3": {
+   "entryId": "ZY.62.L3",
+   "vernacular": "不肯多加防备，随后可能遭到伤害，凶险。比喻对潜在风险掉以轻心会吃亏，必要时要多加防范。",
+   "angles": [
+    "caution",
+    "prepare"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.62.L4": {
+   "entryId": "ZY.62.L4",
+   "vernacular": "没有过错，不过分地去应对；前往有危险，必须戒备，不要长久固执。比喻处境微妙时适可而止，灵活应变，不要死守一种做法。",
+   "angles": [
+    "caution",
+    "adjust"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.62.L5": {
+   "entryId": "ZY.62.L5",
+   "vernacular": "浓云密布却不下雨，云从西郊升起；王公用带绳的箭射取洞穴里的猎物。比喻条件尚未成熟时，借助他人之力，先从可行的小事做起。",
+   "angles": [
+    "cooperate",
+    "wait"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.62.L6": {
+   "entryId": "ZY.62.L6",
+   "vernacular": "不去相遇而一味超越，像飞鸟飞得太高而被罗网缠住，凶险，这就是灾祸。比喻过度追求、不知收手，会招致失败。",
+   "angles": [
+    "restrain",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.63.G": {
+   "entryId": "ZY.63.G",
+   "vernacular": "既济是事情已经完成，像渡河已到对岸。卦辞说：小有亨通，利于守正；开始吉利，最终可能混乱。比喻目标达成后不能松懈，要居安思危，守住成果。",
+   "angles": [
+    "caution",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.63.L1": {
+   "entryId": "ZY.63.L1",
+   "vernacular": "拖住车轮，沾湿了尾巴，没有过错。比喻事成之初主动放慢脚步、小心谨慎，就不会出错。",
+   "angles": [
+    "restrain",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.63.L2": {
+   "entryId": "ZY.63.L2",
+   "vernacular": "原文说有人丢失了车上的遮帘，不必去寻找，七天后会失而复得。比喻暂时的小损失不必着急，守住本分，该回来的会回来。",
+   "angles": [
+    "wait",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.63.L3": {
+   "entryId": "ZY.63.L3",
+   "vernacular": "殷高宗征伐鬼方，三年才取胜；不要任用小人。比喻成就大事需要长期投入，不能任用品行不端的人。",
+   "angles": [
+    "persevere",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.63.L4": {
+   "entryId": "ZY.63.L4",
+   "vernacular": "船有漏水的地方，备好破衣旧絮随时堵塞，整天保持戒备。比喻好的局面也会出现破损，要时时警惕，备好补救的办法。",
+   "angles": [
+    "caution",
+    "prepare"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.63.L5": {
+   "entryId": "ZY.63.L5",
+   "vernacular": "东边的邻居杀牛隆重祭祀，不如西边的邻居简朴地祭祀，能真正受到福佑。比喻诚意比排场重要，踏实合时的付出更有回报。",
+   "angles": [
+    "persevere",
+    "restrain"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.63.L6": {
+   "entryId": "ZY.63.L6",
+   "vernacular": "渡河时沾湿了头，危险。比喻事情完成后仍不知止，继续冒进，会陷入危险。",
+   "angles": [
+    "caution",
+    "restrain"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.64.G": {
+   "entryId": "ZY.64.G",
+   "vernacular": "未济是事情尚未完成，像渡河还没到对岸。卦辞说：亨通；小狐狸快要渡过河时沾湿了尾巴，没有什么好处。比喻快到终点时最容易松懈，要坚持到底，善始善终。",
+   "angles": [
+    "persevere",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.64.L1": {
+   "entryId": "ZY.64.L1",
+   "vernacular": "小狐狸渡河，沾湿了尾巴，有遗憾。比喻能力还不足就贸然开始，容易半途受挫。",
+   "angles": [
+    "prepare",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.64.L2": {
+   "entryId": "ZY.64.L2",
+   "vernacular": "拖住车轮不急于前行，守正吉利。比喻适当放慢脚步、稳住节奏，按正道一步步前进。",
+   "angles": [
+    "restrain",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.64.L3": {
+   "entryId": "ZY.64.L3",
+   "vernacular": "事情尚未完成，急于前进有凶险，但利于渡过大河。比喻条件还不充分时不宜硬推，可以借助外力或换个方式渡过难关。",
+   "angles": [
+    "adjust",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.64.L4": {
+   "entryId": "ZY.64.L4",
+   "vernacular": "守正吉利，悔恨消失；以雷霆之势征伐鬼方，三年后得到大国的封赏。比喻下定决心、长期投入，努力终会被认可。",
+   "angles": [
+    "persevere",
+    "advance"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.64.L5": {
+   "entryId": "ZY.64.L5",
+   "vernacular": "守正吉利，没有悔恨；这是君子的光辉，心怀诚信，吉利。比喻以真诚和德行做事，成果会自然显现。",
+   "angles": [
+    "persevere",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.64.L6": {
+   "entryId": "ZY.64.L6",
+   "vernacular": "心怀诚信地饮酒庆贺，没有过错；若喝得沉醉，连头都沾湿了，即使有诚信也会失去分寸。比喻可以庆祝，但要节制，不要乐极生悲。",
+   "angles": [
+    "restrain",
+    "caution"
    ],
    "reviewStatus": "draft"
   }

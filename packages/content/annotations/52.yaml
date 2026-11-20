@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 52
+entries:
+  - entryId: ZY.52.G
+    vernacular: 艮是山，代表静止。卦辞说：止于背部，不被自身的欲望牵动；走在庭院里，看不见他人，没有过错。比喻该停的时候停下来，不被外界和欲念干扰，内心安定。
+    angles: [restrain, reflect]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.52.L1
+    vernacular: 止住脚趾，没有过错，利于长久守正。比喻在行动刚开始时就止住不当的念头，最为省力。
+    angles: [restrain, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.52.L2
+    vernacular: 止住小腿，却不能挽救所跟随的人，心中不快。比喻自己停住了，却无法改变别人的走向，难免郁闷。
+    angles: [restrain, reflect]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.52.L3
+    vernacular: 止住腰部，撕裂了脊背的肌肉，危险让人心如火焚。比喻强行压抑、僵硬地停止，反而伤及自身；节制也要讲方法。
+    angles: [adjust, caution]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.52.L4
+    vernacular: 止住整个身体，没有过错。比喻能够约束自己的言行，安守本分，不越出自己该在的位置。
+    angles: [restrain, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.52.L5
+    vernacular: 止住口舌，说话有条理，悔恨消失。比喻谨慎言语，说出口的话有分寸，就少有后悔。
+    angles: [restrain, reflect]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.52.L6
+    vernacular: 以敦厚笃实的态度止于该止之处，吉利。比喻知道在哪里停下，并且坚持到底，能有好的结果。
+    angles: [persevere, restrain]
+    authorship: self
+    reviewStatus: draft

@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 30
+entries:
+  - entryId: ZY.30.G
+    vernacular: 离是附丽，也象征火与光明。卦辞说：利于守正，亨通；畜养母牛吉利。比喻依附正确的事物，保持柔顺温和，光亮才能长久。
+    angles: [persevere, cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.30.L1
+    vernacular: 脚步交错杂乱，恭敬谨慎就没有过错。比喻刚开始时千头万绪，保持敬慎，可以避免失误。
+    angles: [caution, prepare]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.30.L2
+    vernacular: 黄色的光明，大吉。黄色象征中正。比喻守住中道、温和明亮，事情会非常顺利。
+    angles: [persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.30.L3
+    vernacular: 太阳偏西时的光，不敲着瓦缶唱歌自得其乐，就会像年迈的人那样嗟叹，凶险。比喻面对盛衰变化，与其哀叹，不如坦然接受、过好当下。
+    angles: [reflect, adjust]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.30.L4
+    vernacular: 突然到来，像火焰一样猛烈燃烧，随即熄灭，被人抛弃。比喻来势太猛、急于表现，往往难以持久。
+    angles: [restrain, caution]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.30.L5
+    vernacular: 泪流满面，忧伤叹息，吉利。比喻身处压力之中保持忧患与真诚，反而能得到支持、转危为安。
+    angles: [reflect, caution]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.30.L6
+    vernacular: 君王出兵征伐，嘉奖斩获首领的人，俘获的不是一般的随从，没有过错。比喻解决问题要抓住关键，严于首要而宽待从属。
+    angles: [advance, restrain]
+    authorship: self
+    reviewStatus: draft

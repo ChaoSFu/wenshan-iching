@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 63
+entries:
+  - entryId: ZY.63.G
+    vernacular: 既济是事情已经完成，像渡河已到对岸。卦辞说：小有亨通，利于守正；开始吉利，最终可能混乱。比喻目标达成后不能松懈，要居安思危，守住成果。
+    angles: [caution, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.63.L1
+    vernacular: 拖住车轮，沾湿了尾巴，没有过错。比喻事成之初主动放慢脚步、小心谨慎，就不会出错。
+    angles: [restrain, caution]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.63.L2
+    vernacular: 原文说有人丢失了车上的遮帘，不必去寻找，七天后会失而复得。比喻暂时的小损失不必着急，守住本分，该回来的会回来。
+    angles: [wait, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.63.L3
+    vernacular: 殷高宗征伐鬼方，三年才取胜；不要任用小人。比喻成就大事需要长期投入，不能任用品行不端的人。
+    angles: [persevere, caution]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.63.L4
+    vernacular: 船有漏水的地方，备好破衣旧絮随时堵塞，整天保持戒备。比喻好的局面也会出现破损，要时时警惕，备好补救的办法。
+    angles: [caution, prepare]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.63.L5
+    vernacular: 东边的邻居杀牛隆重祭祀，不如西边的邻居简朴地祭祀，能真正受到福佑。比喻诚意比排场重要，踏实合时的付出更有回报。
+    angles: [persevere, restrain]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.63.L6
+    vernacular: 渡河时沾湿了头，危险。比喻事情完成后仍不知止，继续冒进，会陷入危险。
+    angles: [caution, restrain]
+    authorship: self
+    reviewStatus: draft

@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 4
+entries:
+  - entryId: ZY.04.G
+    vernacular: 蒙是蒙昧与启蒙。卦辞说：亨通；不是老师去求学生，而是求学的人主动来请教；初次诚心发问给予解答，一再重复就是轻慢，便不再回答。比喻学习和求助要真诚专注，反复追问而不行动，反而得不到答案。
+    angles: [reflect, cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.04.L1
+    vernacular: 启发蒙昧，适合借助规矩来约束，也要及时解除束缚人的枷锁；一味严厉下去会有遗憾。比喻刚开始学习或带新人时，需要立规矩，但不能只靠惩罚。
+    angles: [prepare, restrain]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.04.L2
+    vernacular: 包容蒙昧的人，吉利；原文以迎娶配偶、子女能够持家作比，同样吉利。比喻以宽厚的态度接纳不同的人，能把一个家或一个团队撑起来。
+    angles: [cooperate, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.04.L3
+    vernacular: 原文以婚配为喻：一个人见到有钱有势者就失了分寸、不顾自身，这样的结合没有好处。比喻选择伙伴或合作对象时，警惕只被利益吸引、缺乏原则的关系。
+    angles: [caution, reflect]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.04.L4
+    vernacular: 困在蒙昧之中，有所遗憾。比喻远离能指点自己的人和资源，独自困惑；这时要主动走出去求教。
+    angles: [reflect, cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.04.L5
+    vernacular: 像孩童一样虚心求教，吉利。比喻放下架子、保持好奇与谦虚，学习和成长都会顺利。
+    angles: [cooperate, reflect]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.04.L6
+    vernacular: 用强力去打破蒙昧；不宜像强盗那样侵犯，适合用来抵御外来的侵害。比喻纠正错误要有分寸，目的是防止伤害，而不是变成攻击。
+    angles: [restrain, caution]
+    authorship: self
+    reviewStatus: draft

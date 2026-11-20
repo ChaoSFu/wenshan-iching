@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 29
+entries:
+  - entryId: ZY.29.G
+    vernacular: 坎是陷、险，上下都是水，险中有险。卦辞说：心怀诚信，内心亨通，行动会受到崇尚。比喻身处重重困难时，守住内心的信念与诚意，能找到前行的路。
+    angles: [persevere, caution]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.29.L1
+    vernacular: 险上加险，落入陷坑深处，凶险。比喻在困境中越陷越深，要先停下来，别再往里走。
+    angles: [caution, wait]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.29.L2
+    vernacular: 陷坑中有危险，追求小的目标可以有所得。比喻难关之中不求一步到位，先争取小的进展。
+    angles: [restrain, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.29.L3
+    vernacular: 前进后退都是险坑，危险而且无可依靠，落入深坑，不要有所作为。比喻四面受阻时暂不行动，先保全自己。
+    angles: [wait, caution]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.29.L4
+    vernacular: 一樽酒、一簋饭，用瓦器盛着，从窗口简单地递进去，最终没有过错。比喻困境中以简朴真诚的方式沟通，不拘形式，反而有效。
+    angles: [cooperate, adjust]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.29.L5
+    vernacular: 坑中的水还没有满溢出来，只要已经平稳，就没有过错。比喻困难尚未完全过去，先求平稳，不要冒进。
+    angles: [restrain, wait]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.29.L6
+    vernacular: 被绳索捆绑，囚禁在荆棘丛中，三年不得解脱，凶险。比喻深陷困局而又不知反省，会被长期困住；需要寻找根本的改变。
+    angles: [reflect, adjust]
+    authorship: self
+    reviewStatus: draft

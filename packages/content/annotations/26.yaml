@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 26
+entries:
+  - entryId: ZY.26.G
+    vernacular: 大畜是大有积蓄，也指蓄养贤才。卦辞说：利于守正；不在家中自食，而是出来受到任用，吉利；利于渡过大河。比喻积累了足够的实力之后，可以走出去承担更大的事。
+    angles: [prepare, advance]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.26.L1
+    vernacular: 前进有危险，适合停下来。比喻遇到阻力时先停一停，不要硬冲，等积蓄够了再走。
+    angles: [restrain, wait]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.26.L2
+    vernacular: 车厢与车轴脱开，车子停下来。比喻主动停下脚步，暂时不前进，以免受损。
+    angles: [restrain, wait]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.26.L3
+    vernacular: 驾着良马追逐，利于在艰难中守正，吉利；每天练习驾车和防卫，利于有所前往。比喻条件允许前进时，也要持续训练、做好防护。
+    angles: [advance, prepare]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.26.L4
+    vernacular: 在小牛的角上绑上横木，大吉。比喻在问题还小的时候就加以约束，事半功倍。
+    angles: [prepare, caution]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.26.L5
+    vernacular: 被阉割的猪，牙齿就不再伤人，吉利。比喻从根源上化解冲突，比硬碰硬更有效。
+    angles: [adjust, restrain]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.26.L6
+    vernacular: 多么通达的天上大路，亨通。比喻积累到位后，道路豁然开朗，可以放手去做。
+    angles: [advance]
+    authorship: self
+    reviewStatus: draft

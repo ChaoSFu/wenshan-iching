@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 6
+entries:
+  - entryId: ZY.06.G
+    vernacular: 讼是争讼、争执。卦辞说：心有诚信却受到阻塞，保持警惕，适可而止吉利，争到底则凶；利于去见公正有德的人，不利于冒险渡河。比喻陷入争执时，见好就收、寻求公正的第三方，比一争到底更好。
+    angles: [restrain, cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.06.L1
+    vernacular: 不把争执拖长，虽有些言语摩擦，最终吉利。比喻矛盾刚起时及早放下，避免小事变成大事。
+    angles: [restrain, adjust]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.06.L2
+    vernacular: 争讼不能取胜，回去躲避；他所在城邑的三百户人家也免于灾祸。比喻力量不对等时及时退让，可以保全自己和身边的人。
+    angles: [adjust, restrain]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.06.L3
+    vernacular: 依靠原有的德业过活，守正虽有危险，最终吉利；如果参与公家的事务，不要居功求成。比喻安守本分、不与人争，踏实做事，不急于邀功。
+    angles: [persevere, restrain]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.06.L4
+    vernacular: 争讼不能取胜，回头接受正理，改变主意，安守正道吉利。比喻意识到自己理亏或不值得争时，转变态度反而心安。
+    angles: [adjust, reflect]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.06.L5
+    vernacular: 争讼得到公正的裁决，大吉。比喻有公正的人或规则来裁断，分歧可以得到妥善解决。
+    angles: [cooperate, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.06.L6
+    vernacular: 即使因争讼获赐华贵的腰带，一个早上也会被三次剥夺。比喻靠争强好胜得来的东西难以长久，不值得为此耗尽心力。
+    angles: [reflect, restrain]
+    authorship: self
+    reviewStatus: draft

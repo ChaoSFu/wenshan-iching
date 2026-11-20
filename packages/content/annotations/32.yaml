@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 32
+entries:
+  - entryId: ZY.32.G
+    vernacular: 恒是恒久。卦辞说：亨通，没有过错，利于守正，利于有所前往。比喻在正确的方向上持之以恒，事情能够长久顺利。
+    angles: [persevere, advance]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.32.L1
+    vernacular: 一开始就深求恒久，即使守正也有凶险，没有好处。比喻关系或事业刚起步就要求太多、太深，反而难以持续。
+    angles: [restrain, adjust]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.32.L2
+    vernacular: 悔恨消失。九二以刚爻居中，象征持中守常。比喻能守住中道、不走极端，就能长久而无悔。
+    angles: [persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.32.L3
+    vernacular: 不能长久保持德行，可能会承受羞辱，坚持下去有遗憾。比喻三心二意、反复无常，会失去别人的信任。
+    angles: [reflect, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.32.L4
+    vernacular: 打猎却没有猎物。比喻在不对的地方用力，坚持再久也没有收获，需要换个方向。
+    angles: [adjust, reflect]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.32.L5
+    vernacular: 长久保持柔顺的德行，守正；原文按古代家庭角色说，顺从对一方吉利，对需要拿主意的一方则凶。比喻一味顺从并不适合所有角色，要看自己承担的责任。
+    angles: [reflect, adjust]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.32.L6
+    vernacular: 以躁动不安的方式求恒久，凶险。比喻频繁折腾、坐立不安，难以成事。
+    angles: [restrain, reflect]
+    authorship: self
+    reviewStatus: draft

@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 19
+entries:
+  - entryId: ZY.19.G
+    vernacular: 临是来临，也指居上临下、带领督导。卦辞说：大为亨通，利于守正；但到了八月会有凶险。比喻形势好转、影响力增长时，也要想到盛极而衰的时候，提前防备。
+    angles: [advance, caution]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.19.L1
+    vernacular: 以感化的方式去临近、带领他人，守正吉利。比喻用真诚去影响别人，而不是靠强迫。
+    angles: [cooperate, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.19.L2
+    vernacular: 以相互感应的方式临近他人，吉利，没有不利。比喻上下彼此信任、相互回应，事情推进顺畅。
+    angles: [cooperate, advance]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.19.L3
+    vernacular: 用甜言蜜语去临近他人，没有好处；如果已经为此忧虑并改正，就没有过错。比喻靠讨好和空话去带人、交往行不通，觉察后及时调整就好。
+    angles: [reflect, adjust]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.19.L4
+    vernacular: 亲自到场、亲近下面的人，没有过错。比喻亲力亲为、深入实际，能把事情做好。
+    angles: [advance, cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.19.L5
+    vernacular: 以智慧临近和统领他人，这是君主应有的方式，吉利。比喻知人善任、懂得放手，而不是事事亲为。
+    angles: [cooperate, reflect]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.19.L6
+    vernacular: 以敦厚的态度临近他人，吉利，没有过错。比喻待人宽厚踏实，关系会长久。
+    angles: [persevere, cooperate]
+    authorship: self
+    reviewStatus: draft

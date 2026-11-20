@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 5
+entries:
+  - entryId: ZY.05.G
+    vernacular: 需是等待的意思：前方有险，需要耐心等候。卦辞说：心怀诚信，光明亨通，守正吉利，利于渡过大河。比喻遇到暂时过不去的坎，带着信心等待合适时机，最终能够跨过去。
+    angles: [wait, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.05.L1
+    vernacular: 在郊外等待，离危险还远，适合保持恒心，没有过错。比喻事情尚未逼近，就照常生活、按部就班，不必提前焦虑。
+    angles: [wait, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.05.L2
+    vernacular: 在沙滩上等待，离险境近了一些，会有些闲言碎语，最终吉利。比喻等待中难免听到议论，保持从容，结果会好。
+    angles: [wait, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.05.L3
+    vernacular: 在泥泞中等待，招来了强盗。比喻离风险太近、陷入被动，容易引来麻烦；这时要加倍谨慎，防患于未然。
+    angles: [caution, wait]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.05.L4
+    vernacular: 在血泊中等待，终能从洞穴中脱身。比喻已经身处险境，冷静下来、顺势而为、不硬拼，能找到出路。
+    angles: [caution, adjust]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.05.L5
+    vernacular: 在酒食中等待，守正吉利。比喻条件安稳时，照顾好自己和身边的人，以平和的心态等待时机。
+    angles: [wait, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.05.L6
+    vernacular: 进入洞穴，有三位不请自来的客人到来，恭敬对待，最终吉利。比喻意外的人或事出现时，以尊重和开放的态度接纳，可能带来转机。
+    angles: [cooperate, adjust]
+    authorship: self
+    reviewStatus: draft

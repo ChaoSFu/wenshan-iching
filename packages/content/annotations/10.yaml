@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 10
+entries:
+  - entryId: ZY.10.G
+    vernacular: 履是践行，也指行事的礼节。卦辞说：踩到了老虎的尾巴，老虎却没有咬人，亨通。比喻身处险境或面对强势的一方时，举止得体、小心谨慎，可以平安通过。
+    angles: [caution, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.10.L1
+    vernacular: 以朴素的本色行事，前往没有过错。比喻按自己本来的样子、不做作地开始一件事。
+    angles: [persevere, advance]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.10.L2
+    vernacular: 走在平坦的大路上，安静淡泊的人守正吉利。比喻不求虚名、心境平和，路会走得顺。
+    angles: [persevere, restrain]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.10.L3
+    vernacular: 眼睛不好却自以为看得清，腿脚不便却自以为走得稳，踩了老虎尾巴被咬，凶险；就像只有勇力的人想要当君主。比喻高估自己、能力不足却硬要冒险，容易受伤。
+    angles: [reflect, caution]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.10.L4
+    vernacular: 踩到了老虎尾巴，恐惧谨慎，最终吉利。比喻知道局面危险而保持敬畏，小心应对就能渡过。
+    angles: [caution, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.10.L5
+    vernacular: 果断地一意前行，即使守正也有危险。比喻身居要位时过于刚断，要警惕独断专行。
+    angles: [caution, reflect]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.10.L6
+    vernacular: 回顾走过的路，仔细考察其中的得失，若能周全圆满，大吉。比喻一段路程结束时认真复盘、总结经验，会有好的结果。
+    angles: [reflect]
+    authorship: self
+    reviewStatus: draft

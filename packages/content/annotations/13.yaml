@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 13
+entries:
+  - entryId: ZY.13.G
+    vernacular: 同人是与人和同、团结众人。卦辞说：在旷野中与人和同，亨通；利于渡过大河，利于君子守正。比喻以开阔、无私的胸怀联合他人，能共同克服大的困难。
+    angles: [cooperate, advance]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.13.L1
+    vernacular: 一出门就与人和同，没有过错。比喻走出自己的小圈子，主动与人交往。
+    angles: [cooperate, probe]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.13.L2
+    vernacular: 只在宗族内部和同，有遗憾。比喻只和同一个圈子的人抱团，视野和格局会受限。
+    angles: [reflect, adjust]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.13.L3
+    vernacular: 把兵埋伏在草丛中，登上高坡观望，三年也不敢发动。比喻心存戒备、暗中较劲，反而迟迟没有进展；不如放下猜疑。
+    angles: [reflect, adjust]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.13.L4
+    vernacular: 已经登上城墙，却不去进攻，吉利。比喻占据有利位置时懂得适可而止，回到正理上来。
+    angles: [restrain, reflect]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.13.L5
+    vernacular: 与人和同，先是痛哭，后来欢笑；大军克敌之后才得以相会。比喻志同道合的人一时被阻隔，经过努力最终相聚。
+    angles: [persevere, cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.13.L6
+    vernacular: 在郊外与人和同，没有悔恨。比喻虽然没能广泛团结众人，但守住了本心，无怨无悔。
+    angles: [reflect, persevere]
+    authorship: self
+    reviewStatus: draft

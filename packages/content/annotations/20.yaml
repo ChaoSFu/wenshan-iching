@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 20
+entries:
+  - entryId: ZY.20.G
+    vernacular: 观是观察，也是被人瞻仰。卦辞说：祭祀时洗净双手，还没献上祭品，心中的诚敬已让人肃然起敬。比喻真诚庄重的态度本身就有感染力，先看清、先端正自己，比急着行动更重要。
+    angles: [reflect, probe]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.20.L1
+    vernacular: 像孩童一样浅近地观看，对普通人来说没有过错，对君子来说就有遗憾。比喻只看表面在小事上无妨，承担重要责任时就需要看得更深。
+    angles: [reflect, probe]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.20.L2
+    vernacular: 从门缝里窥看外面，原文认为这只适合古代深居内室的人守正。比喻视角狭窄、信息有限；需要做大的判断时，要走出去看清全貌。
+    angles: [probe, reflect]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.20.L3
+    vernacular: 观察自己的所作所为，来决定进退。比喻在关键选择之前，先审视自己的状态与能力，再定行止。
+    angles: [reflect, adjust]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.20.L4
+    vernacular: 观察一个国家的光彩风貌，适合作为宾客去辅佐君王。比喻走近优秀的平台和人，了解其风貌，可以寻求被接纳和施展的机会。
+    angles: [probe, cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.20.L5
+    vernacular: 观察自己的所作所为，君子没有过错。比喻担当重要角色时，常常检视自己的言行对他人的影响。
+    angles: [reflect, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.20.L6
+    vernacular: 观察他人的所作所为，自己也被他人观察，君子没有过错。比喻即使退居一旁，也仍被人看在眼里，要保持自省。
+    angles: [reflect, caution]
+    authorship: self
+    reviewStatus: draft

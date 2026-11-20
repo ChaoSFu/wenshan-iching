@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 8
+entries:
+  - entryId: ZY.08.G
+    vernacular: 比是亲近、相互依附。卦辞说：吉利；仔细审察后，选择可以长久守正的对象，没有过错；不安的人纷纷前来，迟迟不来的有凶险。比喻选择亲近的人和群体要审慎，确定后真诚投入，犹豫太久会错失时机。
+    angles: [cooperate, caution]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.08.L1
+    vernacular: 以诚信亲近他人，没有过错；诚信像注满瓦缶一样充实，最终会有意外的好处，吉利。比喻建立关系的根基是真诚，这份真诚会带来回报。
+    angles: [cooperate, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.08.L2
+    vernacular: 从内心出发去亲近他人，守正吉利。比喻发自本心、不失自我地与人相处，关系才会稳固。
+    angles: [persevere, cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.08.L3
+    vernacular: 亲近了不该亲近的人。比喻交往对象选错了，要及时觉察，调整关系的远近。
+    angles: [reflect, caution]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.08.L4
+    vernacular: 向外亲近贤明的人，守正吉利。比喻主动走出去，向值得学习的人靠拢。
+    angles: [cooperate, advance]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.08.L5
+    vernacular: 光明正大地亲近他人。君王打猎时三面围合、网开一面，任前面的禽兽逃走，城中百姓也不必戒备，吉利。比喻以开放、不强求的态度团结他人，愿来的来，想走的走。
+    angles: [cooperate, restrain]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.08.L6
+    vernacular: 想亲近却没有好的开端，凶险。比喻错过了建立关系的时机，或者找不到可以依靠的核心，事情难成；需要反省原因。
+    angles: [reflect, caution]
+    authorship: self
+    reviewStatus: draft

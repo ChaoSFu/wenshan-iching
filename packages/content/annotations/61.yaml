@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 61
+entries:
+  - entryId: ZY.61.G
+    vernacular: 中孚是内心诚信。卦辞说：诚信能感化到小猪和鱼，吉利；利于渡过大河，利于守正。比喻真诚的力量能打动最难打动的人，靠它可以渡过难关。
+    angles: [persevere, cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.61.L1
+    vernacular: 安守诚信吉利，若另有他念，就不得安宁。比喻对人对事一心一意，三心二意会让自己不安。
+    angles: [persevere, reflect]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.61.L2
+    vernacular: 鹤在树荫下鸣叫，小鹤应声相和；我有好酒，愿与你共饮。比喻发自真心的声音，自然会得到回应，也乐于与人分享。
+    angles: [cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.61.L3
+    vernacular: 遇到对手，时而击鼓进攻，时而罢兵停下，时而哭泣，时而歌唱。比喻情绪随外界起伏，内心缺少定力；要找回自己的中心。
+    angles: [reflect, restrain]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.61.L4
+    vernacular: 月亮将满，同驾的马走失了一匹，没有过错。比喻在接近圆满时舍弃私党、不结派，保持忠诚，没有过错。
+    angles: [restrain, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.61.L5
+    vernacular: 心怀诚信，与他人紧密相连，没有过错。比喻以真诚维系彼此，关系稳固。
+    angles: [cooperate, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.61.L6
+    vernacular: 鸡的鸣声想要飞上天，坚持下去有凶险。比喻名声超过实际、言过其实，难以长久。
+    angles: [restrain, reflect]
+    authorship: self
+    reviewStatus: draft

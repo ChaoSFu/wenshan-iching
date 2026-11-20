@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 11
+entries:
+  - entryId: ZY.11.G
+    vernacular: 泰是通泰、安泰。卦辞说：付出的小，得来的大，吉利亨通。比喻上下沟通、内外顺畅，事情容易推进。
+    angles: [advance, cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.11.L1
+    vernacular: 拔起茅草，根须相连，一同带起，前进吉利。比喻同伴一起行动，相互带动，事半功倍。
+    angles: [advance, cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.11.L2
+    vernacular: 包容荒秽，敢于徒步渡河，不遗弃远方的人，不结私党，能合乎中正之道。比喻心胸宽广、有勇气，又不拉帮结派，做事公允。
+    angles: [persevere, cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.11.L3
+    vernacular: 没有只平不斜的地，没有只去不回的事；在艰难中守正就没有过错。不必担忧诚信，自有福分。比喻顺境中要明白盛衰会转换，提早做好准备。
+    angles: [caution, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.11.L4
+    vernacular: 像鸟儿轻快地飞下来，不靠富有也能与邻里相亲，不用告诫也能诚信相待。比喻放下身段与人平等交往，彼此自然信任。
+    angles: [cooperate, restrain]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.11.L5
+    vernacular: 商王帝乙把妹妹嫁给臣下，以联姻结好，因而得福，大吉。比喻身处高位者愿意放下身段、以诚意与他人结合，能带来长久的福分。
+    angles: [cooperate, restrain]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.11.L6
+    vernacular: 城墙倒塌在护城河里；这时不要动用军队，只在自己的城邑内发布命令，即使守正也有遗憾。比喻好时光走到尽头，硬撑无益，先收拾内部、调整心态。
+    angles: [adjust, reflect]
+    authorship: self
+    reviewStatus: draft

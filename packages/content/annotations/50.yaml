@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 50
+entries:
+  - entryId: ZY.50.G
+    vernacular: 鼎是古代烹饪和祭祀的重器，象征稳固与新的建立。卦辞说：大吉，亨通。比喻在变革之后确立新的秩序，以稳定的方式养育人才、成就事业。
+    angles: [persevere, cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.50.L1
+    vernacular: 鼎被倒过来，正好倒出里面的污物；原文又以身份卑微的人因后代而受到尊重作比，没有过错。比喻清除积垢、不拘出身，看似反常的变动反而带来新机。
+    angles: [adjust, reflect]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.50.L2
+    vernacular: 鼎中装满了食物，我的对手心怀嫉恨，却不能靠近我，吉利。比喻自身有实力又谨慎自守，别人的敌意伤不到你。
+    angles: [persevere, caution]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.50.L3
+    vernacular: 鼎耳坏了，鼎无法移动，鲜美的野鸡汤吃不到；等到下雨，悔恨减少，最终吉利。比喻才能一时未被使用，调整之后会有转机。
+    angles: [wait, adjust]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.50.L4
+    vernacular: 鼎足折断，倒翻了王公的美食，弄得一片狼藉，凶险。比喻承担了超出能力的重任，会把事情搞砸；要量力而行。
+    angles: [restrain, caution]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.50.L5
+    vernacular: 鼎配着黄色的鼎耳和金属的提杠，利于守正。比喻处中守正，又有可靠的帮手辅佐，事情能稳稳推进。
+    angles: [persevere, cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.50.L6
+    vernacular: 鼎配着玉制的提杠，大吉，没有不利。玉温润而坚，象征刚柔相济。比喻做事恰到好处、刚柔并用，能有圆满的成就。
+    angles: [persevere]
+    authorship: self
+    reviewStatus: draft

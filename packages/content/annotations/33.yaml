@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 33
+entries:
+  - entryId: ZY.33.G
+    vernacular: 遁是退避、隐退。卦辞说：亨通，在小事上守正有利。比喻形势不利时，适时退让是保全自己的方法，退一步也能通达。
+    angles: [restrain, wait]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.33.L1
+    vernacular: 退避时落在了后面，有危险，不要有所前往。比喻该撤时撤得太晚，会陷于被动，这时不宜再有动作。
+    angles: [caution, wait]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.33.L2
+    vernacular: 用黄牛皮把它捆住，没有人能够解脱。比喻意志坚定、立场牢固，不轻易动摇。
+    angles: [persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.33.L3
+    vernacular: 想退避又有所牵挂，会有疾患和危险；照料身边依附自己的人则吉利。比喻因牵绊而退不干净，适合把精力放在照顾身边的小事上。
+    angles: [caution, restrain]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.33.L4
+    vernacular: 心有所好却能毅然退避，君子吉利，小人做不到。比喻能放下喜欢的东西及时抽身，需要很强的自制力。
+    angles: [restrain, adjust]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.33.L5
+    vernacular: 美好适时地退避，守正吉利。比喻在恰当的时机、以体面的方式退出，可以保全彼此。
+    angles: [restrain, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.33.L6
+    vernacular: 从容宽裕地退隐，没有不利。比喻心无挂碍地退出，不再被得失牵绊，反而海阔天空。
+    angles: [restrain, reflect]
+    authorship: self
+    reviewStatus: draft

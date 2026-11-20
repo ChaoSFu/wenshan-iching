@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 41
+entries:
+  - entryId: ZY.41.G
+    vernacular: 损是减损。卦辞说：心怀诚信，大吉，没有过错，可以守正，利于有所前往；用什么来祭祀呢，两簋简单的食物就够了。比喻适度减少、删繁就简，只要真诚，简单也足够。
+    angles: [restrain, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.41.L1
+    vernacular: 停下自己的事务，尽快前往相助，没有过错，但要斟酌减损的分寸。比喻帮助别人要量力而行，不要损害自己太多。
+    angles: [cooperate, restrain]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.41.L2
+    vernacular: 利于守正，急于前进有凶险；不减损自己，也能使对方受益。比喻帮助别人不一定要牺牲自己，守住本分也是贡献。
+    angles: [persevere, restrain]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.41.L3
+    vernacular: 三个人同行，就会减少一个人；一个人独行，就会得到朋友。比喻关系里人多容易生分歧，专注真诚反而容易找到伙伴。
+    angles: [cooperate, reflect]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.41.L4
+    vernacular: 减损自己的毛病，让它尽快好转，就有喜事，没有过错。比喻尽早改掉坏习惯，身边的人也会为你高兴。
+    angles: [adjust, reflect]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.41.L5
+    vernacular: 有人送来价值十朋的大龟，无法推辞，大吉。比喻虚心谦和，外来的帮助和机会往往会随之而来。
+    angles: [cooperate, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.41.L6
+    vernacular: 不减损他人而使他人受益，没有过错，守正吉利，利于有所前往，得到众人归附，不分彼此。比喻真正的利他不靠牺牲，能赢得广泛的支持。
+    angles: [cooperate, advance]
+    authorship: self
+    reviewStatus: draft

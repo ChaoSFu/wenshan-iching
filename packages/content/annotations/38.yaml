@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 38
+entries:
+  - entryId: ZY.38.G
+    vernacular: 睽是乖离、相背，像火向上燃、泽水向下流。卦辞说：做小事吉利。比喻意见不合、彼此疏离时，先从小处求同，不急于做大的决定。
+    angles: [restrain, adjust]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.38.L1
+    vernacular: 悔恨消失；丢了马不必去追，它自己会回来；见到不友善的人，没有过错。比喻有些失去的东西不必强求，对立的人也可以平常相待。
+    angles: [wait, restrain]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.38.L2
+    vernacular: 在小巷里遇到了主人，没有过错。比喻在不正式的场合或另辟途径与人沟通，能化解隔阂。
+    angles: [adjust, cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.38.L3
+    vernacular: 看见车子被拖住，拉车的牛受阻，驾车的人受了刑伤；起初不顺，最终有好结果。比喻开头处处受阻，只要守住正道，后来会好转。
+    angles: [persevere, wait]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.38.L4
+    vernacular: 乖离孤立时遇到了刚正的人，彼此以诚相交，虽有危险但没有过错。比喻孤立无援时，找到一个真诚可信的伙伴，就能渡过难关。
+    angles: [cooperate, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.38.L5
+    vernacular: 悔恨消失；同宗的亲人像咬柔软的肉一样容易亲近，前往有什么过错呢。比喻与真正的自己人和好并不难，主动迈出一步即可。
+    angles: [cooperate, advance]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.38.L6
+    vernacular: 乖离孤立，疑心重重：仿佛看见满身泥污的猪、一车鬼怪，先张弓欲射，后又放下；原来对方是来求亲的，前往遇雨吉利。比喻猜疑会扭曲判断，放下戒心，误会就能消解。
+    angles: [reflect, adjust]
+    authorship: self
+    reviewStatus: draft

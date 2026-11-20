@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 37
+entries:
+  - entryId: ZY.37.G
+    vernacular: 家人讲的是家庭之道。卦辞说：利于守正，原文特别指古代主持家务的女子。比喻家庭的稳定靠成员各自尽责、守住本分。
+    angles: [persevere, cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.37.L1
+    vernacular: 为家庭立好防范和规矩，悔恨消失。比喻一个家或团队从一开始就把规矩说清楚，日后少些后悔。
+    angles: [prepare, caution]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.37.L2
+    vernacular: 不擅自作主，专心料理家中饮食，守正吉利。比喻把手头本职的事做好，就是对整体最大的支持。
+    angles: [persevere, cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.37.L3
+    vernacular: 治家过于严厉，家人叫苦，虽有悔恨和危险，终究吉利；如果家人嘻嘻哈哈、放纵无度，最终会有遗憾。比喻管教严一点胜过放任，但要把握分寸。
+    angles: [restrain, reflect]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.37.L4
+    vernacular: 使家庭富足，大吉。比喻勤俭经营、量入为出，家中成员各尽其力，家道自然兴旺。
+    angles: [persevere, prepare]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.37.L5
+    vernacular: 君王以美德感化家人，不必忧虑，吉利。比喻以身作则、以爱相待，比强行管理更有用。
+    angles: [cooperate, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.37.L6
+    vernacular: 心怀诚信，又有威严，最终吉利。比喻在家庭或团队里，既真诚又有原则，才能长久。
+    angles: [persevere, reflect]
+    authorship: self
+    reviewStatus: draft

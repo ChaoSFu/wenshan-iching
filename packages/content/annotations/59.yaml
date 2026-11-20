@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 59
+entries:
+  - entryId: ZY.59.G
+    vernacular: 涣是离散，也指化解，像风吹过水面使冰消散。卦辞说：亨通；君王到宗庙祭祀，利于渡过大河，利于守正。比喻人心涣散时，用共同的信念重新凝聚，可以度过难关。
+    angles: [cooperate, adjust]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.59.L1
+    vernacular: 借助强壮的马来救援，吉利，悔恨消失。比喻离散刚开始时，尽早寻求有力的帮助，可以迅速挽回。
+    angles: [cooperate, caution]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.59.L2
+    vernacular: 在离散之时奔向可以依靠的几案，悔恨消失。比喻在动荡中赶紧找到稳固的依靠。
+    angles: [adjust, cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.59.L3
+    vernacular: 化解自身的私心，没有悔恨。比喻放下个人得失与面子，投入共同的事业，心里也更坦然。
+    angles: [reflect, cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.59.L4
+    vernacular: 解散小的群体，大吉；离散之后又聚成山丘一样的大集体，这不是常人能想到的。比喻打破小圈子，可以凝聚更大的力量。
+    angles: [adjust, cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.59.L5
+    vernacular: 像出汗一样发布重大的号令，散发君王的积蓄，没有过错。比喻关键时刻果断发布清晰的指令，并把资源分给需要的人。
+    angles: [advance, cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.59.L6
+    vernacular: 化解流血的伤害，远远地离开，没有过错。比喻远离危险的源头，避免自己和他人受到伤害。
+    angles: [caution, adjust]
+    authorship: self
+    reviewStatus: draft

@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 3
+entries:
+  - entryId: ZY.03.G
+    vernacular: 屯是初生艰难的意思，像草木刚刚破土。卦辞说：大为亨通，利于守正；暂时不宜急着远行，适合先建立根基、安排可依靠的人手。比喻新事刚起步，先打基础、搭班子，比急于扩张更要紧。
+    angles: [prepare, cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.03.L1
+    vernacular: 徘徊难进，适合安守正道，适合建立根基。比喻起步时遇到阻碍，不妨稳住阵脚，先把根基和人心打牢。
+    angles: [prepare, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.03.L2
+    vernacular: 艰难徘徊，骑马盘旋不进；来的不是敌人，而是来求亲的。原文说守正的一方不急于许婚，过了很久才定下来。比喻有人主动示好或提出合作时，不必急着答应，等关系和条件成熟再做决定。
+    angles: [wait, caution]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.03.L3
+    vernacular: 追鹿却没有熟悉山林的向导，只会深陷树林；明智的人察觉苗头，不如放弃，执意前往会有遗憾。比喻缺少必要的信息和帮助时，及时收手比硬闯更好。
+    angles: [restrain, caution]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.03.L4
+    vernacular: 骑马盘旋不进，于是主动去求亲，前往吉利，没有不利。比喻自己力量不足时，主动寻找合适的伙伴，合作会带来转机。
+    angles: [cooperate, advance]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.03.L5
+    vernacular: 积聚了恩泽却难以施展开来；在小事上守正吉利，在大事上固执则有凶险。比喻资源和影响还有限时，先从小处做起，不宜一下铺得太大。
+    angles: [restrain, prepare]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.03.L6
+    vernacular: 骑马盘旋不进，哭得血泪涟涟。比喻困在原地太久、看不到出路时的悲伤；这种状态难以长久，需要考虑换一条路。
+    angles: [adjust, reflect]
+    authorship: self
+    reviewStatus: draft

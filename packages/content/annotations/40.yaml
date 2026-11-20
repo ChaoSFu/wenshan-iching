@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 40
+entries:
+  - entryId: ZY.40.G
+    vernacular: 解是解除、缓解，像雷雨过后万物舒展。卦辞说：利于西南；没有必要前往时，回来恢复原状吉利；有所前往，及早行动吉利。比喻困难化解之后，尽快恢复秩序，该做的事趁早去做。
+    angles: [adjust, advance]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.40.L1
+    vernacular: 没有过错。困难刚刚化解，处在柔顺无争的位置。比喻先安静休养、恢复元气，就不会出问题。
+    angles: [wait, restrain]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.40.L2
+    vernacular: 打猎捕获三只狐狸，得到黄色的箭，守正吉利。比喻清除了隐患，又守住了中正之道，事情会顺利。
+    angles: [advance, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.40.L3
+    vernacular: 背着东西又乘着车，招来了强盗，即使守正也有遗憾。比喻名不副实、炫耀与自己不相称的东西，容易招惹麻烦。
+    angles: [caution, reflect]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.40.L4
+    vernacular: 解开你脚拇趾上的束缚，朋友到来才能以诚相待。比喻摆脱不良的牵连，真正的伙伴才会靠近。
+    angles: [adjust, cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.40.L5
+    vernacular: 君子能够解除困难，吉利；以此取信于小人，使他们退去。比喻以正道化解问题，不正当的势力自然退却。
+    angles: [persevere, adjust]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.40.L6
+    vernacular: 王公在高墙上射中隼鸟，捕获了它，没有不利。比喻时机成熟、准备充分时，果断清除最后的障碍。
+    angles: [advance, prepare]
+    authorship: self
+    reviewStatus: draft

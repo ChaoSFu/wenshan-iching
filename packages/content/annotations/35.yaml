@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 35
+entries:
+  - entryId: ZY.35.G
+    vernacular: 晋是前进、上升，像太阳升出地面。卦辞说：安邦的诸侯受赐众多良马，一天之内被君王三次接见。比喻能力得到认可、处在上升期，可以积极进取，也要珍惜这份信任。
+    angles: [advance, cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.35.L1
+    vernacular: 想要前进却受到挫折，守正吉利；暂时得不到信任，宽裕从容就没有过错。比喻起步时不被看好，不必急躁，保持从容，继续努力。
+    angles: [persevere, wait]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.35.L2
+    vernacular: 前进时心怀忧愁，守正吉利；将从祖母那里得到大福。比喻上升途中有焦虑很正常，守住正道，会得到长辈或前辈的支持。
+    angles: [persevere, cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.35.L3
+    vernacular: 得到众人的信任，悔恨消失。比喻自己的方向获得周围人的认同，可以安心前行。
+    angles: [cooperate, advance]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.35.L4
+    vernacular: 像鼫鼠那样贪婪而畏缩地前进，即使守正也有危险。比喻占着位置却贪心、能力又不足，处境并不稳固。
+    angles: [reflect, caution]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.35.L5
+    vernacular: 悔恨消失，不必计较得失，前往吉利，没有不利。比喻放下对得失的担忧，专注于该做的事。
+    angles: [advance, reflect]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.35.L6
+    vernacular: 前进到了角尖上，只适合用来征讨自己的城邑；虽有危险但吉利，没有过错，一直这样下去则有遗憾。比喻进到极限时，把力量用在整顿自身，而不是继续向外冲。
+    angles: [restrain, reflect]
+    authorship: self
+    reviewStatus: draft

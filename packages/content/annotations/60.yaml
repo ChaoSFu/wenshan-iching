@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 60
+entries:
+  - entryId: ZY.60.G
+    vernacular: 节是节制、节度，像竹节一样有分寸。卦辞说：亨通；过分苦涩的节制不能长久坚持。比喻适度节制让生活有序，但过度约束反而难以持续。
+    angles: [restrain, adjust]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.60.L1
+    vernacular: 不走出内院的门户，没有过错。比喻时机未到时谨言慎行，守在自己的范围之内。
+    angles: [wait, restrain]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.60.L2
+    vernacular: 不走出外院的大门，凶险。比喻时机已到却仍然固守不动，会错失机会。
+    angles: [advance, adjust]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.60.L3
+    vernacular: 不知节制，就会嗟叹后悔；能自己反省，就没有过错。比喻放纵之后的懊悔，如果能转为改正，就还来得及。
+    angles: [reflect, restrain]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.60.L4
+    vernacular: 安然地遵守节制，亨通。比喻把节制变成自然而然的习惯，不觉勉强，事情会顺利。
+    angles: [restrain, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.60.L5
+    vernacular: 以节制为甘美，吉利；前往会受到崇尚。比喻乐于自我约束、以身作则，会赢得尊重。
+    angles: [restrain, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.60.L6
+    vernacular: 过分苦涩的节制，坚持下去有凶险；如果能改正，悔恨就会消失。比喻对自己或他人约束过严，要适当放松。
+    angles: [adjust, restrain]
+    authorship: self
+    reviewStatus: draft

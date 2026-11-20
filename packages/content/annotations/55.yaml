@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 55
+entries:
+  - entryId: ZY.55.G
+    vernacular: 丰是丰盛、盛大。卦辞说：亨通；君王达到了丰盛的境地，不必忧虑，适宜像正午的太阳那样普照四方。比喻事业兴盛时，要把光亮分享出去，同时明白盛极会转。
+    angles: [advance, caution]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.55.L1
+    vernacular: 遇到与自己相匹配的主人，虽然彼此相当，也没有过错，前往会受到崇尚。比喻遇到能力相当、互补的伙伴，合作能够成事。
+    angles: [cooperate, advance]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.55.L2
+    vernacular: 用草席遮蔽得很严，正午时都能看见北斗星；前往会被猜疑，若以诚信启发对方，吉利。比喻沟通被遮蔽、被人误解时，以真诚慢慢打开局面。
+    angles: [persevere, cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.55.L3
+    vernacular: 遮蔽得更加严密，正午时连小星都能看见；折断了右臂，没有过错。比喻环境闭塞、难以施展时，暂时收手，不必勉强。
+    angles: [restrain, wait]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.55.L4
+    vernacular: 用草席遮蔽得很严，正午时都能看见北斗星；遇到志同道合的主人，吉利。比喻处境昏暗时，找到同道之人一起努力。
+    angles: [cooperate, adjust]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.55.L5
+    vernacular: 招来有才华的人，有喜庆和美誉，吉利。比喻能吸纳人才、虚心采纳意见，事业会更兴盛。
+    angles: [cooperate, advance]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.55.L6
+    vernacular: 房屋高大丰盛，却把家遮蔽起来，从门缝里窥看，寂静无人，三年都不见人影，凶险。比喻在兴盛中自我封闭、远离众人，终会陷入孤立。
+    angles: [reflect, caution]
+    authorship: self
+    reviewStatus: draft

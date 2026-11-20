@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 24
+entries:
+  - entryId: ZY.24.G
+    vernacular: 复是回复、复归。卦辞说：亨通；出入都没有疾患，朋友到来没有过错；沿着道路往返，七天就会回来，利于有所前往。比喻低谷之后会回升，顺着节律重新开始，可以有所行动。
+    angles: [adjust, advance]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.24.L1
+    vernacular: 走得不远就返回，不至于后悔，大吉。比喻发现偏差及时回头，付出的代价最小。
+    angles: [adjust, reflect]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.24.L2
+    vernacular: 美好地回复正道，吉利。比喻向身边的好榜样看齐，虚心接受善意的提醒，自然回到正轨。
+    angles: [adjust, cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.24.L3
+    vernacular: 屡次偏离又屡次返回，有危险，但没有过错。比喻反复犯错又改正，虽然不够稳定，只要能回来就好。
+    angles: [adjust, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.24.L4
+    vernacular: 在众人之中行走，独自返回正道。比喻不随大流，能独立判断，回到自己认为对的方向。
+    angles: [adjust, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.24.L5
+    vernacular: 以敦厚诚恳的态度回复正道，没有悔恨。比喻真诚反省、踏实改正，内心无愧。
+    angles: [reflect, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.24.L6
+    vernacular: 迷失方向而不能回复，凶险，有灾祸；用来出兵，最终大败，连累君主，以至十年都无法出征。比喻执迷不悟、一错到底，会让损失长久难以挽回。
+    angles: [reflect, caution]
+    authorship: self
+    reviewStatus: draft

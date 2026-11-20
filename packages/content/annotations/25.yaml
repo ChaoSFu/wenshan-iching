@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 25
+entries:
+  - entryId: ZY.25.G
+    vernacular: 无妄是不妄为、真实无虚。卦辞说：大为亨通，利于守正；如果不守正道就会有灾祸，不利于有所前往。比喻依照真实与本分行事，不存侥幸，不起妄念。
+    angles: [persevere, restrain]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.25.L1
+    vernacular: 没有虚妄之心，前往吉利。比喻出于真诚的初心去做事，不投机、不取巧，路会走得顺。
+    angles: [persevere, advance]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.25.L2
+    vernacular: 不想着刚耕种就要收获，不想着刚开荒就得熟田，这样就利于有所前往。比喻专注于做事本身，不急于计较回报。
+    angles: [persevere, restrain]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.25.L3
+    vernacular: 意外的灾祸：有人把牛拴在路边，路人顺手牵走，城里的人却受到怀疑。比喻有些麻烦并非自己造成，保持平静、做好防范即可。
+    angles: [caution, reflect]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.25.L4
+    vernacular: 能守持正道，没有过错。比喻处境未明时，坚持原有的正当做法，不随意改变，也不贸然行动。
+    angles: [persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.25.L5
+    vernacular: 并非因妄为而得的病，不用吃药也会有好转。比喻有些波折来得偶然，不必过度折腾，给它一点时间自行平复。
+    angles: [wait, restrain]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.25.L6
+    vernacular: 即使没有妄念，此时行动也会有灾祸，没有好处。比喻时机不对时，动机再好也宜暂缓。
+    angles: [wait, restrain]
+    authorship: self
+    reviewStatus: draft

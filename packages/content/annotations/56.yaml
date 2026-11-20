@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 56
+entries:
+  - entryId: ZY.56.G
+    vernacular: 旅是旅行、客居他乡。卦辞说：小有亨通，在旅途中守正吉利。比喻身处陌生环境或过渡阶段，低调守礼、不求过多，能平稳度过。
+    angles: [restrain, caution]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.56.L1
+    vernacular: 旅途中猥琐计较，这是自取灾祸。比喻在新环境里对小事斤斤计较，反而惹出麻烦。
+    angles: [reflect, restrain]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.56.L2
+    vernacular: 旅途中住进客舍，怀里带着钱财，得到忠实的帮手，守正。比喻在外有安身之处、有资源、有可靠的帮手，就能安稳。
+    angles: [persevere, prepare]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.56.L3
+    vernacular: 旅途中客舍被焚，失去了帮手，坚持下去有危险。比喻在外过于强势、待人苛刻，会失去立足点和支持。
+    angles: [reflect, caution]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.56.L4
+    vernacular: 旅途中暂得安身之处，也有了钱财和工具，心里却不愉快。比喻虽然有了暂时的着落，但还没有真正找到归属，心有不甘。
+    angles: [reflect, wait]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.56.L5
+    vernacular: 射野鸡时失掉一支箭，最终得到美誉和任命。比喻付出一点代价，换来认可和机会，是值得的。
+    angles: [advance, probe]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.56.L6
+    vernacular: 鸟巢被烧毁，旅人先笑后哭；在田界边丢失了牛，凶险。比喻在外得意忘形、高傲自大，会失去根本。
+    angles: [restrain, caution]
+    authorship: self
+    reviewStatus: draft

@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 47
+entries:
+  - entryId: ZY.47.G
+    vernacular: 困是困顿、穷困，像泽中无水。卦辞说：亨通；守正的大人吉利，没有过错；此时说的话不会被人相信。比喻身处困境时，少辩解、多做事，守住信念能熬过去。
+    angles: [persevere, restrain]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.47.L1
+    vernacular: 臀部困在树桩上，进入幽深的山谷，三年不见人。比喻陷入低谷时容易自我封闭，要试着走出去，不要越躲越深。
+    angles: [adjust, reflect]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.47.L2
+    vernacular: 困在酒食之中，显贵的任命正要到来，适合举行祭祀；急于前进有凶险，但没有过错。比喻物质不缺却内心困顿时，保持诚敬与耐心，机会会出现。
+    angles: [wait, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.47.L3
+    vernacular: 被石头困住，靠在蒺藜上，回到家中却不见自己的伴侣，凶险。比喻进退失据、四处碰壁时，连最亲近的支持也可能失去，要冷静检讨处境。
+    angles: [reflect, caution]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.47.L4
+    vernacular: 来得迟缓，被困在金车之中，有遗憾，但终有结果。比喻被现实条件束缚、行动迟缓，坚持下去仍可完成。
+    angles: [persevere, wait]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.47.L5
+    vernacular: 受到割鼻断足的刑罚，被困于显贵的地位，慢慢地会有喜悦，适合举行祭祀。比喻身居高位却处处受制，以诚意和耐心慢慢化解。
+    angles: [wait, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.47.L6
+    vernacular: 被葛藤缠绕，处境动摇不安，心想一动就会后悔；如果能悔悟，前进就吉利。比喻困局快到尽头，只要肯反思并行动，就能走出来。
+    angles: [adjust, reflect]
+    authorship: self
+    reviewStatus: draft

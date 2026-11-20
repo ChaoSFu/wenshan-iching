@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 16
+entries:
+  - entryId: ZY.16.G
+    vernacular: 豫是安乐、愉悦，也有预备之意。卦辞说：利于建立诸侯、出兵行师。比喻人心欢悦、众人愿意跟随时，适合启动大事，也要事先做好准备。
+    angles: [advance, prepare]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.16.L1
+    vernacular: 把自己的安乐张扬出来，凶险。比喻得意忘形、到处炫耀，会招来麻烦。
+    angles: [restrain, caution]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.16.L2
+    vernacular: 耿介如石，不等一天结束就能觉察，守正吉利。比喻在安逸中保持清醒，见到苗头立即调整。
+    angles: [caution, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.16.L3
+    vernacular: 仰视讨好以求安乐，会有悔恨；迟迟不醒悟，也会悔恨。比喻依附他人求得舒适，不如早些回到自己的立场。
+    angles: [reflect, adjust]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.16.L4
+    vernacular: 众人因他而得安乐，大有收获；不必猜疑，朋友会像头发被簪子束起一样聚拢。比喻真诚担当，能凝聚身边的人。
+    angles: [cooperate, advance]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.16.L5
+    vernacular: 长期有病，却一直不至于死。比喻长期承受压力或困扰，虽然难受，但还撑得住；要留意身心，寻找缓解的办法。
+    angles: [caution, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.16.L6
+    vernacular: 沉迷于安乐，事情已成定局但仍能改变，没有过错。比喻沉溺享乐已久，只要醒悟改正，仍来得及。
+    angles: [adjust, reflect]
+    authorship: self
+    reviewStatus: draft

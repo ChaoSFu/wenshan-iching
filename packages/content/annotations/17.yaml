@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 17
+entries:
+  - entryId: ZY.17.G
+    vernacular: 随是随从、顺随。卦辞说：大为亨通，利于守正，没有过错。比喻顺应时势、跟随正确的方向，同时要守住原则，不盲从。
+    angles: [adjust, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.17.L1
+    vernacular: 职守有所变化，守正吉利；出门与人交往会有成就。比喻情况变了要随之调整，走出去广泛交流。
+    angles: [adjust, cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.17.L2
+    vernacular: 依附了不成熟的小人物，失去了真正可靠的人。比喻跟随的对象选错了，会因小失大。
+    angles: [reflect, caution]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.17.L3
+    vernacular: 依附了可靠的人，失去了小人物；这样跟随可以有所求得，利于安居守正。比喻做出选择就要有所舍弃，跟随正确的方向会有收获。
+    angles: [persevere, adjust]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.17.L4
+    vernacular: 随从的人有所收获，坚持下去有凶险；心怀诚信、合乎正道，又光明磊落，有什么过错呢。比喻得到太多追随或利益时，要以诚信和透明来避免猜疑。
+    angles: [caution, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.17.L5
+    vernacular: 对美善的事物心怀诚信，吉利。比喻真诚地追随美好的事物，会有好的结果。
+    angles: [persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.17.L6
+    vernacular: 把它捆绑起来，再紧紧维系住；君王在西山设祭。比喻关系或信念维系得极其牢固，可以用庄重的方式表达忠诚与感恩。
+    angles: [persevere, reflect]
+    authorship: self
+    reviewStatus: draft

@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 31
+entries:
+  - entryId: ZY.31.G
+    vernacular: 咸是感应、交感。卦辞说：亨通，利于守正，缔结婚姻吉利。比喻人与人之间真诚地相互感应，关系才能顺畅；建立亲密关系时，也要以正为本。
+    angles: [cooperate, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.31.L1
+    vernacular: 感应在脚的大拇趾上。比喻感应还很浅，只是刚有触动，不必急于行动。
+    angles: [wait, probe]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.31.L2
+    vernacular: 感应在小腿上，急于行动有凶险，安居吉利。比喻心动了但时机未到，先按住冲动。
+    angles: [wait, restrain]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.31.L3
+    vernacular: 感应在大腿上，执意随从他人，前往会有遗憾。比喻缺乏主见、一味跟着别人走，容易后悔。
+    angles: [reflect, restrain]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.31.L4
+    vernacular: 守正吉利，悔恨消失；心神不定地来来往往，朋友们只顺从你的想法。比喻带着私心交往，只能吸引同类；心正才有广泛的感应。
+    angles: [reflect, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.31.L5
+    vernacular: 感应在背上，没有悔恨。比喻感应虽浅，但不为私情所动，也就没有遗憾。
+    angles: [restrain, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.31.L6
+    vernacular: 感应在牙床、面颊和舌头上。比喻只停留在口头上的交流，难以真正打动人心。
+    angles: [reflect, adjust]
+    authorship: self
+    reviewStatus: draft

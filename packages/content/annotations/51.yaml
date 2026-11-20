@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 51
+entries:
+  - entryId: ZY.51.G
+    vernacular: 震是雷，代表震动与惊惧。卦辞说：亨通；雷声袭来让人惶恐，事后却能谈笑自若；雷声震惊百里，主祭的人仍没有失落手中的祭器。比喻突发冲击来临时保持镇定、守住要紧的事，事后能从容面对。
+    angles: [caution, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.51.L1
+    vernacular: 雷声袭来时惶恐不安，事后谈笑自若，吉利。比喻受到惊吓后能警醒反省，反而变得更加稳健。
+    angles: [caution, reflect]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.51.L2
+    vernacular: 雷声袭来有危险，估计会丧失财物，登上高高的山陵躲避；不必追寻，七天后会失而复得。比喻遇到冲击时先保全自己，暂时的损失不必急着追回。
+    angles: [caution, wait]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.51.L3
+    vernacular: 雷声让人惶惶不安，因受震惊而谨慎行动，就没有灾祸。比喻受到冲击后不慌乱，把惊惧化为行动上的小心。
+    angles: [caution, adjust]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.51.L4
+    vernacular: 雷声震动，却陷入了泥中。比喻受惊之后失去了振作的力量，陷在原地；需要找到重新站起来的支点。
+    angles: [adjust, reflect]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.51.L5
+    vernacular: 雷声来来往往，处境危险；估计不会有大的损失，能保有自己的事业。比喻在反复的冲击中，守住中心和本职，就能稳住。
+    angles: [persevere, caution]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.51.L6
+    vernacular: 雷声让人畏缩不安、惊慌四顾，前进有凶险；震动还没到自己身上，只落在邻居那里，提早戒备就没有过错，但结亲之事会有些闲话。比喻从别人的遭遇中提前警觉，不要盲动。
+    angles: [caution, wait]
+    authorship: self
+    reviewStatus: draft

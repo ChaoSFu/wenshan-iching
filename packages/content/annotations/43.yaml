@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 43
+entries:
+  - entryId: ZY.43.G
+    vernacular: 夬是决断、决除。卦辞说：在王庭上公开揭示问题，诚恳号召众人，同时心存危惧；先在自己城邑中说明，不宜诉诸武力，利于有所前往。比喻解决问题要公开讲理、争取共识，而不是硬来。
+    angles: [advance, caution]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.43.L1
+    vernacular: 强壮在前脚趾上，前往而不能取胜，就是过错。比喻准备不足就冲在前面，容易失败。
+    angles: [restrain, prepare]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.43.L2
+    vernacular: 警惕地呼号，深夜里有敌兵来袭，也不必忧虑。比喻平时保持警觉、做好准备，突发情况来了也能从容应对。
+    angles: [caution, prepare]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.43.L3
+    vernacular: 强壮表现在脸颊上，有凶险；君子果断决绝，独自前行遇雨被淋湿，虽然恼怒，但没有过错。比喻情绪外露有风险；坚持决断时被误解，也要沉住气。
+    angles: [restrain, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.43.L4
+    vernacular: 臀部没有皮肤，走路艰难犹豫；像牵羊一样跟随众人，悔恨就会消失，可惜听到这话却不肯相信。比喻独行受阻时，跟上大家的节奏更好，但要放得下固执。
+    angles: [cooperate, reflect]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.43.L5
+    vernacular: 像铲除马齿苋一样果断，行事中正，没有过错。比喻决断要坚决，但要守住中道，不过分。
+    angles: [advance, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.43.L6
+    vernacular: 没有可以呼号求助的地方，最终有凶险。比喻一意孤行、孤立无援，难有好结局；要早些反省。
+    angles: [reflect, caution]
+    authorship: self
+    reviewStatus: draft

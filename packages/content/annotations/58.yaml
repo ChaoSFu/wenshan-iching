@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 58
+entries:
+  - entryId: ZY.58.G
+    vernacular: 兑是喜悦，也象征泽。卦辞说：亨通，利于守正。比喻真诚的喜悦与交流能让事情顺利，但快乐要建立在正当的基础上。
+    angles: [cooperate, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.58.L1
+    vernacular: 和顺地喜悦，吉利。比喻心态平和、与人相处融洽，不刻意也不攀附，事情自然顺利。
+    angles: [cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.58.L2
+    vernacular: 以诚信为基础的喜悦，吉利，悔恨消失。比喻发自真心的欢喜，经得起时间的检验。
+    angles: [persevere, cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.58.L3
+    vernacular: 主动前来讨好以求喜悦，凶险。比喻刻意讨好、迎合别人来换取快乐，会失去自我。
+    angles: [reflect, restrain]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.58.L4
+    vernacular: 斟酌该取哪种喜悦，心里不得安宁；隔绝不良的诱惑，会有喜事。比喻面对诱惑犹豫不决时，果断远离不健康的欢乐。
+    angles: [caution, restrain]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.58.L5
+    vernacular: 信任了会剥蚀自己的人，有危险。比喻被甜言蜜语迷惑而轻信，需要提高警惕。
+    angles: [caution, reflect]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.58.L6
+    vernacular: 引诱他人一起寻欢作乐。比喻沉迷于追逐快乐，被欲望牵着走，要警觉其中的风险。
+    angles: [restrain, reflect]
+    authorship: self
+    reviewStatus: draft

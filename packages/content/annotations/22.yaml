@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 22
+entries:
+  - entryId: ZY.22.G
+    vernacular: 贲是装饰、文饰。卦辞说：亨通，在小事上有所前往是有利的。比喻适当的修饰能让事情更顺，但装饰只是辅助，不能代替实质。
+    angles: [probe, restrain]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.22.L1
+    vernacular: 装饰自己的脚趾，舍弃车子而步行。比喻宁可朴素踏实，也不贪图不合身份的排场。
+    angles: [restrain, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.22.L2
+    vernacular: 修饰自己的胡须。胡须依附于面颊，随之而动。比喻修饰要依附于实质，跟着真正有分量的人或事一起行动。
+    angles: [cooperate, reflect]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.22.L3
+    vernacular: 装饰得光鲜润泽，长久守正吉利。比喻条件优渥、看上去很好时，更要守住本心，不被表面的光彩迷惑。
+    angles: [persevere, caution]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.22.L4
+    vernacular: 装饰得素白，骑着白马飞奔而来；来的不是敌人，而是来求亲的。比喻对方以朴素真诚的方式靠近，不必怀疑其来意。
+    angles: [cooperate, probe]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.22.L5
+    vernacular: 在山丘园林中装点，所用的布帛又少又薄，看似寒酸，最终吉利。比喻以俭朴代替铺张，起初或许不被看好，最终会有好结果。
+    angles: [restrain, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.22.L6
+    vernacular: 以素白为装饰，没有过错。比喻返璞归真，回到事物的本色，最好的修饰是不刻意修饰。
+    angles: [reflect, restrain]
+    authorship: self
+    reviewStatus: draft
