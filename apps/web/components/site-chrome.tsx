@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export function SiteHeader() {
   return (
-    <header className="border-b border-line/70">
+    <header className="border-b border-line/70 print:hidden">
       <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
         <Link href="/" className="flex items-baseline gap-2 font-serif text-xl tracking-widest text-ink">
           <span aria-hidden className="inline-block h-3 w-3 translate-y-[-2px] rounded-full bg-zhu" />
@@ -12,8 +12,11 @@ export function SiteHeader() {
           <Link href="/samples" className="hover:text-qing">
             样例
           </Link>
-          <Link href="/rules" className="hover:text-qing">
+          <Link href="/rules" className="hidden hover:text-qing sm:inline">
             规则
+          </Link>
+          <Link href="/me" className="hover:text-qing">
+            我的报告
           </Link>
           <Link
             href="/ask"
@@ -29,7 +32,7 @@ export function SiteHeader() {
 
 export function SiteFooter() {
   return (
-    <footer className="mt-16 border-t border-line/70 pb-[max(env(safe-area-inset-bottom),1.5rem)]">
+    <footer className="mt-16 border-t border-line/70 pb-[max(env(safe-area-inset-bottom),1.5rem)] print:hidden">
       <div className="mx-auto flex max-w-5xl flex-col gap-3 px-4 pt-6 text-xs text-muted sm:flex-row sm:items-center sm:justify-between">
         <p>问山以《周易》原文为本，提供文化与自我反思的角度，不替代医疗、法律、投资等专业意见。</p>
         <nav className="flex gap-4">

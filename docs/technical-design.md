@@ -161,7 +161,7 @@ sequenceDiagram
 | 样式 | Tailwind CSS + 设计 token | 移动优先；青绿、纸色等主题色统一成 token | CSS Modules |
 | 数据库 | PostgreSQL（新加坡区域托管） | 订单需要事务；报告可存 JSONB；还能兼作任务队列 | — |
 | ORM / 迁移 | Drizzle | 类型安全，SQL 透明，迁移文件可评审 | Prisma |
-| 后台任务 | pg-boss（基于 Postgres 的队列和定时任务） | **订单状态变更和任务入队在同一事务里**，任务不会丢；定时退款和清理也用它 | Inngest / Trigger.dev（托管服务，适合部署在 Vercel 上） |
+| 后台任务 | 自建 `jobs` 表（Postgres，`FOR UPDATE SKIP LOCKED` 认领）+ 定时维护（实现时由 pg-boss 改为自建，见附录 C） | **订单状态变更和任务入队在同一事务里**，任务不会丢；定时退款和清理也用它 | pg-boss；Inngest / Trigger.dev（托管服务，适合部署在 Vercel 上） |
 | 部署 | 单区域容器平台（Fly.io / Render / Railway，或 AWS ap-southeast-1），web 和 worker 两个进程 | 生成任务可能要 30–60 秒，常驻 worker 不受函数超时限制 | Vercel + Neon + Inngest |
 | 支付 | Stripe Checkout（托管支付页）+ Webhook；视税务登记情况开 Stripe Tax | PRD 已参考 Stripe 文档；托管页不进 PCI 范围；支持 Apple Pay / Google Pay | Paddle、Lemon Squeezy 这类代收方（MoR），需先确认是否接受占卜类业务 |
 | 登录 | 邮箱 6 位验证码（Better Auth 的 Email OTP 插件，或自写最小实现） | 原因见 §2-4 | 魔法链接 |
@@ -800,3 +800,18 @@ wenshan-iching/
   - 数据驻留：https://developers.openai.com/api/docs/guides/data-residency
   - 内容审核：https://developers.openai.com/api/docs/guides/moderation
   - 安全实践（`safety_identifier`）：https://developers.openai.com/api/docs/guides/safety-best-practices
+
+## 附录 C：实现备注（2026-11-20）
+
+免费与付费闭环已按本方案实现，以下是与正文不同或正文未写到的地方：
+
+| 项 | 实现 | 原因 |
+|---|---|---|
+| 后台任务 | 自建 `jobs` 表代替 pg-boss；默认在 Web 进程内运行（`WORKER_MODE=inline`），也可 `npm run worker` 单独运行 | 依赖更少；能在开发用的 PGlite 上运行；与订单同事务入队的要求不变 |
+| 开发数据库 | 未配置 `DATABASE_URL` 时用内嵌 PGlite（WASM 版 Postgres）；测试用内存实例 | 本机无需安装 Postgres 或 Docker |
+| 外部服务替身 | 支付、模型、邮件各有 fake 实现（模拟支付页、模拟报告、控制台邮件），生产环境禁止使用 | 不依赖外部账号即可走通并测试完整状态机 |
+| 生成异常 | 除正文所述"重试一次后转生成异常"外，维护任务每 30 分钟重新生成一次，直到退款期限；拒答、原文缺失则立即退款 | PRD §8 要求"后台自动重试，用户无需再付款" |
+| 禁用断言词表 | 「化解」只在与法事、符咒、花钱请人等连用时拦截 | 解卦等注释里"以正道化解问题"是正常用法，过宽会误判 |
+| 服务端内容 | 主题的报告要求另生成 `apps/web/server/generated/report-rules.json`，不进浏览器内容包 | 浏览器不需要这些字段 |
+| 测试工具 | Vitest 4（Vitest 5 需要 Node 22）；npm 设 `legacy-peer-deps` 绕过依赖解析崩溃 | 本机为 Node 20 |
+

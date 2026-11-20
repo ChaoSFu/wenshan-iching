@@ -11,14 +11,16 @@
 |---|---|
 | 免费闭环：写问题 → 三币起卦 → 卦象、原文、白话简读、反思问题 | 已实现，可本地运行 |
 | 典籍：64 卦卦辞、384 爻辞、用九用六、彖传、象传 | 已从维基文库导入，**待人工对勘** |
-| 白话注释 | 仅乾、坤、姤三卦有初稿（23/450），其余待撰写 |
+| 白话注释 | 450/450 条初稿，**待人工审校** |
 | 主题配置、分流词表、求助资源 | 初稿，**待审校**；求助号码上线前须逐条核实 |
-| 付费闭环：登录、分流、Stripe、报告生成、追问 | 未开始 |
+| 付费闭环：邮箱验证码登录、付费前分流、订单与支付、报告生成与校验、三次追问、导出、删除、退款 | 已实现，本地用替身（模拟支付、模拟报告）可走通；**尚未接入真实的 Stripe、OpenAI、邮件服务验证** |
 
 ## 目录
 
 ```
 apps/web/              Next.js 网站（App Router）
+  server/              服务端：数据库、登录、分流、订单与支付、报告生成与校验、后台任务
+  test/                服务端集成测试（内存数据库 + 替身服务）
 packages/iching-core/  起卦、卦表、选文规则（纯函数，前后端共用）
 packages/content/      典籍、白话注释、主题配置、分流词表、样例（YAML）+ 导入、校验与构建脚本
 docs/                  技术方案
@@ -33,8 +35,17 @@ npm install
 npm run dev          # http://localhost:3000
 ```
 
+不需要任何外部账号即可走通付费流程（配置见 `apps/web/.env.example`）：
+
+- 数据库：内嵌 PGlite，数据在 `apps/web/.data/`，启动时自动迁移。
+- 登录验证码：打印在运行 `npm run dev` 的终端里。
+- 支付：跳到 `/dev/checkout/...` 模拟支付页，可模拟成功、取消、超时。
+- 报告：生成标有「演示内容」的模拟报告，走同一套校验与交付流程。
+
+接入真实服务时，在 `apps/web/.env.local` 里设置 `PAYMENT_PROVIDER=stripe`、`LLM_PROVIDER=openai`、`MAIL_PROVIDER=resend` 和对应的密钥；生产环境必须配置 `DATABASE_URL` 与 `DATA_ENCRYPTION_KEY`，并先运行 `npm run db:migrate -w @wenshan/web`。Stripe 的 webhook 地址为 `/api/webhooks/payment`。
+
 ```bash
-npm test             # 单元测试（含 4,096 种爻值组合的遍历）
+npm test             # 单元测试（含 4,096 种爻值组合的遍历）与服务端集成测试
 npm run typecheck
 npm run build
 ```

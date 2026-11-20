@@ -11,3 +11,6 @@ next-env.d.ts
 !.env.example
 # raw downloads from Wikisource (re-fetchable, untrusted)
 packages/content/.cache/
+
+# 本地开发数据库（PGlite）
+.data/

@@ -7,6 +7,8 @@ const repoRoot = path.resolve(process.cwd(), "../..");
 const nextConfig: NextConfig = {
   transpilePackages: ["@wenshan/iching-core", "@wenshan/content"],
   poweredByHeader: false,
+  // PGlite（WASM）与 postgres 驱动直接从 node_modules 加载，不打包
+  serverExternalPackages: ["@electric-sql/pglite", "postgres"],
   turbopack: { root: repoRoot },
   outputFileTracingRoot: repoRoot,
 };
