@@ -1,0 +1,113 @@
+# 由 scripts/import-wikisource.ts 生成；人工对勘后把 reviewStatus 改为 reviewed
+number: 50
+name: 鼎
+nameTrad: 鼎
+upper: li
+lower: xun
+source:
+  title: 周易/鼎
+  url: https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E9%BC%8E
+  revision: 10647086
+  permalink: https://zh.wikisource.org/w/index.php?oldid=10647086
+  edition: 维基文库《周易》
+entries:
+  - id: ZY.50.G
+    kind: gua
+    label: 鼎
+    text: 元吉，亨。
+    textTrad: 元吉，亨。
+    reviewStatus: imported
+  - id: ZY.50.L1
+    kind: yao
+    line: 1
+    label: 初六
+    text: 鼎颠趾，利出否，得妾以其子，无咎。
+    textTrad: 鼎顛趾，利出否，得妾以其子，无咎。
+    reviewStatus: imported
+  - id: ZY.50.L2
+    kind: yao
+    line: 2
+    label: 九二
+    text: 鼎有实，我仇有疾，不我能即，吉。
+    textTrad: 鼎有實，我仇有疾，不我能即，吉。
+    reviewStatus: imported
+  - id: ZY.50.L3
+    kind: yao
+    line: 3
+    label: 九三
+    text: 鼎耳革，其行塞，雉膏不食，方雨亏悔，终吉。
+    textTrad: 鼎耳革，其行塞，雉膏不食，方雨虧悔，終吉。
+    reviewStatus: imported
+  - id: ZY.50.L4
+    kind: yao
+    line: 4
+    label: 九四
+    text: 鼎折足，覆公𫗧，其刑渥，凶。
+    textTrad: 鼎折足，覆公餗，其刑渥，凶。
+    reviewStatus: imported
+  - id: ZY.50.L5
+    kind: yao
+    line: 5
+    label: 六五
+    text: 鼎黄耳金铉，利贞。
+    textTrad: 鼎黃耳金鉉，利貞。
+    reviewStatus: imported
+  - id: ZY.50.L6
+    kind: yao
+    line: 6
+    label: 上九
+    text: 鼎玉铉，大吉，无不利。
+    textTrad: 鼎玉鉉，大吉，无不利。
+    reviewStatus: imported
+  - id: ZY.50.TUAN
+    kind: tuan
+    text: 鼎，象也。以木巽火，亨饪也。圣人亨以享上帝，而大亨以养圣贤。巽而耳目聪明，柔进而上行，得中而应乎刚，是以元亨。
+    textTrad: 鼎，象也。以木巽火，亨飪也。聖人亨以享上帝，而大亨以養聖賢。巽而耳目聰明，柔進而上行，得中而應乎剛，是以元亨。
+    reviewStatus: imported
+  - id: ZY.50.XIANG
+    kind: xiang
+    text: 木上有火，鼎；君子以正位凝命。
+    textTrad: 木上有火，鼎；君子以正位凝命。
+    reviewStatus: imported
+  - id: ZY.50.L1.XIANG
+    kind: xiaoxiang
+    line: 1
+    label: 初六
+    text: 鼎颠趾，未悖也。利出否，以从贵也。
+    textTrad: 鼎顛趾，未悖也。利出否，以從貴也。
+    reviewStatus: imported
+  - id: ZY.50.L2.XIANG
+    kind: xiaoxiang
+    line: 2
+    label: 九二
+    text: 鼎有实，慎所之也。我仇有疾，终无尤也。
+    textTrad: 鼎有實，慎所之也。我仇有疾，終无尤也。
+    reviewStatus: imported
+  - id: ZY.50.L3.XIANG
+    kind: xiaoxiang
+    line: 3
+    label: 九三
+    text: 鼎耳革，失其义也。
+    textTrad: 鼎耳革，失其義也。
+    reviewStatus: imported
+  - id: ZY.50.L4.XIANG
+    kind: xiaoxiang
+    line: 4
+    label: 九四
+    text: 覆公𫗧，信如何也。
+    textTrad: 覆公餗，信如何也。
+    reviewStatus: imported
+  - id: ZY.50.L5.XIANG
+    kind: xiaoxiang
+    line: 5
+    label: 六五
+    text: 鼎黄耳，中以为实也。
+    textTrad: 鼎黃耳，中以為實也。
+    reviewStatus: imported
+  - id: ZY.50.L6.XIANG
+    kind: xiaoxiang
+    line: 6
+    label: 上九
+    text: 玉铉在上，刚柔节也。
+    textTrad: 玉鉉在上，剛柔節也。
+    reviewStatus: imported

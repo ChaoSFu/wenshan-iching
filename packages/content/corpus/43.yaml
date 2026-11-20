@@ -1,0 +1,113 @@
+# 由 scripts/import-wikisource.ts 生成；人工对勘后把 reviewStatus 改为 reviewed
+number: 43
+name: 夬
+nameTrad: 夬
+upper: dui
+lower: qian
+source:
+  title: 周易/夬
+  url: https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E5%A4%AC
+  revision: 2405003
+  permalink: https://zh.wikisource.org/w/index.php?oldid=2405003
+  edition: 维基文库《周易》
+entries:
+  - id: ZY.43.G
+    kind: gua
+    label: 夬
+    text: 扬于王庭，孚号，有厉，告自邑，不利即戎，利有攸往。
+    textTrad: 揚于王庭，孚號，有厲，告自邑，不利即戎，利有攸往。
+    reviewStatus: imported
+  - id: ZY.43.L1
+    kind: yao
+    line: 1
+    label: 初九
+    text: 壮于前趾，往不胜为咎。
+    textTrad: 壯于前趾，往不勝為咎。
+    reviewStatus: imported
+  - id: ZY.43.L2
+    kind: yao
+    line: 2
+    label: 九二
+    text: 惕号，莫夜有戎，勿恤。
+    textTrad: 惕號，莫夜有戎，勿恤。
+    reviewStatus: imported
+  - id: ZY.43.L3
+    kind: yao
+    line: 3
+    label: 九三
+    text: 壮于頄，有凶。君子夬夬，独行遇雨，若濡有愠，无咎。
+    textTrad: 壯于頄，有凶。君子夬夬，獨行遇雨，若濡有慍，无咎。
+    reviewStatus: imported
+  - id: ZY.43.L4
+    kind: yao
+    line: 4
+    label: 九四
+    text: 臀无肤，其行次且。牵羊悔亡，闻言不信。
+    textTrad: 臀无膚，其行次且。牽羊悔亡，聞言不信。
+    reviewStatus: imported
+  - id: ZY.43.L5
+    kind: yao
+    line: 5
+    label: 九五
+    text: 苋陆夬夬，中行无咎。
+    textTrad: 莧陸夬夬，中行无咎。
+    reviewStatus: imported
+  - id: ZY.43.L6
+    kind: yao
+    line: 6
+    label: 上六
+    text: 无号，终有凶。
+    textTrad: 无號，終有凶。
+    reviewStatus: imported
+  - id: ZY.43.TUAN
+    kind: tuan
+    text: 夬，决也，刚决柔也。健而说，决而和，扬于王庭，柔乘五刚也。孚号有厉，其危乃光也。告自邑，不利即戎，所尚乃穷也。利有攸往，刚长乃终也。
+    textTrad: 夬，決也，剛決柔也。健而說，決而和，揚于王庭，柔乘五剛也。孚號有厲，其危乃光也。告自邑，不利即戎，所尚乃窮也。利有攸往，剛長乃終也。
+    reviewStatus: imported
+  - id: ZY.43.XIANG
+    kind: xiang
+    text: 泽上于天，夬；君子以施禄及下，居德则忌。
+    textTrad: 澤上于天，夬；君子以施祿及下，居德則忌。
+    reviewStatus: imported
+  - id: ZY.43.L1.XIANG
+    kind: xiaoxiang
+    line: 1
+    label: 初九
+    text: 不胜而往，咎也。
+    textTrad: 不勝而往，咎也。
+    reviewStatus: imported
+  - id: ZY.43.L2.XIANG
+    kind: xiaoxiang
+    line: 2
+    label: 九二
+    text: 莫夜有戎，得中道也。
+    textTrad: 莫夜有戎，得中道也。
+    reviewStatus: imported
+  - id: ZY.43.L3.XIANG
+    kind: xiaoxiang
+    line: 3
+    label: 九三
+    text: 君子夬夬，终无咎也。
+    textTrad: 君子夬夬，終无咎也。
+    reviewStatus: imported
+  - id: ZY.43.L4.XIANG
+    kind: xiaoxiang
+    line: 4
+    label: 九四
+    text: 其行次且，位不当也。闻言不信，聪不明也。
+    textTrad: 其行次且，位不當也。聞言不信，聰不明也。
+    reviewStatus: imported
+  - id: ZY.43.L5.XIANG
+    kind: xiaoxiang
+    line: 5
+    label: 九五
+    text: 中行无咎，中未光也。
+    textTrad: 中行无咎，中未光也。
+    reviewStatus: imported
+  - id: ZY.43.L6.XIANG
+    kind: xiaoxiang
+    line: 6
+    label: 上六
+    text: 无号之凶，终不可长也。
+    textTrad: 无號之凶，終不可長也。
+    reviewStatus: imported

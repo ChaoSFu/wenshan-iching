@@ -1,0 +1,113 @@
+# 由 scripts/import-wikisource.ts 生成；人工对勘后把 reviewStatus 改为 reviewed
+number: 41
+name: 损
+nameTrad: 損
+upper: gen
+lower: dui
+source:
+  title: 周易/損
+  url: https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E6%90%8D
+  revision: 10646704
+  permalink: https://zh.wikisource.org/w/index.php?oldid=10646704
+  edition: 维基文库《周易》
+entries:
+  - id: ZY.41.G
+    kind: gua
+    label: 损
+    text: 有孚，元吉。无咎，可贞，利有攸往。曷之用？二簋可用享。
+    textTrad: 有孚，元吉。无咎，可貞，利有攸往。曷之用？二簋可用享。
+    reviewStatus: imported
+  - id: ZY.41.L1
+    kind: yao
+    line: 1
+    label: 初九
+    text: 祀事遄往，无咎，酌损之。
+    textTrad: 祀事遄往，无咎，酌損之。
+    reviewStatus: imported
+  - id: ZY.41.L2
+    kind: yao
+    line: 2
+    label: 九二
+    text: 利贞，征凶，弗损益之。
+    textTrad: 利貞，征凶，弗損益之。
+    reviewStatus: imported
+  - id: ZY.41.L3
+    kind: yao
+    line: 3
+    label: 六三
+    text: 三人行，则损一人；一人行，则得其友。
+    textTrad: 三人行，則損一人；一人行，則得其友。
+    reviewStatus: imported
+  - id: ZY.41.L4
+    kind: yao
+    line: 4
+    label: 六四
+    text: 损其疾，使遄有喜，无咎。
+    textTrad: 損其疾，使遄有喜，无咎。
+    reviewStatus: imported
+  - id: ZY.41.L5
+    kind: yao
+    line: 5
+    label: 六五
+    text: 或益之，十朋之龟弗克违，元吉。
+    textTrad: 或益之，十朋之龜弗克違，元吉。
+    reviewStatus: imported
+  - id: ZY.41.L6
+    kind: yao
+    line: 6
+    label: 上九
+    text: 弗损益之，无咎，贞吉，利有攸往，得臣无家。
+    textTrad: 弗損益之，无咎，貞吉，利有攸往，得臣无家。
+    reviewStatus: imported
+  - id: ZY.41.TUAN
+    kind: tuan
+    text: 损，损下益上，其道上行。损而有孚，元吉，无咎，可贞，利有攸往。曷之用？二簋可用享；二簋应有时。损刚益柔有时，损益盈虚，与时偕行。
+    textTrad: 損，損下益上，其道上行。損而有孚，元吉，无咎，可貞，利有攸往。曷之用？二簋可用享；二簋應有時。損剛益柔有時，損益盈虛，與時偕行。
+    reviewStatus: imported
+  - id: ZY.41.XIANG
+    kind: xiang
+    text: 山下有泽，损；君子以惩忿窒欲。
+    textTrad: 山下有澤，損；君子以懲忿窒欲。
+    reviewStatus: imported
+  - id: ZY.41.L1.XIANG
+    kind: xiaoxiang
+    line: 1
+    label: 初九
+    text: 已事遄往，尚合志也。
+    textTrad: 已事遄往，尚合志也。
+    reviewStatus: imported
+  - id: ZY.41.L2.XIANG
+    kind: xiaoxiang
+    line: 2
+    label: 九二
+    text: 九二利贞，中以为志也。
+    textTrad: 九二利貞，中以為志也。
+    reviewStatus: imported
+  - id: ZY.41.L3.XIANG
+    kind: xiaoxiang
+    line: 3
+    label: 六三
+    text: 一人行，三则疑也。
+    textTrad: 一人行，三則疑也。
+    reviewStatus: imported
+  - id: ZY.41.L4.XIANG
+    kind: xiaoxiang
+    line: 4
+    label: 六四
+    text: 损其疾，亦可喜也。
+    textTrad: 損其疾，亦可喜也。
+    reviewStatus: imported
+  - id: ZY.41.L5.XIANG
+    kind: xiaoxiang
+    line: 5
+    label: 六五
+    text: 六五元吉，自上佑也。
+    textTrad: 六五元吉，自上佑也。
+    reviewStatus: imported
+  - id: ZY.41.L6.XIANG
+    kind: xiaoxiang
+    line: 6
+    label: 上九
+    text: 弗损益之，大得志也。
+    textTrad: 弗損益之，大得志也。
+    reviewStatus: imported

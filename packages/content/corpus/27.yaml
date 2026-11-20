@@ -1,0 +1,113 @@
+# 由 scripts/import-wikisource.ts 生成；人工对勘后把 reviewStatus 改为 reviewed
+number: 27
+name: 颐
+nameTrad: 頤
+upper: gen
+lower: zhen
+source:
+  title: 周易/頤
+  url: https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E9%A0%A4
+  revision: 10643091
+  permalink: https://zh.wikisource.org/w/index.php?oldid=10643091
+  edition: 维基文库《周易》
+entries:
+  - id: ZY.27.G
+    kind: gua
+    label: 颐
+    text: 贞吉。观颐，自求口实。
+    textTrad: 貞吉。觀頤，自求口實。
+    reviewStatus: imported
+  - id: ZY.27.L1
+    kind: yao
+    line: 1
+    label: 初九
+    text: 舍尔灵龟，观我朵颐，凶。
+    textTrad: 舍爾靈龜，觀我朵頤，凶。
+    reviewStatus: imported
+  - id: ZY.27.L2
+    kind: yao
+    line: 2
+    label: 六二
+    text: 颠颐，拂经，于丘颐，征凶。
+    textTrad: 顛頤，拂經，于丘頤，征凶。
+    reviewStatus: imported
+  - id: ZY.27.L3
+    kind: yao
+    line: 3
+    label: 六三
+    text: 拂颐，贞凶，十年勿用，无攸利。
+    textTrad: 拂頤，貞凶，十年勿用，无攸利。
+    reviewStatus: imported
+  - id: ZY.27.L4
+    kind: yao
+    line: 4
+    label: 六四
+    text: 颠颐吉，虎视眈眈，其欲逐逐，无咎。
+    textTrad: 顛頤吉，虎視眈眈，其欲逐逐，无咎。
+    reviewStatus: imported
+  - id: ZY.27.L5
+    kind: yao
+    line: 5
+    label: 六五
+    text: 拂经，居贞吉，不可涉大川。
+    textTrad: 拂經，居貞吉，不可涉大川。
+    reviewStatus: imported
+  - id: ZY.27.L6
+    kind: yao
+    line: 6
+    label: 上九
+    text: 由颐，厉吉，利涉大川。
+    textTrad: 由頤，厲吉，利涉大川。
+    reviewStatus: imported
+  - id: ZY.27.TUAN
+    kind: tuan
+    text: 颐贞吉，养正则吉也。观颐，观其所养也；自求口实，观其自养也。天地养万物，圣人养贤，以及万民；颐之时大矣哉！
+    textTrad: 頤貞吉，養正則吉也。觀頤，觀其所養也；自求口實，觀其自養也。天地養萬物，聖人養賢，以及萬民；頤之時大矣哉！
+    reviewStatus: imported
+  - id: ZY.27.XIANG
+    kind: xiang
+    text: 山下有雷，颐；君子以慎言语，节饮食。
+    textTrad: 山下有雷，頤；君子以慎言語，節飲食。
+    reviewStatus: imported
+  - id: ZY.27.L1.XIANG
+    kind: xiaoxiang
+    line: 1
+    label: 初九
+    text: 观我朵颐，亦不足贵也。
+    textTrad: 觀我朵頤，亦不足貴也。
+    reviewStatus: imported
+  - id: ZY.27.L2.XIANG
+    kind: xiaoxiang
+    line: 2
+    label: 六二
+    text: 六二征凶，行失类也。
+    textTrad: 六二征凶，行失類也。
+    reviewStatus: imported
+  - id: ZY.27.L3.XIANG
+    kind: xiaoxiang
+    line: 3
+    label: 六三
+    text: 十年勿用，道大悖也。
+    textTrad: 十年勿用，道大悖也。
+    reviewStatus: imported
+  - id: ZY.27.L4.XIANG
+    kind: xiaoxiang
+    line: 4
+    label: 六四
+    text: 颠颐之吉，上施光也。
+    textTrad: 顛頤之吉，上施光也。
+    reviewStatus: imported
+  - id: ZY.27.L5.XIANG
+    kind: xiaoxiang
+    line: 5
+    label: 六五
+    text: 居贞之吉，顺以从上也。
+    textTrad: 居貞之吉，順以從上也。
+    reviewStatus: imported
+  - id: ZY.27.L6.XIANG
+    kind: xiaoxiang
+    line: 6
+    label: 上九
+    text: 由颐厉吉，大有庆也。
+    textTrad: 由頤厲吉，大有慶也。
+    reviewStatus: imported

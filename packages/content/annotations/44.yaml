@@ -1,0 +1,38 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 44
+entries:
+  - entryId: ZY.44.G
+    vernacular: 姤是相遇的意思：一根阴爻从下方出现，与上面的众阳相遇。卦辞借古代婚嫁说明，一方势头过盛的相遇，不宜贸然结成长久关系。放在今天，可以理解为面对突然出现的机会或关系，先看清再投入。
+    angles: [caution, probe]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.44.L1
+    vernacular: 把车系在坚固的制动器上，守持正道吉利；如果贸然前往，会遇到凶险，就像瘦弱的猪躁动不安。比喻刚冒头的势头要先稳住，不宜冒进。
+    angles: [restrain, caution]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.44.L2
+    vernacular: 厨房里有鱼，没有过错，但不宜拿去招待宾客。比喻把握好手中已有的东西，先处理好内部，不急着向外扩张。
+    angles: [restrain, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.44.L3
+    vernacular: 臀部没有皮肤，走起路来艰难犹豫；有危险，但没有大的灾祸。比喻处境尴尬、进退两难，谨慎前行可以无咎。
+    angles: [caution, wait]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.44.L4
+    vernacular: 厨房里没有鱼，起而行动会有凶险。比喻失去了基础或支持，这时轻举妄动不利。
+    angles: [reflect, wait]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.44.L5
+    vernacular: 用杞树的枝叶包住瓜，内含美好，好事会从天而降。比喻以包容、内敛的方式等待，机会会自然到来。
+    angles: [wait, restrain]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.44.L6
+    vernacular: 在角上相遇，有些难堪，但没有灾祸。比喻相遇时态度过于强硬，难免尴尬，不过问题不大。
+    angles: [adjust, reflect]
+    authorship: self
+    reviewStatus: draft

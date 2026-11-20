@@ -1,0 +1,113 @@
+# 由 scripts/import-wikisource.ts 生成；人工对勘后把 reviewStatus 改为 reviewed
+number: 10
+name: 履
+nameTrad: 履
+upper: qian
+lower: dui
+source:
+  title: 周易/履
+  url: https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E5%B1%A5
+  revision: 10647513
+  permalink: https://zh.wikisource.org/w/index.php?oldid=10647513
+  edition: 维基文库《周易》
+entries:
+  - id: ZY.10.G
+    kind: gua
+    label: 履
+    text: 履虎尾，不咥人，亨。
+    textTrad: 履虎尾，不咥人，亨。
+    reviewStatus: imported
+  - id: ZY.10.L1
+    kind: yao
+    line: 1
+    label: 初九
+    text: 素履，往无咎。
+    textTrad: 素履，往无咎。
+    reviewStatus: imported
+  - id: ZY.10.L2
+    kind: yao
+    line: 2
+    label: 九二
+    text: 履道坦坦，幽人贞吉。
+    textTrad: 履道坦坦，幽人貞吉。
+    reviewStatus: imported
+  - id: ZY.10.L3
+    kind: yao
+    line: 3
+    label: 六三
+    text: 眇能视，跛能履，履虎尾，咥人，凶。武人为于大君。
+    textTrad: 眇能視，跛能履，履虎尾，咥人，凶。武人為于大君。
+    reviewStatus: imported
+  - id: ZY.10.L4
+    kind: yao
+    line: 4
+    label: 九四
+    text: 履虎尾，愬愬终吉。
+    textTrad: 履虎尾，愬愬終吉。
+    reviewStatus: imported
+  - id: ZY.10.L5
+    kind: yao
+    line: 5
+    label: 九五
+    text: 夬履，贞厉。
+    textTrad: 夬履，貞厲。
+    reviewStatus: imported
+  - id: ZY.10.L6
+    kind: yao
+    line: 6
+    label: 上九
+    text: 视履考详，其旋元吉。
+    textTrad: 視履考詳，其旋元吉。
+    reviewStatus: imported
+  - id: ZY.10.TUAN
+    kind: tuan
+    text: 履，柔履刚也。说而应乎乾，是以履虎尾，不咥人，亨，利贞。刚中正，履帝位而不疚，光明也。
+    textTrad: 履，柔履剛也。說而應乎乾，是以履虎尾，不咥人，亨，利貞。剛中正，履帝位而不疚，光明也。
+    reviewStatus: imported
+  - id: ZY.10.XIANG
+    kind: xiang
+    text: 上天下泽，履；君子以辨上下，定民志。
+    textTrad: 上天下澤，履；君子以辨上下，定民志。
+    reviewStatus: imported
+  - id: ZY.10.L1.XIANG
+    kind: xiaoxiang
+    line: 1
+    label: 初九
+    text: 素履之往，独行愿也。
+    textTrad: 素履之往，獨行願也。
+    reviewStatus: imported
+  - id: ZY.10.L2.XIANG
+    kind: xiaoxiang
+    line: 2
+    label: 九二
+    text: 幽人贞吉，中不自乱也。
+    textTrad: 幽人貞吉，中不自亂也。
+    reviewStatus: imported
+  - id: ZY.10.L3.XIANG
+    kind: xiaoxiang
+    line: 3
+    label: 六三
+    text: 眇能视，不足以有明也。跛能履，不足以与行也。咥人之凶，位不当也。武人为于大君，志刚也。
+    textTrad: 眇能視，不足以有明也。跛能履，不足以與行也。咥人之凶，位不當也。武人為于大君，志剛也。
+    reviewStatus: imported
+  - id: ZY.10.L4.XIANG
+    kind: xiaoxiang
+    line: 4
+    label: 九四
+    text: 愬愬终吉，志行也。
+    textTrad: 愬愬終吉，志行也。
+    reviewStatus: imported
+  - id: ZY.10.L5.XIANG
+    kind: xiaoxiang
+    line: 5
+    label: 九五
+    text: 夬履贞厉，位正当也。
+    textTrad: 夬履貞厲，位正當也。
+    reviewStatus: imported
+  - id: ZY.10.L6.XIANG
+    kind: xiaoxiang
+    line: 6
+    label: 上九
+    text: 元吉在上，大有庆也。
+    textTrad: 元吉在上，大有慶也。
+    reviewStatus: imported

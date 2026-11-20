@@ -1,0 +1,58 @@
+id: money
+version: 1
+reviewStatus: draft
+order: 4
+name: 财运与收支
+tagline: 日常预算、小副业、经营试水
+intents: [日常预算, 小副业, 经营试水, 大额支出]
+examples:
+  - 想接副业，怎么先看划不划算？
+  - 这笔大额支出，我该现在花还是再等等？
+  - 小店试营业一个月，下一步该怎么调整？
+clarifyHint: 你想判断的是值不值得投入，还是怎样先小规模验证？
+reframeExample:
+  from: 我今年会不会发财？
+  to: 这个副业值不值得先小规模试一试？我最多能投入多少？
+contextFields:
+  - key: budgetCap
+    label: 能承受的投入上限
+    primary: true
+    placeholder: 例如：最多 3,000 元，亏了也不影响生活
+  - key: info
+    label: 手头已有的信息
+    placeholder: 例如：问过两个朋友，有人愿意付费
+  - key: horizon
+    label: 希望多久看到结果
+    placeholder: 例如：三个月内
+free:
+  angleHints:
+    default: 先把账算清楚：要投入多少、多久能看到回报、最坏情况下会损失多少。
+    prepare: 先摸清自己的收支底数再谈投入，留出应急的钱比什么都重要。
+    probe: 用最小的成本先验证需求，比如先问问三位潜在客户。
+    persevere: 已经验证过的计划，稳定执行比频繁换花样更有效。
+    restrain: 控制投入上限，只用亏得起的钱去尝试。
+    wait: 信息还不够时先别急着花钱，把成本和收入假设写下来再看。
+    advance: 如果验证结果不错，可以按计划小步扩大投入。
+    cooperate: 问问做过类似事情的人，或者请懂账的朋友帮你看一看。
+    adjust: 如果收支一直对不上，先调整结构，比如砍掉一项固定开销。
+    caution: 留意隐藏成本和现金流断档的风险，先设好止损线。
+    reflect: 回头看看最近的花钱习惯，哪些支出是真正需要的。
+  reflectionQuestions:
+    default: [这件事里，你最没把握的那个数字是什么？]
+    prepare: [你每个月能稳定拿出来尝试的钱，上限是多少？]
+    probe: [有没有不花钱或少花钱的方式，先验证有人愿意买？]
+    persevere: [哪一项已经证明有效的做法，值得你继续坚持？]
+    restrain: [如果这次投入全部亏掉，你的生活会受多大影响？]
+    wait: [花钱之前，你还需要先核实哪一项成本？]
+    advance: [如果要扩大一步，最小的那一步是什么？]
+    cooperate: [谁做过类似的事情？你可以向他请教哪一个具体问题？]
+    adjust: [你的支出里，哪一项最容易先砍掉？]
+    caution: [你会给这次尝试设一条什么样的止损线？]
+    reflect: [最近一笔让你后悔的支出，是因为什么？]
+report:
+  mustVerify: [成本和现金支出, 收入假设, 能承受的投入上限]
+  deliverables: [需要验证的假设清单, 小额且可撤回的验证办法]
+  actionStyle: 小额、可撤回；先验证需求再投入
+boundaryExamples:
+  - { q: 这只股票下周会涨吗？, note: 属于投资收益预测，转到分流 }
+  - { q: 买彩票能中吗？, note: 不预测运气，转到分流 }

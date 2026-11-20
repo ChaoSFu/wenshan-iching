@@ -1,0 +1,113 @@
+# 由 scripts/import-wikisource.ts 生成；人工对勘后把 reviewStatus 改为 reviewed
+number: 4
+name: 蒙
+nameTrad: 蒙
+upper: gen
+lower: kan
+source:
+  title: 周易/蒙
+  url: https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E8%92%99
+  revision: 10645379
+  permalink: https://zh.wikisource.org/w/index.php?oldid=10645379
+  edition: 维基文库《周易》
+entries:
+  - id: ZY.04.G
+    kind: gua
+    label: 蒙
+    text: 亨。匪我求童蒙，童蒙求我。初筮告，再三渎，渎则不告。利贞。
+    textTrad: 亨。匪我求童蒙，童蒙求我。初筮告，再三瀆，瀆則不告。利貞。
+    reviewStatus: imported
+  - id: ZY.04.L1
+    kind: yao
+    line: 1
+    label: 初六
+    text: 发蒙，利用刑人，用说桎梏，以往吝。
+    textTrad: 發蒙，利用刑人，用說桎梏，以往吝。
+    reviewStatus: imported
+  - id: ZY.04.L2
+    kind: yao
+    line: 2
+    label: 九二
+    text: 包蒙吉，纳妇吉，子克家。
+    textTrad: 包蒙吉，納婦吉，子克家。
+    reviewStatus: imported
+  - id: ZY.04.L3
+    kind: yao
+    line: 3
+    label: 六三
+    text: 勿用取女，见金夫，不有躬，无攸利。
+    textTrad: 勿用取女，見金夫，不有躬，无攸利。
+    reviewStatus: imported
+  - id: ZY.04.L4
+    kind: yao
+    line: 4
+    label: 六四
+    text: 困蒙，吝。
+    textTrad: 困蒙，吝。
+    reviewStatus: imported
+  - id: ZY.04.L5
+    kind: yao
+    line: 5
+    label: 六五
+    text: 童蒙，吉。
+    textTrad: 童蒙，吉。
+    reviewStatus: imported
+  - id: ZY.04.L6
+    kind: yao
+    line: 6
+    label: 上九
+    text: 击蒙，不利为寇，利御寇。
+    textTrad: 擊蒙，不利為寇，利禦寇。
+    reviewStatus: imported
+  - id: ZY.04.TUAN
+    kind: tuan
+    text: 蒙，山下有险，险而止，蒙。蒙亨，以亨行，时中也。匪我求童蒙，童蒙求我，志应也。初筮告，以刚中也。再三渎，渎则不告，渎蒙也。蒙以养正，圣功也。
+    textTrad: 蒙，山下有險，險而止，蒙。蒙亨，以亨行，時中也。匪我求童蒙，童蒙求我，志應也。初筮告，以剛中也。再三瀆，瀆則不告，瀆蒙也。蒙以養正，聖功也。
+    reviewStatus: imported
+  - id: ZY.04.XIANG
+    kind: xiang
+    text: 山下出泉，蒙；君子以果行育德。
+    textTrad: 山下出泉，蒙；君子以果行育德。
+    reviewStatus: imported
+  - id: ZY.04.L1.XIANG
+    kind: xiaoxiang
+    line: 1
+    label: 初六
+    text: 利用刑人，以正法也。
+    textTrad: 利用刑人，以正法也。
+    reviewStatus: imported
+  - id: ZY.04.L2.XIANG
+    kind: xiaoxiang
+    line: 2
+    label: 九二
+    text: 子克家，刚柔接也。
+    textTrad: 子克家，剛柔接也。
+    reviewStatus: imported
+  - id: ZY.04.L3.XIANG
+    kind: xiaoxiang
+    line: 3
+    label: 六三
+    text: 勿用取女，行不顺也。
+    textTrad: 勿用取女，行不順也。
+    reviewStatus: imported
+  - id: ZY.04.L4.XIANG
+    kind: xiaoxiang
+    line: 4
+    label: 六四
+    text: 困蒙之吝，独远实也。
+    textTrad: 困蒙之吝，獨遠實也。
+    reviewStatus: imported
+  - id: ZY.04.L5.XIANG
+    kind: xiaoxiang
+    line: 5
+    label: 六五
+    text: 童蒙之吉，顺以巽也。
+    textTrad: 童蒙之吉，順以巽也。
+    reviewStatus: imported
+  - id: ZY.04.L6.XIANG
+    kind: xiaoxiang
+    line: 6
+    label: 上九
+    text: 利御寇，上下顺也。
+    textTrad: 利禦寇，上下順也。
+    reviewStatus: imported

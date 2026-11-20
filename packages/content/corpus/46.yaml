@@ -1,0 +1,113 @@
+# 由 scripts/import-wikisource.ts 生成；人工对勘后把 reviewStatus 改为 reviewed
+number: 46
+name: 升
+nameTrad: 升
+upper: kun
+lower: xun
+source:
+  title: 周易/升
+  url: https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E5%8D%87
+  revision: 10646879
+  permalink: https://zh.wikisource.org/w/index.php?oldid=10646879
+  edition: 维基文库《周易》
+entries:
+  - id: ZY.46.G
+    kind: gua
+    label: 升
+    text: 元亨，用见大人，勿恤，南征吉。
+    textTrad: 元亨，用見大人，勿恤，南征吉。
+    reviewStatus: imported
+  - id: ZY.46.L1
+    kind: yao
+    line: 1
+    label: 初六
+    text: 允升，大吉。
+    textTrad: 允升，大吉。
+    reviewStatus: imported
+  - id: ZY.46.L2
+    kind: yao
+    line: 2
+    label: 九二
+    text: 孚乃利用禴，无咎。
+    textTrad: 孚乃利用禴，无咎。
+    reviewStatus: imported
+  - id: ZY.46.L3
+    kind: yao
+    line: 3
+    label: 九三
+    text: 升虚邑。
+    textTrad: 升虛邑。
+    reviewStatus: imported
+  - id: ZY.46.L4
+    kind: yao
+    line: 4
+    label: 六四
+    text: 王用享于岐山，吉无咎。
+    textTrad: 王用享于岐山，吉无咎。
+    reviewStatus: imported
+  - id: ZY.46.L5
+    kind: yao
+    line: 5
+    label: 六五
+    text: 贞吉，升阶。
+    textTrad: 貞吉，升階。
+    reviewStatus: imported
+  - id: ZY.46.L6
+    kind: yao
+    line: 6
+    label: 上六
+    text: 冥升，利于不息之贞。
+    textTrad: 冥升，利于不息之貞。
+    reviewStatus: imported
+  - id: ZY.46.TUAN
+    kind: tuan
+    text: 柔以时升，巽而顺，刚中而应，是以大亨。用见大人，勿恤；有庆也。南征吉，志行也。
+    textTrad: 柔以時升，巽而順，剛中而應，是以大亨。用見大人，勿恤；有慶也。南征吉，志行也。
+    reviewStatus: imported
+  - id: ZY.46.XIANG
+    kind: xiang
+    text: 地中生木，升；君子以顺德，积小以高大。
+    textTrad: 地中生木，升；君子以順德，積小以高大。
+    reviewStatus: imported
+  - id: ZY.46.L1.XIANG
+    kind: xiaoxiang
+    line: 1
+    label: 初六
+    text: 允升大吉，上合志也。
+    textTrad: 允升大吉，上合志也。
+    reviewStatus: imported
+  - id: ZY.46.L2.XIANG
+    kind: xiaoxiang
+    line: 2
+    label: 九二
+    text: 九二之孚，有喜也。
+    textTrad: 九二之孚，有喜也。
+    reviewStatus: imported
+  - id: ZY.46.L3.XIANG
+    kind: xiaoxiang
+    line: 3
+    label: 九三
+    text: 升虚邑，无所疑也。
+    textTrad: 升虛邑，无所疑也。
+    reviewStatus: imported
+  - id: ZY.46.L4.XIANG
+    kind: xiaoxiang
+    line: 4
+    label: 六四
+    text: 王用亨于岐山，顺事也。
+    textTrad: 王用亨于岐山，順事也。
+    reviewStatus: imported
+  - id: ZY.46.L5.XIANG
+    kind: xiaoxiang
+    line: 5
+    label: 六五
+    text: 贞吉升阶，大得志也。
+    textTrad: 貞吉升階，大得志也。
+    reviewStatus: imported
+  - id: ZY.46.L6.XIANG
+    kind: xiaoxiang
+    line: 6
+    label: 上六
+    text: 冥升在上，消不富也。
+    textTrad: 冥升在上，消不富也。
+    reviewStatus: imported

@@ -1,0 +1,113 @@
+# 由 scripts/import-wikisource.ts 生成；人工对勘后把 reviewStatus 改为 reviewed
+number: 13
+name: 同人
+nameTrad: 同人
+upper: qian
+lower: li
+source:
+  title: 周易/同人
+  url: https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E5%90%8C%E4%BA%BA
+  revision: 10645635
+  permalink: https://zh.wikisource.org/w/index.php?oldid=10645635
+  edition: 维基文库《周易》
+entries:
+  - id: ZY.13.G
+    kind: gua
+    label: 同人
+    text: 同人于野，亨。 利涉大川，利君子贞。
+    textTrad: 同人于野，亨。 利涉大川，利君子貞。
+    reviewStatus: imported
+  - id: ZY.13.L1
+    kind: yao
+    line: 1
+    label: 初九
+    text: 同人于门，无咎。
+    textTrad: 同人于門，無咎。
+    reviewStatus: imported
+  - id: ZY.13.L2
+    kind: yao
+    line: 2
+    label: 六二
+    text: 同人于宗，吝。
+    textTrad: 同人于宗，吝。
+    reviewStatus: imported
+  - id: ZY.13.L3
+    kind: yao
+    line: 3
+    label: 九三
+    text: 伏戎于莽，升其高陵，三岁不兴。
+    textTrad: 伏戎于莽，升其高陵，三歲不興。
+    reviewStatus: imported
+  - id: ZY.13.L4
+    kind: yao
+    line: 4
+    label: 九四
+    text: 乘其庸，弗克攻，吉。
+    textTrad: 乘其庸，弗克攻，吉。
+    reviewStatus: imported
+  - id: ZY.13.L5
+    kind: yao
+    line: 5
+    label: 九五
+    text: 同人，先号啕而后笑。大师克相遇。
+    textTrad: 同人，先號啕而後笑。大師克相遇。
+    reviewStatus: imported
+  - id: ZY.13.L6
+    kind: yao
+    line: 6
+    label: 上九
+    text: 同人于郊，无悔。
+    textTrad: 同人于郊，無悔。
+    reviewStatus: imported
+  - id: ZY.13.TUAN
+    kind: tuan
+    text: 同人，柔得位得中，而应乎乾，曰同人。同人曰，同人于野，亨。利涉大川，乾行也。文明以健，中正而应，君子正也。唯君子为能通天下之志。
+    textTrad: 同人，柔得位得中，而應乎乾，曰同人。同人曰，同人于野，亨。利涉大川，乾行也。文明以健，中正而應，君子正也。唯君子為能通天下之志。
+    reviewStatus: imported
+  - id: ZY.13.XIANG
+    kind: xiang
+    text: 天与火，同人；君子以类族辨物。
+    textTrad: 天與火，同人；君子以類族辨物。
+    reviewStatus: imported
+  - id: ZY.13.L1.XIANG
+    kind: xiaoxiang
+    line: 1
+    label: 初九
+    text: 出门同人，又谁咎也。
+    textTrad: 出門同人，又誰咎也。
+    reviewStatus: imported
+  - id: ZY.13.L2.XIANG
+    kind: xiaoxiang
+    line: 2
+    label: 六二
+    text: 同人于宗，吝道也。
+    textTrad: 同人于宗，吝道也。
+    reviewStatus: imported
+  - id: ZY.13.L3.XIANG
+    kind: xiaoxiang
+    line: 3
+    label: 九三
+    text: 伏戎于莽，敌刚也。三岁不兴，安行也。
+    textTrad: 伏戎于莽，敵剛也。三歲不興，安行也。
+    reviewStatus: imported
+  - id: ZY.13.L4.XIANG
+    kind: xiaoxiang
+    line: 4
+    label: 九四
+    text: 乘其庸，义弗克也，其吉，则困而反则也。
+    textTrad: 乘其庸，義弗克也，其吉，則困而反則也。
+    reviewStatus: imported
+  - id: ZY.13.L5.XIANG
+    kind: xiaoxiang
+    line: 5
+    label: 九五
+    text: 同人之先，以中直也。大师相遇，言相克也。
+    textTrad: 同人之先，以中直也。大師相遇，言相克也。
+    reviewStatus: imported
+  - id: ZY.13.L6.XIANG
+    kind: xiaoxiang
+    line: 6
+    label: 上九
+    text: 同人于郊，志未得也。
+    textTrad: 同人于郊，志未得也。
+    reviewStatus: imported

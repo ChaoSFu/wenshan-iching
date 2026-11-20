@@ -1,0 +1,113 @@
+# 由 scripts/import-wikisource.ts 生成；人工对勘后把 reviewStatus 改为 reviewed
+number: 34
+name: 大壮
+nameTrad: 大壯
+upper: zhen
+lower: qian
+source:
+  title: 周易/大壯
+  url: https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E5%A4%A7%E5%A3%AF
+  revision: 10646529
+  permalink: https://zh.wikisource.org/w/index.php?oldid=10646529
+  edition: 维基文库《周易》
+entries:
+  - id: ZY.34.G
+    kind: gua
+    label: 大壮
+    text: 利贞。
+    textTrad: 利貞。
+    reviewStatus: imported
+  - id: ZY.34.L1
+    kind: yao
+    line: 1
+    label: 初九
+    text: 壮于趾，征凶，有孚。
+    textTrad: 壯于趾，征凶，有孚。
+    reviewStatus: imported
+  - id: ZY.34.L2
+    kind: yao
+    line: 2
+    label: 九二
+    text: 贞吉。
+    textTrad: 貞吉。
+    reviewStatus: imported
+  - id: ZY.34.L3
+    kind: yao
+    line: 3
+    label: 九三
+    text: 小人用壮，君子用罔，贞厉。羝羊触藩，羸其角。
+    textTrad: 小人用壯，君子用罔，貞厲。羝羊觸藩，羸其角。
+    reviewStatus: imported
+  - id: ZY.34.L4
+    kind: yao
+    line: 4
+    label: 九四
+    text: 贞吉悔亡，藩决不羸，壮于大轝之腹。
+    textTrad: 貞吉悔亡，藩決不羸，壯于大轝之腹。
+    reviewStatus: imported
+  - id: ZY.34.L5
+    kind: yao
+    line: 5
+    label: 六五
+    text: 丧羊于易，无悔。
+    textTrad: 喪羊于易，无悔。
+    reviewStatus: imported
+  - id: ZY.34.L6
+    kind: yao
+    line: 6
+    label: 上六
+    text: 羝羊触藩，不能退，不能遂，无攸利，艰则吉。
+    textTrad: 羝羊觸藩，不能退，不能遂，无攸利，艱則吉。
+    reviewStatus: imported
+  - id: ZY.34.TUAN
+    kind: tuan
+    text: 大壮，大者壮也。刚以动，故壮。大壮利贞；大者正也。正大而天地之情可见矣！
+    textTrad: 大壯，大者壯也。剛以動，故壯。大壯利貞；大者正也。正大而天地之情可見矣！
+    reviewStatus: imported
+  - id: ZY.34.XIANG
+    kind: xiang
+    text: 雷在天上，大壮；君子以非礼弗履。
+    textTrad: 雷在天上，大壯；君子以非禮弗履。
+    reviewStatus: imported
+  - id: ZY.34.L1.XIANG
+    kind: xiaoxiang
+    line: 1
+    label: 初九
+    text: 壮于趾，其孚穷也。
+    textTrad: 壯于趾，其孚窮也。
+    reviewStatus: imported
+  - id: ZY.34.L2.XIANG
+    kind: xiaoxiang
+    line: 2
+    label: 九二
+    text: 九二贞吉，以中也。
+    textTrad: 九二貞吉，以中也。
+    reviewStatus: imported
+  - id: ZY.34.L3.XIANG
+    kind: xiaoxiang
+    line: 3
+    label: 九三
+    text: 小人用壮，君子罔也。
+    textTrad: 小人用壯，君子罔也。
+    reviewStatus: imported
+  - id: ZY.34.L4.XIANG
+    kind: xiaoxiang
+    line: 4
+    label: 九四
+    text: 藩决不羸，尚往也。
+    textTrad: 藩決不羸，尚往也。
+    reviewStatus: imported
+  - id: ZY.34.L5.XIANG
+    kind: xiaoxiang
+    line: 5
+    label: 六五
+    text: 丧羊于易，位不当也。
+    textTrad: 喪羊于易，位不當也。
+    reviewStatus: imported
+  - id: ZY.34.L6.XIANG
+    kind: xiaoxiang
+    line: 6
+    label: 上六
+    text: 不能退，不能遂，不详也。艰则吉，咎不长也。
+    textTrad: 不能退，不能遂，不詳也。艱則吉，咎不長也。
+    reviewStatus: imported

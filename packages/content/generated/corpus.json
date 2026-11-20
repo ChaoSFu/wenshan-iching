@@ -1,0 +1,6312 @@
+{
+ "version": "2026.11.0+72ea3d62",
+ "hexagrams": {
+  "1": {
+   "number": 1,
+   "name": "乾",
+   "nameTrad": "乾",
+   "upper": "qian",
+   "lower": "qian",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E4%B9%BE",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=2404991",
+   "sourceRevision": 2404991
+  },
+  "2": {
+   "number": 2,
+   "name": "坤",
+   "nameTrad": "坤",
+   "upper": "kun",
+   "lower": "kun",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E5%9D%A4",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=2404999",
+   "sourceRevision": 2404999
+  },
+  "3": {
+   "number": 3,
+   "name": "屯",
+   "nameTrad": "屯",
+   "upper": "kan",
+   "lower": "zhen",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E5%B1%AF",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=10643482",
+   "sourceRevision": 10643482
+  },
+  "4": {
+   "number": 4,
+   "name": "蒙",
+   "nameTrad": "蒙",
+   "upper": "gen",
+   "lower": "kan",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E8%92%99",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=10645379",
+   "sourceRevision": 10645379
+  },
+  "5": {
+   "number": 5,
+   "name": "需",
+   "nameTrad": "需",
+   "upper": "kan",
+   "lower": "qian",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E9%9C%80",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=10643261",
+   "sourceRevision": 10643261
+  },
+  "6": {
+   "number": 6,
+   "name": "讼",
+   "nameTrad": "訟",
+   "upper": "qian",
+   "lower": "kan",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E8%A8%9F",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=10645409",
+   "sourceRevision": 10645409
+  },
+  "7": {
+   "number": 7,
+   "name": "师",
+   "nameTrad": "師",
+   "upper": "kun",
+   "lower": "kan",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E5%B8%AB",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=2405011",
+   "sourceRevision": 2405011
+  },
+  "8": {
+   "number": 8,
+   "name": "比",
+   "nameTrad": "比",
+   "upper": "kan",
+   "lower": "kun",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E6%AF%94",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=10645543",
+   "sourceRevision": 10645543
+  },
+  "9": {
+   "number": 9,
+   "name": "小畜",
+   "nameTrad": "小畜",
+   "upper": "xun",
+   "lower": "qian",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E5%B0%8F%E7%95%9C",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=10645530",
+   "sourceRevision": 10645530
+  },
+  "10": {
+   "number": 10,
+   "name": "履",
+   "nameTrad": "履",
+   "upper": "qian",
+   "lower": "dui",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E5%B1%A5",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=10647513",
+   "sourceRevision": 10647513
+  },
+  "11": {
+   "number": 11,
+   "name": "泰",
+   "nameTrad": "泰",
+   "upper": "kun",
+   "lower": "qian",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E6%B3%B0",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=2106138",
+   "sourceRevision": 2106138
+  },
+  "12": {
+   "number": 12,
+   "name": "否",
+   "nameTrad": "否",
+   "upper": "qian",
+   "lower": "kun",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E5%90%A6",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=10645603",
+   "sourceRevision": 10645603
+  },
+  "13": {
+   "number": 13,
+   "name": "同人",
+   "nameTrad": "同人",
+   "upper": "qian",
+   "lower": "li",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E5%90%8C%E4%BA%BA",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=10645635",
+   "sourceRevision": 10645635
+  },
+  "14": {
+   "number": 14,
+   "name": "大有",
+   "nameTrad": "大有",
+   "upper": "li",
+   "lower": "qian",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E5%A4%A7%E6%9C%89",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=10645712",
+   "sourceRevision": 10645712
+  },
+  "15": {
+   "number": 15,
+   "name": "谦",
+   "nameTrad": "謙",
+   "upper": "kun",
+   "lower": "gen",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E8%AC%99",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=2106142",
+   "sourceRevision": 2106142
+  },
+  "16": {
+   "number": 16,
+   "name": "豫",
+   "nameTrad": "豫",
+   "upper": "zhen",
+   "lower": "kun",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E8%B1%AB",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=10645735",
+   "sourceRevision": 10645735
+  },
+  "17": {
+   "number": 17,
+   "name": "随",
+   "nameTrad": "隨",
+   "upper": "dui",
+   "lower": "zhen",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E9%9A%A8",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=10645020",
+   "sourceRevision": 10645020
+  },
+  "18": {
+   "number": 18,
+   "name": "蛊",
+   "nameTrad": "蠱",
+   "upper": "gen",
+   "lower": "xun",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E8%A0%B1",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=2106145",
+   "sourceRevision": 2106145
+  },
+  "19": {
+   "number": 19,
+   "name": "临",
+   "nameTrad": "臨",
+   "upper": "kun",
+   "lower": "dui",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E8%87%A8",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=2106146",
+   "sourceRevision": 2106146
+  },
+  "20": {
+   "number": 20,
+   "name": "观",
+   "nameTrad": "觀",
+   "upper": "xun",
+   "lower": "kun",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E8%A7%80",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=10645159",
+   "sourceRevision": 10645159
+  },
+  "21": {
+   "number": 21,
+   "name": "噬嗑",
+   "nameTrad": "噬嗑",
+   "upper": "li",
+   "lower": "zhen",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E5%99%AC%E5%97%91",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=10645753",
+   "sourceRevision": 10645753
+  },
+  "22": {
+   "number": 22,
+   "name": "贲",
+   "nameTrad": "賁",
+   "upper": "gen",
+   "lower": "li",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E8%B3%81",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=2405035",
+   "sourceRevision": 2405035
+  },
+  "23": {
+   "number": 23,
+   "name": "剥",
+   "nameTrad": "剝",
+   "upper": "gen",
+   "lower": "kun",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E5%89%9D",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=10645800",
+   "sourceRevision": 10645800
+  },
+  "24": {
+   "number": 24,
+   "name": "复",
+   "nameTrad": "復",
+   "upper": "kun",
+   "lower": "zhen",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E5%BE%A9",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=10643037",
+   "sourceRevision": 10643037
+  },
+  "25": {
+   "number": 25,
+   "name": "无妄",
+   "nameTrad": "无妄",
+   "upper": "qian",
+   "lower": "zhen",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E6%97%A0%E5%A6%84",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=10645038",
+   "sourceRevision": 10645038
+  },
+  "26": {
+   "number": 26,
+   "name": "大畜",
+   "nameTrad": "大畜",
+   "upper": "gen",
+   "lower": "qian",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E5%A4%A7%E7%95%9C",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=10646304",
+   "sourceRevision": 10646304
+  },
+  "27": {
+   "number": 27,
+   "name": "颐",
+   "nameTrad": "頤",
+   "upper": "gen",
+   "lower": "zhen",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E9%A0%A4",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=10643091",
+   "sourceRevision": 10643091
+  },
+  "28": {
+   "number": 28,
+   "name": "大过",
+   "nameTrad": "大過",
+   "upper": "dui",
+   "lower": "xun",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E5%A4%A7%E9%81%8E",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=10645184",
+   "sourceRevision": 10645184
+  },
+  "29": {
+   "number": 29,
+   "name": "坎",
+   "nameTrad": "坎",
+   "upper": "kan",
+   "lower": "kan",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E5%9D%8E",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=10646381",
+   "sourceRevision": 10646381
+  },
+  "30": {
+   "number": 30,
+   "name": "离",
+   "nameTrad": "離",
+   "upper": "li",
+   "lower": "li",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E9%9B%A2",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=10646424",
+   "sourceRevision": 10646424
+  },
+  "31": {
+   "number": 31,
+   "name": "咸",
+   "nameTrad": "咸",
+   "upper": "dui",
+   "lower": "gen",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E5%92%B8",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=10646450",
+   "sourceRevision": 10646450
+  },
+  "32": {
+   "number": 32,
+   "name": "恒",
+   "nameTrad": "恆",
+   "upper": "zhen",
+   "lower": "xun",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E6%81%92",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=10646486",
+   "sourceRevision": 10646486
+  },
+  "33": {
+   "number": 33,
+   "name": "遁",
+   "nameTrad": "遯",
+   "upper": "qian",
+   "lower": "gen",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E9%81%AF",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=10645108",
+   "sourceRevision": 10645108
+  },
+  "34": {
+   "number": 34,
+   "name": "大壮",
+   "nameTrad": "大壯",
+   "upper": "zhen",
+   "lower": "qian",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E5%A4%A7%E5%A3%AF",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=10646529",
+   "sourceRevision": 10646529
+  },
+  "35": {
+   "number": 35,
+   "name": "晋",
+   "nameTrad": "晉",
+   "upper": "li",
+   "lower": "kun",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E6%99%89",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=10646579",
+   "sourceRevision": 10646579
+  },
+  "36": {
+   "number": 36,
+   "name": "明夷",
+   "nameTrad": "明夷",
+   "upper": "kun",
+   "lower": "li",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E6%98%8E%E5%A4%B7",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=10644507",
+   "sourceRevision": 10644507
+  },
+  "37": {
+   "number": 37,
+   "name": "家人",
+   "nameTrad": "家人",
+   "upper": "xun",
+   "lower": "li",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E5%AE%B6%E4%BA%BA",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=2405005",
+   "sourceRevision": 2405005
+  },
+  "38": {
+   "number": 38,
+   "name": "睽",
+   "nameTrad": "睽",
+   "upper": "li",
+   "lower": "dui",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E7%9D%BD",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=10646622",
+   "sourceRevision": 10646622
+  },
+  "39": {
+   "number": 39,
+   "name": "蹇",
+   "nameTrad": "蹇",
+   "upper": "kan",
+   "lower": "gen",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E8%B9%87",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=2405036",
+   "sourceRevision": 2405036
+  },
+  "40": {
+   "number": 40,
+   "name": "解",
+   "nameTrad": "解",
+   "upper": "zhen",
+   "lower": "kan",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E8%A7%A3",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=10646666",
+   "sourceRevision": 10646666
+  },
+  "41": {
+   "number": 41,
+   "name": "损",
+   "nameTrad": "損",
+   "upper": "gen",
+   "lower": "dui",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E6%90%8D",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=10646704",
+   "sourceRevision": 10646704
+  },
+  "42": {
+   "number": 42,
+   "name": "益",
+   "nameTrad": "益",
+   "upper": "xun",
+   "lower": "zhen",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E7%9B%8A",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=10646726",
+   "sourceRevision": 10646726
+  },
+  "43": {
+   "number": 43,
+   "name": "夬",
+   "nameTrad": "夬",
+   "upper": "dui",
+   "lower": "qian",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E5%A4%AC",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=2405003",
+   "sourceRevision": 2405003
+  },
+  "44": {
+   "number": 44,
+   "name": "姤",
+   "nameTrad": "姤",
+   "upper": "qian",
+   "lower": "xun",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E5%A7%A4",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=10646826",
+   "sourceRevision": 10646826
+  },
+  "45": {
+   "number": 45,
+   "name": "萃",
+   "nameTrad": "萃",
+   "upper": "dui",
+   "lower": "kun",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E8%90%83",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=10647546",
+   "sourceRevision": 10647546
+  },
+  "46": {
+   "number": 46,
+   "name": "升",
+   "nameTrad": "升",
+   "upper": "kun",
+   "lower": "xun",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E5%8D%87",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=10646879",
+   "sourceRevision": 10646879
+  },
+  "47": {
+   "number": 47,
+   "name": "困",
+   "nameTrad": "困",
+   "upper": "dui",
+   "lower": "kan",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E5%9B%B0",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=10647032",
+   "sourceRevision": 10647032
+  },
+  "48": {
+   "number": 48,
+   "name": "井",
+   "nameTrad": "井",
+   "upper": "kan",
+   "lower": "xun",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E4%BA%95",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=10645240",
+   "sourceRevision": 10645240
+  },
+  "49": {
+   "number": 49,
+   "name": "革",
+   "nameTrad": "革",
+   "upper": "dui",
+   "lower": "li",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E9%9D%A9",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=10643173",
+   "sourceRevision": 10643173
+  },
+  "50": {
+   "number": 50,
+   "name": "鼎",
+   "nameTrad": "鼎",
+   "upper": "li",
+   "lower": "xun",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E9%BC%8E",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=10647086",
+   "sourceRevision": 10647086
+  },
+  "51": {
+   "number": 51,
+   "name": "震",
+   "nameTrad": "震",
+   "upper": "zhen",
+   "lower": "zhen",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E9%9C%87",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=10644930",
+   "sourceRevision": 10644930
+  },
+  "52": {
+   "number": 52,
+   "name": "艮",
+   "nameTrad": "艮",
+   "upper": "gen",
+   "lower": "gen",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E8%89%AE",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=10647135",
+   "sourceRevision": 10647135
+  },
+  "53": {
+   "number": 53,
+   "name": "渐",
+   "nameTrad": "漸",
+   "upper": "xun",
+   "lower": "gen",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E6%BC%B8",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=2560535",
+   "sourceRevision": 2560535
+  },
+  "54": {
+   "number": 54,
+   "name": "归妹",
+   "nameTrad": "歸妹",
+   "upper": "zhen",
+   "lower": "dui",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E6%AD%B8%E5%A6%B9",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=10647182",
+   "sourceRevision": 10647182
+  },
+  "55": {
+   "number": 55,
+   "name": "丰",
+   "nameTrad": "豐",
+   "upper": "zhen",
+   "lower": "li",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E8%B1%90",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=10645290",
+   "sourceRevision": 10645290
+  },
+  "56": {
+   "number": 56,
+   "name": "旅",
+   "nameTrad": "旅",
+   "upper": "li",
+   "lower": "gen",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E6%97%85",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=10647234",
+   "sourceRevision": 10647234
+  },
+  "57": {
+   "number": 57,
+   "name": "巽",
+   "nameTrad": "巽",
+   "upper": "xun",
+   "lower": "xun",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E5%B7%BD",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=10644966",
+   "sourceRevision": 10644966
+  },
+  "58": {
+   "number": 58,
+   "name": "兑",
+   "nameTrad": "兌",
+   "upper": "dui",
+   "lower": "dui",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E5%85%8C",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=2404993",
+   "sourceRevision": 2404993
+  },
+  "59": {
+   "number": 59,
+   "name": "涣",
+   "nameTrad": "渙",
+   "upper": "xun",
+   "lower": "kan",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E6%B8%99",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=10647580",
+   "sourceRevision": 10647580
+  },
+  "60": {
+   "number": 60,
+   "name": "节",
+   "nameTrad": "節",
+   "upper": "kan",
+   "lower": "dui",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E7%AF%80",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=2405027",
+   "sourceRevision": 2405027
+  },
+  "61": {
+   "number": 61,
+   "name": "中孚",
+   "nameTrad": "中孚",
+   "upper": "xun",
+   "lower": "dui",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E4%B8%AD%E5%AD%9A",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=10647425",
+   "sourceRevision": 10647425
+  },
+  "62": {
+   "number": 62,
+   "name": "小过",
+   "nameTrad": "小過",
+   "upper": "zhen",
+   "lower": "gen",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E5%B0%8F%E9%81%8E",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=10643238",
+   "sourceRevision": 10643238
+  },
+  "63": {
+   "number": 63,
+   "name": "既济",
+   "nameTrad": "既濟",
+   "upper": "kan",
+   "lower": "li",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E6%97%A2%E6%BF%9F",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=2572417",
+   "sourceRevision": 2572417
+  },
+  "64": {
+   "number": 64,
+   "name": "未济",
+   "nameTrad": "未濟",
+   "upper": "li",
+   "lower": "kan",
+   "sourceUrl": "https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E6%9C%AA%E6%BF%9F",
+   "sourcePermalink": "https://zh.wikisource.org/w/index.php?oldid=10647450",
+   "sourceRevision": 10647450
+  }
+ },
+ "entries": {
+  "ZY.01.G": {
+   "id": "ZY.01.G",
+   "kind": "gua",
+   "label": "乾",
+   "text": "元亨。利贞。",
+   "textTrad": "元亨。利貞。",
+   "reviewStatus": "imported",
+   "hexagram": 1
+  },
+  "ZY.01.L1": {
+   "id": "ZY.01.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初九",
+   "text": "潜龙勿用。",
+   "textTrad": "潛龍勿用。",
+   "reviewStatus": "imported",
+   "hexagram": 1
+  },
+  "ZY.01.L2": {
+   "id": "ZY.01.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "九二",
+   "text": "见龙在田，利见大人。",
+   "textTrad": "見龍在田，利見大人。",
+   "reviewStatus": "imported",
+   "hexagram": 1
+  },
+  "ZY.01.L3": {
+   "id": "ZY.01.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "九三",
+   "text": "君子终日乾乾，夕惕若；厉，无咎。",
+   "textTrad": "君子終日乾乾，夕惕若；厲，无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 1
+  },
+  "ZY.01.L4": {
+   "id": "ZY.01.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "九四",
+   "text": "或跃在渊，无咎。",
+   "textTrad": "或躍在淵，无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 1
+  },
+  "ZY.01.L5": {
+   "id": "ZY.01.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "九五",
+   "text": "飞龙在天，利见大人。",
+   "textTrad": "飛龍在天，利見大人。",
+   "reviewStatus": "imported",
+   "hexagram": 1
+  },
+  "ZY.01.L6": {
+   "id": "ZY.01.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上九",
+   "text": "亢龙，有悔。",
+   "textTrad": "亢龍，有悔。",
+   "reviewStatus": "imported",
+   "hexagram": 1
+  },
+  "ZY.01.Y9": {
+   "id": "ZY.01.Y9",
+   "kind": "yong",
+   "label": "用九",
+   "text": "见群龙无首，吉。",
+   "textTrad": "見羣龍无首，吉。",
+   "reviewStatus": "imported",
+   "hexagram": 1
+  },
+  "ZY.01.TUAN": {
+   "id": "ZY.01.TUAN",
+   "kind": "tuan",
+   "text": "大哉乾元，万物资始，乃统天。云行雨施，品物流形，大明终始，六位时成。时乘六龙以御天，乾道变化，各正性命，保合大和，乃利贞。首出庶物，万国咸宁。",
+   "textTrad": "大哉乾元，萬物資始，乃統天。雲行雨施，品物流形，大明終始，六位時成。時乘六龍以御天，乾道變化，各正性命，保合大和，乃利貞。首出庶物，萬國咸寧。",
+   "reviewStatus": "imported",
+   "hexagram": 1
+  },
+  "ZY.01.XIANG": {
+   "id": "ZY.01.XIANG",
+   "kind": "xiang",
+   "text": "天行健，君子以自强不息。",
+   "textTrad": "天行健，君子以自強不息。",
+   "reviewStatus": "imported",
+   "hexagram": 1
+  },
+  "ZY.02.G": {
+   "id": "ZY.02.G",
+   "kind": "gua",
+   "label": "坤",
+   "text": "元亨。利牝马之贞。君子有攸往，先迷后得主。利西南得朋，东北丧朋。安贞，吉。",
+   "textTrad": "元亨。利牝馬之貞。君子有攸往，先迷後得主。利西南得朋，東北喪朋。安貞，吉。",
+   "reviewStatus": "imported",
+   "hexagram": 2
+  },
+  "ZY.02.L1": {
+   "id": "ZY.02.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初六",
+   "text": "履霜，坚冰至。",
+   "textTrad": "履霜，堅冰至。",
+   "reviewStatus": "imported",
+   "hexagram": 2
+  },
+  "ZY.02.L2": {
+   "id": "ZY.02.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "六二",
+   "text": "直方大，不习无不利。",
+   "textTrad": "直方大，不習无不利。",
+   "reviewStatus": "imported",
+   "hexagram": 2
+  },
+  "ZY.02.L3": {
+   "id": "ZY.02.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "六三",
+   "text": "含章，可贞。或从王事，无成有终。",
+   "textTrad": "含章，可貞。或從王事，无成有終。",
+   "reviewStatus": "imported",
+   "hexagram": 2
+  },
+  "ZY.02.L4": {
+   "id": "ZY.02.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "六四",
+   "text": "括囊，无咎无誉。",
+   "textTrad": "括囊，无咎无譽。",
+   "reviewStatus": "imported",
+   "hexagram": 2
+  },
+  "ZY.02.L5": {
+   "id": "ZY.02.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "六五",
+   "text": "黄裳，元吉。",
+   "textTrad": "黃裳，元吉。",
+   "reviewStatus": "imported",
+   "hexagram": 2
+  },
+  "ZY.02.L6": {
+   "id": "ZY.02.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上六",
+   "text": "龙战于野，其血玄黄。",
+   "textTrad": "龍戰于野，其血玄黃。",
+   "reviewStatus": "imported",
+   "hexagram": 2
+  },
+  "ZY.02.Y6": {
+   "id": "ZY.02.Y6",
+   "kind": "yong",
+   "label": "用六",
+   "text": "利永贞。",
+   "textTrad": "利永貞。",
+   "reviewStatus": "imported",
+   "hexagram": 2
+  },
+  "ZY.02.TUAN": {
+   "id": "ZY.02.TUAN",
+   "kind": "tuan",
+   "text": "至哉坤元，万物资生，乃顺承天。坤厚载物，德合无疆；含弘光大，品物咸亨。牝马地类，行地无疆，柔顺利贞。君子攸行，先迷失道，后顺得常。西南得朋，乃与类行，东北丧朋，乃终有庆。安贞之吉，应地无疆。",
+   "textTrad": "至哉坤元，萬物資生，乃順承天。坤厚載物，德合无疆；含弘光大，品物咸亨。牝馬地類，行地无疆，柔順利貞。君子攸行，先迷失道，後順得常。西南得朋，乃與類行，東北喪朋，乃終有慶。安貞之吉，應地无疆。",
+   "reviewStatus": "imported",
+   "hexagram": 2
+  },
+  "ZY.02.XIANG": {
+   "id": "ZY.02.XIANG",
+   "kind": "xiang",
+   "text": "地势坤，君子以厚德载物。",
+   "textTrad": "地勢坤，君子以厚德載物。",
+   "reviewStatus": "imported",
+   "hexagram": 2
+  },
+  "ZY.03.G": {
+   "id": "ZY.03.G",
+   "kind": "gua",
+   "label": "屯",
+   "text": "元亨，利贞。勿用有攸往，利建侯。",
+   "textTrad": "元亨，利貞。勿用有攸往，利建侯。",
+   "reviewStatus": "imported",
+   "hexagram": 3
+  },
+  "ZY.03.L1": {
+   "id": "ZY.03.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初九",
+   "text": "磐桓，利居贞，利建侯。",
+   "textTrad": "磐桓，利居貞，利建侯。",
+   "reviewStatus": "imported",
+   "hexagram": 3
+  },
+  "ZY.03.L2": {
+   "id": "ZY.03.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "六二",
+   "text": "屯如邅如，乘马班如，匪寇婚媾，女子贞不字，十年乃字。",
+   "textTrad": "屯如邅如，乘馬班如，匪寇婚媾，女子貞不字，十年乃字。",
+   "reviewStatus": "imported",
+   "hexagram": 3
+  },
+  "ZY.03.L3": {
+   "id": "ZY.03.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "六三",
+   "text": "即鹿无虞，惟入于林中，君子几不如舍，往吝。",
+   "textTrad": "即鹿无虞，惟入于林中，君子幾不如舍，往吝。",
+   "reviewStatus": "imported",
+   "hexagram": 3
+  },
+  "ZY.03.L4": {
+   "id": "ZY.03.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "六四",
+   "text": "乘马班如，求婚媾，往，吉无不利。",
+   "textTrad": "乘馬班如，求婚媾，往，吉无不利。",
+   "reviewStatus": "imported",
+   "hexagram": 3
+  },
+  "ZY.03.L5": {
+   "id": "ZY.03.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "九五",
+   "text": "屯其膏；小贞吉，大贞凶。",
+   "textTrad": "屯其膏；小貞吉，大貞凶。",
+   "reviewStatus": "imported",
+   "hexagram": 3
+  },
+  "ZY.03.L6": {
+   "id": "ZY.03.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上六",
+   "text": "乘马班如，泣血涟如。",
+   "textTrad": "乘馬班如，泣血漣如。",
+   "reviewStatus": "imported",
+   "hexagram": 3
+  },
+  "ZY.03.TUAN": {
+   "id": "ZY.03.TUAN",
+   "kind": "tuan",
+   "text": "屯，刚柔始交而难生，动乎险中，大亨贞。雷雨之动满盈，天造草昧，宜建侯而不宁。",
+   "textTrad": "屯，剛柔始交而難生，動乎險中，大亨貞。雷雨之動滿盈，天造草昧，宜建侯而不寧。",
+   "reviewStatus": "imported",
+   "hexagram": 3
+  },
+  "ZY.03.XIANG": {
+   "id": "ZY.03.XIANG",
+   "kind": "xiang",
+   "text": "云雷，屯；君子以经纶。",
+   "textTrad": "雲雷，屯；君子以經綸。",
+   "reviewStatus": "imported",
+   "hexagram": 3
+  },
+  "ZY.04.G": {
+   "id": "ZY.04.G",
+   "kind": "gua",
+   "label": "蒙",
+   "text": "亨。匪我求童蒙，童蒙求我。初筮告，再三渎，渎则不告。利贞。",
+   "textTrad": "亨。匪我求童蒙，童蒙求我。初筮告，再三瀆，瀆則不告。利貞。",
+   "reviewStatus": "imported",
+   "hexagram": 4
+  },
+  "ZY.04.L1": {
+   "id": "ZY.04.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初六",
+   "text": "发蒙，利用刑人，用说桎梏，以往吝。",
+   "textTrad": "發蒙，利用刑人，用說桎梏，以往吝。",
+   "reviewStatus": "imported",
+   "hexagram": 4
+  },
+  "ZY.04.L2": {
+   "id": "ZY.04.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "九二",
+   "text": "包蒙吉，纳妇吉，子克家。",
+   "textTrad": "包蒙吉，納婦吉，子克家。",
+   "reviewStatus": "imported",
+   "hexagram": 4
+  },
+  "ZY.04.L3": {
+   "id": "ZY.04.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "六三",
+   "text": "勿用取女，见金夫，不有躬，无攸利。",
+   "textTrad": "勿用取女，見金夫，不有躬，无攸利。",
+   "reviewStatus": "imported",
+   "hexagram": 4
+  },
+  "ZY.04.L4": {
+   "id": "ZY.04.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "六四",
+   "text": "困蒙，吝。",
+   "textTrad": "困蒙，吝。",
+   "reviewStatus": "imported",
+   "hexagram": 4
+  },
+  "ZY.04.L5": {
+   "id": "ZY.04.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "六五",
+   "text": "童蒙，吉。",
+   "textTrad": "童蒙，吉。",
+   "reviewStatus": "imported",
+   "hexagram": 4
+  },
+  "ZY.04.L6": {
+   "id": "ZY.04.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上九",
+   "text": "击蒙，不利为寇，利御寇。",
+   "textTrad": "擊蒙，不利為寇，利禦寇。",
+   "reviewStatus": "imported",
+   "hexagram": 4
+  },
+  "ZY.04.TUAN": {
+   "id": "ZY.04.TUAN",
+   "kind": "tuan",
+   "text": "蒙，山下有险，险而止，蒙。蒙亨，以亨行，时中也。匪我求童蒙，童蒙求我，志应也。初筮告，以刚中也。再三渎，渎则不告，渎蒙也。蒙以养正，圣功也。",
+   "textTrad": "蒙，山下有險，險而止，蒙。蒙亨，以亨行，時中也。匪我求童蒙，童蒙求我，志應也。初筮告，以剛中也。再三瀆，瀆則不告，瀆蒙也。蒙以養正，聖功也。",
+   "reviewStatus": "imported",
+   "hexagram": 4
+  },
+  "ZY.04.XIANG": {
+   "id": "ZY.04.XIANG",
+   "kind": "xiang",
+   "text": "山下出泉，蒙；君子以果行育德。",
+   "textTrad": "山下出泉，蒙；君子以果行育德。",
+   "reviewStatus": "imported",
+   "hexagram": 4
+  },
+  "ZY.05.G": {
+   "id": "ZY.05.G",
+   "kind": "gua",
+   "label": "需",
+   "text": "有孚，光亨。贞吉，利涉大川。",
+   "textTrad": "有孚，光亨。貞吉，利涉大川。",
+   "reviewStatus": "imported",
+   "hexagram": 5
+  },
+  "ZY.05.L1": {
+   "id": "ZY.05.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初九",
+   "text": "需于郊，利用恒，无咎。",
+   "textTrad": "需于郊，利用恆，无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 5
+  },
+  "ZY.05.L2": {
+   "id": "ZY.05.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "九二",
+   "text": "需于沙，小有言，终吉。",
+   "textTrad": "需于沙，小有言，終吉。",
+   "reviewStatus": "imported",
+   "hexagram": 5
+  },
+  "ZY.05.L3": {
+   "id": "ZY.05.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "九三",
+   "text": "需于泥，致寇至。",
+   "textTrad": "需于泥，致寇至。",
+   "reviewStatus": "imported",
+   "hexagram": 5
+  },
+  "ZY.05.L4": {
+   "id": "ZY.05.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "六四",
+   "text": "需于血，出自穴。",
+   "textTrad": "需于血，出自穴。",
+   "reviewStatus": "imported",
+   "hexagram": 5
+  },
+  "ZY.05.L5": {
+   "id": "ZY.05.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "九五",
+   "text": "需于酒食，贞吉。",
+   "textTrad": "需于酒食，貞吉。",
+   "reviewStatus": "imported",
+   "hexagram": 5
+  },
+  "ZY.05.L6": {
+   "id": "ZY.05.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上六",
+   "text": "入于穴，有不速之客三人来，敬之终吉。",
+   "textTrad": "入于穴，有不速之客三人來，敬之終吉。",
+   "reviewStatus": "imported",
+   "hexagram": 5
+  },
+  "ZY.05.TUAN": {
+   "id": "ZY.05.TUAN",
+   "kind": "tuan",
+   "text": "需，须也，险在前也；刚健而不陷，其义不困穷矣。需，有孚，光亨，贞吉，位乎天位，以正中也。利涉大川，往有功也。",
+   "textTrad": "需，須也，險在前也；剛健而不陷，其義不困窮矣。需，有孚，光亨，貞吉，位乎天位，以正中也。利涉大川，往有功也。",
+   "reviewStatus": "imported",
+   "hexagram": 5
+  },
+  "ZY.05.XIANG": {
+   "id": "ZY.05.XIANG",
+   "kind": "xiang",
+   "text": "云上于天，需；君子以饮食宴乐。",
+   "textTrad": "雲上於天，需；君子以飲食宴樂。",
+   "reviewStatus": "imported",
+   "hexagram": 5
+  },
+  "ZY.06.G": {
+   "id": "ZY.06.G",
+   "kind": "gua",
+   "label": "讼",
+   "text": "有孚，窒，惕，中吉，终凶。利见大人，不利涉大川。",
+   "textTrad": "有孚，窒，惕，中吉，終凶。利見大人，不利涉大川。",
+   "reviewStatus": "imported",
+   "hexagram": 6
+  },
+  "ZY.06.L1": {
+   "id": "ZY.06.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初六",
+   "text": "不永所事，小有言，终吉。",
+   "textTrad": "不永所事，小有言，終吉。",
+   "reviewStatus": "imported",
+   "hexagram": 6
+  },
+  "ZY.06.L2": {
+   "id": "ZY.06.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "九二",
+   "text": "不克讼，归而逋，其邑人三百户无眚。",
+   "textTrad": "不克訟，歸而逋，其邑人三百戶无眚。",
+   "reviewStatus": "imported",
+   "hexagram": 6
+  },
+  "ZY.06.L3": {
+   "id": "ZY.06.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "六三",
+   "text": "食旧德，贞厉，终吉。或从王事，无成。",
+   "textTrad": "食舊德，貞厲，終吉。或從王事，无成。",
+   "reviewStatus": "imported",
+   "hexagram": 6
+  },
+  "ZY.06.L4": {
+   "id": "ZY.06.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "九四",
+   "text": "不克讼，复即命渝，安贞吉。",
+   "textTrad": "不克訟，復即命渝，安貞吉。",
+   "reviewStatus": "imported",
+   "hexagram": 6
+  },
+  "ZY.06.L5": {
+   "id": "ZY.06.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "九五",
+   "text": "讼，元吉。",
+   "textTrad": "訟，元吉。",
+   "reviewStatus": "imported",
+   "hexagram": 6
+  },
+  "ZY.06.L6": {
+   "id": "ZY.06.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上九",
+   "text": "或锡之鞶带，终朝三褫之。",
+   "textTrad": "或錫之鞶帶，終朝三褫之。",
+   "reviewStatus": "imported",
+   "hexagram": 6
+  },
+  "ZY.06.TUAN": {
+   "id": "ZY.06.TUAN",
+   "kind": "tuan",
+   "text": "讼，上刚下险，险而健，讼。讼，有孚，窒，惕，中吉，刚来而得中也。终凶，讼不可成也。利见大人，尚中正也。不利涉大川，入于渊也。",
+   "textTrad": "訟，上剛下險，險而健，訟。訟，有孚，窒，惕，中吉，剛來而得中也。終凶，訟不可成也。利見大人，尚中正也。不利涉大川，入于淵也。",
+   "reviewStatus": "imported",
+   "hexagram": 6
+  },
+  "ZY.06.XIANG": {
+   "id": "ZY.06.XIANG",
+   "kind": "xiang",
+   "text": "天与水违行，讼；君子以作事谋始。",
+   "textTrad": "天與水違行，訟；君子以作事謀始。",
+   "reviewStatus": "imported",
+   "hexagram": 6
+  },
+  "ZY.07.G": {
+   "id": "ZY.07.G",
+   "kind": "gua",
+   "label": "师",
+   "text": "贞丈人吉，无咎。",
+   "textTrad": "貞丈人吉，无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 7
+  },
+  "ZY.07.L1": {
+   "id": "ZY.07.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初六",
+   "text": "师出以律，否臧，凶。",
+   "textTrad": "師出以律，否臧，凶。",
+   "reviewStatus": "imported",
+   "hexagram": 7
+  },
+  "ZY.07.L2": {
+   "id": "ZY.07.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "九二",
+   "text": "在师中吉，无咎；王三锡命。",
+   "textTrad": "在師中吉，无咎；王三錫命。",
+   "reviewStatus": "imported",
+   "hexagram": 7
+  },
+  "ZY.07.L3": {
+   "id": "ZY.07.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "六三",
+   "text": "师或舆尸，凶。",
+   "textTrad": "師或輿尸，凶。",
+   "reviewStatus": "imported",
+   "hexagram": 7
+  },
+  "ZY.07.L4": {
+   "id": "ZY.07.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "六四",
+   "text": "师左次，无咎。",
+   "textTrad": "師左次，无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 7
+  },
+  "ZY.07.L5": {
+   "id": "ZY.07.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "六五",
+   "text": "田有禽，利执言，无咎。长子帅师，弟子舆尸，贞凶。",
+   "textTrad": "田有禽，利執言，无咎。長子帥師，弟子輿尸，貞凶。",
+   "reviewStatus": "imported",
+   "hexagram": 7
+  },
+  "ZY.07.L6": {
+   "id": "ZY.07.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上六",
+   "text": "大君有命，开国承家，小人勿用。",
+   "textTrad": "大君有命，開國承家，小人勿用。",
+   "reviewStatus": "imported",
+   "hexagram": 7
+  },
+  "ZY.07.TUAN": {
+   "id": "ZY.07.TUAN",
+   "kind": "tuan",
+   "text": "师，众也。贞，正也。能以众正，可以王矣。刚中而应，行险而顺，以此毒天下，而民从之，吉又何咎矣。",
+   "textTrad": "師，眾也。貞，正也。能以眾正，可以王矣。剛中而應，行險而順，以此毒天下，而民從之，吉又何咎矣。",
+   "reviewStatus": "imported",
+   "hexagram": 7
+  },
+  "ZY.07.XIANG": {
+   "id": "ZY.07.XIANG",
+   "kind": "xiang",
+   "text": "地中有水，师；君子以容民畜众。",
+   "textTrad": "地中有水，師；君子以容民畜衆。",
+   "reviewStatus": "imported",
+   "hexagram": 7
+  },
+  "ZY.08.G": {
+   "id": "ZY.08.G",
+   "kind": "gua",
+   "label": "比",
+   "text": "吉。原筮元永贞，无咎。不宁方来，后夫凶。",
+   "textTrad": "吉。原筮元永貞，无咎。不寧方來，後夫凶。",
+   "reviewStatus": "imported",
+   "hexagram": 8
+  },
+  "ZY.08.L1": {
+   "id": "ZY.08.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初六",
+   "text": "有孚，比之，无咎。有孚盈缶，终来有它，吉。",
+   "textTrad": "有孚，比之，无咎。有孚盈缶，終來有它，吉。",
+   "reviewStatus": "imported",
+   "hexagram": 8
+  },
+  "ZY.08.L2": {
+   "id": "ZY.08.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "六二",
+   "text": "比之自内，贞吉。",
+   "textTrad": "比之自內，貞吉。",
+   "reviewStatus": "imported",
+   "hexagram": 8
+  },
+  "ZY.08.L3": {
+   "id": "ZY.08.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "六三",
+   "text": "比之匪人。",
+   "textTrad": "比之匪人。",
+   "reviewStatus": "imported",
+   "hexagram": 8
+  },
+  "ZY.08.L4": {
+   "id": "ZY.08.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "六四",
+   "text": "外比之，贞吉。",
+   "textTrad": "外比之，貞吉。",
+   "reviewStatus": "imported",
+   "hexagram": 8
+  },
+  "ZY.08.L5": {
+   "id": "ZY.08.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "九五",
+   "text": "显比。王用三驱，失前禽，邑人不诫，吉。",
+   "textTrad": "顯比。王用三敺，失前禽，邑人不誡，吉。",
+   "reviewStatus": "imported",
+   "hexagram": 8
+  },
+  "ZY.08.L6": {
+   "id": "ZY.08.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上六",
+   "text": "比之无首，凶。",
+   "textTrad": "比之无首，凶。",
+   "reviewStatus": "imported",
+   "hexagram": 8
+  },
+  "ZY.08.TUAN": {
+   "id": "ZY.08.TUAN",
+   "kind": "tuan",
+   "text": "比，吉也。比，辅也，下顺从也。原筮，元永贞，无咎，以刚中也。不宁方来，上下应也。后夫凶，其道穷也。",
+   "textTrad": "比，吉也。比，輔也，下順從也。原筮，元永貞，无咎，以剛中也。不寧方來，上下應也。後夫凶，其道窮也。",
+   "reviewStatus": "imported",
+   "hexagram": 8
+  },
+  "ZY.08.XIANG": {
+   "id": "ZY.08.XIANG",
+   "kind": "xiang",
+   "text": "地上有水，比；先王以建万国，亲诸侯。",
+   "textTrad": "地上有水，比；先王以建萬國，親諸侯。",
+   "reviewStatus": "imported",
+   "hexagram": 8
+  },
+  "ZY.09.G": {
+   "id": "ZY.09.G",
+   "kind": "gua",
+   "label": "小畜",
+   "text": "亨。密云不雨，自我西郊。",
+   "textTrad": "亨。密雲不雨，自我西郊。",
+   "reviewStatus": "imported",
+   "hexagram": 9
+  },
+  "ZY.09.L1": {
+   "id": "ZY.09.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初九",
+   "text": "复自道，何其咎，吉。",
+   "textTrad": "復自道，何其咎，吉。",
+   "reviewStatus": "imported",
+   "hexagram": 9
+  },
+  "ZY.09.L2": {
+   "id": "ZY.09.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "九二",
+   "text": "牵复，吉。",
+   "textTrad": "牽復，吉。",
+   "reviewStatus": "imported",
+   "hexagram": 9
+  },
+  "ZY.09.L3": {
+   "id": "ZY.09.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "九三",
+   "text": "车说輹，夫妻反目。",
+   "textTrad": "車說輹，夫妻反目。",
+   "reviewStatus": "imported",
+   "hexagram": 9
+  },
+  "ZY.09.L4": {
+   "id": "ZY.09.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "六四",
+   "text": "有孚，血去惕出，无咎。",
+   "textTrad": "有孚，血去惕出，无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 9
+  },
+  "ZY.09.L5": {
+   "id": "ZY.09.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "九五",
+   "text": "有孚挛如，富以其邻。",
+   "textTrad": "有孚攣如，富以其鄰。",
+   "reviewStatus": "imported",
+   "hexagram": 9
+  },
+  "ZY.09.L6": {
+   "id": "ZY.09.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上九",
+   "text": "既雨既处，尚得载，妇贞厉，月几望，君子征凶。",
+   "textTrad": "既雨既處，尚得載，婦貞厲，月幾望，君子征凶。",
+   "reviewStatus": "imported",
+   "hexagram": 9
+  },
+  "ZY.09.TUAN": {
+   "id": "ZY.09.TUAN",
+   "kind": "tuan",
+   "text": "小畜，柔得位而上下应之，曰小畜。健而巽，刚中而志行，乃亨。密云不雨，尚往也。自我西郊，施未行也。",
+   "textTrad": "小畜，柔得位而上下應之，曰小畜。健而巽，剛中而志行，乃亨。密雲不雨，尚往也。自我西郊，施未行也。",
+   "reviewStatus": "imported",
+   "hexagram": 9
+  },
+  "ZY.09.XIANG": {
+   "id": "ZY.09.XIANG",
+   "kind": "xiang",
+   "text": "风行天上，小畜，君子以懿文德。",
+   "textTrad": "風行天上，小畜，君子以懿文德。",
+   "reviewStatus": "imported",
+   "hexagram": 9
+  },
+  "ZY.10.G": {
+   "id": "ZY.10.G",
+   "kind": "gua",
+   "label": "履",
+   "text": "履虎尾，不咥人，亨。",
+   "textTrad": "履虎尾，不咥人，亨。",
+   "reviewStatus": "imported",
+   "hexagram": 10
+  },
+  "ZY.10.L1": {
+   "id": "ZY.10.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初九",
+   "text": "素履，往无咎。",
+   "textTrad": "素履，往无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 10
+  },
+  "ZY.10.L2": {
+   "id": "ZY.10.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "九二",
+   "text": "履道坦坦，幽人贞吉。",
+   "textTrad": "履道坦坦，幽人貞吉。",
+   "reviewStatus": "imported",
+   "hexagram": 10
+  },
+  "ZY.10.L3": {
+   "id": "ZY.10.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "六三",
+   "text": "眇能视，跛能履，履虎尾，咥人，凶。武人为于大君。",
+   "textTrad": "眇能視，跛能履，履虎尾，咥人，凶。武人為于大君。",
+   "reviewStatus": "imported",
+   "hexagram": 10
+  },
+  "ZY.10.L4": {
+   "id": "ZY.10.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "九四",
+   "text": "履虎尾，愬愬终吉。",
+   "textTrad": "履虎尾，愬愬終吉。",
+   "reviewStatus": "imported",
+   "hexagram": 10
+  },
+  "ZY.10.L5": {
+   "id": "ZY.10.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "九五",
+   "text": "夬履，贞厉。",
+   "textTrad": "夬履，貞厲。",
+   "reviewStatus": "imported",
+   "hexagram": 10
+  },
+  "ZY.10.L6": {
+   "id": "ZY.10.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上九",
+   "text": "视履考详，其旋元吉。",
+   "textTrad": "視履考詳，其旋元吉。",
+   "reviewStatus": "imported",
+   "hexagram": 10
+  },
+  "ZY.10.TUAN": {
+   "id": "ZY.10.TUAN",
+   "kind": "tuan",
+   "text": "履，柔履刚也。说而应乎乾，是以履虎尾，不咥人，亨，利贞。刚中正，履帝位而不疚，光明也。",
+   "textTrad": "履，柔履剛也。說而應乎乾，是以履虎尾，不咥人，亨，利貞。剛中正，履帝位而不疚，光明也。",
+   "reviewStatus": "imported",
+   "hexagram": 10
+  },
+  "ZY.10.XIANG": {
+   "id": "ZY.10.XIANG",
+   "kind": "xiang",
+   "text": "上天下泽，履；君子以辨上下，定民志。",
+   "textTrad": "上天下澤，履；君子以辨上下，定民志。",
+   "reviewStatus": "imported",
+   "hexagram": 10
+  },
+  "ZY.11.G": {
+   "id": "ZY.11.G",
+   "kind": "gua",
+   "label": "泰",
+   "text": "小往大来，吉亨。",
+   "textTrad": "小往大來，吉亨。",
+   "reviewStatus": "imported",
+   "hexagram": 11
+  },
+  "ZY.11.L1": {
+   "id": "ZY.11.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初九",
+   "text": "拔茅茹以其汇，征吉。",
+   "textTrad": "拔茅茹以其彙，征吉。",
+   "reviewStatus": "imported",
+   "hexagram": 11
+  },
+  "ZY.11.L2": {
+   "id": "ZY.11.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "九二",
+   "text": "包荒。用冯河，不遐遗；朋亡。得尚于中行。",
+   "textTrad": "包荒。用馮河，不遐遺；朋亡。得尚于中行。",
+   "reviewStatus": "imported",
+   "hexagram": 11
+  },
+  "ZY.11.L3": {
+   "id": "ZY.11.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "九三",
+   "text": "无平不陂，无往不复，艰贞无咎。勿恤其孚，于食有福。",
+   "textTrad": "无平不陂，无往不復，艱貞无咎。勿恤其孚，于食有福。",
+   "reviewStatus": "imported",
+   "hexagram": 11
+  },
+  "ZY.11.L4": {
+   "id": "ZY.11.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "六四",
+   "text": "翩翩，不富以其邻；不戒以孚。",
+   "textTrad": "翩翩，不富以其鄰；不戒以孚。",
+   "reviewStatus": "imported",
+   "hexagram": 11
+  },
+  "ZY.11.L5": {
+   "id": "ZY.11.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "六五",
+   "text": "帝乙归妹，以祉，元吉。",
+   "textTrad": "帝乙歸妹，以祉，元吉。",
+   "reviewStatus": "imported",
+   "hexagram": 11
+  },
+  "ZY.11.L6": {
+   "id": "ZY.11.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上六",
+   "text": "城复于隍，勿用师，自邑告命，贞吝。",
+   "textTrad": "城復于隍，勿用師，自邑告命，貞吝。",
+   "reviewStatus": "imported",
+   "hexagram": 11
+  },
+  "ZY.11.TUAN": {
+   "id": "ZY.11.TUAN",
+   "kind": "tuan",
+   "text": "泰，小往大来，吉亨。则是天地交而万物通也，上下交而其志同也。内阳而外阴，内健而外顺，内君子而外小人，君子道长，小人道消也。",
+   "textTrad": "泰，小往大來，吉亨。則是天地交而萬物通也，上下交而其志同也。內陽而外陰，內健而外順，內君子而外小人，君子道長，小人道消也。",
+   "reviewStatus": "imported",
+   "hexagram": 11
+  },
+  "ZY.11.XIANG": {
+   "id": "ZY.11.XIANG",
+   "kind": "xiang",
+   "text": "天地交，泰；后以财成天地之道，辅相天地之宜，以左右民。",
+   "textTrad": "天地交，泰；后以財成天地之道，輔相天地之宜，以左右民。",
+   "reviewStatus": "imported",
+   "hexagram": 11
+  },
+  "ZY.12.G": {
+   "id": "ZY.12.G",
+   "kind": "gua",
+   "label": "否",
+   "text": "否之匪人，不利君子贞，大往小来。",
+   "textTrad": "否之匪人，不利君子貞，大往小來。",
+   "reviewStatus": "imported",
+   "hexagram": 12
+  },
+  "ZY.12.L1": {
+   "id": "ZY.12.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初六",
+   "text": "拔茅茹以其汇，贞吉。亨。",
+   "textTrad": "拔茅茹以其彙，貞吉。亨。",
+   "reviewStatus": "imported",
+   "hexagram": 12
+  },
+  "ZY.12.L2": {
+   "id": "ZY.12.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "六二",
+   "text": "包承，小人吉，大人否。亨。",
+   "textTrad": "包承，小人吉，大人否。亨。",
+   "reviewStatus": "imported",
+   "hexagram": 12
+  },
+  "ZY.12.L3": {
+   "id": "ZY.12.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "六三",
+   "text": "包羞。",
+   "textTrad": "包羞。",
+   "reviewStatus": "imported",
+   "hexagram": 12
+  },
+  "ZY.12.L4": {
+   "id": "ZY.12.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "九四",
+   "text": "有命，无咎，畴离祉。",
+   "textTrad": "有命，无咎，疇離祉。",
+   "reviewStatus": "imported",
+   "hexagram": 12
+  },
+  "ZY.12.L5": {
+   "id": "ZY.12.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "九五",
+   "text": "休否，大人吉。其亡其亡，系于包桑。",
+   "textTrad": "休否，大人吉。其亡其亡，繫于包桑。",
+   "reviewStatus": "imported",
+   "hexagram": 12
+  },
+  "ZY.12.L6": {
+   "id": "ZY.12.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上九",
+   "text": "倾否，先否后喜。",
+   "textTrad": "傾否，先否後喜。",
+   "reviewStatus": "imported",
+   "hexagram": 12
+  },
+  "ZY.12.TUAN": {
+   "id": "ZY.12.TUAN",
+   "kind": "tuan",
+   "text": "否之匪人，不利君子贞，大往小来。则是天地不交而万物不通也，上下不交而天下无邦也。内阴而外阳，内柔而外刚，内小人而外君子，小人道长，君子道消也。",
+   "textTrad": "否之匪人，不利君子貞，大往小來。則是天地不交而萬物不通也，上下不交而天下无邦也。內陰而外陽，內柔而外剛，內小人而外君子，小人道長，君子道消也。",
+   "reviewStatus": "imported",
+   "hexagram": 12
+  },
+  "ZY.12.XIANG": {
+   "id": "ZY.12.XIANG",
+   "kind": "xiang",
+   "text": "天地不交，否；君子以俭德辟难，不可荣以禄。",
+   "textTrad": "天地不交，否；君子以儉德辟難，不可榮以祿。",
+   "reviewStatus": "imported",
+   "hexagram": 12
+  },
+  "ZY.13.G": {
+   "id": "ZY.13.G",
+   "kind": "gua",
+   "label": "同人",
+   "text": "同人于野，亨。 利涉大川，利君子贞。",
+   "textTrad": "同人于野，亨。 利涉大川，利君子貞。",
+   "reviewStatus": "imported",
+   "hexagram": 13
+  },
+  "ZY.13.L1": {
+   "id": "ZY.13.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初九",
+   "text": "同人于门，无咎。",
+   "textTrad": "同人于門，無咎。",
+   "reviewStatus": "imported",
+   "hexagram": 13
+  },
+  "ZY.13.L2": {
+   "id": "ZY.13.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "六二",
+   "text": "同人于宗，吝。",
+   "textTrad": "同人于宗，吝。",
+   "reviewStatus": "imported",
+   "hexagram": 13
+  },
+  "ZY.13.L3": {
+   "id": "ZY.13.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "九三",
+   "text": "伏戎于莽，升其高陵，三岁不兴。",
+   "textTrad": "伏戎于莽，升其高陵，三歲不興。",
+   "reviewStatus": "imported",
+   "hexagram": 13
+  },
+  "ZY.13.L4": {
+   "id": "ZY.13.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "九四",
+   "text": "乘其庸，弗克攻，吉。",
+   "textTrad": "乘其庸，弗克攻，吉。",
+   "reviewStatus": "imported",
+   "hexagram": 13
+  },
+  "ZY.13.L5": {
+   "id": "ZY.13.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "九五",
+   "text": "同人，先号啕而后笑。大师克相遇。",
+   "textTrad": "同人，先號啕而後笑。大師克相遇。",
+   "reviewStatus": "imported",
+   "hexagram": 13
+  },
+  "ZY.13.L6": {
+   "id": "ZY.13.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上九",
+   "text": "同人于郊，无悔。",
+   "textTrad": "同人于郊，無悔。",
+   "reviewStatus": "imported",
+   "hexagram": 13
+  },
+  "ZY.13.TUAN": {
+   "id": "ZY.13.TUAN",
+   "kind": "tuan",
+   "text": "同人，柔得位得中，而应乎乾，曰同人。同人曰，同人于野，亨。利涉大川，乾行也。文明以健，中正而应，君子正也。唯君子为能通天下之志。",
+   "textTrad": "同人，柔得位得中，而應乎乾，曰同人。同人曰，同人于野，亨。利涉大川，乾行也。文明以健，中正而應，君子正也。唯君子為能通天下之志。",
+   "reviewStatus": "imported",
+   "hexagram": 13
+  },
+  "ZY.13.XIANG": {
+   "id": "ZY.13.XIANG",
+   "kind": "xiang",
+   "text": "天与火，同人；君子以类族辨物。",
+   "textTrad": "天與火，同人；君子以類族辨物。",
+   "reviewStatus": "imported",
+   "hexagram": 13
+  },
+  "ZY.14.G": {
+   "id": "ZY.14.G",
+   "kind": "gua",
+   "label": "大有",
+   "text": "元亨。",
+   "textTrad": "元亨。",
+   "reviewStatus": "imported",
+   "hexagram": 14
+  },
+  "ZY.14.L1": {
+   "id": "ZY.14.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初九",
+   "text": "无交害，匪咎，艰则无咎。",
+   "textTrad": "无交害，匪咎，艱則无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 14
+  },
+  "ZY.14.L2": {
+   "id": "ZY.14.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "九二",
+   "text": "大轝以载，有攸往，无咎。",
+   "textTrad": "大轝以載，有攸往，无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 14
+  },
+  "ZY.14.L3": {
+   "id": "ZY.14.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "九三",
+   "text": "公用亨于天子，小人弗克。",
+   "textTrad": "公用亨于天子，小人弗克。",
+   "reviewStatus": "imported",
+   "hexagram": 14
+  },
+  "ZY.14.L4": {
+   "id": "ZY.14.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "九四",
+   "text": "匪其尫，无咎。",
+   "textTrad": "匪其尫，无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 14
+  },
+  "ZY.14.L5": {
+   "id": "ZY.14.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "六五",
+   "text": "厥孚交如，威如；吉。",
+   "textTrad": "厥孚交如，威如；吉。",
+   "reviewStatus": "imported",
+   "hexagram": 14
+  },
+  "ZY.14.L6": {
+   "id": "ZY.14.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上九",
+   "text": "自天佑之，吉无不利。",
+   "textTrad": "自天佑之，吉无不利。",
+   "reviewStatus": "imported",
+   "hexagram": 14
+  },
+  "ZY.14.TUAN": {
+   "id": "ZY.14.TUAN",
+   "kind": "tuan",
+   "text": "大有，柔得尊位，大中而上下应之，曰大有。其德刚健而文明，应乎天而时行，是以元亨。",
+   "textTrad": "大有，柔得尊位，大中而上下應之，曰大有。其德剛健而文明，應乎天而時行，是以元亨。",
+   "reviewStatus": "imported",
+   "hexagram": 14
+  },
+  "ZY.14.XIANG": {
+   "id": "ZY.14.XIANG",
+   "kind": "xiang",
+   "text": "火在天上，大有；君子以遏恶扬善，顺天休命。",
+   "textTrad": "火在天上，大有；君子以遏惡揚善，順天休命。",
+   "reviewStatus": "imported",
+   "hexagram": 14
+  },
+  "ZY.15.G": {
+   "id": "ZY.15.G",
+   "kind": "gua",
+   "label": "谦",
+   "text": "亨，君子有终。",
+   "textTrad": "亨，君子有終。",
+   "reviewStatus": "imported",
+   "hexagram": 15
+  },
+  "ZY.15.L1": {
+   "id": "ZY.15.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初六",
+   "text": "谦谦君子，用涉大川，吉。",
+   "textTrad": "謙謙君子，用涉大川，吉。",
+   "reviewStatus": "imported",
+   "hexagram": 15
+  },
+  "ZY.15.L2": {
+   "id": "ZY.15.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "六二",
+   "text": "鸣谦，贞吉。",
+   "textTrad": "鳴謙，貞吉。",
+   "reviewStatus": "imported",
+   "hexagram": 15
+  },
+  "ZY.15.L3": {
+   "id": "ZY.15.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "九三",
+   "text": "劳谦君子，有终吉。",
+   "textTrad": "勞謙君子，有終吉。",
+   "reviewStatus": "imported",
+   "hexagram": 15
+  },
+  "ZY.15.L4": {
+   "id": "ZY.15.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "六四",
+   "text": "无不利，㧑谦。",
+   "textTrad": "无不利，撝謙。",
+   "reviewStatus": "imported",
+   "hexagram": 15
+  },
+  "ZY.15.L5": {
+   "id": "ZY.15.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "六五",
+   "text": "不富，以其邻，利用侵伐，无不利。",
+   "textTrad": "不富，以其鄰，利用侵伐，无不利。",
+   "reviewStatus": "imported",
+   "hexagram": 15
+  },
+  "ZY.15.L6": {
+   "id": "ZY.15.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上六",
+   "text": "鸣谦，利用行师，征邑国。",
+   "textTrad": "鳴謙，利用行師，征邑國。",
+   "reviewStatus": "imported",
+   "hexagram": 15
+  },
+  "ZY.15.TUAN": {
+   "id": "ZY.15.TUAN",
+   "kind": "tuan",
+   "text": "谦，亨，天道下济而光明，地道卑而上行。天道亏盈而益谦，地道变盈而流谦，鬼神害盈而福谦，人道恶盈而好谦。谦尊而光，卑而不可逾，君子之终也。",
+   "textTrad": "謙，亨，天道下濟而光明，地道卑而上行。天道虧盈而益謙，地道變盈而流謙，鬼神害盈而福謙，人道惡盈而好謙。謙尊而光，卑而不可逾，君子之終也。",
+   "reviewStatus": "imported",
+   "hexagram": 15
+  },
+  "ZY.15.XIANG": {
+   "id": "ZY.15.XIANG",
+   "kind": "xiang",
+   "text": "地中有山，谦；君子以裒多益寡，称物平施。",
+   "textTrad": "地中有山，謙；君子以裒多益寡，稱物平施。",
+   "reviewStatus": "imported",
+   "hexagram": 15
+  },
+  "ZY.16.G": {
+   "id": "ZY.16.G",
+   "kind": "gua",
+   "label": "豫",
+   "text": "利建侯行师。",
+   "textTrad": "利建侯行師。",
+   "reviewStatus": "imported",
+   "hexagram": 16
+  },
+  "ZY.16.L1": {
+   "id": "ZY.16.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初六",
+   "text": "鸣豫，凶。",
+   "textTrad": "鳴豫，凶。",
+   "reviewStatus": "imported",
+   "hexagram": 16
+  },
+  "ZY.16.L2": {
+   "id": "ZY.16.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "六二",
+   "text": "介于石，不终日，贞吉。",
+   "textTrad": "介于石，不終日，貞吉。",
+   "reviewStatus": "imported",
+   "hexagram": 16
+  },
+  "ZY.16.L3": {
+   "id": "ZY.16.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "六三",
+   "text": "盱豫，悔。迟有悔。",
+   "textTrad": "盱豫，悔。遲有悔。",
+   "reviewStatus": "imported",
+   "hexagram": 16
+  },
+  "ZY.16.L4": {
+   "id": "ZY.16.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "九四",
+   "text": "由豫，大有得。勿疑。朋盍戠。",
+   "textTrad": "由豫，大有得。勿疑。朋盍戠。",
+   "reviewStatus": "imported",
+   "hexagram": 16
+  },
+  "ZY.16.L5": {
+   "id": "ZY.16.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "六五",
+   "text": "贞疾，恒不死。",
+   "textTrad": "貞疾，恆不死。",
+   "reviewStatus": "imported",
+   "hexagram": 16
+  },
+  "ZY.16.L6": {
+   "id": "ZY.16.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上六",
+   "text": "冥豫，成有渝，无咎。",
+   "textTrad": "冥豫，成有渝，无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 16
+  },
+  "ZY.16.TUAN": {
+   "id": "ZY.16.TUAN",
+   "kind": "tuan",
+   "text": "豫，刚应而志行，顺以动，豫。豫，顺以动，故天地如之，而况建侯行师乎？天地以顺动，故日月不过，而四时不忒；圣人以顺动，则刑罚清而民服。豫之时义大矣哉！",
+   "textTrad": "豫，剛應而志行，順以動，豫。豫，順以動，故天地如之，而況建侯行師乎？天地以順動，故日月不過，而四時不忒；聖人以順動，則刑罰清而民服。豫之時義大矣哉！",
+   "reviewStatus": "imported",
+   "hexagram": 16
+  },
+  "ZY.16.XIANG": {
+   "id": "ZY.16.XIANG",
+   "kind": "xiang",
+   "text": "雷出地奋，豫。先王以作乐崇德，殷荐之上帝，以配祖考。",
+   "textTrad": "雷出地奮，豫。先王以作樂崇德，殷薦之上帝，以配祖考。",
+   "reviewStatus": "imported",
+   "hexagram": 16
+  },
+  "ZY.17.G": {
+   "id": "ZY.17.G",
+   "kind": "gua",
+   "label": "随",
+   "text": "元亨。利贞。无咎。",
+   "textTrad": "元亨。利貞。无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 17
+  },
+  "ZY.17.L1": {
+   "id": "ZY.17.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初九",
+   "text": "官有渝，贞吉。出门交有功。",
+   "textTrad": "官有渝，貞吉。出門交有功。",
+   "reviewStatus": "imported",
+   "hexagram": 17
+  },
+  "ZY.17.L2": {
+   "id": "ZY.17.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "六二",
+   "text": "系小子，失丈夫。",
+   "textTrad": "係小子，失丈夫。",
+   "reviewStatus": "imported",
+   "hexagram": 17
+  },
+  "ZY.17.L3": {
+   "id": "ZY.17.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "六三",
+   "text": "系丈夫，失小子。随，有求得利，居贞。",
+   "textTrad": "係丈夫，失小子。隨，有求得利，居貞。",
+   "reviewStatus": "imported",
+   "hexagram": 17
+  },
+  "ZY.17.L4": {
+   "id": "ZY.17.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "九四",
+   "text": "随有获，贞凶。有孚在道，以明，何咎。",
+   "textTrad": "隨有獲，貞凶。有孚在道，以明，何咎。",
+   "reviewStatus": "imported",
+   "hexagram": 17
+  },
+  "ZY.17.L5": {
+   "id": "ZY.17.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "九五",
+   "text": "孚于嘉，吉。",
+   "textTrad": "孚于嘉，吉。",
+   "reviewStatus": "imported",
+   "hexagram": 17
+  },
+  "ZY.17.L6": {
+   "id": "ZY.17.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上六",
+   "text": "拘系之，乃从维之。王用亨于西山。",
+   "textTrad": "拘係之，乃從維之。王用亨于西山。",
+   "reviewStatus": "imported",
+   "hexagram": 17
+  },
+  "ZY.17.TUAN": {
+   "id": "ZY.17.TUAN",
+   "kind": "tuan",
+   "text": "随，刚来而下柔，动而说，随。大亨贞，无咎，而天下随时，随时之义大矣哉！",
+   "textTrad": "隨，剛來而下柔，動而說，隨。大亨貞，无咎，而天下隨時，隨時之義大矣哉！",
+   "reviewStatus": "imported",
+   "hexagram": 17
+  },
+  "ZY.17.XIANG": {
+   "id": "ZY.17.XIANG",
+   "kind": "xiang",
+   "text": "泽中有雷，随；君子以向晦入宴息。",
+   "textTrad": "澤中有雷，隨；君子以嚮晦入宴息。",
+   "reviewStatus": "imported",
+   "hexagram": 17
+  },
+  "ZY.18.G": {
+   "id": "ZY.18.G",
+   "kind": "gua",
+   "label": "蛊",
+   "text": "元亨。利涉大川。先甲三日，后甲三日。",
+   "textTrad": "元亨。利涉大川。先甲三日，後甲三日。",
+   "reviewStatus": "imported",
+   "hexagram": 18
+  },
+  "ZY.18.L1": {
+   "id": "ZY.18.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初六",
+   "text": "干父之蛊，有子考，无咎，厉终吉。",
+   "textTrad": "幹父之蠱，有子考，无咎，厲終吉。",
+   "reviewStatus": "imported",
+   "hexagram": 18
+  },
+  "ZY.18.L2": {
+   "id": "ZY.18.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "九二",
+   "text": "干母之蛊，不可贞。",
+   "textTrad": "幹母之蠱，不可貞。",
+   "reviewStatus": "imported",
+   "hexagram": 18
+  },
+  "ZY.18.L3": {
+   "id": "ZY.18.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "九三",
+   "text": "干父之蛊，小有悔，无大咎。",
+   "textTrad": "幹父之蠱，小有悔，无大咎。",
+   "reviewStatus": "imported",
+   "hexagram": 18
+  },
+  "ZY.18.L4": {
+   "id": "ZY.18.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "六四",
+   "text": "裕父之蛊，往见吝。",
+   "textTrad": "裕父之蠱，往見吝。",
+   "reviewStatus": "imported",
+   "hexagram": 18
+  },
+  "ZY.18.L5": {
+   "id": "ZY.18.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "六五",
+   "text": "干父之蛊，用誉。",
+   "textTrad": "幹父之蠱，用譽。",
+   "reviewStatus": "imported",
+   "hexagram": 18
+  },
+  "ZY.18.L6": {
+   "id": "ZY.18.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上九",
+   "text": "不事王侯，高尚其事。",
+   "textTrad": "不事王侯，高尚其事。",
+   "reviewStatus": "imported",
+   "hexagram": 18
+  },
+  "ZY.18.TUAN": {
+   "id": "ZY.18.TUAN",
+   "kind": "tuan",
+   "text": "蛊，刚上而柔下，巽而止，蛊。蛊，元亨，而天下治也。利涉大川，往有事也。先甲三日，后甲三日，终则有始，天行也。",
+   "textTrad": "蠱，剛上而柔下，巽而止，蠱。蠱，元亨，而天下治也。利涉大川，往有事也。先甲三日，後甲三日，終則有始，天行也。",
+   "reviewStatus": "imported",
+   "hexagram": 18
+  },
+  "ZY.18.XIANG": {
+   "id": "ZY.18.XIANG",
+   "kind": "xiang",
+   "text": "山下有风，蛊；君子以振民育德。",
+   "textTrad": "山下有風，蠱；君子以振民育德。",
+   "reviewStatus": "imported",
+   "hexagram": 18
+  },
+  "ZY.19.G": {
+   "id": "ZY.19.G",
+   "kind": "gua",
+   "label": "临",
+   "text": "元亨。利贞。至于八月有凶。",
+   "textTrad": "元亨。利貞。至于八月有凶。",
+   "reviewStatus": "imported",
+   "hexagram": 19
+  },
+  "ZY.19.L1": {
+   "id": "ZY.19.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初九",
+   "text": "咸临，贞吉。",
+   "textTrad": "咸臨，貞吉。",
+   "reviewStatus": "imported",
+   "hexagram": 19
+  },
+  "ZY.19.L2": {
+   "id": "ZY.19.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "九二",
+   "text": "咸临，吉无不利。",
+   "textTrad": "咸臨，吉无不利。",
+   "reviewStatus": "imported",
+   "hexagram": 19
+  },
+  "ZY.19.L3": {
+   "id": "ZY.19.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "六三",
+   "text": "甘临，无攸利。既忧之，无咎。",
+   "textTrad": "甘臨，无攸利。既憂之，无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 19
+  },
+  "ZY.19.L4": {
+   "id": "ZY.19.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "六四",
+   "text": "至临，无咎。",
+   "textTrad": "至臨，无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 19
+  },
+  "ZY.19.L5": {
+   "id": "ZY.19.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "六五",
+   "text": "知临，大君之宜，吉。",
+   "textTrad": "知臨，大君之宜，吉。",
+   "reviewStatus": "imported",
+   "hexagram": 19
+  },
+  "ZY.19.L6": {
+   "id": "ZY.19.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上六",
+   "text": "敦临，吉无咎。",
+   "textTrad": "敦臨，吉无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 19
+  },
+  "ZY.19.TUAN": {
+   "id": "ZY.19.TUAN",
+   "kind": "tuan",
+   "text": "临，刚浸而长。说而顺，刚中而应，大亨以正，天之道也。至于八月有凶，消不久也。",
+   "textTrad": "臨，剛浸而長。說而順，剛中而應，大亨以正，天之道也。至于八月有凶，消不久也。",
+   "reviewStatus": "imported",
+   "hexagram": 19
+  },
+  "ZY.19.XIANG": {
+   "id": "ZY.19.XIANG",
+   "kind": "xiang",
+   "text": "泽上有地，临；君子以教思无穷，容保民无疆。",
+   "textTrad": "澤上有地，臨；君子以教思无窮，容保民无疆。",
+   "reviewStatus": "imported",
+   "hexagram": 19
+  },
+  "ZY.20.G": {
+   "id": "ZY.20.G",
+   "kind": "gua",
+   "label": "观",
+   "text": "盥而不荐，有孚颙若。",
+   "textTrad": "盥而不薦，有孚顒若。",
+   "reviewStatus": "imported",
+   "hexagram": 20
+  },
+  "ZY.20.L1": {
+   "id": "ZY.20.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初六",
+   "text": "童观，小人无咎，君子吝。",
+   "textTrad": "童觀，小人无咎，君子吝。",
+   "reviewStatus": "imported",
+   "hexagram": 20
+  },
+  "ZY.20.L2": {
+   "id": "ZY.20.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "六二",
+   "text": "窥观，利女贞。",
+   "textTrad": "窺觀，利女貞。",
+   "reviewStatus": "imported",
+   "hexagram": 20
+  },
+  "ZY.20.L3": {
+   "id": "ZY.20.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "六三",
+   "text": "观我生，进退。",
+   "textTrad": "觀我生，進退。",
+   "reviewStatus": "imported",
+   "hexagram": 20
+  },
+  "ZY.20.L4": {
+   "id": "ZY.20.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "六四",
+   "text": "观国之光，利用宾于王。",
+   "textTrad": "觀國之光，利用賓于王。",
+   "reviewStatus": "imported",
+   "hexagram": 20
+  },
+  "ZY.20.L5": {
+   "id": "ZY.20.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "九五",
+   "text": "观我生，君子无咎。",
+   "textTrad": "觀我生，君子无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 20
+  },
+  "ZY.20.L6": {
+   "id": "ZY.20.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上九",
+   "text": "观其生，君子无咎。",
+   "textTrad": "觀其生，君子无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 20
+  },
+  "ZY.20.TUAN": {
+   "id": "ZY.20.TUAN",
+   "kind": "tuan",
+   "text": "大观在上，顺而巽，中正以观天下。观，盥而不荐，有孚颙若，下观而化也。观天之神道，而四时不忒，圣人以神道设教，而天下服矣。",
+   "textTrad": "大觀在上，順而巽，中正以觀天下。觀，盥而不薦，有孚顒若，下觀而化也。觀天之神道，而四時不忒，聖人以神道設教，而天下服矣。",
+   "reviewStatus": "imported",
+   "hexagram": 20
+  },
+  "ZY.20.XIANG": {
+   "id": "ZY.20.XIANG",
+   "kind": "xiang",
+   "text": "风行地上，观；先王以省方，观民设教。",
+   "textTrad": "風行地上，觀；先王以省方，觀民設教。",
+   "reviewStatus": "imported",
+   "hexagram": 20
+  },
+  "ZY.21.G": {
+   "id": "ZY.21.G",
+   "kind": "gua",
+   "label": "噬嗑",
+   "text": "亨。利用狱。",
+   "textTrad": "亨。利用獄。",
+   "reviewStatus": "imported",
+   "hexagram": 21
+  },
+  "ZY.21.L1": {
+   "id": "ZY.21.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初九",
+   "text": "屦校灭趾，无咎。",
+   "textTrad": "屨校滅趾，无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 21
+  },
+  "ZY.21.L2": {
+   "id": "ZY.21.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "六二",
+   "text": "噬肤灭鼻，无咎。",
+   "textTrad": "噬膚滅鼻，无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 21
+  },
+  "ZY.21.L3": {
+   "id": "ZY.21.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "六三",
+   "text": "噬昔肉，遇毒；小吝，无咎。",
+   "textTrad": "噬昔肉，遇毒；小吝，无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 21
+  },
+  "ZY.21.L4": {
+   "id": "ZY.21.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "九四",
+   "text": "噬干胏，得金矢，利艰贞，吉。",
+   "textTrad": "噬乾胏，得金矢，利艱貞，吉。",
+   "reviewStatus": "imported",
+   "hexagram": 21
+  },
+  "ZY.21.L5": {
+   "id": "ZY.21.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "六五",
+   "text": "噬干肉，得黄金，贞厉，无咎。",
+   "textTrad": "噬乾肉，得黃金，貞厲，无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 21
+  },
+  "ZY.21.L6": {
+   "id": "ZY.21.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上九",
+   "text": "何校灭耳，凶。",
+   "textTrad": "何校滅耳，凶。",
+   "reviewStatus": "imported",
+   "hexagram": 21
+  },
+  "ZY.21.TUAN": {
+   "id": "ZY.21.TUAN",
+   "kind": "tuan",
+   "text": "颐中有物，曰噬嗑，噬嗑而亨。刚柔分，动而明，雷电合而章。柔得中而上行，虽不当位，利用狱也。",
+   "textTrad": "頤中有物，曰噬嗑，噬嗑而亨。剛柔分，動而明，雷電合而章。柔得中而上行，雖不當位，利用獄也。",
+   "reviewStatus": "imported",
+   "hexagram": 21
+  },
+  "ZY.21.XIANG": {
+   "id": "ZY.21.XIANG",
+   "kind": "xiang",
+   "text": "雷电噬嗑；先王以明罚敕法。",
+   "textTrad": "雷電噬嗑；先王以明罰敕法。",
+   "reviewStatus": "imported",
+   "hexagram": 21
+  },
+  "ZY.22.G": {
+   "id": "ZY.22.G",
+   "kind": "gua",
+   "label": "贲",
+   "text": "亨。小利有攸往。",
+   "textTrad": "亨。小利有攸往。",
+   "reviewStatus": "imported",
+   "hexagram": 22
+  },
+  "ZY.22.L1": {
+   "id": "ZY.22.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初九",
+   "text": "贲其趾，舍车而徒。",
+   "textTrad": "賁其趾，舍車而徒。",
+   "reviewStatus": "imported",
+   "hexagram": 22
+  },
+  "ZY.22.L2": {
+   "id": "ZY.22.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "六二",
+   "text": "贲其须。",
+   "textTrad": "賁其須。",
+   "reviewStatus": "imported",
+   "hexagram": 22
+  },
+  "ZY.22.L3": {
+   "id": "ZY.22.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "九三",
+   "text": "贲如濡如，永贞吉。",
+   "textTrad": "賁如濡如，永貞吉。",
+   "reviewStatus": "imported",
+   "hexagram": 22
+  },
+  "ZY.22.L4": {
+   "id": "ZY.22.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "六四",
+   "text": "贲如皤如，白马翰如，匪寇婚媾。",
+   "textTrad": "賁如皤如，白馬翰如，匪寇婚媾。",
+   "reviewStatus": "imported",
+   "hexagram": 22
+  },
+  "ZY.22.L5": {
+   "id": "ZY.22.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "六五",
+   "text": "贲于丘园，束帛戋戋，吝，终吉。",
+   "textTrad": "賁於丘園，束帛戔戔，吝，終吉。",
+   "reviewStatus": "imported",
+   "hexagram": 22
+  },
+  "ZY.22.L6": {
+   "id": "ZY.22.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上九",
+   "text": "白贲，无咎。",
+   "textTrad": "白賁，无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 22
+  },
+  "ZY.22.TUAN": {
+   "id": "ZY.22.TUAN",
+   "kind": "tuan",
+   "text": "贲，亨；柔来而文刚，故亨。分刚上而文柔，故小利有攸往。刚柔交错，天文也；文明以止，人文也。观乎天文，以察时变；观乎人文，以化成天下。",
+   "textTrad": "賁，亨；柔來而文剛，故亨。分剛上而文柔，故小利有攸往。剛柔交錯，天文也；文明以止，人文也。觀乎天文，以察時變；觀乎人文，以化成天下。",
+   "reviewStatus": "imported",
+   "hexagram": 22
+  },
+  "ZY.22.XIANG": {
+   "id": "ZY.22.XIANG",
+   "kind": "xiang",
+   "text": "山下有火，贲；君子以明庶政，无敢折狱。",
+   "textTrad": "山下有火，賁；君子以明庶政，无敢折獄。",
+   "reviewStatus": "imported",
+   "hexagram": 22
+  },
+  "ZY.23.G": {
+   "id": "ZY.23.G",
+   "kind": "gua",
+   "label": "剥",
+   "text": "不利。有攸往。",
+   "textTrad": "不利。有攸往。",
+   "reviewStatus": "imported",
+   "hexagram": 23
+  },
+  "ZY.23.L1": {
+   "id": "ZY.23.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初六",
+   "text": "剥床以足，蔑贞凶。",
+   "textTrad": "剝牀以足，蔑貞凶。",
+   "reviewStatus": "imported",
+   "hexagram": 23
+  },
+  "ZY.23.L2": {
+   "id": "ZY.23.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "六二",
+   "text": "剥床以辨，蔑贞凶。",
+   "textTrad": "剝牀以辨，蔑貞凶。",
+   "reviewStatus": "imported",
+   "hexagram": 23
+  },
+  "ZY.23.L3": {
+   "id": "ZY.23.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "六三",
+   "text": "剥之，无咎。",
+   "textTrad": "剝之，无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 23
+  },
+  "ZY.23.L4": {
+   "id": "ZY.23.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "六四",
+   "text": "剥床以肤，凶。",
+   "textTrad": "剝牀以膚，凶。",
+   "reviewStatus": "imported",
+   "hexagram": 23
+  },
+  "ZY.23.L5": {
+   "id": "ZY.23.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "六五",
+   "text": "贯鱼，以宫人宠，无不利。",
+   "textTrad": "貫魚，以宮人寵，无不利。",
+   "reviewStatus": "imported",
+   "hexagram": 23
+  },
+  "ZY.23.L6": {
+   "id": "ZY.23.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上九",
+   "text": "硕果不食，君子德车，小人剥庐。",
+   "textTrad": "碩果不食，君子德車，小人剝廬。",
+   "reviewStatus": "imported",
+   "hexagram": 23
+  },
+  "ZY.23.TUAN": {
+   "id": "ZY.23.TUAN",
+   "kind": "tuan",
+   "text": "剥，剥也，柔变刚也。不利有攸往，小人长也。顺而止之，观象也。君子尚消息盈虚，天行也。",
+   "textTrad": "剝，剝也，柔變剛也。不利有攸往，小人長也。順而止之，觀象也。君子尚消息盈虛，天行也。",
+   "reviewStatus": "imported",
+   "hexagram": 23
+  },
+  "ZY.23.XIANG": {
+   "id": "ZY.23.XIANG",
+   "kind": "xiang",
+   "text": "山附地上，剥；上以厚下，安宅。",
+   "textTrad": "山附地上，剝；上以厚下，安宅。",
+   "reviewStatus": "imported",
+   "hexagram": 23
+  },
+  "ZY.24.G": {
+   "id": "ZY.24.G",
+   "kind": "gua",
+   "label": "复",
+   "text": "亨。出入无疾，朋来无咎。反复其道，七日来复，利有攸往。",
+   "textTrad": "亨。出入无疾，朋來无咎。反復其道，七日來復，利有攸往。",
+   "reviewStatus": "imported",
+   "hexagram": 24
+  },
+  "ZY.24.L1": {
+   "id": "ZY.24.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初九",
+   "text": "不远复，无祇悔，元吉。",
+   "textTrad": "不遠復，无祇悔，元吉。",
+   "reviewStatus": "imported",
+   "hexagram": 24
+  },
+  "ZY.24.L2": {
+   "id": "ZY.24.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "六二",
+   "text": "休复，吉。",
+   "textTrad": "休復，吉。",
+   "reviewStatus": "imported",
+   "hexagram": 24
+  },
+  "ZY.24.L3": {
+   "id": "ZY.24.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "六三",
+   "text": "频复，厉无咎。",
+   "textTrad": "頻復，厲无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 24
+  },
+  "ZY.24.L4": {
+   "id": "ZY.24.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "六四",
+   "text": "中行独复。",
+   "textTrad": "中行獨復。",
+   "reviewStatus": "imported",
+   "hexagram": 24
+  },
+  "ZY.24.L5": {
+   "id": "ZY.24.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "六五",
+   "text": "敦复，无悔。",
+   "textTrad": "敦復，无悔。",
+   "reviewStatus": "imported",
+   "hexagram": 24
+  },
+  "ZY.24.L6": {
+   "id": "ZY.24.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上六",
+   "text": "迷复，凶，有灾眚。用行师，终有大败，以其国君，凶；至于十年，不克征。",
+   "textTrad": "迷復，凶，有災眚。用行師，終有大敗，以其國君，凶；至于十年，不克征。",
+   "reviewStatus": "imported",
+   "hexagram": 24
+  },
+  "ZY.24.TUAN": {
+   "id": "ZY.24.TUAN",
+   "kind": "tuan",
+   "text": "复亨；刚反，动而以顺行，是以出入无疾，朋来无咎。反复其道，七日来复，天行也。利有攸往，刚长也。复其见天地之心乎？",
+   "textTrad": "復亨；剛反，動而以順行，是以出入无疾，朋來无咎。反復其道，七日來復，天行也。利有攸往，剛長也。復其見天地之心乎？",
+   "reviewStatus": "imported",
+   "hexagram": 24
+  },
+  "ZY.24.XIANG": {
+   "id": "ZY.24.XIANG",
+   "kind": "xiang",
+   "text": "雷在地中，复；先王以至日闭关，商旅不行，后不省方。",
+   "textTrad": "雷在地中，復；先王以至日閉關，商旅不行，后不省方。",
+   "reviewStatus": "imported",
+   "hexagram": 24
+  },
+  "ZY.25.G": {
+   "id": "ZY.25.G",
+   "kind": "gua",
+   "label": "无妄",
+   "text": "元亨。利贞。其匪正有眚，不利有攸往。",
+   "textTrad": "元亨。利貞。其匪正有眚，不利有攸往。",
+   "reviewStatus": "imported",
+   "hexagram": 25
+  },
+  "ZY.25.L1": {
+   "id": "ZY.25.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初九",
+   "text": "无妄，往吉。",
+   "textTrad": "无妄，往吉。",
+   "reviewStatus": "imported",
+   "hexagram": 25
+  },
+  "ZY.25.L2": {
+   "id": "ZY.25.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "六二",
+   "text": "不耕获，不菑畬，则利有攸往。",
+   "textTrad": "不耕穫，不菑畬，則利有攸往。",
+   "reviewStatus": "imported",
+   "hexagram": 25
+  },
+  "ZY.25.L3": {
+   "id": "ZY.25.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "六三",
+   "text": "无妄之灾，或系之牛，行人之得，邑人之灾。",
+   "textTrad": "无妄之災，或繫之牛，行人之得，邑人之災。",
+   "reviewStatus": "imported",
+   "hexagram": 25
+  },
+  "ZY.25.L4": {
+   "id": "ZY.25.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "九四",
+   "text": "可贞，无咎。",
+   "textTrad": "可貞，无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 25
+  },
+  "ZY.25.L5": {
+   "id": "ZY.25.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "九五",
+   "text": "无妄之疾，勿药有喜。",
+   "textTrad": "无妄之疾，勿藥有喜。",
+   "reviewStatus": "imported",
+   "hexagram": 25
+  },
+  "ZY.25.L6": {
+   "id": "ZY.25.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上九",
+   "text": "无妄，行有眚，无攸利。",
+   "textTrad": "无妄，行有眚，无攸利。",
+   "reviewStatus": "imported",
+   "hexagram": 25
+  },
+  "ZY.25.TUAN": {
+   "id": "ZY.25.TUAN",
+   "kind": "tuan",
+   "text": "无妄，刚自外来，而为主于内。动而健，刚中而应，大亨以正，天之命也。其匪正有眚，不利有攸往。无妄之往，何之矣？ 天命不佑，行矣哉？",
+   "textTrad": "无妄，剛自外來，而為主於內。動而健，剛中而應，大亨以正，天之命也。其匪正有眚，不利有攸往。无妄之往，何之矣？ 天命不佑，行矣哉？",
+   "reviewStatus": "imported",
+   "hexagram": 25
+  },
+  "ZY.25.XIANG": {
+   "id": "ZY.25.XIANG",
+   "kind": "xiang",
+   "text": "天下雷行，物与无妄；先王以茂对时，育万物。",
+   "textTrad": "天下雷行，物與无妄；先王以茂對時，育萬物。",
+   "reviewStatus": "imported",
+   "hexagram": 25
+  },
+  "ZY.26.G": {
+   "id": "ZY.26.G",
+   "kind": "gua",
+   "label": "大畜",
+   "text": "利贞，不家食吉，利涉大川。",
+   "textTrad": "利貞，不家食吉，利涉大川。",
+   "reviewStatus": "imported",
+   "hexagram": 26
+  },
+  "ZY.26.L1": {
+   "id": "ZY.26.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初九",
+   "text": "有厉利已。",
+   "textTrad": "有厲利已。",
+   "reviewStatus": "imported",
+   "hexagram": 26
+  },
+  "ZY.26.L2": {
+   "id": "ZY.26.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "九二",
+   "text": "舆说輹。",
+   "textTrad": "輿說輹。",
+   "reviewStatus": "imported",
+   "hexagram": 26
+  },
+  "ZY.26.L3": {
+   "id": "ZY.26.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "九三",
+   "text": "良马逐，利艰贞，吉。日闲舆卫，利有攸往。",
+   "textTrad": "良馬逐，利艱貞，吉。日閑輿衛，利有攸往。",
+   "reviewStatus": "imported",
+   "hexagram": 26
+  },
+  "ZY.26.L4": {
+   "id": "ZY.26.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "六四",
+   "text": "童牛之告，元吉。",
+   "textTrad": "童牛之告，元吉。",
+   "reviewStatus": "imported",
+   "hexagram": 26
+  },
+  "ZY.26.L5": {
+   "id": "ZY.26.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "六五",
+   "text": "豮豕之牙，吉。",
+   "textTrad": "豶豕之牙，吉。",
+   "reviewStatus": "imported",
+   "hexagram": 26
+  },
+  "ZY.26.L6": {
+   "id": "ZY.26.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上九",
+   "text": "何天之衢，亨。",
+   "textTrad": "何天之衢，亨。",
+   "reviewStatus": "imported",
+   "hexagram": 26
+  },
+  "ZY.26.TUAN": {
+   "id": "ZY.26.TUAN",
+   "kind": "tuan",
+   "text": "大畜，刚健笃实辉光，日新其德，刚上而尚贤。能止健，大正也。不家食吉，养贤也。利涉大川，应乎天也。",
+   "textTrad": "大畜，剛健篤實輝光，日新其德，剛上而尚賢。能止健，大正也。不家食吉，養賢也。利涉大川，應乎天也。",
+   "reviewStatus": "imported",
+   "hexagram": 26
+  },
+  "ZY.26.XIANG": {
+   "id": "ZY.26.XIANG",
+   "kind": "xiang",
+   "text": "天在山中，大畜；君子以多识前言往行，以畜其德。",
+   "textTrad": "天在山中，大畜；君子以多識前言往行，以畜其德。",
+   "reviewStatus": "imported",
+   "hexagram": 26
+  },
+  "ZY.27.G": {
+   "id": "ZY.27.G",
+   "kind": "gua",
+   "label": "颐",
+   "text": "贞吉。观颐，自求口实。",
+   "textTrad": "貞吉。觀頤，自求口實。",
+   "reviewStatus": "imported",
+   "hexagram": 27
+  },
+  "ZY.27.L1": {
+   "id": "ZY.27.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初九",
+   "text": "舍尔灵龟，观我朵颐，凶。",
+   "textTrad": "舍爾靈龜，觀我朵頤，凶。",
+   "reviewStatus": "imported",
+   "hexagram": 27
+  },
+  "ZY.27.L2": {
+   "id": "ZY.27.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "六二",
+   "text": "颠颐，拂经，于丘颐，征凶。",
+   "textTrad": "顛頤，拂經，于丘頤，征凶。",
+   "reviewStatus": "imported",
+   "hexagram": 27
+  },
+  "ZY.27.L3": {
+   "id": "ZY.27.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "六三",
+   "text": "拂颐，贞凶，十年勿用，无攸利。",
+   "textTrad": "拂頤，貞凶，十年勿用，无攸利。",
+   "reviewStatus": "imported",
+   "hexagram": 27
+  },
+  "ZY.27.L4": {
+   "id": "ZY.27.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "六四",
+   "text": "颠颐吉，虎视眈眈，其欲逐逐，无咎。",
+   "textTrad": "顛頤吉，虎視眈眈，其欲逐逐，无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 27
+  },
+  "ZY.27.L5": {
+   "id": "ZY.27.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "六五",
+   "text": "拂经，居贞吉，不可涉大川。",
+   "textTrad": "拂經，居貞吉，不可涉大川。",
+   "reviewStatus": "imported",
+   "hexagram": 27
+  },
+  "ZY.27.L6": {
+   "id": "ZY.27.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上九",
+   "text": "由颐，厉吉，利涉大川。",
+   "textTrad": "由頤，厲吉，利涉大川。",
+   "reviewStatus": "imported",
+   "hexagram": 27
+  },
+  "ZY.27.TUAN": {
+   "id": "ZY.27.TUAN",
+   "kind": "tuan",
+   "text": "颐贞吉，养正则吉也。观颐，观其所养也；自求口实，观其自养也。天地养万物，圣人养贤，以及万民；颐之时大矣哉！",
+   "textTrad": "頤貞吉，養正則吉也。觀頤，觀其所養也；自求口實，觀其自養也。天地養萬物，聖人養賢，以及萬民；頤之時大矣哉！",
+   "reviewStatus": "imported",
+   "hexagram": 27
+  },
+  "ZY.27.XIANG": {
+   "id": "ZY.27.XIANG",
+   "kind": "xiang",
+   "text": "山下有雷，颐；君子以慎言语，节饮食。",
+   "textTrad": "山下有雷，頤；君子以慎言語，節飲食。",
+   "reviewStatus": "imported",
+   "hexagram": 27
+  },
+  "ZY.28.G": {
+   "id": "ZY.28.G",
+   "kind": "gua",
+   "label": "大过",
+   "text": "栋桡，利有攸往，亨。",
+   "textTrad": "棟橈，利有攸往，亨。",
+   "reviewStatus": "imported",
+   "hexagram": 28
+  },
+  "ZY.28.L1": {
+   "id": "ZY.28.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初六",
+   "text": "藉用白茅，无咎。",
+   "textTrad": "藉用白茅，无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 28
+  },
+  "ZY.28.L2": {
+   "id": "ZY.28.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "九二",
+   "text": "枯杨生稊，老夫得其女妻，无不利。",
+   "textTrad": "枯楊生稊，老夫得其女妻，无不利。",
+   "reviewStatus": "imported",
+   "hexagram": 28
+  },
+  "ZY.28.L3": {
+   "id": "ZY.28.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "九三",
+   "text": "栋桡，凶。",
+   "textTrad": "棟橈，凶。",
+   "reviewStatus": "imported",
+   "hexagram": 28
+  },
+  "ZY.28.L4": {
+   "id": "ZY.28.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "九四",
+   "text": "栋隆，吉。有它吝。",
+   "textTrad": "棟隆，吉。有它吝。",
+   "reviewStatus": "imported",
+   "hexagram": 28
+  },
+  "ZY.28.L5": {
+   "id": "ZY.28.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "九五",
+   "text": "枯杨生华，老妇得其士夫，无咎无誉。",
+   "textTrad": "枯楊生華，老婦得其士夫，无咎无譽。",
+   "reviewStatus": "imported",
+   "hexagram": 28
+  },
+  "ZY.28.L6": {
+   "id": "ZY.28.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上六",
+   "text": "过涉灭顶，凶，无咎。",
+   "textTrad": "過涉滅頂，凶，无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 28
+  },
+  "ZY.28.TUAN": {
+   "id": "ZY.28.TUAN",
+   "kind": "tuan",
+   "text": "大过，大者过也。栋桡，本末弱也。刚过而中，巽而说行，利有攸往，乃亨。大过之时大矣哉！",
+   "textTrad": "大過，大者過也。棟橈，本末弱也。剛過而中，巽而說行，利有攸往，乃亨。大過之時大矣哉！",
+   "reviewStatus": "imported",
+   "hexagram": 28
+  },
+  "ZY.28.XIANG": {
+   "id": "ZY.28.XIANG",
+   "kind": "xiang",
+   "text": "泽灭木，大过。君子以独立不惧，遁世无闷。",
+   "textTrad": "澤滅木，大過。君子以獨立不懼，遯世无悶。",
+   "reviewStatus": "imported",
+   "hexagram": 28
+  },
+  "ZY.29.G": {
+   "id": "ZY.29.G",
+   "kind": "gua",
+   "label": "坎",
+   "text": "有孚，维心亨。行有尚。",
+   "textTrad": "有孚，維心亨。行有尚。",
+   "reviewStatus": "imported",
+   "hexagram": 29
+  },
+  "ZY.29.L1": {
+   "id": "ZY.29.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初六",
+   "text": "习坎，入于坎窞，凶。",
+   "textTrad": "習坎，入于坎窞，凶。",
+   "reviewStatus": "imported",
+   "hexagram": 29
+  },
+  "ZY.29.L2": {
+   "id": "ZY.29.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "九二",
+   "text": "坎有险，求小得。",
+   "textTrad": "坎有險，求小得。",
+   "reviewStatus": "imported",
+   "hexagram": 29
+  },
+  "ZY.29.L3": {
+   "id": "ZY.29.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "六三",
+   "text": "来之坎坎，险且枕，入于坎窞，勿用。",
+   "textTrad": "來之坎坎，險且枕，入于坎窞，勿用。",
+   "reviewStatus": "imported",
+   "hexagram": 29
+  },
+  "ZY.29.L4": {
+   "id": "ZY.29.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "六四",
+   "text": "尊酒簋，贰用缶。内约自牖，终无咎。",
+   "textTrad": "尊酒簋，貳用缶。内約自牖，終无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 29
+  },
+  "ZY.29.L5": {
+   "id": "ZY.29.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "九五",
+   "text": "坎不盈，禔既平，无咎。",
+   "textTrad": "坎不盈，禔既平，无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 29
+  },
+  "ZY.29.L6": {
+   "id": "ZY.29.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上六",
+   "text": "系用徽𬙊，寘于丛棘，三岁不得，凶。",
+   "textTrad": "係用徽纆，寘于叢棘，三歲不得，凶。",
+   "reviewStatus": "imported",
+   "hexagram": 29
+  },
+  "ZY.29.TUAN": {
+   "id": "ZY.29.TUAN",
+   "kind": "tuan",
+   "text": "习坎，重险也。水流而不盈，行险而不失其信。维心亨，乃以刚中也。行有尚，往有功也。天险不可升也，地险山川丘陵也，王公设险以守其国，坎之时用大矣哉！",
+   "textTrad": "習坎，重險也。水流而不盈，行險而不失其信。維心亨，乃以剛中也。行有尚，往有功也。天險不可升也，地險山川丘陵也，王公設險以守其國，坎之時用大矣哉！",
+   "reviewStatus": "imported",
+   "hexagram": 29
+  },
+  "ZY.29.XIANG": {
+   "id": "ZY.29.XIANG",
+   "kind": "xiang",
+   "text": "水洊至，习坎；君子以常德行，习教事。",
+   "textTrad": "水洊至，習坎；君子以常德行，習教事。",
+   "reviewStatus": "imported",
+   "hexagram": 29
+  },
+  "ZY.30.G": {
+   "id": "ZY.30.G",
+   "kind": "gua",
+   "label": "离",
+   "text": "利贞。亨。畜牝牛，吉。",
+   "textTrad": "利貞。亨。畜牝牛，吉。",
+   "reviewStatus": "imported",
+   "hexagram": 30
+  },
+  "ZY.30.L1": {
+   "id": "ZY.30.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初九",
+   "text": "履错然，敬之无咎。",
+   "textTrad": "履錯然，敬之无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 30
+  },
+  "ZY.30.L2": {
+   "id": "ZY.30.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "六二",
+   "text": "黄离，元吉。",
+   "textTrad": "黃離，元吉。",
+   "reviewStatus": "imported",
+   "hexagram": 30
+  },
+  "ZY.30.L3": {
+   "id": "ZY.30.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "九三",
+   "text": "日昃之离，不鼓缶而歌，则大耋之差，凶。",
+   "textTrad": "日昃之離，不鼓缶而歌，則大耋之差，凶。",
+   "reviewStatus": "imported",
+   "hexagram": 30
+  },
+  "ZY.30.L4": {
+   "id": "ZY.30.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "九四",
+   "text": "突如其来如，焚如，死如，弃如。",
+   "textTrad": "突如其來如，焚如，死如，棄如。",
+   "reviewStatus": "imported",
+   "hexagram": 30
+  },
+  "ZY.30.L5": {
+   "id": "ZY.30.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "六五",
+   "text": "出涕沱若，戚嗟若，吉。",
+   "textTrad": "出涕沱若，戚嗟若，吉。",
+   "reviewStatus": "imported",
+   "hexagram": 30
+  },
+  "ZY.30.L6": {
+   "id": "ZY.30.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上九",
+   "text": "王用出征，有嘉折首，获匪其丑，无咎。",
+   "textTrad": "王用出征，有嘉折首，獲匪其醜，无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 30
+  },
+  "ZY.30.TUAN": {
+   "id": "ZY.30.TUAN",
+   "kind": "tuan",
+   "text": "离，丽也；日月丽乎天，百谷草木丽乎土，重明以丽乎正，乃化成天下。柔丽乎中正，故亨；是以畜牝牛吉也。",
+   "textTrad": "離，麗也；日月麗乎天，百穀草木麗乎土，重明以麗乎正，乃化成天下。柔麗乎中正，故亨；是以畜牝牛吉也。",
+   "reviewStatus": "imported",
+   "hexagram": 30
+  },
+  "ZY.30.XIANG": {
+   "id": "ZY.30.XIANG",
+   "kind": "xiang",
+   "text": "明两作离，大人以继明照于四方。",
+   "textTrad": "明兩作離，大人以繼明照于四方。",
+   "reviewStatus": "imported",
+   "hexagram": 30
+  },
+  "ZY.31.G": {
+   "id": "ZY.31.G",
+   "kind": "gua",
+   "label": "咸",
+   "text": "亨。利贞。取女吉。",
+   "textTrad": "亨。利貞。取女吉。",
+   "reviewStatus": "imported",
+   "hexagram": 31
+  },
+  "ZY.31.L1": {
+   "id": "ZY.31.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初六",
+   "text": "咸其拇。",
+   "textTrad": "咸其拇。",
+   "reviewStatus": "imported",
+   "hexagram": 31
+  },
+  "ZY.31.L2": {
+   "id": "ZY.31.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "六二",
+   "text": "咸其腓，凶，居吉。",
+   "textTrad": "咸其腓，凶，居吉。",
+   "reviewStatus": "imported",
+   "hexagram": 31
+  },
+  "ZY.31.L3": {
+   "id": "ZY.31.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "九三",
+   "text": "咸其股，执其随，往吝。",
+   "textTrad": "咸其股，執其隨，往吝。",
+   "reviewStatus": "imported",
+   "hexagram": 31
+  },
+  "ZY.31.L4": {
+   "id": "ZY.31.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "九四",
+   "text": "贞吉悔亡，憧憧往来，朋从尔思。",
+   "textTrad": "貞吉悔亡，憧憧往來，朋從爾思。",
+   "reviewStatus": "imported",
+   "hexagram": 31
+  },
+  "ZY.31.L5": {
+   "id": "ZY.31.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "九五",
+   "text": "咸其脢，无悔。",
+   "textTrad": "咸其脢，无悔。",
+   "reviewStatus": "imported",
+   "hexagram": 31
+  },
+  "ZY.31.L6": {
+   "id": "ZY.31.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上六",
+   "text": "咸其辅，颊，舌。",
+   "textTrad": "咸其輔，頰，舌。",
+   "reviewStatus": "imported",
+   "hexagram": 31
+  },
+  "ZY.31.TUAN": {
+   "id": "ZY.31.TUAN",
+   "kind": "tuan",
+   "text": "咸，感也。柔上而刚下，二气感应以相与，止而说，男下女，是以亨利贞，取女吉也。天地感而万物化生，圣人感人心而天下和平；观其所感，而天地万物之情可见矣！",
+   "textTrad": "咸，感也。柔上而剛下，二氣感應以相與，止而說，男下女，是以亨利貞，取女吉也。天地感而萬物化生，聖人感人心而天下和平；觀其所感，而天地萬物之情可見矣！",
+   "reviewStatus": "imported",
+   "hexagram": 31
+  },
+  "ZY.31.XIANG": {
+   "id": "ZY.31.XIANG",
+   "kind": "xiang",
+   "text": "山上有泽，咸；君子以虚受人。",
+   "textTrad": "山上有澤，咸；君子以虛受人。",
+   "reviewStatus": "imported",
+   "hexagram": 31
+  },
+  "ZY.32.G": {
+   "id": "ZY.32.G",
+   "kind": "gua",
+   "label": "恒",
+   "text": "亨，无咎。利贞，利有攸往。",
+   "textTrad": "亨，无咎。利貞，利有攸往。",
+   "reviewStatus": "imported",
+   "hexagram": 32
+  },
+  "ZY.32.L1": {
+   "id": "ZY.32.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初六",
+   "text": "浚恒，贞凶，无攸利。",
+   "textTrad": "浚恆，貞凶，无攸利。",
+   "reviewStatus": "imported",
+   "hexagram": 32
+  },
+  "ZY.32.L2": {
+   "id": "ZY.32.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "九二",
+   "text": "悔亡。",
+   "textTrad": "悔亡。",
+   "reviewStatus": "imported",
+   "hexagram": 32
+  },
+  "ZY.32.L3": {
+   "id": "ZY.32.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "九三",
+   "text": "不恒其德，或承之羞，贞吝。",
+   "textTrad": "不恆其德，或承之羞，貞吝。",
+   "reviewStatus": "imported",
+   "hexagram": 32
+  },
+  "ZY.32.L4": {
+   "id": "ZY.32.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "九四",
+   "text": "田无禽。",
+   "textTrad": "田无禽。",
+   "reviewStatus": "imported",
+   "hexagram": 32
+  },
+  "ZY.32.L5": {
+   "id": "ZY.32.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "六五",
+   "text": "恒其德，贞，妇人吉，夫子凶。",
+   "textTrad": "恆其德，貞，婦人吉，夫子凶。",
+   "reviewStatus": "imported",
+   "hexagram": 32
+  },
+  "ZY.32.L6": {
+   "id": "ZY.32.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上六",
+   "text": "震恒，凶。",
+   "textTrad": "震恆，凶。",
+   "reviewStatus": "imported",
+   "hexagram": 32
+  },
+  "ZY.32.TUAN": {
+   "id": "ZY.32.TUAN",
+   "kind": "tuan",
+   "text": "恒，久也。刚上而柔下，雷风相与，巽而动，刚柔皆应，恒。恒亨无咎，利贞；久于其道也，天地之道，恒久而不已也。利有攸往，终则有始也。日月得天，而能久照，四时变化，而能久成，圣人久于其道，而天下化成；观其所恒，而天地万物之情可见矣！",
+   "textTrad": "恆，久也。剛上而柔下，雷風相與，巽而動，剛柔皆應，恆。恆亨无咎，利貞；久于其道也，天地之道，恆久而不已也。利有攸往，終則有始也。日月得天，而能久照，四時變化，而能久成，聖人久于其道，而天下化成；觀其所恆，而天地萬物之情可見矣！",
+   "reviewStatus": "imported",
+   "hexagram": 32
+  },
+  "ZY.32.XIANG": {
+   "id": "ZY.32.XIANG",
+   "kind": "xiang",
+   "text": "雷风，恒；君子以立不易方。",
+   "textTrad": "雷風，恆；君子以立不易方。",
+   "reviewStatus": "imported",
+   "hexagram": 32
+  },
+  "ZY.33.G": {
+   "id": "ZY.33.G",
+   "kind": "gua",
+   "label": "遁",
+   "text": "亨。小利贞。",
+   "textTrad": "亨。小利貞。",
+   "reviewStatus": "imported",
+   "hexagram": 33
+  },
+  "ZY.33.L1": {
+   "id": "ZY.33.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初六",
+   "text": "遁尾，厉，勿用有攸往。",
+   "textTrad": "遯尾，厲，勿用有攸往。",
+   "reviewStatus": "imported",
+   "hexagram": 33
+  },
+  "ZY.33.L2": {
+   "id": "ZY.33.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "六二",
+   "text": "执之用黄牛之革，莫之胜说。",
+   "textTrad": "執之用黃牛之革，莫之勝說。",
+   "reviewStatus": "imported",
+   "hexagram": 33
+  },
+  "ZY.33.L3": {
+   "id": "ZY.33.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "九三",
+   "text": "系遁，有疾厉，畜臣妾吉。",
+   "textTrad": "係遯，有疾厲，畜臣妾吉。",
+   "reviewStatus": "imported",
+   "hexagram": 33
+  },
+  "ZY.33.L4": {
+   "id": "ZY.33.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "九四",
+   "text": "好遁君子吉，小人否。",
+   "textTrad": "好遯君子吉，小人否。",
+   "reviewStatus": "imported",
+   "hexagram": 33
+  },
+  "ZY.33.L5": {
+   "id": "ZY.33.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "九五",
+   "text": "嘉遁，贞吉。",
+   "textTrad": "嘉遯，貞吉。",
+   "reviewStatus": "imported",
+   "hexagram": 33
+  },
+  "ZY.33.L6": {
+   "id": "ZY.33.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上九",
+   "text": "肥遁，无不利。",
+   "textTrad": "肥遯，无不利。",
+   "reviewStatus": "imported",
+   "hexagram": 33
+  },
+  "ZY.33.TUAN": {
+   "id": "ZY.33.TUAN",
+   "kind": "tuan",
+   "text": "遁亨，遁而亨也。刚当位而应，与时行也。小利贞，浸而长也。遁之时义大矣哉！",
+   "textTrad": "遯亨，遯而亨也。剛當位而應，與時行也。小利貞，浸而長也。遯之時義大矣哉！",
+   "reviewStatus": "imported",
+   "hexagram": 33
+  },
+  "ZY.33.XIANG": {
+   "id": "ZY.33.XIANG",
+   "kind": "xiang",
+   "text": "天下有山，遁；君子以远小人，不恶而严。",
+   "textTrad": "天下有山，遯；君子以遠小人，不惡而嚴。",
+   "reviewStatus": "imported",
+   "hexagram": 33
+  },
+  "ZY.34.G": {
+   "id": "ZY.34.G",
+   "kind": "gua",
+   "label": "大壮",
+   "text": "利贞。",
+   "textTrad": "利貞。",
+   "reviewStatus": "imported",
+   "hexagram": 34
+  },
+  "ZY.34.L1": {
+   "id": "ZY.34.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初九",
+   "text": "壮于趾，征凶，有孚。",
+   "textTrad": "壯于趾，征凶，有孚。",
+   "reviewStatus": "imported",
+   "hexagram": 34
+  },
+  "ZY.34.L2": {
+   "id": "ZY.34.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "九二",
+   "text": "贞吉。",
+   "textTrad": "貞吉。",
+   "reviewStatus": "imported",
+   "hexagram": 34
+  },
+  "ZY.34.L3": {
+   "id": "ZY.34.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "九三",
+   "text": "小人用壮，君子用罔，贞厉。羝羊触藩，羸其角。",
+   "textTrad": "小人用壯，君子用罔，貞厲。羝羊觸藩，羸其角。",
+   "reviewStatus": "imported",
+   "hexagram": 34
+  },
+  "ZY.34.L4": {
+   "id": "ZY.34.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "九四",
+   "text": "贞吉悔亡，藩决不羸，壮于大轝之腹。",
+   "textTrad": "貞吉悔亡，藩決不羸，壯于大轝之腹。",
+   "reviewStatus": "imported",
+   "hexagram": 34
+  },
+  "ZY.34.L5": {
+   "id": "ZY.34.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "六五",
+   "text": "丧羊于易，无悔。",
+   "textTrad": "喪羊于易，无悔。",
+   "reviewStatus": "imported",
+   "hexagram": 34
+  },
+  "ZY.34.L6": {
+   "id": "ZY.34.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上六",
+   "text": "羝羊触藩，不能退，不能遂，无攸利，艰则吉。",
+   "textTrad": "羝羊觸藩，不能退，不能遂，无攸利，艱則吉。",
+   "reviewStatus": "imported",
+   "hexagram": 34
+  },
+  "ZY.34.TUAN": {
+   "id": "ZY.34.TUAN",
+   "kind": "tuan",
+   "text": "大壮，大者壮也。刚以动，故壮。大壮利贞；大者正也。正大而天地之情可见矣！",
+   "textTrad": "大壯，大者壯也。剛以動，故壯。大壯利貞；大者正也。正大而天地之情可見矣！",
+   "reviewStatus": "imported",
+   "hexagram": 34
+  },
+  "ZY.34.XIANG": {
+   "id": "ZY.34.XIANG",
+   "kind": "xiang",
+   "text": "雷在天上，大壮；君子以非礼弗履。",
+   "textTrad": "雷在天上，大壯；君子以非禮弗履。",
+   "reviewStatus": "imported",
+   "hexagram": 34
+  },
+  "ZY.35.G": {
+   "id": "ZY.35.G",
+   "kind": "gua",
+   "label": "晋",
+   "text": "康侯用锡马蕃庶，昼日三接。",
+   "textTrad": "康侯用錫馬蕃庶，晝日三接。",
+   "reviewStatus": "imported",
+   "hexagram": 35
+  },
+  "ZY.35.L1": {
+   "id": "ZY.35.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初六",
+   "text": "晋如，摧如，贞吉。罔孚，裕无咎。",
+   "textTrad": "晉如，摧如，貞吉。罔孚，裕无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 35
+  },
+  "ZY.35.L2": {
+   "id": "ZY.35.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "六二",
+   "text": "晋如，愁如，贞吉。受兹介福，于其王母。",
+   "textTrad": "晉如，愁如，貞吉。受茲介福，于其王母。",
+   "reviewStatus": "imported",
+   "hexagram": 35
+  },
+  "ZY.35.L3": {
+   "id": "ZY.35.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "六三",
+   "text": "众允，悔亡。",
+   "textTrad": "眾允，悔亡。",
+   "reviewStatus": "imported",
+   "hexagram": 35
+  },
+  "ZY.35.L4": {
+   "id": "ZY.35.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "九四",
+   "text": "晋如鼫鼠，贞厉。",
+   "textTrad": "晉如鼫鼠，貞厲。",
+   "reviewStatus": "imported",
+   "hexagram": 35
+  },
+  "ZY.35.L5": {
+   "id": "ZY.35.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "六五",
+   "text": "悔亡，矢得勿恤，往吉无不利。",
+   "textTrad": "悔亡，矢得勿恤，往吉无不利。",
+   "reviewStatus": "imported",
+   "hexagram": 35
+  },
+  "ZY.35.L6": {
+   "id": "ZY.35.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上九",
+   "text": "晋其角，维用伐邑，厉吉无咎，贞吝。",
+   "textTrad": "晉其角，維用伐邑，厲吉无咎，貞吝。",
+   "reviewStatus": "imported",
+   "hexagram": 35
+  },
+  "ZY.35.TUAN": {
+   "id": "ZY.35.TUAN",
+   "kind": "tuan",
+   "text": "晋，进也。明出地上，顺而丽乎大明，柔进而上行。是以康侯用锡马蕃庶，昼日三接也。",
+   "textTrad": "晉，進也。明出地上，順而麗乎大明，柔進而上行。是以康侯用錫馬蕃庶，晝日三接也。",
+   "reviewStatus": "imported",
+   "hexagram": 35
+  },
+  "ZY.35.XIANG": {
+   "id": "ZY.35.XIANG",
+   "kind": "xiang",
+   "text": "明出地上，晋；君子以自昭明德。",
+   "textTrad": "明出地上，晉；君子以自昭明德。",
+   "reviewStatus": "imported",
+   "hexagram": 35
+  },
+  "ZY.36.G": {
+   "id": "ZY.36.G",
+   "kind": "gua",
+   "label": "明夷",
+   "text": "利艰贞。",
+   "textTrad": "利艱貞。",
+   "reviewStatus": "imported",
+   "hexagram": 36
+  },
+  "ZY.36.L1": {
+   "id": "ZY.36.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初九",
+   "text": "明夷于飞，垂其翼。君子于行，三日不食，有攸往，主人有言。",
+   "textTrad": "明夷于飛，垂其翼。君子于行，三日不食，有攸往，主人有言。",
+   "reviewStatus": "imported",
+   "hexagram": 36
+  },
+  "ZY.36.L2": {
+   "id": "ZY.36.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "六二",
+   "text": "明夷，夷于左股，用拯马壮，吉。",
+   "textTrad": "明夷，夷于左股，用拯馬壯，吉。",
+   "reviewStatus": "imported",
+   "hexagram": 36
+  },
+  "ZY.36.L3": {
+   "id": "ZY.36.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "九三",
+   "text": "明夷于南狩，得其大首，不可疾贞。",
+   "textTrad": "明夷于南狩，得其大首，不可疾貞。",
+   "reviewStatus": "imported",
+   "hexagram": 36
+  },
+  "ZY.36.L4": {
+   "id": "ZY.36.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "六四",
+   "text": "入于左腹，获明夷之心，于出门庭。",
+   "textTrad": "入于左腹，獲明夷之心，于出門庭。",
+   "reviewStatus": "imported",
+   "hexagram": 36
+  },
+  "ZY.36.L5": {
+   "id": "ZY.36.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "六五",
+   "text": "箕子之明夷，利贞。",
+   "textTrad": "箕子之明夷，利貞。",
+   "reviewStatus": "imported",
+   "hexagram": 36
+  },
+  "ZY.36.L6": {
+   "id": "ZY.36.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上六",
+   "text": "不明晦，初登于天，后入于地。",
+   "textTrad": "不明晦，初登于天，後入于地。",
+   "reviewStatus": "imported",
+   "hexagram": 36
+  },
+  "ZY.36.TUAN": {
+   "id": "ZY.36.TUAN",
+   "kind": "tuan",
+   "text": "明入地中，明夷。内文明而外柔顺，以蒙大难，文王以之。利艰贞，晦其明也，内难而能正其志，箕子以之。",
+   "textTrad": "明入地中，明夷。內文明而外柔順，以蒙大難，文王以之。利艱貞，晦其明也，內難而能正其志，箕子以之。",
+   "reviewStatus": "imported",
+   "hexagram": 36
+  },
+  "ZY.36.XIANG": {
+   "id": "ZY.36.XIANG",
+   "kind": "xiang",
+   "text": "明入地中，明夷；君子以莅众，用晦而明。",
+   "textTrad": "明入地中，明夷；君子以蒞眾，用晦而明。",
+   "reviewStatus": "imported",
+   "hexagram": 36
+  },
+  "ZY.37.G": {
+   "id": "ZY.37.G",
+   "kind": "gua",
+   "label": "家人",
+   "text": "利女贞。",
+   "textTrad": "利女貞。",
+   "reviewStatus": "imported",
+   "hexagram": 37
+  },
+  "ZY.37.L1": {
+   "id": "ZY.37.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初九",
+   "text": "闲有家，悔亡。",
+   "textTrad": "閑有家，悔亡。",
+   "reviewStatus": "imported",
+   "hexagram": 37
+  },
+  "ZY.37.L2": {
+   "id": "ZY.37.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "六二",
+   "text": "无攸遂，在中馈，贞吉。",
+   "textTrad": "无攸遂，在中饋，貞吉。",
+   "reviewStatus": "imported",
+   "hexagram": 37
+  },
+  "ZY.37.L3": {
+   "id": "ZY.37.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "九三",
+   "text": "家人嗃嗃，悔厉吉；妇子嘻嘻，终吝。",
+   "textTrad": "家人嗃嗃，悔厲吉；婦子嘻嘻，終吝。",
+   "reviewStatus": "imported",
+   "hexagram": 37
+  },
+  "ZY.37.L4": {
+   "id": "ZY.37.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "六四",
+   "text": "富家，大吉。",
+   "textTrad": "富家，大吉。",
+   "reviewStatus": "imported",
+   "hexagram": 37
+  },
+  "ZY.37.L5": {
+   "id": "ZY.37.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "九五",
+   "text": "王假有家，勿恤。吉。",
+   "textTrad": "王假有家，勿恤。吉。",
+   "reviewStatus": "imported",
+   "hexagram": 37
+  },
+  "ZY.37.L6": {
+   "id": "ZY.37.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上九",
+   "text": "有孚威如，终吉。",
+   "textTrad": "有孚威如，終吉。",
+   "reviewStatus": "imported",
+   "hexagram": 37
+  },
+  "ZY.37.TUAN": {
+   "id": "ZY.37.TUAN",
+   "kind": "tuan",
+   "text": "家人，女正位乎内，男正位乎外，男女正，天地之大义也。家人有严君焉，父母之谓也。父父，子子，兄兄，弟弟，夫夫，妇妇，而家道正；正家而天下定矣。",
+   "textTrad": "家人，女正位乎內，男正位乎外，男女正，天地之大義也。家人有嚴君焉，父母之謂也。父父，子子，兄兄，弟弟，夫夫，婦婦，而家道正；正家而天下定矣。",
+   "reviewStatus": "imported",
+   "hexagram": 37
+  },
+  "ZY.37.XIANG": {
+   "id": "ZY.37.XIANG",
+   "kind": "xiang",
+   "text": "风自火出，家人；君子以言有物，而行有恒。",
+   "textTrad": "風自火出，家人；君子以言有物，而行有恆。",
+   "reviewStatus": "imported",
+   "hexagram": 37
+  },
+  "ZY.38.G": {
+   "id": "ZY.38.G",
+   "kind": "gua",
+   "label": "睽",
+   "text": "小事吉。",
+   "textTrad": "小事吉。",
+   "reviewStatus": "imported",
+   "hexagram": 38
+  },
+  "ZY.38.L1": {
+   "id": "ZY.38.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初九",
+   "text": "悔亡，丧马勿逐，自复；见恶人无咎。",
+   "textTrad": "悔亡，喪馬勿逐，自復；見惡人无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 38
+  },
+  "ZY.38.L2": {
+   "id": "ZY.38.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "九二",
+   "text": "遇主于巷，无咎。",
+   "textTrad": "遇主于巷，无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 38
+  },
+  "ZY.38.L3": {
+   "id": "ZY.38.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "六三",
+   "text": "见舆曳，其牛𧤊，其人天且劓，无初有终。",
+   "textTrad": "見輿曳，其牛𧤊，其人天且劓，无初有終。",
+   "reviewStatus": "imported",
+   "hexagram": 38
+  },
+  "ZY.38.L4": {
+   "id": "ZY.38.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "九四",
+   "text": "睽孤，遇元夫，交孚，厉无咎。",
+   "textTrad": "睽孤，遇元夫，交孚，厲无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 38
+  },
+  "ZY.38.L5": {
+   "id": "ZY.38.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "六五",
+   "text": "悔亡，厥宗噬肤，往何咎。",
+   "textTrad": "悔亡，厥宗噬膚，往何咎。",
+   "reviewStatus": "imported",
+   "hexagram": 38
+  },
+  "ZY.38.L6": {
+   "id": "ZY.38.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上九",
+   "text": "睽孤， 见豕负涂，载鬼一车， 先张之弧，后说之弧，匪寇婚媾，往遇雨则吉。",
+   "textTrad": "睽孤， 見豕負涂，載鬼一車， 先張之弧，後說之弧，匪寇婚媾，往遇雨則吉。",
+   "reviewStatus": "imported",
+   "hexagram": 38
+  },
+  "ZY.38.TUAN": {
+   "id": "ZY.38.TUAN",
+   "kind": "tuan",
+   "text": "睽，火动而上，泽动而下；二女同居，其志不同行；说而丽乎明，柔进而上行，得中而应乎刚；是以小事吉。天地睽，而其事同也；男女睽，而其志通也；万物睽，而其事类也；睽之时用大矣哉！",
+   "textTrad": "睽，火動而上，澤動而下；二女同居，其志不同行；說而麗乎明，柔進而上行，得中而應乎剛；是以小事吉。天地睽，而其事同也；男女睽，而其志通也；萬物睽，而其事類也；睽之時用大矣哉！",
+   "reviewStatus": "imported",
+   "hexagram": 38
+  },
+  "ZY.38.XIANG": {
+   "id": "ZY.38.XIANG",
+   "kind": "xiang",
+   "text": "上火下泽，睽；君子以同而异。",
+   "textTrad": "上火下澤，睽；君子以同而異。",
+   "reviewStatus": "imported",
+   "hexagram": 38
+  },
+  "ZY.39.G": {
+   "id": "ZY.39.G",
+   "kind": "gua",
+   "label": "蹇",
+   "text": "利西南，不利东北；利见大人，贞吉。",
+   "textTrad": "利西南，不利東北；利見大人，貞吉。",
+   "reviewStatus": "imported",
+   "hexagram": 39
+  },
+  "ZY.39.L1": {
+   "id": "ZY.39.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初六",
+   "text": "往蹇，来誉。",
+   "textTrad": "往蹇，來譽。",
+   "reviewStatus": "imported",
+   "hexagram": 39
+  },
+  "ZY.39.L2": {
+   "id": "ZY.39.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "六二",
+   "text": "王臣蹇蹇，匪躬之故。",
+   "textTrad": "王臣蹇蹇，匪躬之故。",
+   "reviewStatus": "imported",
+   "hexagram": 39
+  },
+  "ZY.39.L3": {
+   "id": "ZY.39.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "九三",
+   "text": "往蹇来反。",
+   "textTrad": "往蹇來反。",
+   "reviewStatus": "imported",
+   "hexagram": 39
+  },
+  "ZY.39.L4": {
+   "id": "ZY.39.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "六四",
+   "text": "往蹇来连。",
+   "textTrad": "往蹇來連。",
+   "reviewStatus": "imported",
+   "hexagram": 39
+  },
+  "ZY.39.L5": {
+   "id": "ZY.39.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "九五",
+   "text": "大蹇朋来。",
+   "textTrad": "大蹇朋來。",
+   "reviewStatus": "imported",
+   "hexagram": 39
+  },
+  "ZY.39.L6": {
+   "id": "ZY.39.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上六",
+   "text": "往蹇来硕，吉；利见大人。",
+   "textTrad": "往蹇來碩，吉；利見大人。",
+   "reviewStatus": "imported",
+   "hexagram": 39
+  },
+  "ZY.39.TUAN": {
+   "id": "ZY.39.TUAN",
+   "kind": "tuan",
+   "text": "蹇，难也，险在前也。见险而能止，知矣哉！蹇利西南，往得中也；不利东北，其道穷也。利见大人，往有功也。当位贞吉，以正邦也。蹇之时用大矣哉！",
+   "textTrad": "蹇，難也，險在前也。見險而能止，知矣哉！蹇利西南，往得中也；不利東北，其道窮也。利見大人，往有功也。當位貞吉，以正邦也。蹇之時用大矣哉！",
+   "reviewStatus": "imported",
+   "hexagram": 39
+  },
+  "ZY.39.XIANG": {
+   "id": "ZY.39.XIANG",
+   "kind": "xiang",
+   "text": "山上有水，蹇；君子以反身修德。",
+   "textTrad": "山上有水，蹇；君子以反身修德。",
+   "reviewStatus": "imported",
+   "hexagram": 39
+  },
+  "ZY.40.G": {
+   "id": "ZY.40.G",
+   "kind": "gua",
+   "label": "解",
+   "text": "利西南，无所往，其来复吉。有攸往，夙吉。",
+   "textTrad": "利西南，无所往，其來復吉。有攸往，夙吉。",
+   "reviewStatus": "imported",
+   "hexagram": 40
+  },
+  "ZY.40.L1": {
+   "id": "ZY.40.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初六",
+   "text": "无咎。",
+   "textTrad": "无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 40
+  },
+  "ZY.40.L2": {
+   "id": "ZY.40.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "九二",
+   "text": "田获三狐，得黄矢，贞吉。",
+   "textTrad": "田獲三狐，得黃矢，貞吉。",
+   "reviewStatus": "imported",
+   "hexagram": 40
+  },
+  "ZY.40.L3": {
+   "id": "ZY.40.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "六三",
+   "text": "负且乘，致寇至，贞吝。",
+   "textTrad": "負且乘，致寇至，貞吝。",
+   "reviewStatus": "imported",
+   "hexagram": 40
+  },
+  "ZY.40.L4": {
+   "id": "ZY.40.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "九四",
+   "text": "解而拇，朋至斯孚。",
+   "textTrad": "解而拇，朋至斯孚。",
+   "reviewStatus": "imported",
+   "hexagram": 40
+  },
+  "ZY.40.L5": {
+   "id": "ZY.40.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "六五",
+   "text": "君子惟有解，吉；有孚于小人。",
+   "textTrad": "君子惟有解，吉；有孚于小人。",
+   "reviewStatus": "imported",
+   "hexagram": 40
+  },
+  "ZY.40.L6": {
+   "id": "ZY.40.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上六",
+   "text": "公用射隼，于高墉之上，获之，无不利。",
+   "textTrad": "公用射隼，于高墉之上，獲之，无不利。",
+   "reviewStatus": "imported",
+   "hexagram": 40
+  },
+  "ZY.40.TUAN": {
+   "id": "ZY.40.TUAN",
+   "kind": "tuan",
+   "text": "解，险以动，动而免乎险，解。解利西南，往得众也。其来复吉，乃得中也。有攸往夙吉，往有功也。天地解，而雷雨作，雷雨作，而百果草木皆甲坼，解之时义大矣哉！",
+   "textTrad": "解，險以動，動而免乎險，解。解利西南，往得眾也。其來復吉，乃得中也。有攸往夙吉，往有功也。天地解，而雷雨作，雷雨作，而百果草木皆甲坼，解之時義大矣哉！",
+   "reviewStatus": "imported",
+   "hexagram": 40
+  },
+  "ZY.40.XIANG": {
+   "id": "ZY.40.XIANG",
+   "kind": "xiang",
+   "text": "雷雨作，解；君子以赦过宥罪。",
+   "textTrad": "雷雨作，解；君子以赦過宥罪。",
+   "reviewStatus": "imported",
+   "hexagram": 40
+  },
+  "ZY.41.G": {
+   "id": "ZY.41.G",
+   "kind": "gua",
+   "label": "损",
+   "text": "有孚，元吉。无咎，可贞，利有攸往。曷之用？二簋可用享。",
+   "textTrad": "有孚，元吉。无咎，可貞，利有攸往。曷之用？二簋可用享。",
+   "reviewStatus": "imported",
+   "hexagram": 41
+  },
+  "ZY.41.L1": {
+   "id": "ZY.41.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初九",
+   "text": "祀事遄往，无咎，酌损之。",
+   "textTrad": "祀事遄往，无咎，酌損之。",
+   "reviewStatus": "imported",
+   "hexagram": 41
+  },
+  "ZY.41.L2": {
+   "id": "ZY.41.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "九二",
+   "text": "利贞，征凶，弗损益之。",
+   "textTrad": "利貞，征凶，弗損益之。",
+   "reviewStatus": "imported",
+   "hexagram": 41
+  },
+  "ZY.41.L3": {
+   "id": "ZY.41.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "六三",
+   "text": "三人行，则损一人；一人行，则得其友。",
+   "textTrad": "三人行，則損一人；一人行，則得其友。",
+   "reviewStatus": "imported",
+   "hexagram": 41
+  },
+  "ZY.41.L4": {
+   "id": "ZY.41.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "六四",
+   "text": "损其疾，使遄有喜，无咎。",
+   "textTrad": "損其疾，使遄有喜，无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 41
+  },
+  "ZY.41.L5": {
+   "id": "ZY.41.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "六五",
+   "text": "或益之，十朋之龟弗克违，元吉。",
+   "textTrad": "或益之，十朋之龜弗克違，元吉。",
+   "reviewStatus": "imported",
+   "hexagram": 41
+  },
+  "ZY.41.L6": {
+   "id": "ZY.41.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上九",
+   "text": "弗损益之，无咎，贞吉，利有攸往，得臣无家。",
+   "textTrad": "弗損益之，无咎，貞吉，利有攸往，得臣无家。",
+   "reviewStatus": "imported",
+   "hexagram": 41
+  },
+  "ZY.41.TUAN": {
+   "id": "ZY.41.TUAN",
+   "kind": "tuan",
+   "text": "损，损下益上，其道上行。损而有孚，元吉，无咎，可贞，利有攸往。曷之用？二簋可用享；二簋应有时。损刚益柔有时，损益盈虚，与时偕行。",
+   "textTrad": "損，損下益上，其道上行。損而有孚，元吉，无咎，可貞，利有攸往。曷之用？二簋可用享；二簋應有時。損剛益柔有時，損益盈虛，與時偕行。",
+   "reviewStatus": "imported",
+   "hexagram": 41
+  },
+  "ZY.41.XIANG": {
+   "id": "ZY.41.XIANG",
+   "kind": "xiang",
+   "text": "山下有泽，损；君子以惩忿窒欲。",
+   "textTrad": "山下有澤，損；君子以懲忿窒欲。",
+   "reviewStatus": "imported",
+   "hexagram": 41
+  },
+  "ZY.42.G": {
+   "id": "ZY.42.G",
+   "kind": "gua",
+   "label": "益",
+   "text": "利有攸往。利涉大川。",
+   "textTrad": "利有攸往。利涉大川。",
+   "reviewStatus": "imported",
+   "hexagram": 42
+  },
+  "ZY.42.L1": {
+   "id": "ZY.42.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初九",
+   "text": "利用为大作，元吉，无咎。",
+   "textTrad": "利用為大作，元吉，无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 42
+  },
+  "ZY.42.L2": {
+   "id": "ZY.42.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "六二",
+   "text": "或益之，十朋之龟弗克违，永贞吉。王用享于帝，吉。",
+   "textTrad": "或益之，十朋之龜弗克違，永貞吉。王用享于帝，吉。",
+   "reviewStatus": "imported",
+   "hexagram": 42
+  },
+  "ZY.42.L3": {
+   "id": "ZY.42.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "六三",
+   "text": "益之用凶事，无咎。有孚中行，告公用圭。",
+   "textTrad": "益之用凶事，无咎。有孚中行，告公用圭。",
+   "reviewStatus": "imported",
+   "hexagram": 42
+  },
+  "ZY.42.L4": {
+   "id": "ZY.42.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "六四",
+   "text": "中行，告公从。利用为依迁国。",
+   "textTrad": "中行，告公從。利用為依遷國。",
+   "reviewStatus": "imported",
+   "hexagram": 42
+  },
+  "ZY.42.L5": {
+   "id": "ZY.42.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "九五",
+   "text": "有孚惠心，勿问元吉。有孚惠我德。",
+   "textTrad": "有孚惠心，勿問元吉。有孚惠我德。",
+   "reviewStatus": "imported",
+   "hexagram": 42
+  },
+  "ZY.42.L6": {
+   "id": "ZY.42.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上九",
+   "text": "莫益之，或击之，立心勿恒，凶。",
+   "textTrad": "莫益之，或擊之，立心勿恆，凶。",
+   "reviewStatus": "imported",
+   "hexagram": 42
+  },
+  "ZY.42.TUAN": {
+   "id": "ZY.42.TUAN",
+   "kind": "tuan",
+   "text": "益，损上益下，民说无疆，自上下下，其道大光。利有攸往，中正有庆。利涉大川，木道乃行。益动而巽，日进无疆。天施地生，其益无方。凡益之道，与时偕行。",
+   "textTrad": "益，損上益下，民說无疆，自上下下，其道大光。利有攸往，中正有慶。利涉大川，木道乃行。益動而巽，日進无疆。天施地生，其益无方。凡益之道，與時偕行。",
+   "reviewStatus": "imported",
+   "hexagram": 42
+  },
+  "ZY.42.XIANG": {
+   "id": "ZY.42.XIANG",
+   "kind": "xiang",
+   "text": "风雷，益；君子以见善则迁，有过则改。",
+   "textTrad": "風雷，益；君子以見善則遷，有過則改。",
+   "reviewStatus": "imported",
+   "hexagram": 42
+  },
+  "ZY.43.G": {
+   "id": "ZY.43.G",
+   "kind": "gua",
+   "label": "夬",
+   "text": "扬于王庭，孚号，有厉，告自邑，不利即戎，利有攸往。",
+   "textTrad": "揚于王庭，孚號，有厲，告自邑，不利即戎，利有攸往。",
+   "reviewStatus": "imported",
+   "hexagram": 43
+  },
+  "ZY.43.L1": {
+   "id": "ZY.43.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初九",
+   "text": "壮于前趾，往不胜为咎。",
+   "textTrad": "壯于前趾，往不勝為咎。",
+   "reviewStatus": "imported",
+   "hexagram": 43
+  },
+  "ZY.43.L2": {
+   "id": "ZY.43.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "九二",
+   "text": "惕号，莫夜有戎，勿恤。",
+   "textTrad": "惕號，莫夜有戎，勿恤。",
+   "reviewStatus": "imported",
+   "hexagram": 43
+  },
+  "ZY.43.L3": {
+   "id": "ZY.43.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "九三",
+   "text": "壮于頄，有凶。君子夬夬，独行遇雨，若濡有愠，无咎。",
+   "textTrad": "壯于頄，有凶。君子夬夬，獨行遇雨，若濡有慍，无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 43
+  },
+  "ZY.43.L4": {
+   "id": "ZY.43.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "九四",
+   "text": "臀无肤，其行次且。牵羊悔亡，闻言不信。",
+   "textTrad": "臀无膚，其行次且。牽羊悔亡，聞言不信。",
+   "reviewStatus": "imported",
+   "hexagram": 43
+  },
+  "ZY.43.L5": {
+   "id": "ZY.43.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "九五",
+   "text": "苋陆夬夬，中行无咎。",
+   "textTrad": "莧陸夬夬，中行无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 43
+  },
+  "ZY.43.L6": {
+   "id": "ZY.43.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上六",
+   "text": "无号，终有凶。",
+   "textTrad": "无號，終有凶。",
+   "reviewStatus": "imported",
+   "hexagram": 43
+  },
+  "ZY.43.TUAN": {
+   "id": "ZY.43.TUAN",
+   "kind": "tuan",
+   "text": "夬，决也，刚决柔也。健而说，决而和，扬于王庭，柔乘五刚也。孚号有厉，其危乃光也。告自邑，不利即戎，所尚乃穷也。利有攸往，刚长乃终也。",
+   "textTrad": "夬，決也，剛決柔也。健而說，決而和，揚于王庭，柔乘五剛也。孚號有厲，其危乃光也。告自邑，不利即戎，所尚乃窮也。利有攸往，剛長乃終也。",
+   "reviewStatus": "imported",
+   "hexagram": 43
+  },
+  "ZY.43.XIANG": {
+   "id": "ZY.43.XIANG",
+   "kind": "xiang",
+   "text": "泽上于天，夬；君子以施禄及下，居德则忌。",
+   "textTrad": "澤上于天，夬；君子以施祿及下，居德則忌。",
+   "reviewStatus": "imported",
+   "hexagram": 43
+  },
+  "ZY.44.G": {
+   "id": "ZY.44.G",
+   "kind": "gua",
+   "label": "姤",
+   "text": "女壮，勿用取女。",
+   "textTrad": "女壯，勿用取女。",
+   "reviewStatus": "imported",
+   "hexagram": 44
+  },
+  "ZY.44.L1": {
+   "id": "ZY.44.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初六",
+   "text": "系于金柅，贞吉，有攸往，见凶，羸豕，孚，蹢躅。",
+   "textTrad": "系于金柅，貞吉，有攸往，見凶，羸豕，孚，蹢躅。",
+   "reviewStatus": "imported",
+   "hexagram": 44
+  },
+  "ZY.44.L2": {
+   "id": "ZY.44.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "九二",
+   "text": "包有鱼，无咎，不利宾。",
+   "textTrad": "包有魚，无咎，不利賓。",
+   "reviewStatus": "imported",
+   "hexagram": 44
+  },
+  "ZY.44.L3": {
+   "id": "ZY.44.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "九三",
+   "text": "臀无肤，其行次且，厉，无大咎。",
+   "textTrad": "臀无膚，其行次且，厲，无大咎。",
+   "reviewStatus": "imported",
+   "hexagram": 44
+  },
+  "ZY.44.L4": {
+   "id": "ZY.44.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "九四",
+   "text": "包无鱼，起凶。",
+   "textTrad": "包无魚，起凶。",
+   "reviewStatus": "imported",
+   "hexagram": 44
+  },
+  "ZY.44.L5": {
+   "id": "ZY.44.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "九五",
+   "text": "以杞包瓜，含章，有陨自天。",
+   "textTrad": "以杞包瓜，含章，有隕自天。",
+   "reviewStatus": "imported",
+   "hexagram": 44
+  },
+  "ZY.44.L6": {
+   "id": "ZY.44.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上九",
+   "text": "姤其角，吝，无咎。",
+   "textTrad": "姤其角，吝，无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 44
+  },
+  "ZY.44.TUAN": {
+   "id": "ZY.44.TUAN",
+   "kind": "tuan",
+   "text": "姤，遇也，柔遇刚也。勿用取女，不可与长也。天地相遇，品物咸章也。刚遇中正，天下大行也。姤之时义大矣哉！",
+   "textTrad": "姤，遇也，柔遇剛也。勿用取女，不可與長也。天地相遇，品物咸章也。剛遇中正，天下大行也。姤之時義大矣哉！",
+   "reviewStatus": "imported",
+   "hexagram": 44
+  },
+  "ZY.44.XIANG": {
+   "id": "ZY.44.XIANG",
+   "kind": "xiang",
+   "text": "天下有风，姤；后以施命诰四方。",
+   "textTrad": "天下有風，姤；后以施命誥四方。",
+   "reviewStatus": "imported",
+   "hexagram": 44
+  },
+  "ZY.45.G": {
+   "id": "ZY.45.G",
+   "kind": "gua",
+   "label": "萃",
+   "text": "王假有庙，利见大人，亨。利贞。用大牲吉，利有攸往。",
+   "textTrad": "王假有廟，利見大人，亨。利貞。用大牲吉，利有攸往。",
+   "reviewStatus": "imported",
+   "hexagram": 45
+  },
+  "ZY.45.L1": {
+   "id": "ZY.45.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初六",
+   "text": "有孚不终，乃乱乃萃，若号一握为笑，勿恤，往无咎。",
+   "textTrad": "有孚不終，乃亂乃萃，若號一握為笑，勿恤，往无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 45
+  },
+  "ZY.45.L2": {
+   "id": "ZY.45.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "六二",
+   "text": "引吉，无咎，孚乃利用禴。",
+   "textTrad": "引吉，无咎，孚乃利用禴。",
+   "reviewStatus": "imported",
+   "hexagram": 45
+  },
+  "ZY.45.L3": {
+   "id": "ZY.45.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "六三",
+   "text": "萃如，嗟如，无攸利，往无咎，小吝。",
+   "textTrad": "萃如，嗟如，无攸利，往无咎，小吝。",
+   "reviewStatus": "imported",
+   "hexagram": 45
+  },
+  "ZY.45.L4": {
+   "id": "ZY.45.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "九四",
+   "text": "大吉，无咎。",
+   "textTrad": "大吉，无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 45
+  },
+  "ZY.45.L5": {
+   "id": "ZY.45.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "九五",
+   "text": "萃有位，无咎。匪孚，元永贞，悔亡。",
+   "textTrad": "萃有位，无咎。匪孚，元永貞，悔亡。",
+   "reviewStatus": "imported",
+   "hexagram": 45
+  },
+  "ZY.45.L6": {
+   "id": "ZY.45.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上六",
+   "text": "赍资涕洟，无咎。",
+   "textTrad": "齎資涕洟，无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 45
+  },
+  "ZY.45.TUAN": {
+   "id": "ZY.45.TUAN",
+   "kind": "tuan",
+   "text": "萃，聚也；顺以说，刚中而应，故聚也。王假有庙，致孝享也。利见大人亨，聚以正也。用大牲吉，利有攸往，顺天命也。观其所聚，而天地万物之情可见矣。",
+   "textTrad": "萃，聚也；順以說，剛中而應，故聚也。王假有廟，致孝享也。利見大人亨，聚以正也。用大牲吉，利有攸往，順天命也。觀其所聚，而天地萬物之情可見矣。",
+   "reviewStatus": "imported",
+   "hexagram": 45
+  },
+  "ZY.45.XIANG": {
+   "id": "ZY.45.XIANG",
+   "kind": "xiang",
+   "text": "泽上于地，萃；君子以除戎器，戒不虞。",
+   "textTrad": "澤上于地，萃；君子以除戎器，戒不虞。",
+   "reviewStatus": "imported",
+   "hexagram": 45
+  },
+  "ZY.46.G": {
+   "id": "ZY.46.G",
+   "kind": "gua",
+   "label": "升",
+   "text": "元亨，用见大人，勿恤，南征吉。",
+   "textTrad": "元亨，用見大人，勿恤，南征吉。",
+   "reviewStatus": "imported",
+   "hexagram": 46
+  },
+  "ZY.46.L1": {
+   "id": "ZY.46.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初六",
+   "text": "允升，大吉。",
+   "textTrad": "允升，大吉。",
+   "reviewStatus": "imported",
+   "hexagram": 46
+  },
+  "ZY.46.L2": {
+   "id": "ZY.46.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "九二",
+   "text": "孚乃利用禴，无咎。",
+   "textTrad": "孚乃利用禴，无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 46
+  },
+  "ZY.46.L3": {
+   "id": "ZY.46.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "九三",
+   "text": "升虚邑。",
+   "textTrad": "升虛邑。",
+   "reviewStatus": "imported",
+   "hexagram": 46
+  },
+  "ZY.46.L4": {
+   "id": "ZY.46.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "六四",
+   "text": "王用享于岐山，吉无咎。",
+   "textTrad": "王用享于岐山，吉无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 46
+  },
+  "ZY.46.L5": {
+   "id": "ZY.46.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "六五",
+   "text": "贞吉，升阶。",
+   "textTrad": "貞吉，升階。",
+   "reviewStatus": "imported",
+   "hexagram": 46
+  },
+  "ZY.46.L6": {
+   "id": "ZY.46.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上六",
+   "text": "冥升，利于不息之贞。",
+   "textTrad": "冥升，利于不息之貞。",
+   "reviewStatus": "imported",
+   "hexagram": 46
+  },
+  "ZY.46.TUAN": {
+   "id": "ZY.46.TUAN",
+   "kind": "tuan",
+   "text": "柔以时升，巽而顺，刚中而应，是以大亨。用见大人，勿恤；有庆也。南征吉，志行也。",
+   "textTrad": "柔以時升，巽而順，剛中而應，是以大亨。用見大人，勿恤；有慶也。南征吉，志行也。",
+   "reviewStatus": "imported",
+   "hexagram": 46
+  },
+  "ZY.46.XIANG": {
+   "id": "ZY.46.XIANG",
+   "kind": "xiang",
+   "text": "地中生木，升；君子以顺德，积小以高大。",
+   "textTrad": "地中生木，升；君子以順德，積小以高大。",
+   "reviewStatus": "imported",
+   "hexagram": 46
+  },
+  "ZY.47.G": {
+   "id": "ZY.47.G",
+   "kind": "gua",
+   "label": "困",
+   "text": "亨，贞大人吉，无咎，有言不信。",
+   "textTrad": "亨，貞大人吉，无咎，有言不信。",
+   "reviewStatus": "imported",
+   "hexagram": 47
+  },
+  "ZY.47.L1": {
+   "id": "ZY.47.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初六",
+   "text": "臀困于株木，入于幽谷，三岁不觌。",
+   "textTrad": "臀困于株木，入于幽谷，三歲不覿。",
+   "reviewStatus": "imported",
+   "hexagram": 47
+  },
+  "ZY.47.L2": {
+   "id": "ZY.47.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "九二",
+   "text": "困于酒食，朱绂方来，利用亨祀，征凶，无咎。",
+   "textTrad": "困于酒食，朱紱方來，利用亨祀，征凶，无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 47
+  },
+  "ZY.47.L3": {
+   "id": "ZY.47.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "六三",
+   "text": "困于石，据于蒺蔾，入于其宫，不见其妻，凶。",
+   "textTrad": "困于石，據于蒺蔾，入于其宮，不見其妻，凶。",
+   "reviewStatus": "imported",
+   "hexagram": 47
+  },
+  "ZY.47.L4": {
+   "id": "ZY.47.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "九四",
+   "text": "来荼荼，困于金轝，吝，有终。",
+   "textTrad": "來荼荼，困于金轝，吝，有終。",
+   "reviewStatus": "imported",
+   "hexagram": 47
+  },
+  "ZY.47.L5": {
+   "id": "ZY.47.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "九五",
+   "text": "劓刖，困于赤绂，乃徐有说，利用祭祀。",
+   "textTrad": "劓刖，困于赤紱，乃徐有說，利用祭祀。",
+   "reviewStatus": "imported",
+   "hexagram": 47
+  },
+  "ZY.47.L6": {
+   "id": "ZY.47.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上六",
+   "text": "困于葛藟，于臲卼，曰动悔。有悔，征吉。",
+   "textTrad": "困于葛藟，于臲卼，曰動悔。有悔，征吉。",
+   "reviewStatus": "imported",
+   "hexagram": 47
+  },
+  "ZY.47.TUAN": {
+   "id": "ZY.47.TUAN",
+   "kind": "tuan",
+   "text": "困，刚掩也。险以说，困而不失其所，亨；其唯君子乎？ 贞大人吉，以刚中也。有言不信，尚口乃穷也。",
+   "textTrad": "困，剛掩也。險以說，困而不失其所，亨；其唯君子乎？ 貞大人吉，以剛中也。有言不信，尚口乃窮也。",
+   "reviewStatus": "imported",
+   "hexagram": 47
+  },
+  "ZY.47.XIANG": {
+   "id": "ZY.47.XIANG",
+   "kind": "xiang",
+   "text": "泽无水，困；君子以致命遂志。",
+   "textTrad": "澤无水，困；君子以致命遂志。",
+   "reviewStatus": "imported",
+   "hexagram": 47
+  },
+  "ZY.48.G": {
+   "id": "ZY.48.G",
+   "kind": "gua",
+   "label": "井",
+   "text": "改邑不改井，无丧无得，往来井井。汔至亦未繘井。羸其瓶，凶。",
+   "textTrad": "改邑不改井，无喪无得，往來井井。汔至亦未繘井。羸其瓶，凶。",
+   "reviewStatus": "imported",
+   "hexagram": 48
+  },
+  "ZY.48.L1": {
+   "id": "ZY.48.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初六",
+   "text": "井泥不食，旧井无禽。",
+   "textTrad": "井泥不食，舊井无禽。",
+   "reviewStatus": "imported",
+   "hexagram": 48
+  },
+  "ZY.48.L2": {
+   "id": "ZY.48.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "九二",
+   "text": "井谷射鲋，瓮敝漏。",
+   "textTrad": "井谷射鮒，瓮敝漏。",
+   "reviewStatus": "imported",
+   "hexagram": 48
+  },
+  "ZY.48.L3": {
+   "id": "ZY.48.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "九三",
+   "text": "井渫不食，为我心恻，可用汲，王明，并受其福。",
+   "textTrad": "井渫不食，為我心惻，可用汲，王明，並受其福。",
+   "reviewStatus": "imported",
+   "hexagram": 48
+  },
+  "ZY.48.L4": {
+   "id": "ZY.48.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "六四",
+   "text": "井甃，无咎。",
+   "textTrad": "井甃，无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 48
+  },
+  "ZY.48.L5": {
+   "id": "ZY.48.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "九五",
+   "text": "井冽，寒泉食。",
+   "textTrad": "井冽，寒泉食。",
+   "reviewStatus": "imported",
+   "hexagram": 48
+  },
+  "ZY.48.L6": {
+   "id": "ZY.48.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上六",
+   "text": "井收勿幕，有孚元吉。",
+   "textTrad": "井收勿幕，有孚元吉。",
+   "reviewStatus": "imported",
+   "hexagram": 48
+  },
+  "ZY.48.TUAN": {
+   "id": "ZY.48.TUAN",
+   "kind": "tuan",
+   "text": "巽乎水而上水，井；井养而不穷也。改邑不改井，乃以刚中也。汔至亦未繘井，未有功也。羸其瓶，是以凶也。",
+   "textTrad": "巽乎水而上水，井；井養而不窮也。改邑不改井，乃以剛中也。汔至亦未繘井，未有功也。羸其瓶，是以凶也。",
+   "reviewStatus": "imported",
+   "hexagram": 48
+  },
+  "ZY.48.XIANG": {
+   "id": "ZY.48.XIANG",
+   "kind": "xiang",
+   "text": "木上有水，井；君子以劳民劝相。",
+   "textTrad": "木上有水，井；君子以勞民勸相。",
+   "reviewStatus": "imported",
+   "hexagram": 48
+  },
+  "ZY.49.G": {
+   "id": "ZY.49.G",
+   "kind": "gua",
+   "label": "革",
+   "text": "已日乃孚，元亨。利贞。悔亡。",
+   "textTrad": "已日乃孚，元亨。利貞。悔亡。",
+   "reviewStatus": "imported",
+   "hexagram": 49
+  },
+  "ZY.49.L1": {
+   "id": "ZY.49.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初九",
+   "text": "巩用黄牛之革。",
+   "textTrad": "鞏用黃牛之革。",
+   "reviewStatus": "imported",
+   "hexagram": 49
+  },
+  "ZY.49.L2": {
+   "id": "ZY.49.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "六二",
+   "text": "已日乃革之，征吉，无咎。",
+   "textTrad": "已日乃革之，征吉，无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 49
+  },
+  "ZY.49.L3": {
+   "id": "ZY.49.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "九三",
+   "text": "征凶，贞厉，革言三就，有孚。",
+   "textTrad": "征凶，貞厲，革言三就，有孚。",
+   "reviewStatus": "imported",
+   "hexagram": 49
+  },
+  "ZY.49.L4": {
+   "id": "ZY.49.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "九四",
+   "text": "悔亡，有孚改命，吉。",
+   "textTrad": "悔亡，有孚改命，吉。",
+   "reviewStatus": "imported",
+   "hexagram": 49
+  },
+  "ZY.49.L5": {
+   "id": "ZY.49.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "九五",
+   "text": "大人虎变，未占有孚。",
+   "textTrad": "大人虎變，未占有孚。",
+   "reviewStatus": "imported",
+   "hexagram": 49
+  },
+  "ZY.49.L6": {
+   "id": "ZY.49.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上六",
+   "text": "君子豹变，小人革面，征凶，居贞吉。",
+   "textTrad": "君子豹變，小人革面，征凶，居貞吉。",
+   "reviewStatus": "imported",
+   "hexagram": 49
+  },
+  "ZY.49.TUAN": {
+   "id": "ZY.49.TUAN",
+   "kind": "tuan",
+   "text": "革，水火相息，二女同居，其志不相得，曰革。已日乃孚；革而信也。文明以说，大亨以正，革而当，其悔乃亡。天地革而四时成，汤武革命，顺乎天而应乎人，革之时义大矣哉！",
+   "textTrad": "革，水火相息，二女同居，其志不相得，曰革。已日乃孚；革而信也。文明以說，大亨以正，革而當，其悔乃亡。天地革而四時成，湯武革命，順乎天而應乎人，革之時義大矣哉！",
+   "reviewStatus": "imported",
+   "hexagram": 49
+  },
+  "ZY.49.XIANG": {
+   "id": "ZY.49.XIANG",
+   "kind": "xiang",
+   "text": "泽中有火，革；君子以治历明时。",
+   "textTrad": "澤中有火，革；君子以治歷明時。",
+   "reviewStatus": "imported",
+   "hexagram": 49
+  },
+  "ZY.50.G": {
+   "id": "ZY.50.G",
+   "kind": "gua",
+   "label": "鼎",
+   "text": "元吉，亨。",
+   "textTrad": "元吉，亨。",
+   "reviewStatus": "imported",
+   "hexagram": 50
+  },
+  "ZY.50.L1": {
+   "id": "ZY.50.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初六",
+   "text": "鼎颠趾，利出否，得妾以其子，无咎。",
+   "textTrad": "鼎顛趾，利出否，得妾以其子，无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 50
+  },
+  "ZY.50.L2": {
+   "id": "ZY.50.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "九二",
+   "text": "鼎有实，我仇有疾，不我能即，吉。",
+   "textTrad": "鼎有實，我仇有疾，不我能即，吉。",
+   "reviewStatus": "imported",
+   "hexagram": 50
+  },
+  "ZY.50.L3": {
+   "id": "ZY.50.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "九三",
+   "text": "鼎耳革，其行塞，雉膏不食，方雨亏悔，终吉。",
+   "textTrad": "鼎耳革，其行塞，雉膏不食，方雨虧悔，終吉。",
+   "reviewStatus": "imported",
+   "hexagram": 50
+  },
+  "ZY.50.L4": {
+   "id": "ZY.50.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "九四",
+   "text": "鼎折足，覆公𫗧，其刑渥，凶。",
+   "textTrad": "鼎折足，覆公餗，其刑渥，凶。",
+   "reviewStatus": "imported",
+   "hexagram": 50
+  },
+  "ZY.50.L5": {
+   "id": "ZY.50.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "六五",
+   "text": "鼎黄耳金铉，利贞。",
+   "textTrad": "鼎黃耳金鉉，利貞。",
+   "reviewStatus": "imported",
+   "hexagram": 50
+  },
+  "ZY.50.L6": {
+   "id": "ZY.50.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上九",
+   "text": "鼎玉铉，大吉，无不利。",
+   "textTrad": "鼎玉鉉，大吉，无不利。",
+   "reviewStatus": "imported",
+   "hexagram": 50
+  },
+  "ZY.50.TUAN": {
+   "id": "ZY.50.TUAN",
+   "kind": "tuan",
+   "text": "鼎，象也。以木巽火，亨饪也。圣人亨以享上帝，而大亨以养圣贤。巽而耳目聪明，柔进而上行，得中而应乎刚，是以元亨。",
+   "textTrad": "鼎，象也。以木巽火，亨飪也。聖人亨以享上帝，而大亨以養聖賢。巽而耳目聰明，柔進而上行，得中而應乎剛，是以元亨。",
+   "reviewStatus": "imported",
+   "hexagram": 50
+  },
+  "ZY.50.XIANG": {
+   "id": "ZY.50.XIANG",
+   "kind": "xiang",
+   "text": "木上有火，鼎；君子以正位凝命。",
+   "textTrad": "木上有火，鼎；君子以正位凝命。",
+   "reviewStatus": "imported",
+   "hexagram": 50
+  },
+  "ZY.51.G": {
+   "id": "ZY.51.G",
+   "kind": "gua",
+   "label": "震",
+   "text": "亨。震来虩虩，笑言哑哑。震惊百里，不丧匕鬯。",
+   "textTrad": "亨。震來虩虩，笑言啞啞。震驚百里，不喪匕鬯。",
+   "reviewStatus": "imported",
+   "hexagram": 51
+  },
+  "ZY.51.L1": {
+   "id": "ZY.51.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初九",
+   "text": "震来虩虩，后笑言哑哑，吉。",
+   "textTrad": "震來虩虩，後笑言啞啞，吉。",
+   "reviewStatus": "imported",
+   "hexagram": 51
+  },
+  "ZY.51.L2": {
+   "id": "ZY.51.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "六二",
+   "text": "震来厉，亿丧贝，跻于九陵，勿逐，七日得。",
+   "textTrad": "震來厲，億喪貝，躋于九陵，勿逐，七日得。",
+   "reviewStatus": "imported",
+   "hexagram": 51
+  },
+  "ZY.51.L3": {
+   "id": "ZY.51.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "六三",
+   "text": "震苏苏，震行无眚。",
+   "textTrad": "震蘇蘇，震行无眚。",
+   "reviewStatus": "imported",
+   "hexagram": 51
+  },
+  "ZY.51.L4": {
+   "id": "ZY.51.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "九四",
+   "text": "震遂泥。",
+   "textTrad": "震遂泥。",
+   "reviewStatus": "imported",
+   "hexagram": 51
+  },
+  "ZY.51.L5": {
+   "id": "ZY.51.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "六五",
+   "text": "震往来厉，亿无丧，有事。",
+   "textTrad": "震往來厲，億无喪，有事。",
+   "reviewStatus": "imported",
+   "hexagram": 51
+  },
+  "ZY.51.L6": {
+   "id": "ZY.51.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上六",
+   "text": "震索索，视矍矍，征凶。震不于其躬，于其邻，无咎。婚媾有言。",
+   "textTrad": "震索索，視矍矍，征凶。震不于其躬，于其鄰，无咎。婚媾有言。",
+   "reviewStatus": "imported",
+   "hexagram": 51
+  },
+  "ZY.51.TUAN": {
+   "id": "ZY.51.TUAN",
+   "kind": "tuan",
+   "text": "震，亨。震来虩虩，恐致福也。笑言哑哑，后有则也。震惊百里，惊远而惧迩也。出可以守宗庙社稷，以为祭主也。",
+   "textTrad": "震，亨。震來虩虩，恐致福也。笑言啞啞，後有則也。震驚百里，驚遠而懼邇也。出可以守宗廟社稷，以為祭主也。",
+   "reviewStatus": "imported",
+   "hexagram": 51
+  },
+  "ZY.51.XIANG": {
+   "id": "ZY.51.XIANG",
+   "kind": "xiang",
+   "text": "洊雷，震；君子以恐惧修省。",
+   "textTrad": "洊雷，震；君子以恐懼修省。",
+   "reviewStatus": "imported",
+   "hexagram": 51
+  },
+  "ZY.52.G": {
+   "id": "ZY.52.G",
+   "kind": "gua",
+   "label": "艮",
+   "text": "艮其背，不获其身，行其庭，不见其人，无咎。",
+   "textTrad": "艮其背，不獲其身，行其庭，不見其人，无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 52
+  },
+  "ZY.52.L1": {
+   "id": "ZY.52.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初六",
+   "text": "艮其趾，无咎，利永贞。",
+   "textTrad": "艮其趾，无咎，利永貞。",
+   "reviewStatus": "imported",
+   "hexagram": 52
+  },
+  "ZY.52.L2": {
+   "id": "ZY.52.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "六二",
+   "text": "艮其腓，不拯其随，其心不快。",
+   "textTrad": "艮其腓，不拯其隨，其心不快。",
+   "reviewStatus": "imported",
+   "hexagram": 52
+  },
+  "ZY.52.L3": {
+   "id": "ZY.52.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "九三",
+   "text": "艮其限，裂其夤，厉阍心。",
+   "textTrad": "艮其限，裂其夤，厲閽心。",
+   "reviewStatus": "imported",
+   "hexagram": 52
+  },
+  "ZY.52.L4": {
+   "id": "ZY.52.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "六四",
+   "text": "艮其身，无咎。",
+   "textTrad": "艮其身，无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 52
+  },
+  "ZY.52.L5": {
+   "id": "ZY.52.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "六五",
+   "text": "艮其辅，言有孚，悔亡。",
+   "textTrad": "艮其輔，言有孚，悔亡。",
+   "reviewStatus": "imported",
+   "hexagram": 52
+  },
+  "ZY.52.L6": {
+   "id": "ZY.52.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上九",
+   "text": "敦艮，吉。",
+   "textTrad": "敦艮，吉。",
+   "reviewStatus": "imported",
+   "hexagram": 52
+  },
+  "ZY.52.TUAN": {
+   "id": "ZY.52.TUAN",
+   "kind": "tuan",
+   "text": "艮，止也。时止则止，时行则行，动静不失其时，其道光明。艮其止，止其所也。上下敌应，不相与也。是以不获其身，行其庭不见其人，无咎也。",
+   "textTrad": "艮，止也。時止則止，時行則行，動靜不失其時，其道光明。艮其止，止其所也。上下敵應，不相與也。是以不獲其身，行其庭不見其人，无咎也。",
+   "reviewStatus": "imported",
+   "hexagram": 52
+  },
+  "ZY.52.XIANG": {
+   "id": "ZY.52.XIANG",
+   "kind": "xiang",
+   "text": "兼山，艮；君子以思不出其位。",
+   "textTrad": "兼山，艮；君子以思不出其位。",
+   "reviewStatus": "imported",
+   "hexagram": 52
+  },
+  "ZY.53.G": {
+   "id": "ZY.53.G",
+   "kind": "gua",
+   "label": "渐",
+   "text": "女归吉，利贞。",
+   "textTrad": "女歸吉，利貞。",
+   "reviewStatus": "imported",
+   "hexagram": 53
+  },
+  "ZY.53.L1": {
+   "id": "ZY.53.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初六",
+   "text": "鸿渐于干，小子厉，有言，无咎。",
+   "textTrad": "鴻漸于干，小子厲，有言，无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 53
+  },
+  "ZY.53.L2": {
+   "id": "ZY.53.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "六二",
+   "text": "鸿渐于磐，饮食衎衎，吉。",
+   "textTrad": "鴻漸于磐，飲食衎衎，吉。",
+   "reviewStatus": "imported",
+   "hexagram": 53
+  },
+  "ZY.53.L3": {
+   "id": "ZY.53.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "九三",
+   "text": "鸿渐于陆，夫征不复，妇孕不育，凶；利御寇。",
+   "textTrad": "鴻漸于陸，夫征不復，婦孕不育，凶；利禦寇。",
+   "reviewStatus": "imported",
+   "hexagram": 53
+  },
+  "ZY.53.L4": {
+   "id": "ZY.53.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "六四",
+   "text": "鸿渐于木，或得其桷，无咎。",
+   "textTrad": "鴻漸于木，或得其桷，无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 53
+  },
+  "ZY.53.L5": {
+   "id": "ZY.53.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "九五",
+   "text": "鸿渐于陵，妇三岁不孕，终莫之胜，吉。",
+   "textTrad": "鴻漸于陵，婦三歲不孕，終莫之勝，吉。",
+   "reviewStatus": "imported",
+   "hexagram": 53
+  },
+  "ZY.53.L6": {
+   "id": "ZY.53.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上九",
+   "text": "鸿渐于陆，其羽可用为仪，吉。",
+   "textTrad": "鴻漸于陸，其羽可用為儀，吉。",
+   "reviewStatus": "imported",
+   "hexagram": 53
+  },
+  "ZY.53.TUAN": {
+   "id": "ZY.53.TUAN",
+   "kind": "tuan",
+   "text": "渐之进也，女归吉也。进得位，往有功也。进以正，可以正邦也。其位刚，得中也。止而巽，动不穷也。",
+   "textTrad": "漸之進也，女歸吉也。進得位，往有功也。進以正，可以正邦也。其位剛，得中也。止而巽，動不窮也。",
+   "reviewStatus": "imported",
+   "hexagram": 53
+  },
+  "ZY.53.XIANG": {
+   "id": "ZY.53.XIANG",
+   "kind": "xiang",
+   "text": "山上有木，渐；君子以居贤德，善俗。",
+   "textTrad": "山上有木，漸；君子以居賢德，善俗。",
+   "reviewStatus": "imported",
+   "hexagram": 53
+  },
+  "ZY.54.G": {
+   "id": "ZY.54.G",
+   "kind": "gua",
+   "label": "归妹",
+   "text": "征凶，无攸利。",
+   "textTrad": "征凶，无攸利。",
+   "reviewStatus": "imported",
+   "hexagram": 54
+  },
+  "ZY.54.L1": {
+   "id": "ZY.54.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初九",
+   "text": "归妹以娣，跛能履，征吉。",
+   "textTrad": "歸妹以娣，跛能履，征吉。",
+   "reviewStatus": "imported",
+   "hexagram": 54
+  },
+  "ZY.54.L2": {
+   "id": "ZY.54.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "九二",
+   "text": "眇能视，利幽人之贞。",
+   "textTrad": "眇能視，利幽人之貞。",
+   "reviewStatus": "imported",
+   "hexagram": 54
+  },
+  "ZY.54.L3": {
+   "id": "ZY.54.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "六三",
+   "text": "归妹以须，反归以娣。",
+   "textTrad": "歸妹以須，反歸以娣。",
+   "reviewStatus": "imported",
+   "hexagram": 54
+  },
+  "ZY.54.L4": {
+   "id": "ZY.54.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "九四",
+   "text": "归妹愆期，迟归有时。",
+   "textTrad": "歸妹愆期，遲歸有時。",
+   "reviewStatus": "imported",
+   "hexagram": 54
+  },
+  "ZY.54.L5": {
+   "id": "ZY.54.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "六五",
+   "text": "帝乙归妹，其君之袂，不如其娣之袂良，月几望，吉。",
+   "textTrad": "帝乙歸妹，其君之袂，不如其娣之袂良，月幾望，吉。",
+   "reviewStatus": "imported",
+   "hexagram": 54
+  },
+  "ZY.54.L6": {
+   "id": "ZY.54.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上六",
+   "text": "女承筐无实，士刲羊无血，无攸利。",
+   "textTrad": "女承筐无實，士刲羊无血，无攸利。",
+   "reviewStatus": "imported",
+   "hexagram": 54
+  },
+  "ZY.54.TUAN": {
+   "id": "ZY.54.TUAN",
+   "kind": "tuan",
+   "text": "归妹，天地之大义也。天地不交，而万物不兴，归妹人之终始也。说以动，所归妹也。征凶，位不当也。无攸利，柔乘刚也。",
+   "textTrad": "歸妹，天地之大義也。天地不交，而萬物不興，歸妹人之終始也。說以動，所歸妹也。征凶，位不當也。无攸利，柔乘剛也。",
+   "reviewStatus": "imported",
+   "hexagram": 54
+  },
+  "ZY.54.XIANG": {
+   "id": "ZY.54.XIANG",
+   "kind": "xiang",
+   "text": "泽上有雷，归妹；君子以永终知敝。",
+   "textTrad": "澤上有雷，歸妹；君子以永終知敝。",
+   "reviewStatus": "imported",
+   "hexagram": 54
+  },
+  "ZY.55.G": {
+   "id": "ZY.55.G",
+   "kind": "gua",
+   "label": "丰",
+   "text": "亨。王假之，勿忧，宜日中。",
+   "textTrad": "亨。王假之，勿憂，宜日中。",
+   "reviewStatus": "imported",
+   "hexagram": 55
+  },
+  "ZY.55.L1": {
+   "id": "ZY.55.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初九",
+   "text": "遇其配主，虽旬无咎，往有尚。",
+   "textTrad": "遇其配主，雖旬无咎，往有尚。",
+   "reviewStatus": "imported",
+   "hexagram": 55
+  },
+  "ZY.55.L2": {
+   "id": "ZY.55.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "六二",
+   "text": "丰其蔀，日中见斗，往得疑疾，有孚发若，吉。",
+   "textTrad": "豐其蔀，日中見斗，往得疑疾，有孚發若，吉。",
+   "reviewStatus": "imported",
+   "hexagram": 55
+  },
+  "ZY.55.L3": {
+   "id": "ZY.55.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "九三",
+   "text": "丰其沛，日中见沬，折其右肱，无咎。",
+   "textTrad": "豐其沛，日中見沬，折其右肱，无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 55
+  },
+  "ZY.55.L4": {
+   "id": "ZY.55.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "九四",
+   "text": "丰其蔀，日中见斗，遇其夷主，吉。",
+   "textTrad": "豐其蔀，日中見斗，遇其夷主，吉。",
+   "reviewStatus": "imported",
+   "hexagram": 55
+  },
+  "ZY.55.L5": {
+   "id": "ZY.55.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "六五",
+   "text": "来章，有庆誉，吉。",
+   "textTrad": "來章，有慶譽，吉。",
+   "reviewStatus": "imported",
+   "hexagram": 55
+  },
+  "ZY.55.L6": {
+   "id": "ZY.55.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上六",
+   "text": "丰其屋，蔀其家，窥其户，阒其无人，三岁不觌，凶。",
+   "textTrad": "豐其屋，蔀其家，窺其戶，闃其无人，三歲不觌，凶。",
+   "reviewStatus": "imported",
+   "hexagram": 55
+  },
+  "ZY.55.TUAN": {
+   "id": "ZY.55.TUAN",
+   "kind": "tuan",
+   "text": "丰，大也。明以动，故丰。王假之，尚大也。勿忧宜日中，宜照天下也。日中则昃，月盈则食，天地盈虚，与时消息，而况于人乎？况于鬼神乎？",
+   "textTrad": "豐，大也。明以動，故豐。王假之，尚大也。勿憂宜日中，宜照天下也。日中則昃，月盈則食，天地盈虛，與時消息，而況于人乎？況于鬼神乎？",
+   "reviewStatus": "imported",
+   "hexagram": 55
+  },
+  "ZY.55.XIANG": {
+   "id": "ZY.55.XIANG",
+   "kind": "xiang",
+   "text": "雷电皆至，丰；君子以折狱致刑。",
+   "textTrad": "雷電皆至，豐；君子以折獄致刑。",
+   "reviewStatus": "imported",
+   "hexagram": 55
+  },
+  "ZY.56.G": {
+   "id": "ZY.56.G",
+   "kind": "gua",
+   "label": "旅",
+   "text": "小亨，旅贞吉。",
+   "textTrad": "小亨，旅貞吉。",
+   "reviewStatus": "imported",
+   "hexagram": 56
+  },
+  "ZY.56.L1": {
+   "id": "ZY.56.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初六",
+   "text": "旅琐琐，斯其所取灾。",
+   "textTrad": "旅瑣瑣，斯其所取災。",
+   "reviewStatus": "imported",
+   "hexagram": 56
+  },
+  "ZY.56.L2": {
+   "id": "ZY.56.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "六二",
+   "text": "旅即次，怀其资，得僮仆贞。",
+   "textTrad": "旅即次，懷其資，得僮僕貞。",
+   "reviewStatus": "imported",
+   "hexagram": 56
+  },
+  "ZY.56.L3": {
+   "id": "ZY.56.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "九三",
+   "text": "旅焚其次，丧其僮仆，贞厉。",
+   "textTrad": "旅焚其次，喪其僮僕，貞厲。",
+   "reviewStatus": "imported",
+   "hexagram": 56
+  },
+  "ZY.56.L4": {
+   "id": "ZY.56.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "九四",
+   "text": "旅于处，得其资斧，我心不快。",
+   "textTrad": "旅于處，得其資斧，我心不快。",
+   "reviewStatus": "imported",
+   "hexagram": 56
+  },
+  "ZY.56.L5": {
+   "id": "ZY.56.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "六五",
+   "text": "射雉一矢亡，终以誉命。",
+   "textTrad": "射雉一矢亡，終以譽命。",
+   "reviewStatus": "imported",
+   "hexagram": 56
+  },
+  "ZY.56.L6": {
+   "id": "ZY.56.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上九",
+   "text": "鸟焚其巢，旅人先笑后号咷。丧牛于易，凶。",
+   "textTrad": "鳥焚其巢，旅人先笑後號咷。喪牛于易，凶。",
+   "reviewStatus": "imported",
+   "hexagram": 56
+  },
+  "ZY.56.TUAN": {
+   "id": "ZY.56.TUAN",
+   "kind": "tuan",
+   "text": "旅，小亨，柔得中乎外，而顺乎刚，止而丽乎明，是以小亨，旅贞吉也。旅之时义大矣哉！",
+   "textTrad": "旅，小亨，柔得中乎外，而順乎剛，止而麗乎明，是以小亨，旅貞吉也。旅之時義大矣哉！",
+   "reviewStatus": "imported",
+   "hexagram": 56
+  },
+  "ZY.56.XIANG": {
+   "id": "ZY.56.XIANG",
+   "kind": "xiang",
+   "text": "山上有火，旅；君子以明慎用刑，而不留狱。",
+   "textTrad": "山上有火，旅；君子以明慎用刑，而不留獄。",
+   "reviewStatus": "imported",
+   "hexagram": 56
+  },
+  "ZY.57.G": {
+   "id": "ZY.57.G",
+   "kind": "gua",
+   "label": "巽",
+   "text": "小亨。利有攸往。利见大人。",
+   "textTrad": "小亨。利有攸往。利見大人。",
+   "reviewStatus": "imported",
+   "hexagram": 57
+  },
+  "ZY.57.L1": {
+   "id": "ZY.57.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初六",
+   "text": "进退，利武人之贞。",
+   "textTrad": "進退，利武人之貞。",
+   "reviewStatus": "imported",
+   "hexagram": 57
+  },
+  "ZY.57.L2": {
+   "id": "ZY.57.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "九二",
+   "text": "巽在床下，用史巫纷若，吉无咎。",
+   "textTrad": "巽在牀下，用史巫紛若，吉无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 57
+  },
+  "ZY.57.L3": {
+   "id": "ZY.57.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "九三",
+   "text": "频巽，吝。",
+   "textTrad": "頻巽，吝。",
+   "reviewStatus": "imported",
+   "hexagram": 57
+  },
+  "ZY.57.L4": {
+   "id": "ZY.57.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "六四",
+   "text": "悔亡，田获三品。",
+   "textTrad": "悔亡，田獲三品。",
+   "reviewStatus": "imported",
+   "hexagram": 57
+  },
+  "ZY.57.L5": {
+   "id": "ZY.57.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "九五",
+   "text": "贞吉悔亡，无不利。无初有终，先庚三日，后庚三日，吉。",
+   "textTrad": "貞吉悔亡，无不利。无初有終，先庚三日，後庚三日，吉。",
+   "reviewStatus": "imported",
+   "hexagram": 57
+  },
+  "ZY.57.L6": {
+   "id": "ZY.57.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上九",
+   "text": "巽在床下，丧其资斧，贞凶。",
+   "textTrad": "巽在牀下，喪其資斧，貞凶。",
+   "reviewStatus": "imported",
+   "hexagram": 57
+  },
+  "ZY.57.TUAN": {
+   "id": "ZY.57.TUAN",
+   "kind": "tuan",
+   "text": "重巽以申命，刚巽乎中正而志行。柔皆顺乎刚，是以小亨，利有攸往，利见大人。",
+   "textTrad": "重巽以申命，剛巽乎中正而志行。柔皆順乎剛，是以小亨，利有攸往，利見大人。",
+   "reviewStatus": "imported",
+   "hexagram": 57
+  },
+  "ZY.57.XIANG": {
+   "id": "ZY.57.XIANG",
+   "kind": "xiang",
+   "text": "随风，巽；君子以申命行事。",
+   "textTrad": "隨風，巽；君子以申命行事。",
+   "reviewStatus": "imported",
+   "hexagram": 57
+  },
+  "ZY.58.G": {
+   "id": "ZY.58.G",
+   "kind": "gua",
+   "label": "兑",
+   "text": "亨。利贞。",
+   "textTrad": "亨。利貞。",
+   "reviewStatus": "imported",
+   "hexagram": 58
+  },
+  "ZY.58.L1": {
+   "id": "ZY.58.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初九",
+   "text": "和兑，吉。",
+   "textTrad": "和兌，吉。",
+   "reviewStatus": "imported",
+   "hexagram": 58
+  },
+  "ZY.58.L2": {
+   "id": "ZY.58.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "九二",
+   "text": "孚兑，吉，悔亡。",
+   "textTrad": "孚兌，吉，悔亡。",
+   "reviewStatus": "imported",
+   "hexagram": 58
+  },
+  "ZY.58.L3": {
+   "id": "ZY.58.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "六三",
+   "text": "来兑，凶。",
+   "textTrad": "來兌，凶。",
+   "reviewStatus": "imported",
+   "hexagram": 58
+  },
+  "ZY.58.L4": {
+   "id": "ZY.58.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "九四",
+   "text": "商兑，未宁，介疾有喜。",
+   "textTrad": "商兌，未寧，介疾有喜。",
+   "reviewStatus": "imported",
+   "hexagram": 58
+  },
+  "ZY.58.L5": {
+   "id": "ZY.58.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "九五",
+   "text": "孚于剥，有厉。",
+   "textTrad": "孚于剝，有厲。",
+   "reviewStatus": "imported",
+   "hexagram": 58
+  },
+  "ZY.58.L6": {
+   "id": "ZY.58.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上六",
+   "text": "引兑。",
+   "textTrad": "引兌。",
+   "reviewStatus": "imported",
+   "hexagram": 58
+  },
+  "ZY.58.TUAN": {
+   "id": "ZY.58.TUAN",
+   "kind": "tuan",
+   "text": "兑，说也。刚中而柔外，说以利贞，是以顺乎天，而应乎人。说以先民，民忘其劳；说以犯难，民忘其死；说之大，民劝矣哉！",
+   "textTrad": "兌，說也。剛中而柔外，說以利貞，是以順乎天，而應乎人。說以先民，民忘其勞；說以犯難，民忘其死；說之大，民勸矣哉！",
+   "reviewStatus": "imported",
+   "hexagram": 58
+  },
+  "ZY.58.XIANG": {
+   "id": "ZY.58.XIANG",
+   "kind": "xiang",
+   "text": "丽泽，兑；君子以朋友讲习。",
+   "textTrad": "麗澤，兌；君子以朋友講習。",
+   "reviewStatus": "imported",
+   "hexagram": 58
+  },
+  "ZY.59.G": {
+   "id": "ZY.59.G",
+   "kind": "gua",
+   "label": "涣",
+   "text": "亨，王假有庙，利涉大川，利贞。",
+   "textTrad": "亨，王假有廟，利涉大川，利貞。",
+   "reviewStatus": "imported",
+   "hexagram": 59
+  },
+  "ZY.59.L1": {
+   "id": "ZY.59.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初六",
+   "text": "用拯马壮，吉，悔亡。",
+   "textTrad": "用拯馬壯，吉，悔亡。",
+   "reviewStatus": "imported",
+   "hexagram": 59
+  },
+  "ZY.59.L2": {
+   "id": "ZY.59.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "九二",
+   "text": "涣奔其机，悔亡。",
+   "textTrad": "渙奔其机，悔亡。",
+   "reviewStatus": "imported",
+   "hexagram": 59
+  },
+  "ZY.59.L3": {
+   "id": "ZY.59.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "六三",
+   "text": "涣其躬，无悔。",
+   "textTrad": "渙其躬，无悔。",
+   "reviewStatus": "imported",
+   "hexagram": 59
+  },
+  "ZY.59.L4": {
+   "id": "ZY.59.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "六四",
+   "text": "涣其群，元吉。涣有丘，匪夷所思。",
+   "textTrad": "渙其群，元吉。渙有丘，匪夷所思。",
+   "reviewStatus": "imported",
+   "hexagram": 59
+  },
+  "ZY.59.L5": {
+   "id": "ZY.59.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "九五",
+   "text": "涣汗其大号，涣王居，无咎。",
+   "textTrad": "渙汗其大號，渙王居，无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 59
+  },
+  "ZY.59.L6": {
+   "id": "ZY.59.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上九",
+   "text": "涣其血，去逖出，无咎。",
+   "textTrad": "渙其血，去逖出，无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 59
+  },
+  "ZY.59.TUAN": {
+   "id": "ZY.59.TUAN",
+   "kind": "tuan",
+   "text": "涣，亨。刚来而不穷，柔得位乎外而上同。王假有庙，王乃在中也。利涉大川，乘木有功也。",
+   "textTrad": "渙，亨。剛來而不窮，柔得位乎外而上同。王假有廟，王乃在中也。利涉大川，乘木有功也。",
+   "reviewStatus": "imported",
+   "hexagram": 59
+  },
+  "ZY.59.XIANG": {
+   "id": "ZY.59.XIANG",
+   "kind": "xiang",
+   "text": "风行水上，涣；先王以享于帝立庙。",
+   "textTrad": "風行水上，渙；先王以享于帝立廟。",
+   "reviewStatus": "imported",
+   "hexagram": 59
+  },
+  "ZY.60.G": {
+   "id": "ZY.60.G",
+   "kind": "gua",
+   "label": "节",
+   "text": "亨。苦节不可贞。",
+   "textTrad": "亨。苦節不可貞。",
+   "reviewStatus": "imported",
+   "hexagram": 60
+  },
+  "ZY.60.L1": {
+   "id": "ZY.60.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初九",
+   "text": "不出户庭，无咎。",
+   "textTrad": "不出戶庭，无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 60
+  },
+  "ZY.60.L2": {
+   "id": "ZY.60.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "九二",
+   "text": "不出门庭，凶。",
+   "textTrad": "不出門庭，凶。",
+   "reviewStatus": "imported",
+   "hexagram": 60
+  },
+  "ZY.60.L3": {
+   "id": "ZY.60.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "六三",
+   "text": "不节若，则嗟若，无咎。",
+   "textTrad": "不節若，則嗟若，无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 60
+  },
+  "ZY.60.L4": {
+   "id": "ZY.60.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "六四",
+   "text": "安节，亨。",
+   "textTrad": "安節，亨。",
+   "reviewStatus": "imported",
+   "hexagram": 60
+  },
+  "ZY.60.L5": {
+   "id": "ZY.60.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "九五",
+   "text": "甘节，吉；往有尚。",
+   "textTrad": "甘節，吉；往有尚。",
+   "reviewStatus": "imported",
+   "hexagram": 60
+  },
+  "ZY.60.L6": {
+   "id": "ZY.60.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上六",
+   "text": "苦节，贞凶，悔亡。",
+   "textTrad": "苦節，貞凶，悔亡。",
+   "reviewStatus": "imported",
+   "hexagram": 60
+  },
+  "ZY.60.TUAN": {
+   "id": "ZY.60.TUAN",
+   "kind": "tuan",
+   "text": "节，亨，刚柔分，而刚得中。苦节不可贞，其道穷也。说以行险，当位以节，中正以通。天地节而四时成，节以制度，不伤财，不害民。",
+   "textTrad": "節，亨，剛柔分，而剛得中。苦節不可貞，其道窮也。說以行險，當位以節，中正以通。天地節而四時成，節以制度，不傷財，不害民。",
+   "reviewStatus": "imported",
+   "hexagram": 60
+  },
+  "ZY.60.XIANG": {
+   "id": "ZY.60.XIANG",
+   "kind": "xiang",
+   "text": "泽上有水，节；君子以制数度，议德行。",
+   "textTrad": "澤上有水，節；君子以制數度，議德行。",
+   "reviewStatus": "imported",
+   "hexagram": 60
+  },
+  "ZY.61.G": {
+   "id": "ZY.61.G",
+   "kind": "gua",
+   "label": "中孚",
+   "text": "豚鱼吉，利涉大川，利贞。",
+   "textTrad": "豚魚吉，利涉大川，利貞。",
+   "reviewStatus": "imported",
+   "hexagram": 61
+  },
+  "ZY.61.L1": {
+   "id": "ZY.61.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初九",
+   "text": "虞吉，有它不燕。",
+   "textTrad": "虞吉，有它不燕。",
+   "reviewStatus": "imported",
+   "hexagram": 61
+  },
+  "ZY.61.L2": {
+   "id": "ZY.61.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "九二",
+   "text": "鸣鹤在阴，其子和之，我有好爵，吾与尔靡之。",
+   "textTrad": "鳴鶴在陰，其子和之，我有好爵，吾與爾靡之。",
+   "reviewStatus": "imported",
+   "hexagram": 61
+  },
+  "ZY.61.L3": {
+   "id": "ZY.61.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "六三",
+   "text": "得敌，或鼓或罢，或泣或歌。",
+   "textTrad": "得敵，或鼓或罷，或泣或歌。",
+   "reviewStatus": "imported",
+   "hexagram": 61
+  },
+  "ZY.61.L4": {
+   "id": "ZY.61.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "六四",
+   "text": "月既望，马匹亡，无咎。",
+   "textTrad": "月既望，馬匹亡，无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 61
+  },
+  "ZY.61.L5": {
+   "id": "ZY.61.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "九五",
+   "text": "有孚挛如，无咎。",
+   "textTrad": "有孚攣如，无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 61
+  },
+  "ZY.61.L6": {
+   "id": "ZY.61.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上九",
+   "text": "翰音登于天，贞凶。",
+   "textTrad": "翰音登于天，貞凶。",
+   "reviewStatus": "imported",
+   "hexagram": 61
+  },
+  "ZY.61.TUAN": {
+   "id": "ZY.61.TUAN",
+   "kind": "tuan",
+   "text": "中孚，柔在内而刚得中。说而巽，孚，乃化邦也。豚鱼吉，信及豚鱼也。利涉大川，乘木舟虚也。中孚以利贞，乃应乎天也。",
+   "textTrad": "中孚，柔在內而剛得中。說而巽，孚，乃化邦也。豚魚吉，信及豚魚也。利涉大川，乘木舟虛也。中孚以利貞，乃應乎天也。",
+   "reviewStatus": "imported",
+   "hexagram": 61
+  },
+  "ZY.61.XIANG": {
+   "id": "ZY.61.XIANG",
+   "kind": "xiang",
+   "text": "泽上有风，中孚；君子以议狱缓死。",
+   "textTrad": "澤上有風，中孚；君子以議獄緩死。",
+   "reviewStatus": "imported",
+   "hexagram": 61
+  },
+  "ZY.62.G": {
+   "id": "ZY.62.G",
+   "kind": "gua",
+   "label": "小过",
+   "text": "亨。利贞。可小事，不可大事。飞鸟遗之音，不宜上宜下，大吉。",
+   "textTrad": "亨。利貞。可小事，不可大事。飛鳥遺之音，不宜上宜下，大吉。",
+   "reviewStatus": "imported",
+   "hexagram": 62
+  },
+  "ZY.62.L1": {
+   "id": "ZY.62.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初六",
+   "text": "飞鸟以凶。",
+   "textTrad": "飛鳥以凶。",
+   "reviewStatus": "imported",
+   "hexagram": 62
+  },
+  "ZY.62.L2": {
+   "id": "ZY.62.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "六二",
+   "text": "过其祖，遇其妣；不及其君，遇其臣；无咎。",
+   "textTrad": "過其祖，遇其妣；不及其君，遇其臣；无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 62
+  },
+  "ZY.62.L3": {
+   "id": "ZY.62.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "九三",
+   "text": "弗过防之，从或戕之，凶。",
+   "textTrad": "弗過防之，從或戕之，凶。",
+   "reviewStatus": "imported",
+   "hexagram": 62
+  },
+  "ZY.62.L4": {
+   "id": "ZY.62.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "九四",
+   "text": "无咎，弗过遇之。往厉必戒，勿用永贞。",
+   "textTrad": "无咎，弗過遇之。往厲必戒，勿用永貞。",
+   "reviewStatus": "imported",
+   "hexagram": 62
+  },
+  "ZY.62.L5": {
+   "id": "ZY.62.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "六五",
+   "text": "密云不雨，自我西郊，公弋取彼在穴。",
+   "textTrad": "密雲不雨，自我西郊，公弋取彼在穴。",
+   "reviewStatus": "imported",
+   "hexagram": 62
+  },
+  "ZY.62.L6": {
+   "id": "ZY.62.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上六",
+   "text": "弗遇过之，飞鸟离之，凶，是谓灾眚。",
+   "textTrad": "弗遇過之，飛鳥離之，凶，是謂災眚。",
+   "reviewStatus": "imported",
+   "hexagram": 62
+  },
+  "ZY.62.TUAN": {
+   "id": "ZY.62.TUAN",
+   "kind": "tuan",
+   "text": "小过，小者过而亨也。过以利贞，与时行也。柔得中，是以小事吉也。刚失位而不中，是以不可大事也。有飞鸟之象焉，有飞鸟遗之音，不宜上宜下，大吉；上逆而下顺也。",
+   "textTrad": "小過，小者過而亨也。過以利貞，與時行也。柔得中，是以小事吉也。剛失位而不中，是以不可大事也。有飛鳥之象焉，有飛鳥遺之音，不宜上宜下，大吉；上逆而下順也。",
+   "reviewStatus": "imported",
+   "hexagram": 62
+  },
+  "ZY.62.XIANG": {
+   "id": "ZY.62.XIANG",
+   "kind": "xiang",
+   "text": "山上有雷，小过；君子以行过乎恭，丧过乎哀，用过乎俭。",
+   "textTrad": "山上有雷，小過；君子以行過乎恭，喪過乎哀，用過乎儉。",
+   "reviewStatus": "imported",
+   "hexagram": 62
+  },
+  "ZY.63.G": {
+   "id": "ZY.63.G",
+   "kind": "gua",
+   "label": "既济",
+   "text": "亨小。利贞。初吉终乱。",
+   "textTrad": "亨小。利貞。初吉終亂。",
+   "reviewStatus": "imported",
+   "hexagram": 63
+  },
+  "ZY.63.L1": {
+   "id": "ZY.63.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初九",
+   "text": "曳其轮，濡其尾，无咎。",
+   "textTrad": "曳其輪，濡其尾，无咎。",
+   "reviewStatus": "imported",
+   "hexagram": 63
+  },
+  "ZY.63.L2": {
+   "id": "ZY.63.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "六二",
+   "text": "妇丧其茀，勿逐，七日得。",
+   "textTrad": "婦喪其茀，勿逐，七日得。",
+   "reviewStatus": "imported",
+   "hexagram": 63
+  },
+  "ZY.63.L3": {
+   "id": "ZY.63.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "九三",
+   "text": "高宗伐鬼方，三年克之，小人勿用。",
+   "textTrad": "高宗伐鬼方，三年克之，小人勿用。",
+   "reviewStatus": "imported",
+   "hexagram": 63
+  },
+  "ZY.63.L4": {
+   "id": "ZY.63.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "六四",
+   "text": "𦈡有衣袽，终日戒。",
+   "textTrad": "繻有衣袽，終日戒。",
+   "reviewStatus": "imported",
+   "hexagram": 63
+  },
+  "ZY.63.L5": {
+   "id": "ZY.63.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "九五",
+   "text": "东邻杀牛，不如西邻之禴祭，实受其福。",
+   "textTrad": "東鄰殺牛，不如西鄰之禴祭，實受其福。",
+   "reviewStatus": "imported",
+   "hexagram": 63
+  },
+  "ZY.63.L6": {
+   "id": "ZY.63.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上六",
+   "text": "濡其首，厉。",
+   "textTrad": "濡其首，厲。",
+   "reviewStatus": "imported",
+   "hexagram": 63
+  },
+  "ZY.63.TUAN": {
+   "id": "ZY.63.TUAN",
+   "kind": "tuan",
+   "text": "既济，亨，小者亨也。利贞，刚柔正而位当也。初吉，柔得中也。终止则乱，其道穷也。",
+   "textTrad": "既濟，亨，小者亨也。利貞，剛柔正而位當也。初吉，柔得中也。終止則亂，其道窮也。",
+   "reviewStatus": "imported",
+   "hexagram": 63
+  },
+  "ZY.63.XIANG": {
+   "id": "ZY.63.XIANG",
+   "kind": "xiang",
+   "text": "水在火上，既济；君子以思患而豫防之。",
+   "textTrad": "水在火上，既濟；君子以思患而豫防之。",
+   "reviewStatus": "imported",
+   "hexagram": 63
+  },
+  "ZY.64.G": {
+   "id": "ZY.64.G",
+   "kind": "gua",
+   "label": "未济",
+   "text": "亨。小狐汔济，濡其尾，无攸利。",
+   "textTrad": "亨。小狐汔濟，濡其尾，无攸利。",
+   "reviewStatus": "imported",
+   "hexagram": 64
+  },
+  "ZY.64.L1": {
+   "id": "ZY.64.L1",
+   "kind": "yao",
+   "line": 1,
+   "label": "初六",
+   "text": "濡其尾，吝。",
+   "textTrad": "濡其尾，吝。",
+   "reviewStatus": "imported",
+   "hexagram": 64
+  },
+  "ZY.64.L2": {
+   "id": "ZY.64.L2",
+   "kind": "yao",
+   "line": 2,
+   "label": "九二",
+   "text": "曳其轮，贞吉。",
+   "textTrad": "曳其輪，貞吉。",
+   "reviewStatus": "imported",
+   "hexagram": 64
+  },
+  "ZY.64.L3": {
+   "id": "ZY.64.L3",
+   "kind": "yao",
+   "line": 3,
+   "label": "六三",
+   "text": "未济，征凶，利涉大川。",
+   "textTrad": "未濟，征凶，利涉大川。",
+   "reviewStatus": "imported",
+   "hexagram": 64
+  },
+  "ZY.64.L4": {
+   "id": "ZY.64.L4",
+   "kind": "yao",
+   "line": 4,
+   "label": "九四",
+   "text": "贞吉，悔亡，震用伐鬼方，三年有赏于大国。",
+   "textTrad": "貞吉，悔亡，震用伐鬼方，三年有賞于大國。",
+   "reviewStatus": "imported",
+   "hexagram": 64
+  },
+  "ZY.64.L5": {
+   "id": "ZY.64.L5",
+   "kind": "yao",
+   "line": 5,
+   "label": "六五",
+   "text": "贞吉，无悔，君子之光，有孚，吉。",
+   "textTrad": "貞吉，无悔，君子之光，有孚，吉。",
+   "reviewStatus": "imported",
+   "hexagram": 64
+  },
+  "ZY.64.L6": {
+   "id": "ZY.64.L6",
+   "kind": "yao",
+   "line": 6,
+   "label": "上九",
+   "text": "有孚于饮酒，无咎，濡其首，有孚失是。",
+   "textTrad": "有孚于飲酒，无咎，濡其首，有孚失是。",
+   "reviewStatus": "imported",
+   "hexagram": 64
+  },
+  "ZY.64.TUAN": {
+   "id": "ZY.64.TUAN",
+   "kind": "tuan",
+   "text": "未济，亨；柔得中也。小狐汔济，未出中也。濡其尾，无攸利；不续终也。虽不当位，刚柔应也。",
+   "textTrad": "未濟，亨；柔得中也。小狐汔濟，未出中也。濡其尾，无攸利；不續終也。雖不當位，剛柔應也。",
+   "reviewStatus": "imported",
+   "hexagram": 64
+  },
+  "ZY.64.XIANG": {
+   "id": "ZY.64.XIANG",
+   "kind": "xiang",
+   "text": "火在水上，未济；君子以慎辨物居方。",
+   "textTrad": "火在水上，未濟；君子以慎辨物居方。",
+   "reviewStatus": "imported",
+   "hexagram": 64
+  }
+ },
+ "annotations": {
+  "ZY.01.G": {
+   "entryId": "ZY.01.G",
+   "vernacular": "乾象征天，代表刚健、不停运行的力量。卦辞说：大为亨通，利于守持正道。放到生活里，是说积极有为的同时，要守住正当的方向。",
+   "angles": [
+    "persevere",
+    "advance"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.01.L1": {
+   "entryId": "ZY.01.L1",
+   "vernacular": "龙还潜藏在水下，暂时不宜有所作为。比喻事情还在早期，力量正在积蓄，先做准备，不急着出手。",
+   "angles": [
+    "prepare",
+    "wait"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.01.L2": {
+   "entryId": "ZY.01.L2",
+   "vernacular": "龙出现在田野上，开始崭露头角，适合去见能给你指点或机会的人。比喻已经有了初步的能力，可以主动接触、寻求认可与帮助。",
+   "angles": [
+    "probe",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.01.L3": {
+   "entryId": "ZY.01.L3",
+   "vernacular": "君子整天勤勉不懈，到了晚上仍然警惕反省；处境虽然危险，但不会有灾祸。比喻任务繁重的阶段，要靠持续努力和自我检查渡过。",
+   "angles": [
+    "persevere",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.01.L4": {
+   "entryId": "ZY.01.L4",
+   "vernacular": "龙或者跃起，或者退回深渊，进退可以自己选择，没有过错。比喻面临一次尝试，可以试着跳一跳，同时留好退路。",
+   "angles": [
+    "probe",
+    "adjust"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.01.L5": {
+   "entryId": "ZY.01.L5",
+   "vernacular": "龙飞在天上，正当最好的时机，适合与有德有能的人共事。比喻条件成熟，能力可以充分发挥。",
+   "angles": [
+    "advance",
+    "cooperate"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.01.L6": {
+   "entryId": "ZY.01.L6",
+   "vernacular": "龙飞得过高，会有懊悔。比喻进到极点、不知收敛，就容易出问题。",
+   "angles": [
+    "restrain",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.01.Y9": {
+   "entryId": "ZY.01.Y9",
+   "vernacular": "群龙出现，却没有谁争当首领，吉利。比喻各自发挥所长、不逞强争先，事情反而顺利。",
+   "angles": [
+    "cooperate",
+    "restrain"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.02.G": {
+   "entryId": "ZY.02.G",
+   "vernacular": "坤象征地，代表包容与承载。卦辞说：大为亨通，像母马那样柔顺而坚持正道是有利的。有所行动时，抢在前面容易迷失，跟随合适的引领反而有所得；安于正道，吉利。",
+   "angles": [
+    "cooperate",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.02.L1": {
+   "entryId": "ZY.02.L1",
+   "vernacular": "脚下踩到了霜，就知道坚冰快要到来。比喻从细小的迹象看出趋势，提早防备。",
+   "angles": [
+    "caution",
+    "prepare"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.02.L2": {
+   "entryId": "ZY.02.L2",
+   "vernacular": "正直、方正、宽广，即使不刻意经营，也没有不利的。比喻顺着本性、守住原则，事情自然顺利。",
+   "angles": [
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.02.L3": {
+   "entryId": "ZY.02.L3",
+   "vernacular": "内含美好而不张扬，可以守持正道；参与公事时不居功，却能有好的结局。比喻收敛锋芒、踏实做事。",
+   "angles": [
+    "restrain",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.02.L4": {
+   "entryId": "ZY.02.L4",
+   "vernacular": "扎紧口袋，不招灾祸，也不求赞誉。比喻谨言慎行，暂时保守。",
+   "angles": [
+    "restrain",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.02.L5": {
+   "entryId": "ZY.02.L5",
+   "vernacular": "穿着黄色的下裳，大吉。黄色象征中和，下裳象征谦居其下。比喻守中、谦和，因而得到好的结果。",
+   "angles": [
+    "persevere",
+    "reflect"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.02.L6": {
+   "entryId": "ZY.02.L6",
+   "vernacular": "龙在野外争斗，流出青黄混杂的血。比喻一方过盛、与另一方硬碰，结果两败俱伤。",
+   "angles": [
+    "caution",
+    "restrain"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.02.Y6": {
+   "entryId": "ZY.02.Y6",
+   "vernacular": "利于长久地守持正道。",
+   "angles": [
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.44.G": {
+   "entryId": "ZY.44.G",
+   "vernacular": "姤是相遇的意思：一根阴爻从下方出现，与上面的众阳相遇。卦辞借古代婚嫁说明，一方势头过盛的相遇，不宜贸然结成长久关系。放在今天，可以理解为面对突然出现的机会或关系，先看清再投入。",
+   "angles": [
+    "caution",
+    "probe"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.44.L1": {
+   "entryId": "ZY.44.L1",
+   "vernacular": "把车系在坚固的制动器上，守持正道吉利；如果贸然前往，会遇到凶险，就像瘦弱的猪躁动不安。比喻刚冒头的势头要先稳住，不宜冒进。",
+   "angles": [
+    "restrain",
+    "caution"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.44.L2": {
+   "entryId": "ZY.44.L2",
+   "vernacular": "厨房里有鱼，没有过错，但不宜拿去招待宾客。比喻把握好手中已有的东西，先处理好内部，不急着向外扩张。",
+   "angles": [
+    "restrain",
+    "persevere"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.44.L3": {
+   "entryId": "ZY.44.L3",
+   "vernacular": "臀部没有皮肤，走起路来艰难犹豫；有危险，但没有大的灾祸。比喻处境尴尬、进退两难，谨慎前行可以无咎。",
+   "angles": [
+    "caution",
+    "wait"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.44.L4": {
+   "entryId": "ZY.44.L4",
+   "vernacular": "厨房里没有鱼，起而行动会有凶险。比喻失去了基础或支持，这时轻举妄动不利。",
+   "angles": [
+    "reflect",
+    "wait"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.44.L5": {
+   "entryId": "ZY.44.L5",
+   "vernacular": "用杞树的枝叶包住瓜，内含美好，好事会从天而降。比喻以包容、内敛的方式等待，机会会自然到来。",
+   "angles": [
+    "wait",
+    "restrain"
+   ],
+   "reviewStatus": "draft"
+  },
+  "ZY.44.L6": {
+   "entryId": "ZY.44.L6",
+   "vernacular": "在角上相遇，有些难堪，但没有灾祸。比喻相遇时态度过于强硬，难免尴尬，不过问题不大。",
+   "angles": [
+    "adjust",
+    "reflect"
+   ],
+   "reviewStatus": "draft"
+  }
+ }
+}

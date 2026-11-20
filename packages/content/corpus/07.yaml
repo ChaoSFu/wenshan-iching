@@ -1,0 +1,113 @@
+# 由 scripts/import-wikisource.ts 生成；人工对勘后把 reviewStatus 改为 reviewed
+number: 7
+name: 师
+nameTrad: 師
+upper: kun
+lower: kan
+source:
+  title: 周易/師
+  url: https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E5%B8%AB
+  revision: 2405011
+  permalink: https://zh.wikisource.org/w/index.php?oldid=2405011
+  edition: 维基文库《周易》
+entries:
+  - id: ZY.07.G
+    kind: gua
+    label: 师
+    text: 贞丈人吉，无咎。
+    textTrad: 貞丈人吉，无咎。
+    reviewStatus: imported
+  - id: ZY.07.L1
+    kind: yao
+    line: 1
+    label: 初六
+    text: 师出以律，否臧，凶。
+    textTrad: 師出以律，否臧，凶。
+    reviewStatus: imported
+  - id: ZY.07.L2
+    kind: yao
+    line: 2
+    label: 九二
+    text: 在师中吉，无咎；王三锡命。
+    textTrad: 在師中吉，无咎；王三錫命。
+    reviewStatus: imported
+  - id: ZY.07.L3
+    kind: yao
+    line: 3
+    label: 六三
+    text: 师或舆尸，凶。
+    textTrad: 師或輿尸，凶。
+    reviewStatus: imported
+  - id: ZY.07.L4
+    kind: yao
+    line: 4
+    label: 六四
+    text: 师左次，无咎。
+    textTrad: 師左次，无咎。
+    reviewStatus: imported
+  - id: ZY.07.L5
+    kind: yao
+    line: 5
+    label: 六五
+    text: 田有禽，利执言，无咎。长子帅师，弟子舆尸，贞凶。
+    textTrad: 田有禽，利執言，无咎。長子帥師，弟子輿尸，貞凶。
+    reviewStatus: imported
+  - id: ZY.07.L6
+    kind: yao
+    line: 6
+    label: 上六
+    text: 大君有命，开国承家，小人勿用。
+    textTrad: 大君有命，開國承家，小人勿用。
+    reviewStatus: imported
+  - id: ZY.07.TUAN
+    kind: tuan
+    text: 师，众也。贞，正也。能以众正，可以王矣。刚中而应，行险而顺，以此毒天下，而民从之，吉又何咎矣。
+    textTrad: 師，眾也。貞，正也。能以眾正，可以王矣。剛中而應，行險而順，以此毒天下，而民從之，吉又何咎矣。
+    reviewStatus: imported
+  - id: ZY.07.XIANG
+    kind: xiang
+    text: 地中有水，师；君子以容民畜众。
+    textTrad: 地中有水，師；君子以容民畜衆。
+    reviewStatus: imported
+  - id: ZY.07.L1.XIANG
+    kind: xiaoxiang
+    line: 1
+    label: 初六
+    text: 师出以律；失律，凶也。
+    textTrad: 師出以律；失律，凶也。
+    reviewStatus: imported
+  - id: ZY.07.L2.XIANG
+    kind: xiaoxiang
+    line: 2
+    label: 九二
+    text: 在师中吉，承天宠也。王三锡命，怀万邦也。
+    textTrad: 在師中吉，承天寵也。王三錫命，懷萬邦也。
+    reviewStatus: imported
+  - id: ZY.07.L3.XIANG
+    kind: xiaoxiang
+    line: 3
+    label: 六三
+    text: 师或舆尸，大无功也。
+    textTrad: 師或輿尸，大无功也。
+    reviewStatus: imported
+  - id: ZY.07.L4.XIANG
+    kind: xiaoxiang
+    line: 4
+    label: 六四
+    text: 左次无咎，未失常也。
+    textTrad: 左次无咎，未失常也。
+    reviewStatus: imported
+  - id: ZY.07.L5.XIANG
+    kind: xiaoxiang
+    line: 5
+    label: 六五
+    text: 长子帅师，以中行也。弟子舆尸，使不当也。
+    textTrad: 長子帥師，以中行也。弟子輿尸，使不當也。
+    reviewStatus: imported
+  - id: ZY.07.L6.XIANG
+    kind: xiaoxiang
+    line: 6
+    label: 上六
+    text: 大君有命，以正功也。小人勿用，必乱邦也。
+    textTrad: 大君有命，以正功也。小人勿用，必亂邦也。
+    reviewStatus: imported

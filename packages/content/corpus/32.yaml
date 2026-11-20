@@ -1,0 +1,113 @@
+# 由 scripts/import-wikisource.ts 生成；人工对勘后把 reviewStatus 改为 reviewed
+number: 32
+name: 恒
+nameTrad: 恆
+upper: zhen
+lower: xun
+source:
+  title: 周易/恒
+  url: https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E6%81%92
+  revision: 10646486
+  permalink: https://zh.wikisource.org/w/index.php?oldid=10646486
+  edition: 维基文库《周易》
+entries:
+  - id: ZY.32.G
+    kind: gua
+    label: 恒
+    text: 亨，无咎。利贞，利有攸往。
+    textTrad: 亨，无咎。利貞，利有攸往。
+    reviewStatus: imported
+  - id: ZY.32.L1
+    kind: yao
+    line: 1
+    label: 初六
+    text: 浚恒，贞凶，无攸利。
+    textTrad: 浚恆，貞凶，无攸利。
+    reviewStatus: imported
+  - id: ZY.32.L2
+    kind: yao
+    line: 2
+    label: 九二
+    text: 悔亡。
+    textTrad: 悔亡。
+    reviewStatus: imported
+  - id: ZY.32.L3
+    kind: yao
+    line: 3
+    label: 九三
+    text: 不恒其德，或承之羞，贞吝。
+    textTrad: 不恆其德，或承之羞，貞吝。
+    reviewStatus: imported
+  - id: ZY.32.L4
+    kind: yao
+    line: 4
+    label: 九四
+    text: 田无禽。
+    textTrad: 田无禽。
+    reviewStatus: imported
+  - id: ZY.32.L5
+    kind: yao
+    line: 5
+    label: 六五
+    text: 恒其德，贞，妇人吉，夫子凶。
+    textTrad: 恆其德，貞，婦人吉，夫子凶。
+    reviewStatus: imported
+  - id: ZY.32.L6
+    kind: yao
+    line: 6
+    label: 上六
+    text: 震恒，凶。
+    textTrad: 震恆，凶。
+    reviewStatus: imported
+  - id: ZY.32.TUAN
+    kind: tuan
+    text: 恒，久也。刚上而柔下，雷风相与，巽而动，刚柔皆应，恒。恒亨无咎，利贞；久于其道也，天地之道，恒久而不已也。利有攸往，终则有始也。日月得天，而能久照，四时变化，而能久成，圣人久于其道，而天下化成；观其所恒，而天地万物之情可见矣！
+    textTrad: 恆，久也。剛上而柔下，雷風相與，巽而動，剛柔皆應，恆。恆亨无咎，利貞；久于其道也，天地之道，恆久而不已也。利有攸往，終則有始也。日月得天，而能久照，四時變化，而能久成，聖人久于其道，而天下化成；觀其所恆，而天地萬物之情可見矣！
+    reviewStatus: imported
+  - id: ZY.32.XIANG
+    kind: xiang
+    text: 雷风，恒；君子以立不易方。
+    textTrad: 雷風，恆；君子以立不易方。
+    reviewStatus: imported
+  - id: ZY.32.L1.XIANG
+    kind: xiaoxiang
+    line: 1
+    label: 初六
+    text: 浚恒之凶，始求深也。
+    textTrad: 浚恆之凶，始求深也。
+    reviewStatus: imported
+  - id: ZY.32.L2.XIANG
+    kind: xiaoxiang
+    line: 2
+    label: 九二
+    text: 九二悔亡，能久中也。
+    textTrad: 九二悔亡，能久中也。
+    reviewStatus: imported
+  - id: ZY.32.L3.XIANG
+    kind: xiaoxiang
+    line: 3
+    label: 九三
+    text: 不恒其德，无所容也。
+    textTrad: 不恆其德，无所容也。
+    reviewStatus: imported
+  - id: ZY.32.L4.XIANG
+    kind: xiaoxiang
+    line: 4
+    label: 九四
+    text: 久非其位，安得禽也。
+    textTrad: 久非其位，安得禽也。
+    reviewStatus: imported
+  - id: ZY.32.L5.XIANG
+    kind: xiaoxiang
+    line: 5
+    label: 六五
+    text: 妇人贞吉，从一而终也。夫子制义，从妇凶也。
+    textTrad: 婦人貞吉，從一而終也。夫子制義，從婦凶也。
+    reviewStatus: imported
+  - id: ZY.32.L6.XIANG
+    kind: xiaoxiang
+    line: 6
+    label: 上六
+    text: 振恒在上，大无功也。
+    textTrad: 振恆在上，大无功也。
+    reviewStatus: imported

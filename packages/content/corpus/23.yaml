@@ -1,0 +1,113 @@
+# 由 scripts/import-wikisource.ts 生成；人工对勘后把 reviewStatus 改为 reviewed
+number: 23
+name: 剥
+nameTrad: 剝
+upper: gen
+lower: kun
+source:
+  title: 周易/剝
+  url: https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E5%89%9D
+  revision: 10645800
+  permalink: https://zh.wikisource.org/w/index.php?oldid=10645800
+  edition: 维基文库《周易》
+entries:
+  - id: ZY.23.G
+    kind: gua
+    label: 剥
+    text: 不利。有攸往。
+    textTrad: 不利。有攸往。
+    reviewStatus: imported
+  - id: ZY.23.L1
+    kind: yao
+    line: 1
+    label: 初六
+    text: 剥床以足，蔑贞凶。
+    textTrad: 剝牀以足，蔑貞凶。
+    reviewStatus: imported
+  - id: ZY.23.L2
+    kind: yao
+    line: 2
+    label: 六二
+    text: 剥床以辨，蔑贞凶。
+    textTrad: 剝牀以辨，蔑貞凶。
+    reviewStatus: imported
+  - id: ZY.23.L3
+    kind: yao
+    line: 3
+    label: 六三
+    text: 剥之，无咎。
+    textTrad: 剝之，无咎。
+    reviewStatus: imported
+  - id: ZY.23.L4
+    kind: yao
+    line: 4
+    label: 六四
+    text: 剥床以肤，凶。
+    textTrad: 剝牀以膚，凶。
+    reviewStatus: imported
+  - id: ZY.23.L5
+    kind: yao
+    line: 5
+    label: 六五
+    text: 贯鱼，以宫人宠，无不利。
+    textTrad: 貫魚，以宮人寵，无不利。
+    reviewStatus: imported
+  - id: ZY.23.L6
+    kind: yao
+    line: 6
+    label: 上九
+    text: 硕果不食，君子德车，小人剥庐。
+    textTrad: 碩果不食，君子德車，小人剝廬。
+    reviewStatus: imported
+  - id: ZY.23.TUAN
+    kind: tuan
+    text: 剥，剥也，柔变刚也。不利有攸往，小人长也。顺而止之，观象也。君子尚消息盈虚，天行也。
+    textTrad: 剝，剝也，柔變剛也。不利有攸往，小人長也。順而止之，觀象也。君子尚消息盈虛，天行也。
+    reviewStatus: imported
+  - id: ZY.23.XIANG
+    kind: xiang
+    text: 山附地上，剥；上以厚下，安宅。
+    textTrad: 山附地上，剝；上以厚下，安宅。
+    reviewStatus: imported
+  - id: ZY.23.L1.XIANG
+    kind: xiaoxiang
+    line: 1
+    label: 初六
+    text: 剥床以足，以灭下也。
+    textTrad: 剝牀以足，以滅下也。
+    reviewStatus: imported
+  - id: ZY.23.L2.XIANG
+    kind: xiaoxiang
+    line: 2
+    label: 六二
+    text: 剥床以辨，未有与也。
+    textTrad: 剝牀以辨，未有與也。
+    reviewStatus: imported
+  - id: ZY.23.L3.XIANG
+    kind: xiaoxiang
+    line: 3
+    label: 六三
+    text: 剥之无咎，失上下也。
+    textTrad: 剝之无咎，失上下也。
+    reviewStatus: imported
+  - id: ZY.23.L4.XIANG
+    kind: xiaoxiang
+    line: 4
+    label: 六四
+    text: 剥床以肤，切近灾也。
+    textTrad: 剝牀以膚，切近災也。
+    reviewStatus: imported
+  - id: ZY.23.L5.XIANG
+    kind: xiaoxiang
+    line: 5
+    label: 六五
+    text: 以宫人宠，终无尤也。
+    textTrad: 以宮人寵，終无尤也。
+    reviewStatus: imported
+  - id: ZY.23.L6.XIANG
+    kind: xiaoxiang
+    line: 6
+    label: 上九
+    text: 君子得舆，民所载也。小人剥庐，终不可用也。
+    textTrad: 君子得輿，民所載也。小人剝廬，終不可用也。
+    reviewStatus: imported

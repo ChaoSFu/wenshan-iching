@@ -1,0 +1,113 @@
+# 由 scripts/import-wikisource.ts 生成；人工对勘后把 reviewStatus 改为 reviewed
+number: 33
+name: 遁
+nameTrad: 遯
+upper: qian
+lower: gen
+source:
+  title: 周易/遯
+  url: https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E9%81%AF
+  revision: 10645108
+  permalink: https://zh.wikisource.org/w/index.php?oldid=10645108
+  edition: 维基文库《周易》
+entries:
+  - id: ZY.33.G
+    kind: gua
+    label: 遁
+    text: 亨。小利贞。
+    textTrad: 亨。小利貞。
+    reviewStatus: imported
+  - id: ZY.33.L1
+    kind: yao
+    line: 1
+    label: 初六
+    text: 遁尾，厉，勿用有攸往。
+    textTrad: 遯尾，厲，勿用有攸往。
+    reviewStatus: imported
+  - id: ZY.33.L2
+    kind: yao
+    line: 2
+    label: 六二
+    text: 执之用黄牛之革，莫之胜说。
+    textTrad: 執之用黃牛之革，莫之勝說。
+    reviewStatus: imported
+  - id: ZY.33.L3
+    kind: yao
+    line: 3
+    label: 九三
+    text: 系遁，有疾厉，畜臣妾吉。
+    textTrad: 係遯，有疾厲，畜臣妾吉。
+    reviewStatus: imported
+  - id: ZY.33.L4
+    kind: yao
+    line: 4
+    label: 九四
+    text: 好遁君子吉，小人否。
+    textTrad: 好遯君子吉，小人否。
+    reviewStatus: imported
+  - id: ZY.33.L5
+    kind: yao
+    line: 5
+    label: 九五
+    text: 嘉遁，贞吉。
+    textTrad: 嘉遯，貞吉。
+    reviewStatus: imported
+  - id: ZY.33.L6
+    kind: yao
+    line: 6
+    label: 上九
+    text: 肥遁，无不利。
+    textTrad: 肥遯，无不利。
+    reviewStatus: imported
+  - id: ZY.33.TUAN
+    kind: tuan
+    text: 遁亨，遁而亨也。刚当位而应，与时行也。小利贞，浸而长也。遁之时义大矣哉！
+    textTrad: 遯亨，遯而亨也。剛當位而應，與時行也。小利貞，浸而長也。遯之時義大矣哉！
+    reviewStatus: imported
+  - id: ZY.33.XIANG
+    kind: xiang
+    text: 天下有山，遁；君子以远小人，不恶而严。
+    textTrad: 天下有山，遯；君子以遠小人，不惡而嚴。
+    reviewStatus: imported
+  - id: ZY.33.L1.XIANG
+    kind: xiaoxiang
+    line: 1
+    label: 初六
+    text: 遁尾之厉，不往何灾也。
+    textTrad: 遯尾之厲，不往何災也。
+    reviewStatus: imported
+  - id: ZY.33.L2.XIANG
+    kind: xiaoxiang
+    line: 2
+    label: 六二
+    text: 执用黄牛，固志也。
+    textTrad: 執用黃牛，固志也。
+    reviewStatus: imported
+  - id: ZY.33.L3.XIANG
+    kind: xiaoxiang
+    line: 3
+    label: 九三
+    text: 系遁之厉，有疾惫也。畜臣妾吉，不可大事也。
+    textTrad: 係遯之厲，有疾憊也。畜臣妾吉，不可大事也。
+    reviewStatus: imported
+  - id: ZY.33.L4.XIANG
+    kind: xiaoxiang
+    line: 4
+    label: 九四
+    text: 君子好遁，小人否也。
+    textTrad: 君子好遯，小人否也。
+    reviewStatus: imported
+  - id: ZY.33.L5.XIANG
+    kind: xiaoxiang
+    line: 5
+    label: 九五
+    text: 嘉遁贞吉，以正志也。
+    textTrad: 嘉遯貞吉，以正志也。
+    reviewStatus: imported
+  - id: ZY.33.L6.XIANG
+    kind: xiaoxiang
+    line: 6
+    label: 上九
+    text: 肥遁，无不利；无所疑也。
+    textTrad: 肥遯，无不利；无所疑也。
+    reviewStatus: imported

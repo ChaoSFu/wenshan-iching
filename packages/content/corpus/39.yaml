@@ -1,0 +1,113 @@
+# 由 scripts/import-wikisource.ts 生成；人工对勘后把 reviewStatus 改为 reviewed
+number: 39
+name: 蹇
+nameTrad: 蹇
+upper: kan
+lower: gen
+source:
+  title: 周易/蹇
+  url: https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E8%B9%87
+  revision: 2405036
+  permalink: https://zh.wikisource.org/w/index.php?oldid=2405036
+  edition: 维基文库《周易》
+entries:
+  - id: ZY.39.G
+    kind: gua
+    label: 蹇
+    text: 利西南，不利东北；利见大人，贞吉。
+    textTrad: 利西南，不利東北；利見大人，貞吉。
+    reviewStatus: imported
+  - id: ZY.39.L1
+    kind: yao
+    line: 1
+    label: 初六
+    text: 往蹇，来誉。
+    textTrad: 往蹇，來譽。
+    reviewStatus: imported
+  - id: ZY.39.L2
+    kind: yao
+    line: 2
+    label: 六二
+    text: 王臣蹇蹇，匪躬之故。
+    textTrad: 王臣蹇蹇，匪躬之故。
+    reviewStatus: imported
+  - id: ZY.39.L3
+    kind: yao
+    line: 3
+    label: 九三
+    text: 往蹇来反。
+    textTrad: 往蹇來反。
+    reviewStatus: imported
+  - id: ZY.39.L4
+    kind: yao
+    line: 4
+    label: 六四
+    text: 往蹇来连。
+    textTrad: 往蹇來連。
+    reviewStatus: imported
+  - id: ZY.39.L5
+    kind: yao
+    line: 5
+    label: 九五
+    text: 大蹇朋来。
+    textTrad: 大蹇朋來。
+    reviewStatus: imported
+  - id: ZY.39.L6
+    kind: yao
+    line: 6
+    label: 上六
+    text: 往蹇来硕，吉；利见大人。
+    textTrad: 往蹇來碩，吉；利見大人。
+    reviewStatus: imported
+  - id: ZY.39.TUAN
+    kind: tuan
+    text: 蹇，难也，险在前也。见险而能止，知矣哉！蹇利西南，往得中也；不利东北，其道穷也。利见大人，往有功也。当位贞吉，以正邦也。蹇之时用大矣哉！
+    textTrad: 蹇，難也，險在前也。見險而能止，知矣哉！蹇利西南，往得中也；不利東北，其道窮也。利見大人，往有功也。當位貞吉，以正邦也。蹇之時用大矣哉！
+    reviewStatus: imported
+  - id: ZY.39.XIANG
+    kind: xiang
+    text: 山上有水，蹇；君子以反身修德。
+    textTrad: 山上有水，蹇；君子以反身修德。
+    reviewStatus: imported
+  - id: ZY.39.L1.XIANG
+    kind: xiaoxiang
+    line: 1
+    label: 初六
+    text: 往蹇来誉，宜待也。
+    textTrad: 往蹇來譽，宜待也。
+    reviewStatus: imported
+  - id: ZY.39.L2.XIANG
+    kind: xiaoxiang
+    line: 2
+    label: 六二
+    text: 王臣蹇蹇，终无尤也。
+    textTrad: 王臣蹇蹇，終无尤也。
+    reviewStatus: imported
+  - id: ZY.39.L3.XIANG
+    kind: xiaoxiang
+    line: 3
+    label: 九三
+    text: 往蹇来反，内喜之也。
+    textTrad: 往蹇來反，內喜之也。
+    reviewStatus: imported
+  - id: ZY.39.L4.XIANG
+    kind: xiaoxiang
+    line: 4
+    label: 六四
+    text: 往蹇来连，当位实也。
+    textTrad: 往蹇來連，當位實也。
+    reviewStatus: imported
+  - id: ZY.39.L5.XIANG
+    kind: xiaoxiang
+    line: 5
+    label: 九五
+    text: 大蹇朋来，以中节也。
+    textTrad: 大蹇朋來，以中節也。
+    reviewStatus: imported
+  - id: ZY.39.L6.XIANG
+    kind: xiaoxiang
+    line: 6
+    label: 上六
+    text: 往蹇来硕，志在内也。利见大人，以从贵也。
+    textTrad: 往蹇來碩，志在內也。利見大人，以從貴也。
+    reviewStatus: imported

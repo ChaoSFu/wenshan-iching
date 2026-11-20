@@ -1,0 +1,113 @@
+# 由 scripts/import-wikisource.ts 生成；人工对勘后把 reviewStatus 改为 reviewed
+number: 56
+name: 旅
+nameTrad: 旅
+upper: li
+lower: gen
+source:
+  title: 周易/旅
+  url: https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E6%97%85
+  revision: 10647234
+  permalink: https://zh.wikisource.org/w/index.php?oldid=10647234
+  edition: 维基文库《周易》
+entries:
+  - id: ZY.56.G
+    kind: gua
+    label: 旅
+    text: 小亨，旅贞吉。
+    textTrad: 小亨，旅貞吉。
+    reviewStatus: imported
+  - id: ZY.56.L1
+    kind: yao
+    line: 1
+    label: 初六
+    text: 旅琐琐，斯其所取灾。
+    textTrad: 旅瑣瑣，斯其所取災。
+    reviewStatus: imported
+  - id: ZY.56.L2
+    kind: yao
+    line: 2
+    label: 六二
+    text: 旅即次，怀其资，得僮仆贞。
+    textTrad: 旅即次，懷其資，得僮僕貞。
+    reviewStatus: imported
+  - id: ZY.56.L3
+    kind: yao
+    line: 3
+    label: 九三
+    text: 旅焚其次，丧其僮仆，贞厉。
+    textTrad: 旅焚其次，喪其僮僕，貞厲。
+    reviewStatus: imported
+  - id: ZY.56.L4
+    kind: yao
+    line: 4
+    label: 九四
+    text: 旅于处，得其资斧，我心不快。
+    textTrad: 旅于處，得其資斧，我心不快。
+    reviewStatus: imported
+  - id: ZY.56.L5
+    kind: yao
+    line: 5
+    label: 六五
+    text: 射雉一矢亡，终以誉命。
+    textTrad: 射雉一矢亡，終以譽命。
+    reviewStatus: imported
+  - id: ZY.56.L6
+    kind: yao
+    line: 6
+    label: 上九
+    text: 鸟焚其巢，旅人先笑后号咷。丧牛于易，凶。
+    textTrad: 鳥焚其巢，旅人先笑後號咷。喪牛于易，凶。
+    reviewStatus: imported
+  - id: ZY.56.TUAN
+    kind: tuan
+    text: 旅，小亨，柔得中乎外，而顺乎刚，止而丽乎明，是以小亨，旅贞吉也。旅之时义大矣哉！
+    textTrad: 旅，小亨，柔得中乎外，而順乎剛，止而麗乎明，是以小亨，旅貞吉也。旅之時義大矣哉！
+    reviewStatus: imported
+  - id: ZY.56.XIANG
+    kind: xiang
+    text: 山上有火，旅；君子以明慎用刑，而不留狱。
+    textTrad: 山上有火，旅；君子以明慎用刑，而不留獄。
+    reviewStatus: imported
+  - id: ZY.56.L1.XIANG
+    kind: xiaoxiang
+    line: 1
+    label: 初六
+    text: 旅琐琐，志穷灾也。
+    textTrad: 旅瑣瑣，志窮災也。
+    reviewStatus: imported
+  - id: ZY.56.L2.XIANG
+    kind: xiaoxiang
+    line: 2
+    label: 六二
+    text: 得童仆贞，终无尤也。
+    textTrad: 得童僕貞，終无尤也。
+    reviewStatus: imported
+  - id: ZY.56.L3.XIANG
+    kind: xiaoxiang
+    line: 3
+    label: 九三
+    text: 旅焚其次，亦以伤矣。以旅与下，其义丧也。
+    textTrad: 旅焚其次，亦以傷矣。以旅與下，其義喪也。
+    reviewStatus: imported
+  - id: ZY.56.L4.XIANG
+    kind: xiaoxiang
+    line: 4
+    label: 九四
+    text: 旅于处，未得位也。得其资斧，心未快也。
+    textTrad: 旅于處，未得位也。得其資斧，心未快也。
+    reviewStatus: imported
+  - id: ZY.56.L5.XIANG
+    kind: xiaoxiang
+    line: 5
+    label: 六五
+    text: 终以誉命，上逮也。
+    textTrad: 終以譽命，上逮也。
+    reviewStatus: imported
+  - id: ZY.56.L6.XIANG
+    kind: xiaoxiang
+    line: 6
+    label: 上九
+    text: 以旅在上，其义焚也。丧牛于易，终莫之闻也。
+    textTrad: 以旅在上，其義焚也。喪牛于易，終莫之聞也。
+    reviewStatus: imported

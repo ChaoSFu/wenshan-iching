@@ -1,0 +1,113 @@
+# 由 scripts/import-wikisource.ts 生成；人工对勘后把 reviewStatus 改为 reviewed
+number: 47
+name: 困
+nameTrad: 困
+upper: dui
+lower: kan
+source:
+  title: 周易/困
+  url: https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E5%9B%B0
+  revision: 10647032
+  permalink: https://zh.wikisource.org/w/index.php?oldid=10647032
+  edition: 维基文库《周易》
+entries:
+  - id: ZY.47.G
+    kind: gua
+    label: 困
+    text: 亨，贞大人吉，无咎，有言不信。
+    textTrad: 亨，貞大人吉，无咎，有言不信。
+    reviewStatus: imported
+  - id: ZY.47.L1
+    kind: yao
+    line: 1
+    label: 初六
+    text: 臀困于株木，入于幽谷，三岁不觌。
+    textTrad: 臀困于株木，入于幽谷，三歲不覿。
+    reviewStatus: imported
+  - id: ZY.47.L2
+    kind: yao
+    line: 2
+    label: 九二
+    text: 困于酒食，朱绂方来，利用亨祀，征凶，无咎。
+    textTrad: 困于酒食，朱紱方來，利用亨祀，征凶，无咎。
+    reviewStatus: imported
+  - id: ZY.47.L3
+    kind: yao
+    line: 3
+    label: 六三
+    text: 困于石，据于蒺蔾，入于其宫，不见其妻，凶。
+    textTrad: 困于石，據于蒺蔾，入于其宮，不見其妻，凶。
+    reviewStatus: imported
+  - id: ZY.47.L4
+    kind: yao
+    line: 4
+    label: 九四
+    text: 来荼荼，困于金轝，吝，有终。
+    textTrad: 來荼荼，困于金轝，吝，有終。
+    reviewStatus: imported
+  - id: ZY.47.L5
+    kind: yao
+    line: 5
+    label: 九五
+    text: 劓刖，困于赤绂，乃徐有说，利用祭祀。
+    textTrad: 劓刖，困于赤紱，乃徐有說，利用祭祀。
+    reviewStatus: imported
+  - id: ZY.47.L6
+    kind: yao
+    line: 6
+    label: 上六
+    text: 困于葛藟，于臲卼，曰动悔。有悔，征吉。
+    textTrad: 困于葛藟，于臲卼，曰動悔。有悔，征吉。
+    reviewStatus: imported
+  - id: ZY.47.TUAN
+    kind: tuan
+    text: 困，刚掩也。险以说，困而不失其所，亨；其唯君子乎？ 贞大人吉，以刚中也。有言不信，尚口乃穷也。
+    textTrad: 困，剛掩也。險以說，困而不失其所，亨；其唯君子乎？ 貞大人吉，以剛中也。有言不信，尚口乃窮也。
+    reviewStatus: imported
+  - id: ZY.47.XIANG
+    kind: xiang
+    text: 泽无水，困；君子以致命遂志。
+    textTrad: 澤无水，困；君子以致命遂志。
+    reviewStatus: imported
+  - id: ZY.47.L1.XIANG
+    kind: xiaoxiang
+    line: 1
+    label: 初六
+    text: 入于幽谷，幽不明也。
+    textTrad: 入于幽谷，幽不明也。
+    reviewStatus: imported
+  - id: ZY.47.L2.XIANG
+    kind: xiaoxiang
+    line: 2
+    label: 九二
+    text: 困于酒食，中有庆也。
+    textTrad: 困于酒食，中有慶也。
+    reviewStatus: imported
+  - id: ZY.47.L3.XIANG
+    kind: xiaoxiang
+    line: 3
+    label: 六三
+    text: 据于蒺藜，乘刚也。入于其宫，不见其妻，不祥也。
+    textTrad: 據于蒺藜，乘剛也。入于其宮，不見其妻，不祥也。
+    reviewStatus: imported
+  - id: ZY.47.L4.XIANG
+    kind: xiaoxiang
+    line: 4
+    label: 九四
+    text: 来徐徐，志在下也。虽不当位，有与也。
+    textTrad: 來徐徐，志在下也。雖不當位，有與也。
+    reviewStatus: imported
+  - id: ZY.47.L5.XIANG
+    kind: xiaoxiang
+    line: 5
+    label: 九五
+    text: 劓刖，志未得也。乃徐有说，以中直也。利用祭祀，受福也。
+    textTrad: 劓刖，志未得也。乃徐有說，以中直也。利用祭祀，受福也。
+    reviewStatus: imported
+  - id: ZY.47.L6.XIANG
+    kind: xiaoxiang
+    line: 6
+    label: 上六
+    text: 困于葛藟，未当也。动悔，有悔，吉行也。
+    textTrad: 困于葛藟，未當也。動悔，有悔，吉行也。
+    reviewStatus: imported

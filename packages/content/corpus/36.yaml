@@ -1,0 +1,113 @@
+# 由 scripts/import-wikisource.ts 生成；人工对勘后把 reviewStatus 改为 reviewed
+number: 36
+name: 明夷
+nameTrad: 明夷
+upper: kun
+lower: li
+source:
+  title: 周易/明夷
+  url: https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E6%98%8E%E5%A4%B7
+  revision: 10644507
+  permalink: https://zh.wikisource.org/w/index.php?oldid=10644507
+  edition: 维基文库《周易》
+entries:
+  - id: ZY.36.G
+    kind: gua
+    label: 明夷
+    text: 利艰贞。
+    textTrad: 利艱貞。
+    reviewStatus: imported
+  - id: ZY.36.L1
+    kind: yao
+    line: 1
+    label: 初九
+    text: 明夷于飞，垂其翼。君子于行，三日不食，有攸往，主人有言。
+    textTrad: 明夷于飛，垂其翼。君子于行，三日不食，有攸往，主人有言。
+    reviewStatus: imported
+  - id: ZY.36.L2
+    kind: yao
+    line: 2
+    label: 六二
+    text: 明夷，夷于左股，用拯马壮，吉。
+    textTrad: 明夷，夷于左股，用拯馬壯，吉。
+    reviewStatus: imported
+  - id: ZY.36.L3
+    kind: yao
+    line: 3
+    label: 九三
+    text: 明夷于南狩，得其大首，不可疾贞。
+    textTrad: 明夷于南狩，得其大首，不可疾貞。
+    reviewStatus: imported
+  - id: ZY.36.L4
+    kind: yao
+    line: 4
+    label: 六四
+    text: 入于左腹，获明夷之心，于出门庭。
+    textTrad: 入于左腹，獲明夷之心，于出門庭。
+    reviewStatus: imported
+  - id: ZY.36.L5
+    kind: yao
+    line: 5
+    label: 六五
+    text: 箕子之明夷，利贞。
+    textTrad: 箕子之明夷，利貞。
+    reviewStatus: imported
+  - id: ZY.36.L6
+    kind: yao
+    line: 6
+    label: 上六
+    text: 不明晦，初登于天，后入于地。
+    textTrad: 不明晦，初登于天，後入于地。
+    reviewStatus: imported
+  - id: ZY.36.TUAN
+    kind: tuan
+    text: 明入地中，明夷。内文明而外柔顺，以蒙大难，文王以之。利艰贞，晦其明也，内难而能正其志，箕子以之。
+    textTrad: 明入地中，明夷。內文明而外柔順，以蒙大難，文王以之。利艱貞，晦其明也，內難而能正其志，箕子以之。
+    reviewStatus: imported
+  - id: ZY.36.XIANG
+    kind: xiang
+    text: 明入地中，明夷；君子以莅众，用晦而明。
+    textTrad: 明入地中，明夷；君子以蒞眾，用晦而明。
+    reviewStatus: imported
+  - id: ZY.36.L1.XIANG
+    kind: xiaoxiang
+    line: 1
+    label: 初九
+    text: 君子于行，义不食也。
+    textTrad: 君子于行，義不食也。
+    reviewStatus: imported
+  - id: ZY.36.L2.XIANG
+    kind: xiaoxiang
+    line: 2
+    label: 六二
+    text: 六二之吉，顺以则也。
+    textTrad: 六二之吉，順以則也。
+    reviewStatus: imported
+  - id: ZY.36.L3.XIANG
+    kind: xiaoxiang
+    line: 3
+    label: 九三
+    text: 南狩之志，乃大得也。
+    textTrad: 南狩之志，乃大得也。
+    reviewStatus: imported
+  - id: ZY.36.L4.XIANG
+    kind: xiaoxiang
+    line: 4
+    label: 六四
+    text: 入于左腹，获心意也。
+    textTrad: 入于左腹，獲心意也。
+    reviewStatus: imported
+  - id: ZY.36.L5.XIANG
+    kind: xiaoxiang
+    line: 5
+    label: 六五
+    text: 箕子之贞，明不可息也。
+    textTrad: 箕子之貞，明不可息也。
+    reviewStatus: imported
+  - id: ZY.36.L6.XIANG
+    kind: xiaoxiang
+    line: 6
+    label: 上六
+    text: 初登于天，照四国也。后入于地，失则也。
+    textTrad: 初登于天，照四國也。後入于地，失則也。
+    reviewStatus: imported

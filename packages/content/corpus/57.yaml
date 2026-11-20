@@ -1,0 +1,113 @@
+# 由 scripts/import-wikisource.ts 生成；人工对勘后把 reviewStatus 改为 reviewed
+number: 57
+name: 巽
+nameTrad: 巽
+upper: xun
+lower: xun
+source:
+  title: 周易/巽
+  url: https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E5%B7%BD
+  revision: 10644966
+  permalink: https://zh.wikisource.org/w/index.php?oldid=10644966
+  edition: 维基文库《周易》
+entries:
+  - id: ZY.57.G
+    kind: gua
+    label: 巽
+    text: 小亨。利有攸往。利见大人。
+    textTrad: 小亨。利有攸往。利見大人。
+    reviewStatus: imported
+  - id: ZY.57.L1
+    kind: yao
+    line: 1
+    label: 初六
+    text: 进退，利武人之贞。
+    textTrad: 進退，利武人之貞。
+    reviewStatus: imported
+  - id: ZY.57.L2
+    kind: yao
+    line: 2
+    label: 九二
+    text: 巽在床下，用史巫纷若，吉无咎。
+    textTrad: 巽在牀下，用史巫紛若，吉无咎。
+    reviewStatus: imported
+  - id: ZY.57.L3
+    kind: yao
+    line: 3
+    label: 九三
+    text: 频巽，吝。
+    textTrad: 頻巽，吝。
+    reviewStatus: imported
+  - id: ZY.57.L4
+    kind: yao
+    line: 4
+    label: 六四
+    text: 悔亡，田获三品。
+    textTrad: 悔亡，田獲三品。
+    reviewStatus: imported
+  - id: ZY.57.L5
+    kind: yao
+    line: 5
+    label: 九五
+    text: 贞吉悔亡，无不利。无初有终，先庚三日，后庚三日，吉。
+    textTrad: 貞吉悔亡，无不利。无初有終，先庚三日，後庚三日，吉。
+    reviewStatus: imported
+  - id: ZY.57.L6
+    kind: yao
+    line: 6
+    label: 上九
+    text: 巽在床下，丧其资斧，贞凶。
+    textTrad: 巽在牀下，喪其資斧，貞凶。
+    reviewStatus: imported
+  - id: ZY.57.TUAN
+    kind: tuan
+    text: 重巽以申命，刚巽乎中正而志行。柔皆顺乎刚，是以小亨，利有攸往，利见大人。
+    textTrad: 重巽以申命，剛巽乎中正而志行。柔皆順乎剛，是以小亨，利有攸往，利見大人。
+    reviewStatus: imported
+  - id: ZY.57.XIANG
+    kind: xiang
+    text: 随风，巽；君子以申命行事。
+    textTrad: 隨風，巽；君子以申命行事。
+    reviewStatus: imported
+  - id: ZY.57.L1.XIANG
+    kind: xiaoxiang
+    line: 1
+    label: 初六
+    text: 进退，志疑也。利武人之贞，志治也。
+    textTrad: 進退，志疑也。利武人之貞，志治也。
+    reviewStatus: imported
+  - id: ZY.57.L2.XIANG
+    kind: xiaoxiang
+    line: 2
+    label: 九二
+    text: 纷若之吉，得中也。
+    textTrad: 紛若之吉，得中也。
+    reviewStatus: imported
+  - id: ZY.57.L3.XIANG
+    kind: xiaoxiang
+    line: 3
+    label: 九三
+    text: 频巽之吝，志穷也。
+    textTrad: 頻巽之吝，志窮也。
+    reviewStatus: imported
+  - id: ZY.57.L4.XIANG
+    kind: xiaoxiang
+    line: 4
+    label: 六四
+    text: 田获三品，有功也。
+    textTrad: 田獲三品，有功也。
+    reviewStatus: imported
+  - id: ZY.57.L5.XIANG
+    kind: xiaoxiang
+    line: 5
+    label: 九五
+    text: 九五之吉，位正中也。
+    textTrad: 九五之吉，位正中也。
+    reviewStatus: imported
+  - id: ZY.57.L6.XIANG
+    kind: xiaoxiang
+    line: 6
+    label: 上九
+    text: 巽在床下，上穷也。丧其资斧，正乎凶也。
+    textTrad: 巽在牀下，上窮也。喪其資斧，正乎凶也。
+    reviewStatus: imported

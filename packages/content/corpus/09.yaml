@@ -1,0 +1,113 @@
+# 由 scripts/import-wikisource.ts 生成；人工对勘后把 reviewStatus 改为 reviewed
+number: 9
+name: 小畜
+nameTrad: 小畜
+upper: xun
+lower: qian
+source:
+  title: 周易/小畜
+  url: https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E5%B0%8F%E7%95%9C
+  revision: 10645530
+  permalink: https://zh.wikisource.org/w/index.php?oldid=10645530
+  edition: 维基文库《周易》
+entries:
+  - id: ZY.09.G
+    kind: gua
+    label: 小畜
+    text: 亨。密云不雨，自我西郊。
+    textTrad: 亨。密雲不雨，自我西郊。
+    reviewStatus: imported
+  - id: ZY.09.L1
+    kind: yao
+    line: 1
+    label: 初九
+    text: 复自道，何其咎，吉。
+    textTrad: 復自道，何其咎，吉。
+    reviewStatus: imported
+  - id: ZY.09.L2
+    kind: yao
+    line: 2
+    label: 九二
+    text: 牵复，吉。
+    textTrad: 牽復，吉。
+    reviewStatus: imported
+  - id: ZY.09.L3
+    kind: yao
+    line: 3
+    label: 九三
+    text: 车说輹，夫妻反目。
+    textTrad: 車說輹，夫妻反目。
+    reviewStatus: imported
+  - id: ZY.09.L4
+    kind: yao
+    line: 4
+    label: 六四
+    text: 有孚，血去惕出，无咎。
+    textTrad: 有孚，血去惕出，无咎。
+    reviewStatus: imported
+  - id: ZY.09.L5
+    kind: yao
+    line: 5
+    label: 九五
+    text: 有孚挛如，富以其邻。
+    textTrad: 有孚攣如，富以其鄰。
+    reviewStatus: imported
+  - id: ZY.09.L6
+    kind: yao
+    line: 6
+    label: 上九
+    text: 既雨既处，尚得载，妇贞厉，月几望，君子征凶。
+    textTrad: 既雨既處，尚得載，婦貞厲，月幾望，君子征凶。
+    reviewStatus: imported
+  - id: ZY.09.TUAN
+    kind: tuan
+    text: 小畜，柔得位而上下应之，曰小畜。健而巽，刚中而志行，乃亨。密云不雨，尚往也。自我西郊，施未行也。
+    textTrad: 小畜，柔得位而上下應之，曰小畜。健而巽，剛中而志行，乃亨。密雲不雨，尚往也。自我西郊，施未行也。
+    reviewStatus: imported
+  - id: ZY.09.XIANG
+    kind: xiang
+    text: 风行天上，小畜，君子以懿文德。
+    textTrad: 風行天上，小畜，君子以懿文德。
+    reviewStatus: imported
+  - id: ZY.09.L1.XIANG
+    kind: xiaoxiang
+    line: 1
+    label: 初九
+    text: 复自道，其义吉也。
+    textTrad: 復自道，其義吉也。
+    reviewStatus: imported
+  - id: ZY.09.L2.XIANG
+    kind: xiaoxiang
+    line: 2
+    label: 九二
+    text: 牵复在中，亦不自失也。
+    textTrad: 牽復在中，亦不自失也。
+    reviewStatus: imported
+  - id: ZY.09.L3.XIANG
+    kind: xiaoxiang
+    line: 3
+    label: 九三
+    text: 夫妻反目，不能正室也。
+    textTrad: 夫妻反目，不能正室也。
+    reviewStatus: imported
+  - id: ZY.09.L4.XIANG
+    kind: xiaoxiang
+    line: 4
+    label: 六四
+    text: 有孚。惕出。上合志也。
+    textTrad: 有孚。惕出。上合志也。
+    reviewStatus: imported
+  - id: ZY.09.L5.XIANG
+    kind: xiaoxiang
+    line: 5
+    label: 九五
+    text: 有孚挛如，不独富也。
+    textTrad: 有孚攣如，不獨富也。
+    reviewStatus: imported
+  - id: ZY.09.L6.XIANG
+    kind: xiaoxiang
+    line: 6
+    label: 上九
+    text: 既雨既处，德积载也。君子征凶，有所疑也。
+    textTrad: 既雨既處，德積載也。君子征凶，有所疑也。
+    reviewStatus: imported

@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+/* 青绿山水 · 纸色底 · 留白（PRD 首页视觉参考） */
+@theme {
+  --color-paper: #f4ecdb;
+  --color-paper-deep: #ebe0c8;
+  --color-card: #faf5ea;
+  --color-ink: #1f2723;
+  --color-ink-soft: #454d47;
+  --color-muted: #75705f;
+  --color-line: #d9ccb1;
+  --color-qing: #2f5d50;
+  --color-qing-deep: #234a3f;
+  --color-lu: #6f9277;
+  --color-lu-soft: #e2e9dc;
+  --color-zhu: #b5452f;
+  --color-zhu-soft: #f3ddd2;
+
+  --font-serif: "Songti SC", "STSong", "Noto Serif SC", "Noto Serif CJK SC", "Source Han Serif SC", "SimSun", serif;
+  --font-sans: system-ui, -apple-system, "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+
+  --animate-coin: coin-flip 0.7s ease-in-out;
+}
+
+@keyframes coin-flip {
+  0% { transform: rotateY(0deg) translateY(0); }
+  50% { transform: rotateY(540deg) translateY(-14px); }
+  100% { transform: rotateY(1080deg) translateY(0); }
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  line-height: 1.7;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-qing);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

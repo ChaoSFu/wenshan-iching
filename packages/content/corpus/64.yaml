@@ -1,0 +1,113 @@
+# 由 scripts/import-wikisource.ts 生成；人工对勘后把 reviewStatus 改为 reviewed
+number: 64
+name: 未济
+nameTrad: 未濟
+upper: li
+lower: kan
+source:
+  title: 周易/未濟
+  url: https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E6%9C%AA%E6%BF%9F
+  revision: 10647450
+  permalink: https://zh.wikisource.org/w/index.php?oldid=10647450
+  edition: 维基文库《周易》
+entries:
+  - id: ZY.64.G
+    kind: gua
+    label: 未济
+    text: 亨。小狐汔济，濡其尾，无攸利。
+    textTrad: 亨。小狐汔濟，濡其尾，无攸利。
+    reviewStatus: imported
+  - id: ZY.64.L1
+    kind: yao
+    line: 1
+    label: 初六
+    text: 濡其尾，吝。
+    textTrad: 濡其尾，吝。
+    reviewStatus: imported
+  - id: ZY.64.L2
+    kind: yao
+    line: 2
+    label: 九二
+    text: 曳其轮，贞吉。
+    textTrad: 曳其輪，貞吉。
+    reviewStatus: imported
+  - id: ZY.64.L3
+    kind: yao
+    line: 3
+    label: 六三
+    text: 未济，征凶，利涉大川。
+    textTrad: 未濟，征凶，利涉大川。
+    reviewStatus: imported
+  - id: ZY.64.L4
+    kind: yao
+    line: 4
+    label: 九四
+    text: 贞吉，悔亡，震用伐鬼方，三年有赏于大国。
+    textTrad: 貞吉，悔亡，震用伐鬼方，三年有賞于大國。
+    reviewStatus: imported
+  - id: ZY.64.L5
+    kind: yao
+    line: 5
+    label: 六五
+    text: 贞吉，无悔，君子之光，有孚，吉。
+    textTrad: 貞吉，无悔，君子之光，有孚，吉。
+    reviewStatus: imported
+  - id: ZY.64.L6
+    kind: yao
+    line: 6
+    label: 上九
+    text: 有孚于饮酒，无咎，濡其首，有孚失是。
+    textTrad: 有孚于飲酒，无咎，濡其首，有孚失是。
+    reviewStatus: imported
+  - id: ZY.64.TUAN
+    kind: tuan
+    text: 未济，亨；柔得中也。小狐汔济，未出中也。濡其尾，无攸利；不续终也。虽不当位，刚柔应也。
+    textTrad: 未濟，亨；柔得中也。小狐汔濟，未出中也。濡其尾，无攸利；不續終也。雖不當位，剛柔應也。
+    reviewStatus: imported
+  - id: ZY.64.XIANG
+    kind: xiang
+    text: 火在水上，未济；君子以慎辨物居方。
+    textTrad: 火在水上，未濟；君子以慎辨物居方。
+    reviewStatus: imported
+  - id: ZY.64.L1.XIANG
+    kind: xiaoxiang
+    line: 1
+    label: 初六
+    text: 濡其尾，亦不知极也。
+    textTrad: 濡其尾，亦不知極也。
+    reviewStatus: imported
+  - id: ZY.64.L2.XIANG
+    kind: xiaoxiang
+    line: 2
+    label: 九二
+    text: 九二贞吉，中以行正也。
+    textTrad: 九二貞吉，中以行正也。
+    reviewStatus: imported
+  - id: ZY.64.L3.XIANG
+    kind: xiaoxiang
+    line: 3
+    label: 六三
+    text: 未济征凶，位不当也。
+    textTrad: 未濟征凶，位不當也。
+    reviewStatus: imported
+  - id: ZY.64.L4.XIANG
+    kind: xiaoxiang
+    line: 4
+    label: 九四
+    text: 贞吉悔亡，志行也。
+    textTrad: 貞吉悔亡，志行也。
+    reviewStatus: imported
+  - id: ZY.64.L5.XIANG
+    kind: xiaoxiang
+    line: 5
+    label: 六五
+    text: 君子之光，其晖吉也。
+    textTrad: 君子之光，其暉吉也。
+    reviewStatus: imported
+  - id: ZY.64.L6.XIANG
+    kind: xiaoxiang
+    line: 6
+    label: 上九
+    text: 饮酒濡首，亦不知节也。
+    textTrad: 飲酒濡首，亦不知節也。
+    reviewStatus: imported

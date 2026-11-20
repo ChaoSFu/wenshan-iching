@@ -1,0 +1,113 @@
+# 由 scripts/import-wikisource.ts 生成；人工对勘后把 reviewStatus 改为 reviewed
+number: 18
+name: 蛊
+nameTrad: 蠱
+upper: gen
+lower: xun
+source:
+  title: 周易/蠱
+  url: https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E8%A0%B1
+  revision: 2106145
+  permalink: https://zh.wikisource.org/w/index.php?oldid=2106145
+  edition: 维基文库《周易》
+entries:
+  - id: ZY.18.G
+    kind: gua
+    label: 蛊
+    text: 元亨。利涉大川。先甲三日，后甲三日。
+    textTrad: 元亨。利涉大川。先甲三日，後甲三日。
+    reviewStatus: imported
+  - id: ZY.18.L1
+    kind: yao
+    line: 1
+    label: 初六
+    text: 干父之蛊，有子考，无咎，厉终吉。
+    textTrad: 幹父之蠱，有子考，无咎，厲終吉。
+    reviewStatus: imported
+  - id: ZY.18.L2
+    kind: yao
+    line: 2
+    label: 九二
+    text: 干母之蛊，不可贞。
+    textTrad: 幹母之蠱，不可貞。
+    reviewStatus: imported
+  - id: ZY.18.L3
+    kind: yao
+    line: 3
+    label: 九三
+    text: 干父之蛊，小有悔，无大咎。
+    textTrad: 幹父之蠱，小有悔，无大咎。
+    reviewStatus: imported
+  - id: ZY.18.L4
+    kind: yao
+    line: 4
+    label: 六四
+    text: 裕父之蛊，往见吝。
+    textTrad: 裕父之蠱，往見吝。
+    reviewStatus: imported
+  - id: ZY.18.L5
+    kind: yao
+    line: 5
+    label: 六五
+    text: 干父之蛊，用誉。
+    textTrad: 幹父之蠱，用譽。
+    reviewStatus: imported
+  - id: ZY.18.L6
+    kind: yao
+    line: 6
+    label: 上九
+    text: 不事王侯，高尚其事。
+    textTrad: 不事王侯，高尚其事。
+    reviewStatus: imported
+  - id: ZY.18.TUAN
+    kind: tuan
+    text: 蛊，刚上而柔下，巽而止，蛊。蛊，元亨，而天下治也。利涉大川，往有事也。先甲三日，后甲三日，终则有始，天行也。
+    textTrad: 蠱，剛上而柔下，巽而止，蠱。蠱，元亨，而天下治也。利涉大川，往有事也。先甲三日，後甲三日，終則有始，天行也。
+    reviewStatus: imported
+  - id: ZY.18.XIANG
+    kind: xiang
+    text: 山下有风，蛊；君子以振民育德。
+    textTrad: 山下有風，蠱；君子以振民育德。
+    reviewStatus: imported
+  - id: ZY.18.L1.XIANG
+    kind: xiaoxiang
+    line: 1
+    label: 初六
+    text: 干父之蛊，意承考也。
+    textTrad: 幹父之蠱，意承考也。
+    reviewStatus: imported
+  - id: ZY.18.L2.XIANG
+    kind: xiaoxiang
+    line: 2
+    label: 九二
+    text: 干母之蛊，得中道也。
+    textTrad: 幹母之蠱，得中道也。
+    reviewStatus: imported
+  - id: ZY.18.L3.XIANG
+    kind: xiaoxiang
+    line: 3
+    label: 九三
+    text: 干父之蛊，终无咎也。
+    textTrad: 幹父之蠱，終无咎也。
+    reviewStatus: imported
+  - id: ZY.18.L4.XIANG
+    kind: xiaoxiang
+    line: 4
+    label: 六四
+    text: 裕父之蛊，往未得也。
+    textTrad: 裕父之蠱，往未得也。
+    reviewStatus: imported
+  - id: ZY.18.L5.XIANG
+    kind: xiaoxiang
+    line: 5
+    label: 六五
+    text: 干父用誉，承以德也。
+    textTrad: 幹父用譽，承以德也。
+    reviewStatus: imported
+  - id: ZY.18.L6.XIANG
+    kind: xiaoxiang
+    line: 6
+    label: 上九
+    text: 不事王侯，志可则也。
+    textTrad: 不事王侯，志可則也。
+    reviewStatus: imported

@@ -1,0 +1,57 @@
+id: study
+version: 1
+reviewStatus: draft
+order: 3
+name: 学业考试
+tagline: 成人备考、选专业、升学进修
+intents: [成人备考, 选专业, 升学进修, 留学申请]
+examples:
+  - 剩三周，最该把时间放在哪？
+  - 工作几年了，要不要去读一个硕士？
+  - 两个专业方向，我该怎么比较？
+clarifyHint: 你最想提升的是哪一科、哪一项能力，还是在想要不要报考本身？
+reframeExample:
+  from: 我能不能考上？
+  to: 剩下的时间里，我最该把精力放在哪里？
+contextFields:
+  - key: examDate
+    label: 考试或申请截止日期
+    primary: true
+    placeholder: 例如：三周后考试；明年 1 月截止申请
+  - key: gap
+    label: 最近练习的差距
+    placeholder: 例如：模考比目标低 15 分，阅读最弱
+  - key: hours
+    label: 每周能投入的时间
+    placeholder: 例如：工作日每晚 1 小时，周末半天
+free:
+  angleHints:
+    default: 把目标拆小：离考试或申请还有多久，哪一部分最可能在这段时间里改善。
+    prepare: 基础比冲刺更重要，先把最薄弱的那一块补上。
+    probe: 先做一套计时练习，用真实的结果看看自己差在哪里。
+    persevere: 节奏对了就坚持下去，每天稳定的练习比临时突击更可靠。
+    restrain: 不必面面俱到，把时间集中在最常丢分的地方。
+    wait: 如果还没想清楚要不要报、选哪个方向，先把信息收集齐再决定。
+    advance: 准备得差不多了，可以把报名、申请或模拟考排进日程。
+    cooperate: 问问老师、学长学姐或一起备考的人，他们的经验能帮你少走弯路。
+    adjust: 如果现在的学法效果不好，可以换一种练习方式，或调整时间安排。
+    caution: 守住时间和体力的底线，别让熬夜和焦虑拖垮状态。
+    reflect: 回头看看错题和过去的成绩，哪一类问题反复出现。
+  reflectionQuestions:
+    default: [离目标日期还有多久？哪一部分最可能在这段时间里提高？]
+    prepare: [你最薄弱的那一块，现在具体卡在哪里？]
+    probe: [这周能不能做一套计时练习，看看真实的差距？]
+    persevere: [哪一个学习习惯，是你愿意每天坚持的？]
+    restrain: [如果只能保留两项复习任务，你会留哪两项？]
+    wait: [做决定之前，你还需要查清哪一项要求？]
+    advance: [你可以先把哪一个关键日期定下来？]
+    cooperate: [谁能帮你看看你的计划或作答思路？]
+    adjust: [现在的学法里，哪一部分投入最多但收效最少？]
+    caution: [你的作息里，哪一点最需要先守住？]
+    reflect: [最近的错题里，最常出现的是哪一类？]
+report:
+  mustVerify: [成绩或错题记录, 考试或申请的具体要求, 可用时间]
+  deliverables: [最可改变的一个问题, 一周练习或信息收集计划]
+  actionStyle: 具体到每天做什么；一周内可以复测
+boundaryExamples:
+  - { q: 我这次一定能考上吧？, note: 不保证结果，改为看剩余时间怎么用 }

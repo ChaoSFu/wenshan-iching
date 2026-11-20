@@ -1,0 +1,113 @@
+# 由 scripts/import-wikisource.ts 生成；人工对勘后把 reviewStatus 改为 reviewed
+number: 8
+name: 比
+nameTrad: 比
+upper: kan
+lower: kun
+source:
+  title: 周易/比
+  url: https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E6%AF%94
+  revision: 10645543
+  permalink: https://zh.wikisource.org/w/index.php?oldid=10645543
+  edition: 维基文库《周易》
+entries:
+  - id: ZY.08.G
+    kind: gua
+    label: 比
+    text: 吉。原筮元永贞，无咎。不宁方来，后夫凶。
+    textTrad: 吉。原筮元永貞，无咎。不寧方來，後夫凶。
+    reviewStatus: imported
+  - id: ZY.08.L1
+    kind: yao
+    line: 1
+    label: 初六
+    text: 有孚，比之，无咎。有孚盈缶，终来有它，吉。
+    textTrad: 有孚，比之，无咎。有孚盈缶，終來有它，吉。
+    reviewStatus: imported
+  - id: ZY.08.L2
+    kind: yao
+    line: 2
+    label: 六二
+    text: 比之自内，贞吉。
+    textTrad: 比之自內，貞吉。
+    reviewStatus: imported
+  - id: ZY.08.L3
+    kind: yao
+    line: 3
+    label: 六三
+    text: 比之匪人。
+    textTrad: 比之匪人。
+    reviewStatus: imported
+  - id: ZY.08.L4
+    kind: yao
+    line: 4
+    label: 六四
+    text: 外比之，贞吉。
+    textTrad: 外比之，貞吉。
+    reviewStatus: imported
+  - id: ZY.08.L5
+    kind: yao
+    line: 5
+    label: 九五
+    text: 显比。王用三驱，失前禽，邑人不诫，吉。
+    textTrad: 顯比。王用三敺，失前禽，邑人不誡，吉。
+    reviewStatus: imported
+  - id: ZY.08.L6
+    kind: yao
+    line: 6
+    label: 上六
+    text: 比之无首，凶。
+    textTrad: 比之无首，凶。
+    reviewStatus: imported
+  - id: ZY.08.TUAN
+    kind: tuan
+    text: 比，吉也。比，辅也，下顺从也。原筮，元永贞，无咎，以刚中也。不宁方来，上下应也。后夫凶，其道穷也。
+    textTrad: 比，吉也。比，輔也，下順從也。原筮，元永貞，无咎，以剛中也。不寧方來，上下應也。後夫凶，其道窮也。
+    reviewStatus: imported
+  - id: ZY.08.XIANG
+    kind: xiang
+    text: 地上有水，比；先王以建万国，亲诸侯。
+    textTrad: 地上有水，比；先王以建萬國，親諸侯。
+    reviewStatus: imported
+  - id: ZY.08.L1.XIANG
+    kind: xiaoxiang
+    line: 1
+    label: 初六
+    text: 比之初六，有它吉也。
+    textTrad: 比之初六，有它吉也。
+    reviewStatus: imported
+  - id: ZY.08.L2.XIANG
+    kind: xiaoxiang
+    line: 2
+    label: 六二
+    text: 比之自内，不自失也。
+    textTrad: 比之自內，不自失也。
+    reviewStatus: imported
+  - id: ZY.08.L3.XIANG
+    kind: xiaoxiang
+    line: 3
+    label: 六三
+    text: 比之匪人，不亦伤乎！
+    textTrad: 比之匪人，不亦傷乎！
+    reviewStatus: imported
+  - id: ZY.08.L4.XIANG
+    kind: xiaoxiang
+    line: 4
+    label: 六四
+    text: 外比于贤，以从上也。
+    textTrad: 外比於賢，以從上也。
+    reviewStatus: imported
+  - id: ZY.08.L5.XIANG
+    kind: xiaoxiang
+    line: 5
+    label: 九五
+    text: 显比之吉，位正中也。舍逆取顺，失前禽也。邑人不诫，上使中也。
+    textTrad: 顯比之吉，位正中也。舍逆取順，失前禽也。邑人不誡，上使中也。
+    reviewStatus: imported
+  - id: ZY.08.L6.XIANG
+    kind: xiaoxiang
+    line: 6
+    label: 上六
+    text: 比之无首，无所终也。
+    textTrad: 比之无首，无所終也。
+    reviewStatus: imported

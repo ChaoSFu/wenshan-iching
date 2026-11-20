@@ -1,0 +1,113 @@
+# 由 scripts/import-wikisource.ts 生成；人工对勘后把 reviewStatus 改为 reviewed
+number: 12
+name: 否
+nameTrad: 否
+upper: qian
+lower: kun
+source:
+  title: 周易/否
+  url: https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E5%90%A6
+  revision: 10645603
+  permalink: https://zh.wikisource.org/w/index.php?oldid=10645603
+  edition: 维基文库《周易》
+entries:
+  - id: ZY.12.G
+    kind: gua
+    label: 否
+    text: 否之匪人，不利君子贞，大往小来。
+    textTrad: 否之匪人，不利君子貞，大往小來。
+    reviewStatus: imported
+  - id: ZY.12.L1
+    kind: yao
+    line: 1
+    label: 初六
+    text: 拔茅茹以其汇，贞吉。亨。
+    textTrad: 拔茅茹以其彙，貞吉。亨。
+    reviewStatus: imported
+  - id: ZY.12.L2
+    kind: yao
+    line: 2
+    label: 六二
+    text: 包承，小人吉，大人否。亨。
+    textTrad: 包承，小人吉，大人否。亨。
+    reviewStatus: imported
+  - id: ZY.12.L3
+    kind: yao
+    line: 3
+    label: 六三
+    text: 包羞。
+    textTrad: 包羞。
+    reviewStatus: imported
+  - id: ZY.12.L4
+    kind: yao
+    line: 4
+    label: 九四
+    text: 有命，无咎，畴离祉。
+    textTrad: 有命，无咎，疇離祉。
+    reviewStatus: imported
+  - id: ZY.12.L5
+    kind: yao
+    line: 5
+    label: 九五
+    text: 休否，大人吉。其亡其亡，系于包桑。
+    textTrad: 休否，大人吉。其亡其亡，繫于包桑。
+    reviewStatus: imported
+  - id: ZY.12.L6
+    kind: yao
+    line: 6
+    label: 上九
+    text: 倾否，先否后喜。
+    textTrad: 傾否，先否後喜。
+    reviewStatus: imported
+  - id: ZY.12.TUAN
+    kind: tuan
+    text: 否之匪人，不利君子贞，大往小来。则是天地不交而万物不通也，上下不交而天下无邦也。内阴而外阳，内柔而外刚，内小人而外君子，小人道长，君子道消也。
+    textTrad: 否之匪人，不利君子貞，大往小來。則是天地不交而萬物不通也，上下不交而天下无邦也。內陰而外陽，內柔而外剛，內小人而外君子，小人道長，君子道消也。
+    reviewStatus: imported
+  - id: ZY.12.XIANG
+    kind: xiang
+    text: 天地不交，否；君子以俭德辟难，不可荣以禄。
+    textTrad: 天地不交，否；君子以儉德辟難，不可榮以祿。
+    reviewStatus: imported
+  - id: ZY.12.L1.XIANG
+    kind: xiaoxiang
+    line: 1
+    label: 初六
+    text: 拔茅贞吉，志在君也。
+    textTrad: 拔茅貞吉，志在君也。
+    reviewStatus: imported
+  - id: ZY.12.L2.XIANG
+    kind: xiaoxiang
+    line: 2
+    label: 六二
+    text: 大人否，亨。不乱群也。
+    textTrad: 大人否，亨。不亂羣也。
+    reviewStatus: imported
+  - id: ZY.12.L3.XIANG
+    kind: xiaoxiang
+    line: 3
+    label: 六三
+    text: 包羞，位不当也。
+    textTrad: 包羞，位不當也。
+    reviewStatus: imported
+  - id: ZY.12.L4.XIANG
+    kind: xiaoxiang
+    line: 4
+    label: 九四
+    text: 有命无咎，志行也。
+    textTrad: 有命无咎，志行也。
+    reviewStatus: imported
+  - id: ZY.12.L5.XIANG
+    kind: xiaoxiang
+    line: 5
+    label: 九五
+    text: 大人之吉，位正当也。
+    textTrad: 大人之吉，位正當也。
+    reviewStatus: imported
+  - id: ZY.12.L6.XIANG
+    kind: xiaoxiang
+    line: 6
+    label: 上九
+    text: 否终则倾，何可长也。
+    textTrad: 否終則傾，何可長也。
+    reviewStatus: imported

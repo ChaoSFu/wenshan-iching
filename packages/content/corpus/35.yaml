@@ -1,0 +1,113 @@
+# 由 scripts/import-wikisource.ts 生成；人工对勘后把 reviewStatus 改为 reviewed
+number: 35
+name: 晋
+nameTrad: 晉
+upper: li
+lower: kun
+source:
+  title: 周易/晉
+  url: https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E6%99%89
+  revision: 10646579
+  permalink: https://zh.wikisource.org/w/index.php?oldid=10646579
+  edition: 维基文库《周易》
+entries:
+  - id: ZY.35.G
+    kind: gua
+    label: 晋
+    text: 康侯用锡马蕃庶，昼日三接。
+    textTrad: 康侯用錫馬蕃庶，晝日三接。
+    reviewStatus: imported
+  - id: ZY.35.L1
+    kind: yao
+    line: 1
+    label: 初六
+    text: 晋如，摧如，贞吉。罔孚，裕无咎。
+    textTrad: 晉如，摧如，貞吉。罔孚，裕无咎。
+    reviewStatus: imported
+  - id: ZY.35.L2
+    kind: yao
+    line: 2
+    label: 六二
+    text: 晋如，愁如，贞吉。受兹介福，于其王母。
+    textTrad: 晉如，愁如，貞吉。受茲介福，于其王母。
+    reviewStatus: imported
+  - id: ZY.35.L3
+    kind: yao
+    line: 3
+    label: 六三
+    text: 众允，悔亡。
+    textTrad: 眾允，悔亡。
+    reviewStatus: imported
+  - id: ZY.35.L4
+    kind: yao
+    line: 4
+    label: 九四
+    text: 晋如鼫鼠，贞厉。
+    textTrad: 晉如鼫鼠，貞厲。
+    reviewStatus: imported
+  - id: ZY.35.L5
+    kind: yao
+    line: 5
+    label: 六五
+    text: 悔亡，矢得勿恤，往吉无不利。
+    textTrad: 悔亡，矢得勿恤，往吉无不利。
+    reviewStatus: imported
+  - id: ZY.35.L6
+    kind: yao
+    line: 6
+    label: 上九
+    text: 晋其角，维用伐邑，厉吉无咎，贞吝。
+    textTrad: 晉其角，維用伐邑，厲吉无咎，貞吝。
+    reviewStatus: imported
+  - id: ZY.35.TUAN
+    kind: tuan
+    text: 晋，进也。明出地上，顺而丽乎大明，柔进而上行。是以康侯用锡马蕃庶，昼日三接也。
+    textTrad: 晉，進也。明出地上，順而麗乎大明，柔進而上行。是以康侯用錫馬蕃庶，晝日三接也。
+    reviewStatus: imported
+  - id: ZY.35.XIANG
+    kind: xiang
+    text: 明出地上，晋；君子以自昭明德。
+    textTrad: 明出地上，晉；君子以自昭明德。
+    reviewStatus: imported
+  - id: ZY.35.L1.XIANG
+    kind: xiaoxiang
+    line: 1
+    label: 初六
+    text: 晋如，摧如；独行正也。裕无咎；未受命也。
+    textTrad: 晉如，摧如；獨行正也。裕无咎；未受命也。
+    reviewStatus: imported
+  - id: ZY.35.L2.XIANG
+    kind: xiaoxiang
+    line: 2
+    label: 六二
+    text: 受兹介福，以中正也。
+    textTrad: 受茲介福，以中正也。
+    reviewStatus: imported
+  - id: ZY.35.L3.XIANG
+    kind: xiaoxiang
+    line: 3
+    label: 六三
+    text: 众允之志，上行也。
+    textTrad: 眾允之志，上行也。
+    reviewStatus: imported
+  - id: ZY.35.L4.XIANG
+    kind: xiaoxiang
+    line: 4
+    label: 九四
+    text: 鼫鼠贞厉，位不当也。
+    textTrad: 鼫鼠貞厲，位不當也。
+    reviewStatus: imported
+  - id: ZY.35.L5.XIANG
+    kind: xiaoxiang
+    line: 5
+    label: 六五
+    text: 失得勿恤，往有庆也。
+    textTrad: 失得勿恤，往有慶也。
+    reviewStatus: imported
+  - id: ZY.35.L6.XIANG
+    kind: xiaoxiang
+    line: 6
+    label: 上九
+    text: 维用伐邑，道未光也。
+    textTrad: 維用伐邑，道未光也。
+    reviewStatus: imported

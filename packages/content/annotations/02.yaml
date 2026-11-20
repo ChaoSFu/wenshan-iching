@@ -1,0 +1,43 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 2
+entries:
+  - entryId: ZY.02.G
+    vernacular: 坤象征地，代表包容与承载。卦辞说：大为亨通，像母马那样柔顺而坚持正道是有利的。有所行动时，抢在前面容易迷失，跟随合适的引领反而有所得；安于正道，吉利。
+    angles: [cooperate, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.02.L1
+    vernacular: 脚下踩到了霜，就知道坚冰快要到来。比喻从细小的迹象看出趋势，提早防备。
+    angles: [caution, prepare]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.02.L2
+    vernacular: 正直、方正、宽广，即使不刻意经营，也没有不利的。比喻顺着本性、守住原则，事情自然顺利。
+    angles: [persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.02.L3
+    vernacular: 内含美好而不张扬，可以守持正道；参与公事时不居功，却能有好的结局。比喻收敛锋芒、踏实做事。
+    angles: [restrain, persevere]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.02.L4
+    vernacular: 扎紧口袋，不招灾祸，也不求赞誉。比喻谨言慎行，暂时保守。
+    angles: [restrain, caution]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.02.L5
+    vernacular: 穿着黄色的下裳，大吉。黄色象征中和，下裳象征谦居其下。比喻守中、谦和，因而得到好的结果。
+    angles: [persevere, reflect]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.02.L6
+    vernacular: 龙在野外争斗，流出青黄混杂的血。比喻一方过盛、与另一方硬碰，结果两败俱伤。
+    angles: [caution, restrain]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.02.Y6
+    vernacular: 利于长久地守持正道。
+    angles: [persevere]
+    authorship: self
+    reviewStatus: draft

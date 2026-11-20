@@ -1,0 +1,113 @@
+# 由 scripts/import-wikisource.ts 生成；人工对勘后把 reviewStatus 改为 reviewed
+number: 26
+name: 大畜
+nameTrad: 大畜
+upper: gen
+lower: qian
+source:
+  title: 周易/大畜
+  url: https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E5%A4%A7%E7%95%9C
+  revision: 10646304
+  permalink: https://zh.wikisource.org/w/index.php?oldid=10646304
+  edition: 维基文库《周易》
+entries:
+  - id: ZY.26.G
+    kind: gua
+    label: 大畜
+    text: 利贞，不家食吉，利涉大川。
+    textTrad: 利貞，不家食吉，利涉大川。
+    reviewStatus: imported
+  - id: ZY.26.L1
+    kind: yao
+    line: 1
+    label: 初九
+    text: 有厉利已。
+    textTrad: 有厲利已。
+    reviewStatus: imported
+  - id: ZY.26.L2
+    kind: yao
+    line: 2
+    label: 九二
+    text: 舆说輹。
+    textTrad: 輿說輹。
+    reviewStatus: imported
+  - id: ZY.26.L3
+    kind: yao
+    line: 3
+    label: 九三
+    text: 良马逐，利艰贞，吉。日闲舆卫，利有攸往。
+    textTrad: 良馬逐，利艱貞，吉。日閑輿衛，利有攸往。
+    reviewStatus: imported
+  - id: ZY.26.L4
+    kind: yao
+    line: 4
+    label: 六四
+    text: 童牛之告，元吉。
+    textTrad: 童牛之告，元吉。
+    reviewStatus: imported
+  - id: ZY.26.L5
+    kind: yao
+    line: 5
+    label: 六五
+    text: 豮豕之牙，吉。
+    textTrad: 豶豕之牙，吉。
+    reviewStatus: imported
+  - id: ZY.26.L6
+    kind: yao
+    line: 6
+    label: 上九
+    text: 何天之衢，亨。
+    textTrad: 何天之衢，亨。
+    reviewStatus: imported
+  - id: ZY.26.TUAN
+    kind: tuan
+    text: 大畜，刚健笃实辉光，日新其德，刚上而尚贤。能止健，大正也。不家食吉，养贤也。利涉大川，应乎天也。
+    textTrad: 大畜，剛健篤實輝光，日新其德，剛上而尚賢。能止健，大正也。不家食吉，養賢也。利涉大川，應乎天也。
+    reviewStatus: imported
+  - id: ZY.26.XIANG
+    kind: xiang
+    text: 天在山中，大畜；君子以多识前言往行，以畜其德。
+    textTrad: 天在山中，大畜；君子以多識前言往行，以畜其德。
+    reviewStatus: imported
+  - id: ZY.26.L1.XIANG
+    kind: xiaoxiang
+    line: 1
+    label: 初九
+    text: 有厉利已，不犯灾也。
+    textTrad: 有厲利已，不犯災也。
+    reviewStatus: imported
+  - id: ZY.26.L2.XIANG
+    kind: xiaoxiang
+    line: 2
+    label: 九二
+    text: 舆说輹，中无尤也。
+    textTrad: 輿說輹，中无尤也。
+    reviewStatus: imported
+  - id: ZY.26.L3.XIANG
+    kind: xiaoxiang
+    line: 3
+    label: 九三
+    text: 利有攸往，上合志也。
+    textTrad: 利有攸往，上合志也。
+    reviewStatus: imported
+  - id: ZY.26.L4.XIANG
+    kind: xiaoxiang
+    line: 4
+    label: 六四
+    text: 六四元吉，有喜也。
+    textTrad: 六四元吉，有喜也。
+    reviewStatus: imported
+  - id: ZY.26.L5.XIANG
+    kind: xiaoxiang
+    line: 5
+    label: 六五
+    text: 六五之吉，有庆也。
+    textTrad: 六五之吉，有慶也。
+    reviewStatus: imported
+  - id: ZY.26.L6.XIANG
+    kind: xiaoxiang
+    line: 6
+    label: 上九
+    text: 何天之衢，道大行也。
+    textTrad: 何天之衢，道大行也。
+    reviewStatus: imported

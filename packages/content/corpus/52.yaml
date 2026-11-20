@@ -1,0 +1,113 @@
+# 由 scripts/import-wikisource.ts 生成；人工对勘后把 reviewStatus 改为 reviewed
+number: 52
+name: 艮
+nameTrad: 艮
+upper: gen
+lower: gen
+source:
+  title: 周易/艮
+  url: https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E8%89%AE
+  revision: 10647135
+  permalink: https://zh.wikisource.org/w/index.php?oldid=10647135
+  edition: 维基文库《周易》
+entries:
+  - id: ZY.52.G
+    kind: gua
+    label: 艮
+    text: 艮其背，不获其身，行其庭，不见其人，无咎。
+    textTrad: 艮其背，不獲其身，行其庭，不見其人，无咎。
+    reviewStatus: imported
+  - id: ZY.52.L1
+    kind: yao
+    line: 1
+    label: 初六
+    text: 艮其趾，无咎，利永贞。
+    textTrad: 艮其趾，无咎，利永貞。
+    reviewStatus: imported
+  - id: ZY.52.L2
+    kind: yao
+    line: 2
+    label: 六二
+    text: 艮其腓，不拯其随，其心不快。
+    textTrad: 艮其腓，不拯其隨，其心不快。
+    reviewStatus: imported
+  - id: ZY.52.L3
+    kind: yao
+    line: 3
+    label: 九三
+    text: 艮其限，裂其夤，厉阍心。
+    textTrad: 艮其限，裂其夤，厲閽心。
+    reviewStatus: imported
+  - id: ZY.52.L4
+    kind: yao
+    line: 4
+    label: 六四
+    text: 艮其身，无咎。
+    textTrad: 艮其身，无咎。
+    reviewStatus: imported
+  - id: ZY.52.L5
+    kind: yao
+    line: 5
+    label: 六五
+    text: 艮其辅，言有孚，悔亡。
+    textTrad: 艮其輔，言有孚，悔亡。
+    reviewStatus: imported
+  - id: ZY.52.L6
+    kind: yao
+    line: 6
+    label: 上九
+    text: 敦艮，吉。
+    textTrad: 敦艮，吉。
+    reviewStatus: imported
+  - id: ZY.52.TUAN
+    kind: tuan
+    text: 艮，止也。时止则止，时行则行，动静不失其时，其道光明。艮其止，止其所也。上下敌应，不相与也。是以不获其身，行其庭不见其人，无咎也。
+    textTrad: 艮，止也。時止則止，時行則行，動靜不失其時，其道光明。艮其止，止其所也。上下敵應，不相與也。是以不獲其身，行其庭不見其人，无咎也。
+    reviewStatus: imported
+  - id: ZY.52.XIANG
+    kind: xiang
+    text: 兼山，艮；君子以思不出其位。
+    textTrad: 兼山，艮；君子以思不出其位。
+    reviewStatus: imported
+  - id: ZY.52.L1.XIANG
+    kind: xiaoxiang
+    line: 1
+    label: 初六
+    text: 艮其趾，未失正也。
+    textTrad: 艮其趾，未失正也。
+    reviewStatus: imported
+  - id: ZY.52.L2.XIANG
+    kind: xiaoxiang
+    line: 2
+    label: 六二
+    text: 不拯其随，未退听也。
+    textTrad: 不拯其隨，未退聽也。
+    reviewStatus: imported
+  - id: ZY.52.L3.XIANG
+    kind: xiaoxiang
+    line: 3
+    label: 九三
+    text: 艮其限，危熏心也。
+    textTrad: 艮其限，危薰心也。
+    reviewStatus: imported
+  - id: ZY.52.L4.XIANG
+    kind: xiaoxiang
+    line: 4
+    label: 六四
+    text: 艮其身，止诸躬也。
+    textTrad: 艮其身，止諸躬也。
+    reviewStatus: imported
+  - id: ZY.52.L5.XIANG
+    kind: xiaoxiang
+    line: 5
+    label: 六五
+    text: 艮其辅，以中正也。
+    textTrad: 艮其輔，以中正也。
+    reviewStatus: imported
+  - id: ZY.52.L6.XIANG
+    kind: xiaoxiang
+    line: 6
+    label: 上九
+    text: 敦艮之吉，以厚终也。
+    textTrad: 敦艮之吉，以厚終也。
+    reviewStatus: imported

@@ -1,0 +1,113 @@
+# 由 scripts/import-wikisource.ts 生成；人工对勘后把 reviewStatus 改为 reviewed
+number: 3
+name: 屯
+nameTrad: 屯
+upper: kan
+lower: zhen
+source:
+  title: 周易/屯
+  url: https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E5%B1%AF
+  revision: 10643482
+  permalink: https://zh.wikisource.org/w/index.php?oldid=10643482
+  edition: 维基文库《周易》
+entries:
+  - id: ZY.03.G
+    kind: gua
+    label: 屯
+    text: 元亨，利贞。勿用有攸往，利建侯。
+    textTrad: 元亨，利貞。勿用有攸往，利建侯。
+    reviewStatus: imported
+  - id: ZY.03.L1
+    kind: yao
+    line: 1
+    label: 初九
+    text: 磐桓，利居贞，利建侯。
+    textTrad: 磐桓，利居貞，利建侯。
+    reviewStatus: imported
+  - id: ZY.03.L2
+    kind: yao
+    line: 2
+    label: 六二
+    text: 屯如邅如，乘马班如，匪寇婚媾，女子贞不字，十年乃字。
+    textTrad: 屯如邅如，乘馬班如，匪寇婚媾，女子貞不字，十年乃字。
+    reviewStatus: imported
+  - id: ZY.03.L3
+    kind: yao
+    line: 3
+    label: 六三
+    text: 即鹿无虞，惟入于林中，君子几不如舍，往吝。
+    textTrad: 即鹿无虞，惟入于林中，君子幾不如舍，往吝。
+    reviewStatus: imported
+  - id: ZY.03.L4
+    kind: yao
+    line: 4
+    label: 六四
+    text: 乘马班如，求婚媾，往，吉无不利。
+    textTrad: 乘馬班如，求婚媾，往，吉无不利。
+    reviewStatus: imported
+  - id: ZY.03.L5
+    kind: yao
+    line: 5
+    label: 九五
+    text: 屯其膏；小贞吉，大贞凶。
+    textTrad: 屯其膏；小貞吉，大貞凶。
+    reviewStatus: imported
+  - id: ZY.03.L6
+    kind: yao
+    line: 6
+    label: 上六
+    text: 乘马班如，泣血涟如。
+    textTrad: 乘馬班如，泣血漣如。
+    reviewStatus: imported
+  - id: ZY.03.TUAN
+    kind: tuan
+    text: 屯，刚柔始交而难生，动乎险中，大亨贞。雷雨之动满盈，天造草昧，宜建侯而不宁。
+    textTrad: 屯，剛柔始交而難生，動乎險中，大亨貞。雷雨之動滿盈，天造草昧，宜建侯而不寧。
+    reviewStatus: imported
+  - id: ZY.03.XIANG
+    kind: xiang
+    text: 云雷，屯；君子以经纶。
+    textTrad: 雲雷，屯；君子以經綸。
+    reviewStatus: imported
+  - id: ZY.03.L1.XIANG
+    kind: xiaoxiang
+    line: 1
+    label: 初九
+    text: 虽磐桓，志行正也。以贵下贱，大得民也。
+    textTrad: 雖磐桓，志行正也。以貴下賤，大得民也。
+    reviewStatus: imported
+  - id: ZY.03.L2.XIANG
+    kind: xiaoxiang
+    line: 2
+    label: 六二
+    text: 六二之难，乘刚也。十年乃字，反常也。
+    textTrad: 六二之難，乘剛也。十年乃字，反常也。
+    reviewStatus: imported
+  - id: ZY.03.L3.XIANG
+    kind: xiaoxiang
+    line: 3
+    label: 六三
+    text: 即鹿无虞，以从禽也。君子舍之，往吝穷也。
+    textTrad: 即鹿无虞，以從禽也。君子舍之，往吝窮也。
+    reviewStatus: imported
+  - id: ZY.03.L4.XIANG
+    kind: xiaoxiang
+    line: 4
+    label: 六四
+    text: 求而往，明也。
+    textTrad: 求而往，明也。
+    reviewStatus: imported
+  - id: ZY.03.L5.XIANG
+    kind: xiaoxiang
+    line: 5
+    label: 九五
+    text: 屯其膏，施未光也。
+    textTrad: 屯其膏，施未光也。
+    reviewStatus: imported
+  - id: ZY.03.L6.XIANG
+    kind: xiaoxiang
+    line: 6
+    label: 上六
+    text: 泣血涟如，何可长也。
+    textTrad: 泣血漣如，何可長也。
+    reviewStatus: imported

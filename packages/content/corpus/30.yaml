@@ -1,0 +1,113 @@
+# 由 scripts/import-wikisource.ts 生成；人工对勘后把 reviewStatus 改为 reviewed
+number: 30
+name: 离
+nameTrad: 離
+upper: li
+lower: li
+source:
+  title: 周易/離
+  url: https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E9%9B%A2
+  revision: 10646424
+  permalink: https://zh.wikisource.org/w/index.php?oldid=10646424
+  edition: 维基文库《周易》
+entries:
+  - id: ZY.30.G
+    kind: gua
+    label: 离
+    text: 利贞。亨。畜牝牛，吉。
+    textTrad: 利貞。亨。畜牝牛，吉。
+    reviewStatus: imported
+  - id: ZY.30.L1
+    kind: yao
+    line: 1
+    label: 初九
+    text: 履错然，敬之无咎。
+    textTrad: 履錯然，敬之无咎。
+    reviewStatus: imported
+  - id: ZY.30.L2
+    kind: yao
+    line: 2
+    label: 六二
+    text: 黄离，元吉。
+    textTrad: 黃離，元吉。
+    reviewStatus: imported
+  - id: ZY.30.L3
+    kind: yao
+    line: 3
+    label: 九三
+    text: 日昃之离，不鼓缶而歌，则大耋之差，凶。
+    textTrad: 日昃之離，不鼓缶而歌，則大耋之差，凶。
+    reviewStatus: imported
+  - id: ZY.30.L4
+    kind: yao
+    line: 4
+    label: 九四
+    text: 突如其来如，焚如，死如，弃如。
+    textTrad: 突如其來如，焚如，死如，棄如。
+    reviewStatus: imported
+  - id: ZY.30.L5
+    kind: yao
+    line: 5
+    label: 六五
+    text: 出涕沱若，戚嗟若，吉。
+    textTrad: 出涕沱若，戚嗟若，吉。
+    reviewStatus: imported
+  - id: ZY.30.L6
+    kind: yao
+    line: 6
+    label: 上九
+    text: 王用出征，有嘉折首，获匪其丑，无咎。
+    textTrad: 王用出征，有嘉折首，獲匪其醜，无咎。
+    reviewStatus: imported
+  - id: ZY.30.TUAN
+    kind: tuan
+    text: 离，丽也；日月丽乎天，百谷草木丽乎土，重明以丽乎正，乃化成天下。柔丽乎中正，故亨；是以畜牝牛吉也。
+    textTrad: 離，麗也；日月麗乎天，百穀草木麗乎土，重明以麗乎正，乃化成天下。柔麗乎中正，故亨；是以畜牝牛吉也。
+    reviewStatus: imported
+  - id: ZY.30.XIANG
+    kind: xiang
+    text: 明两作离，大人以继明照于四方。
+    textTrad: 明兩作離，大人以繼明照于四方。
+    reviewStatus: imported
+  - id: ZY.30.L1.XIANG
+    kind: xiaoxiang
+    line: 1
+    label: 初九
+    text: 履错之敬，以辟咎也。
+    textTrad: 履錯之敬，以辟咎也。
+    reviewStatus: imported
+  - id: ZY.30.L2.XIANG
+    kind: xiaoxiang
+    line: 2
+    label: 六二
+    text: 黄离元吉，得中道也。
+    textTrad: 黃離元吉，得中道也。
+    reviewStatus: imported
+  - id: ZY.30.L3.XIANG
+    kind: xiaoxiang
+    line: 3
+    label: 九三
+    text: 日昃之离，何可久也。
+    textTrad: 日昃之離，何可久也。
+    reviewStatus: imported
+  - id: ZY.30.L4.XIANG
+    kind: xiaoxiang
+    line: 4
+    label: 九四
+    text: 突如其来如，无所容也。
+    textTrad: 突如其來如，无所容也。
+    reviewStatus: imported
+  - id: ZY.30.L5.XIANG
+    kind: xiaoxiang
+    line: 5
+    label: 六五
+    text: 六五之吉，离王公也。
+    textTrad: 六五之吉，離王公也。
+    reviewStatus: imported
+  - id: ZY.30.L6.XIANG
+    kind: xiaoxiang
+    line: 6
+    label: 上九
+    text: 王用出征，以正邦也。
+    textTrad: 王用出征，以正邦也。
+    reviewStatus: imported

@@ -1,0 +1,58 @@
+id: career
+version: 1
+reviewStatus: draft
+order: 2
+name: 事业工作
+tagline: 求职、转岗、升职、接项目
+intents: [求职, 转岗, 升职, 接项目]
+examples:
+  - 有两个机会，我看重的是什么？
+  - 我做后端，想转产品岗，接下来四周怎么试？
+  - 要不要接下这个外包项目？
+clarifyHint: 你最想先弄清楚的是哪一个选择？
+reframeExample:
+  from: 我能不能升职？
+  to: 接下来三个月，我做哪件事最能提高升职的机会？
+contextFields:
+  - key: options
+    label: 现在有哪些备选
+    primary: true
+    placeholder: 例如：留在现岗位；内部转产品岗；外部面试
+  - key: deadline
+    label: 需要在什么时候前决定
+    placeholder: 例如：一个月内回复 offer
+  - key: tradeoff
+    label: 你最在意的取舍
+    placeholder: 例如：稳定收入，还是成长空间
+free:
+  angleHints:
+    default: 先把选择拆成可以核实的几项：岗位要求、时间成本，和你真正看重的东西。
+    prepare: 可以先想一想自己已经具备什么、还有什么需要在现实里验证，再决定下一步。
+    probe: 找真正做这份工作的人聊一聊，或做一个小项目试试，比空想更可靠。
+    persevere: 方向没变的话，持续积累手上的成果，比频繁换路更有力量。
+    restrain: 不必一下子押上全部，先用可以撤回的小投入试试水。
+    wait: 条件可能还没成熟，先把信息收集完整，再定时间点。
+    advance: 准备得差不多了，可以主动争取一次面谈、一次提案或一个机会。
+    cooperate: 问问上级、同事或业内的朋友，他们看到的要求可能和你想的不同。
+    adjust: 如果原来的路一直不顺，可以想想换个岗位方向，或换个切入点。
+    caution: 先弄清这个选择最坏会怎样，以及你能承受到什么程度。
+    reflect: 回头看看过去几份工作里，什么让你最投入，什么让你最消耗。
+  reflectionQuestions:
+    default: [在这几个选项里，你最看重的一条标准是什么？]
+    prepare: [你最想验证的，是自己喜欢这份工作，还是已经具备申请它的能力？]
+    probe: [你能找到哪一位正在做这份工作的人，问问他真实的一周？]
+    persevere: [手上哪一项成果，值得你再花一个月把它做扎实？]
+    restrain: [如果只拿出一小部分时间试一试，你会先试什么？]
+    wait: [还缺哪一条关键信息，会改变你的决定？]
+    advance: [这周你可以主动争取的一次机会是什么？]
+    cooperate: [谁最了解这个岗位的真实要求？你可以怎么去问？]
+    adjust: [如果这条路暂时走不通，还有哪个相邻的方向值得看看？]
+    caution: [这个选择里你最担心的风险是什么？能先怎么验证？]
+    reflect: [过去什么样的工作状态，让你觉得最像自己？]
+report:
+  mustVerify: [目标岗位或选项的实际要求, 时间与资源约束]
+  deliverables: [选项的实际比较标准, 一个能核实要求的小尝试, 用什么反馈来判断]
+  actionStyle: 低成本、可撤回、七天内可完成
+boundaryExamples:
+  - { q: 我买这只股票能赚多少？, note: 属于投资收益预测，转到分流 }
+  - { q: 老板是不是故意针对我？, note: 不断言他人动机，改为看自己能核实什么 }

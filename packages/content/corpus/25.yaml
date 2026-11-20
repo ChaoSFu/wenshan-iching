@@ -1,0 +1,113 @@
+# 由 scripts/import-wikisource.ts 生成；人工对勘后把 reviewStatus 改为 reviewed
+number: 25
+name: 无妄
+nameTrad: 无妄
+upper: qian
+lower: zhen
+source:
+  title: 周易/无妄
+  url: https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E6%97%A0%E5%A6%84
+  revision: 10645038
+  permalink: https://zh.wikisource.org/w/index.php?oldid=10645038
+  edition: 维基文库《周易》
+entries:
+  - id: ZY.25.G
+    kind: gua
+    label: 无妄
+    text: 元亨。利贞。其匪正有眚，不利有攸往。
+    textTrad: 元亨。利貞。其匪正有眚，不利有攸往。
+    reviewStatus: imported
+  - id: ZY.25.L1
+    kind: yao
+    line: 1
+    label: 初九
+    text: 无妄，往吉。
+    textTrad: 无妄，往吉。
+    reviewStatus: imported
+  - id: ZY.25.L2
+    kind: yao
+    line: 2
+    label: 六二
+    text: 不耕获，不菑畬，则利有攸往。
+    textTrad: 不耕穫，不菑畬，則利有攸往。
+    reviewStatus: imported
+  - id: ZY.25.L3
+    kind: yao
+    line: 3
+    label: 六三
+    text: 无妄之灾，或系之牛，行人之得，邑人之灾。
+    textTrad: 无妄之災，或繫之牛，行人之得，邑人之災。
+    reviewStatus: imported
+  - id: ZY.25.L4
+    kind: yao
+    line: 4
+    label: 九四
+    text: 可贞，无咎。
+    textTrad: 可貞，无咎。
+    reviewStatus: imported
+  - id: ZY.25.L5
+    kind: yao
+    line: 5
+    label: 九五
+    text: 无妄之疾，勿药有喜。
+    textTrad: 无妄之疾，勿藥有喜。
+    reviewStatus: imported
+  - id: ZY.25.L6
+    kind: yao
+    line: 6
+    label: 上九
+    text: 无妄，行有眚，无攸利。
+    textTrad: 无妄，行有眚，无攸利。
+    reviewStatus: imported
+  - id: ZY.25.TUAN
+    kind: tuan
+    text: 无妄，刚自外来，而为主于内。动而健，刚中而应，大亨以正，天之命也。其匪正有眚，不利有攸往。无妄之往，何之矣？ 天命不佑，行矣哉？
+    textTrad: 无妄，剛自外來，而為主於內。動而健，剛中而應，大亨以正，天之命也。其匪正有眚，不利有攸往。无妄之往，何之矣？ 天命不佑，行矣哉？
+    reviewStatus: imported
+  - id: ZY.25.XIANG
+    kind: xiang
+    text: 天下雷行，物与无妄；先王以茂对时，育万物。
+    textTrad: 天下雷行，物與无妄；先王以茂對時，育萬物。
+    reviewStatus: imported
+  - id: ZY.25.L1.XIANG
+    kind: xiaoxiang
+    line: 1
+    label: 初九
+    text: 无妄之往，得志也。
+    textTrad: 无妄之往，得志也。
+    reviewStatus: imported
+  - id: ZY.25.L2.XIANG
+    kind: xiaoxiang
+    line: 2
+    label: 六二
+    text: 不耕获，未富也。
+    textTrad: 不耕穫，未富也。
+    reviewStatus: imported
+  - id: ZY.25.L3.XIANG
+    kind: xiaoxiang
+    line: 3
+    label: 六三
+    text: 行人得牛，邑人灾也。
+    textTrad: 行人得牛，邑人災也。
+    reviewStatus: imported
+  - id: ZY.25.L4.XIANG
+    kind: xiaoxiang
+    line: 4
+    label: 九四
+    text: 可贞无咎，固有之也。
+    textTrad: 可貞无咎，固有之也。
+    reviewStatus: imported
+  - id: ZY.25.L5.XIANG
+    kind: xiaoxiang
+    line: 5
+    label: 九五
+    text: 无妄之药，不可试也。
+    textTrad: 无妄之藥，不可試也。
+    reviewStatus: imported
+  - id: ZY.25.L6.XIANG
+    kind: xiaoxiang
+    line: 6
+    label: 上九
+    text: 无妄之行，穷之灾也。
+    textTrad: 无妄之行，窮之災也。
+    reviewStatus: imported

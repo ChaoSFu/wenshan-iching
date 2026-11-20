@@ -1,0 +1,113 @@
+# 由 scripts/import-wikisource.ts 生成；人工对勘后把 reviewStatus 改为 reviewed
+number: 54
+name: 归妹
+nameTrad: 歸妹
+upper: zhen
+lower: dui
+source:
+  title: 周易/歸妹
+  url: https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E6%AD%B8%E5%A6%B9
+  revision: 10647182
+  permalink: https://zh.wikisource.org/w/index.php?oldid=10647182
+  edition: 维基文库《周易》
+entries:
+  - id: ZY.54.G
+    kind: gua
+    label: 归妹
+    text: 征凶，无攸利。
+    textTrad: 征凶，无攸利。
+    reviewStatus: imported
+  - id: ZY.54.L1
+    kind: yao
+    line: 1
+    label: 初九
+    text: 归妹以娣，跛能履，征吉。
+    textTrad: 歸妹以娣，跛能履，征吉。
+    reviewStatus: imported
+  - id: ZY.54.L2
+    kind: yao
+    line: 2
+    label: 九二
+    text: 眇能视，利幽人之贞。
+    textTrad: 眇能視，利幽人之貞。
+    reviewStatus: imported
+  - id: ZY.54.L3
+    kind: yao
+    line: 3
+    label: 六三
+    text: 归妹以须，反归以娣。
+    textTrad: 歸妹以須，反歸以娣。
+    reviewStatus: imported
+  - id: ZY.54.L4
+    kind: yao
+    line: 4
+    label: 九四
+    text: 归妹愆期，迟归有时。
+    textTrad: 歸妹愆期，遲歸有時。
+    reviewStatus: imported
+  - id: ZY.54.L5
+    kind: yao
+    line: 5
+    label: 六五
+    text: 帝乙归妹，其君之袂，不如其娣之袂良，月几望，吉。
+    textTrad: 帝乙歸妹，其君之袂，不如其娣之袂良，月幾望，吉。
+    reviewStatus: imported
+  - id: ZY.54.L6
+    kind: yao
+    line: 6
+    label: 上六
+    text: 女承筐无实，士刲羊无血，无攸利。
+    textTrad: 女承筐无實，士刲羊无血，无攸利。
+    reviewStatus: imported
+  - id: ZY.54.TUAN
+    kind: tuan
+    text: 归妹，天地之大义也。天地不交，而万物不兴，归妹人之终始也。说以动，所归妹也。征凶，位不当也。无攸利，柔乘刚也。
+    textTrad: 歸妹，天地之大義也。天地不交，而萬物不興，歸妹人之終始也。說以動，所歸妹也。征凶，位不當也。无攸利，柔乘剛也。
+    reviewStatus: imported
+  - id: ZY.54.XIANG
+    kind: xiang
+    text: 泽上有雷，归妹；君子以永终知敝。
+    textTrad: 澤上有雷，歸妹；君子以永終知敝。
+    reviewStatus: imported
+  - id: ZY.54.L1.XIANG
+    kind: xiaoxiang
+    line: 1
+    label: 初九
+    text: 归妹以娣，以恒也。跛能履吉，相承也。
+    textTrad: 歸妹以娣，以恆也。跛能履吉，相承也。
+    reviewStatus: imported
+  - id: ZY.54.L2.XIANG
+    kind: xiaoxiang
+    line: 2
+    label: 九二
+    text: 利幽人之贞，未变常也。
+    textTrad: 利幽人之貞，未變常也。
+    reviewStatus: imported
+  - id: ZY.54.L3.XIANG
+    kind: xiaoxiang
+    line: 3
+    label: 六三
+    text: 归妹以须，未当也。
+    textTrad: 歸妹以須，未當也。
+    reviewStatus: imported
+  - id: ZY.54.L4.XIANG
+    kind: xiaoxiang
+    line: 4
+    label: 九四
+    text: 愆期之志，有待而行也。
+    textTrad: 愆期之志，有待而行也。
+    reviewStatus: imported
+  - id: ZY.54.L5.XIANG
+    kind: xiaoxiang
+    line: 5
+    label: 六五
+    text: 帝乙归妹，不如其娣之袂良也。其位在中，以贵行也。
+    textTrad: 帝乙歸妹，不如其娣之袂良也。其位在中，以貴行也。
+    reviewStatus: imported
+  - id: ZY.54.L6.XIANG
+    kind: xiaoxiang
+    line: 6
+    label: 上六
+    text: 上六无实，承虚筐也。
+    textTrad: 上六无實，承虛筐也。
+    reviewStatus: imported

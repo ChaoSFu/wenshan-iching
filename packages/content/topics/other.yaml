@@ -1,0 +1,57 @@
+id: other
+version: 1
+reviewStatus: draft
+order: 5
+name: 其他一事
+tagline: 家庭、人际、搬家、日常取舍
+intents: [家庭沟通, 人际关系, 搬家, 日常取舍]
+examples:
+  - 该怎么和家里谈搬出去住？
+  - 朋友借钱不还，我要不要开口？
+  - 要不要换一个城市生活？
+clarifyHint: 这件事里，你自己能决定或改变的部分是什么？
+reframeExample:
+  from: 家里会不会同意？
+  to: 我该怎样开口，让家里愿意听我说？
+contextFields:
+  - key: goal
+    label: 你想争取什么
+    primary: true
+    placeholder: 例如：搬出去住，但不想和家里闹僵
+  - key: constraints
+    label: 现实约束
+    placeholder: 例如：预算有限，通勤要在一小时以内
+  - key: people
+    label: 主要涉及谁
+    placeholder: 例如：父母（请不要写真实姓名）
+free:
+  angleHints:
+    default: 把这件事落到具体的人、具体的选择和具体的时间上，会更容易看清下一步。
+    prepare: 先想清楚自己想争取什么、能接受什么，再去谈。
+    probe: 先用一次轻松的对话了解对方的想法，不必一次就要结论。
+    persevere: 如果你的立场是合理的，可以温和而坚定地表达。
+    restrain: 别急着一次解决所有分歧，先谈最要紧的一件事。
+    wait: 现在也许不是谈的好时机，可以等一个双方都方便的时段。
+    advance: 准备好了就主动开口，约一个合适的时间认真谈谈。
+    cooperate: 找一个双方都信任的人帮忙沟通，或者一起商量方案。
+    adjust: 如果原来的方法不管用，试试换个说法，或换个场合。
+    caution: 留意可能伤害关系的话和做法，先守住彼此的底线。
+    reflect: 回头看看自己在这件事里的情绪和期待。
+  reflectionQuestions:
+    default: [这件事里，你最想争取的是什么？]
+    prepare: [你能接受的最低条件是什么？]
+    probe: [对方最在意的可能是什么？你可以怎么先了解？]
+    persevere: [你的哪一个立场，值得温和地坚持？]
+    restrain: [如果这次只谈一件事，你会选哪一件？]
+    wait: [什么时候、在什么场合谈，对双方都更容易？]
+    advance: [你可以怎样开口，让对方愿意坐下来谈？]
+    cooperate: [谁可以帮你们把话说开？]
+    adjust: [上一次没谈好，可能是哪里出了问题？]
+    caution: [有哪些话说出来，可能会让事情更糟？]
+    reflect: [想到这件事时，你最强烈的情绪是什么？]
+report:
+  mustVerify: [具体涉及的人和关系, 可比较的现实条件, 时间]
+  deliverables: [谈话要点或可比较的现实条件, 一个七天内可做的行动]
+  actionStyle: 围绕具体关系与选择；尊重对方，不施压
+boundaryExamples:
+  - { q: 为读研要不要辞职？, note: 跨学业和事业，先请用户选主主题 }

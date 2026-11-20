@@ -1,0 +1,113 @@
+# 由 scripts/import-wikisource.ts 生成；人工对勘后把 reviewStatus 改为 reviewed
+number: 28
+name: 大过
+nameTrad: 大過
+upper: dui
+lower: xun
+source:
+  title: 周易/大過
+  url: https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E5%A4%A7%E9%81%8E
+  revision: 10645184
+  permalink: https://zh.wikisource.org/w/index.php?oldid=10645184
+  edition: 维基文库《周易》
+entries:
+  - id: ZY.28.G
+    kind: gua
+    label: 大过
+    text: 栋桡，利有攸往，亨。
+    textTrad: 棟橈，利有攸往，亨。
+    reviewStatus: imported
+  - id: ZY.28.L1
+    kind: yao
+    line: 1
+    label: 初六
+    text: 藉用白茅，无咎。
+    textTrad: 藉用白茅，无咎。
+    reviewStatus: imported
+  - id: ZY.28.L2
+    kind: yao
+    line: 2
+    label: 九二
+    text: 枯杨生稊，老夫得其女妻，无不利。
+    textTrad: 枯楊生稊，老夫得其女妻，无不利。
+    reviewStatus: imported
+  - id: ZY.28.L3
+    kind: yao
+    line: 3
+    label: 九三
+    text: 栋桡，凶。
+    textTrad: 棟橈，凶。
+    reviewStatus: imported
+  - id: ZY.28.L4
+    kind: yao
+    line: 4
+    label: 九四
+    text: 栋隆，吉。有它吝。
+    textTrad: 棟隆，吉。有它吝。
+    reviewStatus: imported
+  - id: ZY.28.L5
+    kind: yao
+    line: 5
+    label: 九五
+    text: 枯杨生华，老妇得其士夫，无咎无誉。
+    textTrad: 枯楊生華，老婦得其士夫，无咎无譽。
+    reviewStatus: imported
+  - id: ZY.28.L6
+    kind: yao
+    line: 6
+    label: 上六
+    text: 过涉灭顶，凶，无咎。
+    textTrad: 過涉滅頂，凶，无咎。
+    reviewStatus: imported
+  - id: ZY.28.TUAN
+    kind: tuan
+    text: 大过，大者过也。栋桡，本末弱也。刚过而中，巽而说行，利有攸往，乃亨。大过之时大矣哉！
+    textTrad: 大過，大者過也。棟橈，本末弱也。剛過而中，巽而說行，利有攸往，乃亨。大過之時大矣哉！
+    reviewStatus: imported
+  - id: ZY.28.XIANG
+    kind: xiang
+    text: 泽灭木，大过。君子以独立不惧，遁世无闷。
+    textTrad: 澤滅木，大過。君子以獨立不懼，遯世无悶。
+    reviewStatus: imported
+  - id: ZY.28.L1.XIANG
+    kind: xiaoxiang
+    line: 1
+    label: 初六
+    text: 藉用白茅，柔在下也。
+    textTrad: 藉用白茅，柔在下也。
+    reviewStatus: imported
+  - id: ZY.28.L2.XIANG
+    kind: xiaoxiang
+    line: 2
+    label: 九二
+    text: 老夫女妻，过以相与也。
+    textTrad: 老夫女妻，過以相與也。
+    reviewStatus: imported
+  - id: ZY.28.L3.XIANG
+    kind: xiaoxiang
+    line: 3
+    label: 九三
+    text: 栋桡之凶，不可以有辅也。
+    textTrad: 棟橈之凶，不可以有輔也。
+    reviewStatus: imported
+  - id: ZY.28.L4.XIANG
+    kind: xiaoxiang
+    line: 4
+    label: 九四
+    text: 栋隆之吉，不桡乎下也。
+    textTrad: 棟隆之吉，不橈乎下也。
+    reviewStatus: imported
+  - id: ZY.28.L5.XIANG
+    kind: xiaoxiang
+    line: 5
+    label: 九五
+    text: 枯杨生华，何可久也。老妇士夫，亦可丑也。
+    textTrad: 枯楊生華，何可久也。老婦士夫，亦可醜也。
+    reviewStatus: imported
+  - id: ZY.28.L6.XIANG
+    kind: xiaoxiang
+    line: 6
+    label: 上六
+    text: 过涉之凶，不可咎也。
+    textTrad: 過涉之凶，不可咎也。
+    reviewStatus: imported

@@ -1,0 +1,113 @@
+# 由 scripts/import-wikisource.ts 生成；人工对勘后把 reviewStatus 改为 reviewed
+number: 38
+name: 睽
+nameTrad: 睽
+upper: li
+lower: dui
+source:
+  title: 周易/睽
+  url: https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E7%9D%BD
+  revision: 10646622
+  permalink: https://zh.wikisource.org/w/index.php?oldid=10646622
+  edition: 维基文库《周易》
+entries:
+  - id: ZY.38.G
+    kind: gua
+    label: 睽
+    text: 小事吉。
+    textTrad: 小事吉。
+    reviewStatus: imported
+  - id: ZY.38.L1
+    kind: yao
+    line: 1
+    label: 初九
+    text: 悔亡，丧马勿逐，自复；见恶人无咎。
+    textTrad: 悔亡，喪馬勿逐，自復；見惡人无咎。
+    reviewStatus: imported
+  - id: ZY.38.L2
+    kind: yao
+    line: 2
+    label: 九二
+    text: 遇主于巷，无咎。
+    textTrad: 遇主于巷，无咎。
+    reviewStatus: imported
+  - id: ZY.38.L3
+    kind: yao
+    line: 3
+    label: 六三
+    text: 见舆曳，其牛𧤊，其人天且劓，无初有终。
+    textTrad: 見輿曳，其牛𧤊，其人天且劓，无初有終。
+    reviewStatus: imported
+  - id: ZY.38.L4
+    kind: yao
+    line: 4
+    label: 九四
+    text: 睽孤，遇元夫，交孚，厉无咎。
+    textTrad: 睽孤，遇元夫，交孚，厲无咎。
+    reviewStatus: imported
+  - id: ZY.38.L5
+    kind: yao
+    line: 5
+    label: 六五
+    text: 悔亡，厥宗噬肤，往何咎。
+    textTrad: 悔亡，厥宗噬膚，往何咎。
+    reviewStatus: imported
+  - id: ZY.38.L6
+    kind: yao
+    line: 6
+    label: 上九
+    text: 睽孤， 见豕负涂，载鬼一车， 先张之弧，后说之弧，匪寇婚媾，往遇雨则吉。
+    textTrad: 睽孤， 見豕負涂，載鬼一車， 先張之弧，後說之弧，匪寇婚媾，往遇雨則吉。
+    reviewStatus: imported
+  - id: ZY.38.TUAN
+    kind: tuan
+    text: 睽，火动而上，泽动而下；二女同居，其志不同行；说而丽乎明，柔进而上行，得中而应乎刚；是以小事吉。天地睽，而其事同也；男女睽，而其志通也；万物睽，而其事类也；睽之时用大矣哉！
+    textTrad: 睽，火動而上，澤動而下；二女同居，其志不同行；說而麗乎明，柔進而上行，得中而應乎剛；是以小事吉。天地睽，而其事同也；男女睽，而其志通也；萬物睽，而其事類也；睽之時用大矣哉！
+    reviewStatus: imported
+  - id: ZY.38.XIANG
+    kind: xiang
+    text: 上火下泽，睽；君子以同而异。
+    textTrad: 上火下澤，睽；君子以同而異。
+    reviewStatus: imported
+  - id: ZY.38.L1.XIANG
+    kind: xiaoxiang
+    line: 1
+    label: 初九
+    text: 见恶人，以辟咎也。
+    textTrad: 見惡人，以辟咎也。
+    reviewStatus: imported
+  - id: ZY.38.L2.XIANG
+    kind: xiaoxiang
+    line: 2
+    label: 九二
+    text: 遇主于巷，未失道也。
+    textTrad: 遇主于巷，未失道也。
+    reviewStatus: imported
+  - id: ZY.38.L3.XIANG
+    kind: xiaoxiang
+    line: 3
+    label: 六三
+    text: 见舆曳，位不当也。无初有终，遇刚也。
+    textTrad: 見輿曳，位不當也。无初有終，遇剛也。
+    reviewStatus: imported
+  - id: ZY.38.L4.XIANG
+    kind: xiaoxiang
+    line: 4
+    label: 九四
+    text: 交孚无咎，志行也。
+    textTrad: 交孚无咎，志行也。
+    reviewStatus: imported
+  - id: ZY.38.L5.XIANG
+    kind: xiaoxiang
+    line: 5
+    label: 六五
+    text: 厥宗噬肤，往有庆也。
+    textTrad: 厥宗噬膚，往有慶也。
+    reviewStatus: imported
+  - id: ZY.38.L6.XIANG
+    kind: xiaoxiang
+    line: 6
+    label: 上九
+    text: 遇雨之吉，群疑亡也。
+    textTrad: 遇雨之吉，群疑亡也。
+    reviewStatus: imported

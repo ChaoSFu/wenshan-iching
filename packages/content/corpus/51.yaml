@@ -1,0 +1,113 @@
+# 由 scripts/import-wikisource.ts 生成；人工对勘后把 reviewStatus 改为 reviewed
+number: 51
+name: 震
+nameTrad: 震
+upper: zhen
+lower: zhen
+source:
+  title: 周易/震
+  url: https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E9%9C%87
+  revision: 10644930
+  permalink: https://zh.wikisource.org/w/index.php?oldid=10644930
+  edition: 维基文库《周易》
+entries:
+  - id: ZY.51.G
+    kind: gua
+    label: 震
+    text: 亨。震来虩虩，笑言哑哑。震惊百里，不丧匕鬯。
+    textTrad: 亨。震來虩虩，笑言啞啞。震驚百里，不喪匕鬯。
+    reviewStatus: imported
+  - id: ZY.51.L1
+    kind: yao
+    line: 1
+    label: 初九
+    text: 震来虩虩，后笑言哑哑，吉。
+    textTrad: 震來虩虩，後笑言啞啞，吉。
+    reviewStatus: imported
+  - id: ZY.51.L2
+    kind: yao
+    line: 2
+    label: 六二
+    text: 震来厉，亿丧贝，跻于九陵，勿逐，七日得。
+    textTrad: 震來厲，億喪貝，躋于九陵，勿逐，七日得。
+    reviewStatus: imported
+  - id: ZY.51.L3
+    kind: yao
+    line: 3
+    label: 六三
+    text: 震苏苏，震行无眚。
+    textTrad: 震蘇蘇，震行无眚。
+    reviewStatus: imported
+  - id: ZY.51.L4
+    kind: yao
+    line: 4
+    label: 九四
+    text: 震遂泥。
+    textTrad: 震遂泥。
+    reviewStatus: imported
+  - id: ZY.51.L5
+    kind: yao
+    line: 5
+    label: 六五
+    text: 震往来厉，亿无丧，有事。
+    textTrad: 震往來厲，億无喪，有事。
+    reviewStatus: imported
+  - id: ZY.51.L6
+    kind: yao
+    line: 6
+    label: 上六
+    text: 震索索，视矍矍，征凶。震不于其躬，于其邻，无咎。婚媾有言。
+    textTrad: 震索索，視矍矍，征凶。震不于其躬，于其鄰，无咎。婚媾有言。
+    reviewStatus: imported
+  - id: ZY.51.TUAN
+    kind: tuan
+    text: 震，亨。震来虩虩，恐致福也。笑言哑哑，后有则也。震惊百里，惊远而惧迩也。出可以守宗庙社稷，以为祭主也。
+    textTrad: 震，亨。震來虩虩，恐致福也。笑言啞啞，後有則也。震驚百里，驚遠而懼邇也。出可以守宗廟社稷，以為祭主也。
+    reviewStatus: imported
+  - id: ZY.51.XIANG
+    kind: xiang
+    text: 洊雷，震；君子以恐惧修省。
+    textTrad: 洊雷，震；君子以恐懼修省。
+    reviewStatus: imported
+  - id: ZY.51.L1.XIANG
+    kind: xiaoxiang
+    line: 1
+    label: 初九
+    text: 震来虩虩，恐致福也。笑言哑哑，后有则也。
+    textTrad: 震來虩虩，恐致福也。笑言啞啞，後有則也。
+    reviewStatus: imported
+  - id: ZY.51.L2.XIANG
+    kind: xiaoxiang
+    line: 2
+    label: 六二
+    text: 震来厉，乘刚也。
+    textTrad: 震來厲，乘剛也。
+    reviewStatus: imported
+  - id: ZY.51.L3.XIANG
+    kind: xiaoxiang
+    line: 3
+    label: 六三
+    text: 震苏苏，位不当也。
+    textTrad: 震蘇蘇，位不當也。
+    reviewStatus: imported
+  - id: ZY.51.L4.XIANG
+    kind: xiaoxiang
+    line: 4
+    label: 九四
+    text: 震遂泥，未光也。
+    textTrad: 震遂泥，未光也。
+    reviewStatus: imported
+  - id: ZY.51.L5.XIANG
+    kind: xiaoxiang
+    line: 5
+    label: 六五
+    text: 震往来厉，危行也。其事在中，大无丧也。
+    textTrad: 震往來厲，危行也。其事在中，大无喪也。
+    reviewStatus: imported
+  - id: ZY.51.L6.XIANG
+    kind: xiaoxiang
+    line: 6
+    label: 上六
+    text: 震索索，中未得也。虽凶无咎，畏邻戒也。
+    textTrad: 震索索，中未得也。雖凶无咎，畏鄰戒也。
+    reviewStatus: imported

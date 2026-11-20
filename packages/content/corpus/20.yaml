@@ -1,0 +1,113 @@
+# 由 scripts/import-wikisource.ts 生成；人工对勘后把 reviewStatus 改为 reviewed
+number: 20
+name: 观
+nameTrad: 觀
+upper: xun
+lower: kun
+source:
+  title: 周易/觀
+  url: https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E8%A7%80
+  revision: 10645159
+  permalink: https://zh.wikisource.org/w/index.php?oldid=10645159
+  edition: 维基文库《周易》
+entries:
+  - id: ZY.20.G
+    kind: gua
+    label: 观
+    text: 盥而不荐，有孚颙若。
+    textTrad: 盥而不薦，有孚顒若。
+    reviewStatus: imported
+  - id: ZY.20.L1
+    kind: yao
+    line: 1
+    label: 初六
+    text: 童观，小人无咎，君子吝。
+    textTrad: 童觀，小人无咎，君子吝。
+    reviewStatus: imported
+  - id: ZY.20.L2
+    kind: yao
+    line: 2
+    label: 六二
+    text: 窥观，利女贞。
+    textTrad: 窺觀，利女貞。
+    reviewStatus: imported
+  - id: ZY.20.L3
+    kind: yao
+    line: 3
+    label: 六三
+    text: 观我生，进退。
+    textTrad: 觀我生，進退。
+    reviewStatus: imported
+  - id: ZY.20.L4
+    kind: yao
+    line: 4
+    label: 六四
+    text: 观国之光，利用宾于王。
+    textTrad: 觀國之光，利用賓于王。
+    reviewStatus: imported
+  - id: ZY.20.L5
+    kind: yao
+    line: 5
+    label: 九五
+    text: 观我生，君子无咎。
+    textTrad: 觀我生，君子无咎。
+    reviewStatus: imported
+  - id: ZY.20.L6
+    kind: yao
+    line: 6
+    label: 上九
+    text: 观其生，君子无咎。
+    textTrad: 觀其生，君子无咎。
+    reviewStatus: imported
+  - id: ZY.20.TUAN
+    kind: tuan
+    text: 大观在上，顺而巽，中正以观天下。观，盥而不荐，有孚颙若，下观而化也。观天之神道，而四时不忒，圣人以神道设教，而天下服矣。
+    textTrad: 大觀在上，順而巽，中正以觀天下。觀，盥而不薦，有孚顒若，下觀而化也。觀天之神道，而四時不忒，聖人以神道設教，而天下服矣。
+    reviewStatus: imported
+  - id: ZY.20.XIANG
+    kind: xiang
+    text: 风行地上，观；先王以省方，观民设教。
+    textTrad: 風行地上，觀；先王以省方，觀民設教。
+    reviewStatus: imported
+  - id: ZY.20.L1.XIANG
+    kind: xiaoxiang
+    line: 1
+    label: 初六
+    text: 初六童观，小人道也。
+    textTrad: 初六童觀，小人道也。
+    reviewStatus: imported
+  - id: ZY.20.L2.XIANG
+    kind: xiaoxiang
+    line: 2
+    label: 六二
+    text: 窥观女贞，亦可丑也。
+    textTrad: 窺觀女貞，亦可醜也。
+    reviewStatus: imported
+  - id: ZY.20.L3.XIANG
+    kind: xiaoxiang
+    line: 3
+    label: 六三
+    text: 观我生，进退；未失道也。
+    textTrad: 觀我生，進退；未失道也。
+    reviewStatus: imported
+  - id: ZY.20.L4.XIANG
+    kind: xiaoxiang
+    line: 4
+    label: 六四
+    text: 观国之光，尚宾也。
+    textTrad: 觀國之光，尚賓也。
+    reviewStatus: imported
+  - id: ZY.20.L5.XIANG
+    kind: xiaoxiang
+    line: 5
+    label: 九五
+    text: 观我生，观民也。
+    textTrad: 觀我生，觀民也。
+    reviewStatus: imported
+  - id: ZY.20.L6.XIANG
+    kind: xiaoxiang
+    line: 6
+    label: 上九
+    text: 观其生，志未平也。
+    textTrad: 觀其生，志未平也。
+    reviewStatus: imported

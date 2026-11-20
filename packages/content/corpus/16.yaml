@@ -1,0 +1,113 @@
+# 由 scripts/import-wikisource.ts 生成；人工对勘后把 reviewStatus 改为 reviewed
+number: 16
+name: 豫
+nameTrad: 豫
+upper: zhen
+lower: kun
+source:
+  title: 周易/豫
+  url: https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E8%B1%AB
+  revision: 10645735
+  permalink: https://zh.wikisource.org/w/index.php?oldid=10645735
+  edition: 维基文库《周易》
+entries:
+  - id: ZY.16.G
+    kind: gua
+    label: 豫
+    text: 利建侯行师。
+    textTrad: 利建侯行師。
+    reviewStatus: imported
+  - id: ZY.16.L1
+    kind: yao
+    line: 1
+    label: 初六
+    text: 鸣豫，凶。
+    textTrad: 鳴豫，凶。
+    reviewStatus: imported
+  - id: ZY.16.L2
+    kind: yao
+    line: 2
+    label: 六二
+    text: 介于石，不终日，贞吉。
+    textTrad: 介于石，不終日，貞吉。
+    reviewStatus: imported
+  - id: ZY.16.L3
+    kind: yao
+    line: 3
+    label: 六三
+    text: 盱豫，悔。迟有悔。
+    textTrad: 盱豫，悔。遲有悔。
+    reviewStatus: imported
+  - id: ZY.16.L4
+    kind: yao
+    line: 4
+    label: 九四
+    text: 由豫，大有得。勿疑。朋盍戠。
+    textTrad: 由豫，大有得。勿疑。朋盍戠。
+    reviewStatus: imported
+  - id: ZY.16.L5
+    kind: yao
+    line: 5
+    label: 六五
+    text: 贞疾，恒不死。
+    textTrad: 貞疾，恆不死。
+    reviewStatus: imported
+  - id: ZY.16.L6
+    kind: yao
+    line: 6
+    label: 上六
+    text: 冥豫，成有渝，无咎。
+    textTrad: 冥豫，成有渝，无咎。
+    reviewStatus: imported
+  - id: ZY.16.TUAN
+    kind: tuan
+    text: 豫，刚应而志行，顺以动，豫。豫，顺以动，故天地如之，而况建侯行师乎？天地以顺动，故日月不过，而四时不忒；圣人以顺动，则刑罚清而民服。豫之时义大矣哉！
+    textTrad: 豫，剛應而志行，順以動，豫。豫，順以動，故天地如之，而況建侯行師乎？天地以順動，故日月不過，而四時不忒；聖人以順動，則刑罰清而民服。豫之時義大矣哉！
+    reviewStatus: imported
+  - id: ZY.16.XIANG
+    kind: xiang
+    text: 雷出地奋，豫。先王以作乐崇德，殷荐之上帝，以配祖考。
+    textTrad: 雷出地奮，豫。先王以作樂崇德，殷薦之上帝，以配祖考。
+    reviewStatus: imported
+  - id: ZY.16.L1.XIANG
+    kind: xiaoxiang
+    line: 1
+    label: 初六
+    text: 初六鸣豫，志穷凶也。
+    textTrad: 初六鳴豫，志窮凶也。
+    reviewStatus: imported
+  - id: ZY.16.L2.XIANG
+    kind: xiaoxiang
+    line: 2
+    label: 六二
+    text: 不终日，贞吉；以中正也。
+    textTrad: 不終日，貞吉；以中正也。
+    reviewStatus: imported
+  - id: ZY.16.L3.XIANG
+    kind: xiaoxiang
+    line: 3
+    label: 六三
+    text: 盱豫有悔，位不当也。
+    textTrad: 盱豫有悔，位不當也。
+    reviewStatus: imported
+  - id: ZY.16.L4.XIANG
+    kind: xiaoxiang
+    line: 4
+    label: 九四
+    text: 由豫，大有得；志大行也。
+    textTrad: 由豫，大有得；志大行也。
+    reviewStatus: imported
+  - id: ZY.16.L5.XIANG
+    kind: xiaoxiang
+    line: 5
+    label: 六五
+    text: 六五贞疾，乘刚也。恒不死，中未亡也。
+    textTrad: 六五貞疾，乘剛也。恆不死，中未亡也。
+    reviewStatus: imported
+  - id: ZY.16.L6.XIANG
+    kind: xiaoxiang
+    line: 6
+    label: 上六
+    text: 冥豫在上，何可长也。
+    textTrad: 冥豫在上，何可長也。
+    reviewStatus: imported

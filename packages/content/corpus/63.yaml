@@ -1,0 +1,113 @@
+# 由 scripts/import-wikisource.ts 生成；人工对勘后把 reviewStatus 改为 reviewed
+number: 63
+name: 既济
+nameTrad: 既濟
+upper: kan
+lower: li
+source:
+  title: 周易/既濟
+  url: https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E6%97%A2%E6%BF%9F
+  revision: 2572417
+  permalink: https://zh.wikisource.org/w/index.php?oldid=2572417
+  edition: 维基文库《周易》
+entries:
+  - id: ZY.63.G
+    kind: gua
+    label: 既济
+    text: 亨小。利贞。初吉终乱。
+    textTrad: 亨小。利貞。初吉終亂。
+    reviewStatus: imported
+  - id: ZY.63.L1
+    kind: yao
+    line: 1
+    label: 初九
+    text: 曳其轮，濡其尾，无咎。
+    textTrad: 曳其輪，濡其尾，无咎。
+    reviewStatus: imported
+  - id: ZY.63.L2
+    kind: yao
+    line: 2
+    label: 六二
+    text: 妇丧其茀，勿逐，七日得。
+    textTrad: 婦喪其茀，勿逐，七日得。
+    reviewStatus: imported
+  - id: ZY.63.L3
+    kind: yao
+    line: 3
+    label: 九三
+    text: 高宗伐鬼方，三年克之，小人勿用。
+    textTrad: 高宗伐鬼方，三年克之，小人勿用。
+    reviewStatus: imported
+  - id: ZY.63.L4
+    kind: yao
+    line: 4
+    label: 六四
+    text: 𦈡有衣袽，终日戒。
+    textTrad: 繻有衣袽，終日戒。
+    reviewStatus: imported
+  - id: ZY.63.L5
+    kind: yao
+    line: 5
+    label: 九五
+    text: 东邻杀牛，不如西邻之禴祭，实受其福。
+    textTrad: 東鄰殺牛，不如西鄰之禴祭，實受其福。
+    reviewStatus: imported
+  - id: ZY.63.L6
+    kind: yao
+    line: 6
+    label: 上六
+    text: 濡其首，厉。
+    textTrad: 濡其首，厲。
+    reviewStatus: imported
+  - id: ZY.63.TUAN
+    kind: tuan
+    text: 既济，亨，小者亨也。利贞，刚柔正而位当也。初吉，柔得中也。终止则乱，其道穷也。
+    textTrad: 既濟，亨，小者亨也。利貞，剛柔正而位當也。初吉，柔得中也。終止則亂，其道窮也。
+    reviewStatus: imported
+  - id: ZY.63.XIANG
+    kind: xiang
+    text: 水在火上，既济；君子以思患而豫防之。
+    textTrad: 水在火上，既濟；君子以思患而豫防之。
+    reviewStatus: imported
+  - id: ZY.63.L1.XIANG
+    kind: xiaoxiang
+    line: 1
+    label: 初九
+    text: 曳其轮，义无咎也。
+    textTrad: 曳其輪，義无咎也。
+    reviewStatus: imported
+  - id: ZY.63.L2.XIANG
+    kind: xiaoxiang
+    line: 2
+    label: 六二
+    text: 七日得，以中道也。
+    textTrad: 七日得，以中道也。
+    reviewStatus: imported
+  - id: ZY.63.L3.XIANG
+    kind: xiaoxiang
+    line: 3
+    label: 九三
+    text: 三年克之，惫也。
+    textTrad: 三年克之，憊也。
+    reviewStatus: imported
+  - id: ZY.63.L4.XIANG
+    kind: xiaoxiang
+    line: 4
+    label: 六四
+    text: 终日戒，有所疑也。
+    textTrad: 終日戒，有所疑也。
+    reviewStatus: imported
+  - id: ZY.63.L5.XIANG
+    kind: xiaoxiang
+    line: 5
+    label: 九五
+    text: 东邻杀牛，不如西邻之时也；实受其福，吉大来也。
+    textTrad: 東鄰殺牛，不如西鄰之時也；實受其福，吉大來也。
+    reviewStatus: imported
+  - id: ZY.63.L6.XIANG
+    kind: xiaoxiang
+    line: 6
+    label: 上六
+    text: 濡其首厉，何可久也。
+    textTrad: 濡其首厲，何可久也。
+    reviewStatus: imported

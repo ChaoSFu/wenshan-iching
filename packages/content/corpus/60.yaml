@@ -1,0 +1,113 @@
+# 由 scripts/import-wikisource.ts 生成；人工对勘后把 reviewStatus 改为 reviewed
+number: 60
+name: 节
+nameTrad: 節
+upper: kan
+lower: dui
+source:
+  title: 周易/節
+  url: https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E7%AF%80
+  revision: 2405027
+  permalink: https://zh.wikisource.org/w/index.php?oldid=2405027
+  edition: 维基文库《周易》
+entries:
+  - id: ZY.60.G
+    kind: gua
+    label: 节
+    text: 亨。苦节不可贞。
+    textTrad: 亨。苦節不可貞。
+    reviewStatus: imported
+  - id: ZY.60.L1
+    kind: yao
+    line: 1
+    label: 初九
+    text: 不出户庭，无咎。
+    textTrad: 不出戶庭，无咎。
+    reviewStatus: imported
+  - id: ZY.60.L2
+    kind: yao
+    line: 2
+    label: 九二
+    text: 不出门庭，凶。
+    textTrad: 不出門庭，凶。
+    reviewStatus: imported
+  - id: ZY.60.L3
+    kind: yao
+    line: 3
+    label: 六三
+    text: 不节若，则嗟若，无咎。
+    textTrad: 不節若，則嗟若，无咎。
+    reviewStatus: imported
+  - id: ZY.60.L4
+    kind: yao
+    line: 4
+    label: 六四
+    text: 安节，亨。
+    textTrad: 安節，亨。
+    reviewStatus: imported
+  - id: ZY.60.L5
+    kind: yao
+    line: 5
+    label: 九五
+    text: 甘节，吉；往有尚。
+    textTrad: 甘節，吉；往有尚。
+    reviewStatus: imported
+  - id: ZY.60.L6
+    kind: yao
+    line: 6
+    label: 上六
+    text: 苦节，贞凶，悔亡。
+    textTrad: 苦節，貞凶，悔亡。
+    reviewStatus: imported
+  - id: ZY.60.TUAN
+    kind: tuan
+    text: 节，亨，刚柔分，而刚得中。苦节不可贞，其道穷也。说以行险，当位以节，中正以通。天地节而四时成，节以制度，不伤财，不害民。
+    textTrad: 節，亨，剛柔分，而剛得中。苦節不可貞，其道窮也。說以行險，當位以節，中正以通。天地節而四時成，節以制度，不傷財，不害民。
+    reviewStatus: imported
+  - id: ZY.60.XIANG
+    kind: xiang
+    text: 泽上有水，节；君子以制数度，议德行。
+    textTrad: 澤上有水，節；君子以制數度，議德行。
+    reviewStatus: imported
+  - id: ZY.60.L1.XIANG
+    kind: xiaoxiang
+    line: 1
+    label: 初九
+    text: 不出户庭，知通塞也。
+    textTrad: 不出戶庭，知通塞也。
+    reviewStatus: imported
+  - id: ZY.60.L2.XIANG
+    kind: xiaoxiang
+    line: 2
+    label: 九二
+    text: 不出门庭，失时极也。
+    textTrad: 不出門庭，失時極也。
+    reviewStatus: imported
+  - id: ZY.60.L3.XIANG
+    kind: xiaoxiang
+    line: 3
+    label: 六三
+    text: 不节之嗟，又谁咎也。
+    textTrad: 不節之嗟，又誰咎也。
+    reviewStatus: imported
+  - id: ZY.60.L4.XIANG
+    kind: xiaoxiang
+    line: 4
+    label: 六四
+    text: 安节之亨，承上道也。
+    textTrad: 安節之亨，承上道也。
+    reviewStatus: imported
+  - id: ZY.60.L5.XIANG
+    kind: xiaoxiang
+    line: 5
+    label: 九五
+    text: 甘节之吉，居位中也。
+    textTrad: 甘節之吉，居位中也。
+    reviewStatus: imported
+  - id: ZY.60.L6.XIANG
+    kind: xiaoxiang
+    line: 6
+    label: 上六
+    text: 苦节贞凶，其道穷也。
+    textTrad: 苦節貞凶，其道窮也。
+    reviewStatus: imported

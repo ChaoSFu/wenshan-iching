@@ -1,0 +1,113 @@
+# 由 scripts/import-wikisource.ts 生成；人工对勘后把 reviewStatus 改为 reviewed
+number: 14
+name: 大有
+nameTrad: 大有
+upper: li
+lower: qian
+source:
+  title: 周易/大有
+  url: https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E5%A4%A7%E6%9C%89
+  revision: 10645712
+  permalink: https://zh.wikisource.org/w/index.php?oldid=10645712
+  edition: 维基文库《周易》
+entries:
+  - id: ZY.14.G
+    kind: gua
+    label: 大有
+    text: 元亨。
+    textTrad: 元亨。
+    reviewStatus: imported
+  - id: ZY.14.L1
+    kind: yao
+    line: 1
+    label: 初九
+    text: 无交害，匪咎，艰则无咎。
+    textTrad: 无交害，匪咎，艱則无咎。
+    reviewStatus: imported
+  - id: ZY.14.L2
+    kind: yao
+    line: 2
+    label: 九二
+    text: 大轝以载，有攸往，无咎。
+    textTrad: 大轝以載，有攸往，无咎。
+    reviewStatus: imported
+  - id: ZY.14.L3
+    kind: yao
+    line: 3
+    label: 九三
+    text: 公用亨于天子，小人弗克。
+    textTrad: 公用亨于天子，小人弗克。
+    reviewStatus: imported
+  - id: ZY.14.L4
+    kind: yao
+    line: 4
+    label: 九四
+    text: 匪其尫，无咎。
+    textTrad: 匪其尫，无咎。
+    reviewStatus: imported
+  - id: ZY.14.L5
+    kind: yao
+    line: 5
+    label: 六五
+    text: 厥孚交如，威如；吉。
+    textTrad: 厥孚交如，威如；吉。
+    reviewStatus: imported
+  - id: ZY.14.L6
+    kind: yao
+    line: 6
+    label: 上九
+    text: 自天佑之，吉无不利。
+    textTrad: 自天佑之，吉无不利。
+    reviewStatus: imported
+  - id: ZY.14.TUAN
+    kind: tuan
+    text: 大有，柔得尊位，大中而上下应之，曰大有。其德刚健而文明，应乎天而时行，是以元亨。
+    textTrad: 大有，柔得尊位，大中而上下應之，曰大有。其德剛健而文明，應乎天而時行，是以元亨。
+    reviewStatus: imported
+  - id: ZY.14.XIANG
+    kind: xiang
+    text: 火在天上，大有；君子以遏恶扬善，顺天休命。
+    textTrad: 火在天上，大有；君子以遏惡揚善，順天休命。
+    reviewStatus: imported
+  - id: ZY.14.L1.XIANG
+    kind: xiaoxiang
+    line: 1
+    label: 初九
+    text: 大有初九，无交害也。
+    textTrad: 大有初九，无交害也。
+    reviewStatus: imported
+  - id: ZY.14.L2.XIANG
+    kind: xiaoxiang
+    line: 2
+    label: 九二
+    text: 大轝以载，积中不败也。
+    textTrad: 大轝以載，積中不敗也。
+    reviewStatus: imported
+  - id: ZY.14.L3.XIANG
+    kind: xiaoxiang
+    line: 3
+    label: 九三
+    text: 公用亨于天子，小人害也。
+    textTrad: 公用亨于天子，小人害也。
+    reviewStatus: imported
+  - id: ZY.14.L4.XIANG
+    kind: xiaoxiang
+    line: 4
+    label: 九四
+    text: 匪其彭，无咎；明辨晰也。
+    textTrad: 匪其彭，无咎；明辨晰也。
+    reviewStatus: imported
+  - id: ZY.14.L5.XIANG
+    kind: xiaoxiang
+    line: 5
+    label: 六五
+    text: 厥孚交如，信以发志也。威如之吉，易而无备也。
+    textTrad: 厥孚交如，信以發志也。威如之吉，易而无備也。
+    reviewStatus: imported
+  - id: ZY.14.L6.XIANG
+    kind: xiaoxiang
+    line: 6
+    label: 上九
+    text: 大有上吉，自天佑也。
+    textTrad: 大有上吉，自天佑也。
+    reviewStatus: imported

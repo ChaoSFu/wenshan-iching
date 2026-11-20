@@ -1,0 +1,144 @@
+# 由 scripts/import-wikisource.ts 生成；人工对勘后把 reviewStatus 改为 reviewed
+number: 2
+name: 坤
+nameTrad: 坤
+upper: kun
+lower: kun
+source:
+  title: 周易/坤
+  url: https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E5%9D%A4
+  revision: 2404999
+  permalink: https://zh.wikisource.org/w/index.php?oldid=2404999
+  edition: 维基文库《周易》
+entries:
+  - id: ZY.02.G
+    kind: gua
+    label: 坤
+    text: 元亨。利牝马之贞。君子有攸往，先迷后得主。利西南得朋，东北丧朋。安贞，吉。
+    textTrad: 元亨。利牝馬之貞。君子有攸往，先迷後得主。利西南得朋，東北喪朋。安貞，吉。
+    reviewStatus: imported
+  - id: ZY.02.L1
+    kind: yao
+    line: 1
+    label: 初六
+    text: 履霜，坚冰至。
+    textTrad: 履霜，堅冰至。
+    reviewStatus: imported
+  - id: ZY.02.L2
+    kind: yao
+    line: 2
+    label: 六二
+    text: 直方大，不习无不利。
+    textTrad: 直方大，不習无不利。
+    reviewStatus: imported
+  - id: ZY.02.L3
+    kind: yao
+    line: 3
+    label: 六三
+    text: 含章，可贞。或从王事，无成有终。
+    textTrad: 含章，可貞。或從王事，无成有終。
+    reviewStatus: imported
+  - id: ZY.02.L4
+    kind: yao
+    line: 4
+    label: 六四
+    text: 括囊，无咎无誉。
+    textTrad: 括囊，无咎无譽。
+    reviewStatus: imported
+  - id: ZY.02.L5
+    kind: yao
+    line: 5
+    label: 六五
+    text: 黄裳，元吉。
+    textTrad: 黃裳，元吉。
+    reviewStatus: imported
+  - id: ZY.02.L6
+    kind: yao
+    line: 6
+    label: 上六
+    text: 龙战于野，其血玄黄。
+    textTrad: 龍戰于野，其血玄黃。
+    reviewStatus: imported
+  - id: ZY.02.Y6
+    kind: yong
+    label: 用六
+    text: 利永贞。
+    textTrad: 利永貞。
+    reviewStatus: imported
+  - id: ZY.02.TUAN
+    kind: tuan
+    text: 至哉坤元，万物资生，乃顺承天。坤厚载物，德合无疆；含弘光大，品物咸亨。牝马地类，行地无疆，柔顺利贞。君子攸行，先迷失道，后顺得常。西南得朋，乃与类行，东北丧朋，乃终有庆。安贞之吉，应地无疆。
+    textTrad: 至哉坤元，萬物資生，乃順承天。坤厚載物，德合无疆；含弘光大，品物咸亨。牝馬地類，行地无疆，柔順利貞。君子攸行，先迷失道，後順得常。西南得朋，乃與類行，東北喪朋，乃終有慶。安貞之吉，應地无疆。
+    reviewStatus: imported
+  - id: ZY.02.XIANG
+    kind: xiang
+    text: 地势坤，君子以厚德载物。
+    textTrad: 地勢坤，君子以厚德載物。
+    reviewStatus: imported
+  - id: ZY.02.L1.XIANG
+    kind: xiaoxiang
+    line: 1
+    label: 初六
+    text: 履霜坚冰，阴始凝也。驯致其道，至坚冰也。
+    textTrad: 履霜堅冰，陰始凝也。馴致其道，至堅冰也。
+    reviewStatus: imported
+  - id: ZY.02.L2.XIANG
+    kind: xiaoxiang
+    line: 2
+    label: 六二
+    text: 六二之动，直以方也。不习无不利，地道光也。
+    textTrad: 六二之動，直以方也。不習无不利，地道光也。
+    reviewStatus: imported
+  - id: ZY.02.L3.XIANG
+    kind: xiaoxiang
+    line: 3
+    label: 六三
+    text: 含章可贞，以时发也。或从王事，知光大也。
+    textTrad: 含章可貞，以時發也。或從王事，知光大也。
+    reviewStatus: imported
+  - id: ZY.02.L4.XIANG
+    kind: xiaoxiang
+    line: 4
+    label: 六四
+    text: 括囊无咎，慎不害也。
+    textTrad: 括囊无咎，慎不害也。
+    reviewStatus: imported
+  - id: ZY.02.L5.XIANG
+    kind: xiaoxiang
+    line: 5
+    label: 六五
+    text: 黄裳元吉，文在中也。
+    textTrad: 黃裳元吉，文在中也。
+    reviewStatus: imported
+  - id: ZY.02.L6.XIANG
+    kind: xiaoxiang
+    line: 6
+    label: 上六
+    text: 龙战于野，其道穷也。
+    textTrad: 龍戰于野，其道窮也。
+    reviewStatus: imported
+  - id: ZY.02.Y6.XIANG
+    kind: xiaoxiang
+    label: 用六
+    text: 用六永贞，以大终也。
+    textTrad: 用六永貞，以大終也。
+    reviewStatus: imported
+  - id: ZY.02.WY
+    kind: wenyan
+    text: |-
+      坤至柔而动也刚，至静而德方。后得主而有常，含万物而化光。坤道其顺乎！承天而时行。
+      积善之家，必有馀庆；积不善之家，必有馀殃。臣弑其君，子弑其父，非一朝一夕之故，其所由来者渐矣。由辨之不早辨也。易曰：“履霜，坚冰至。”盖言顺也。
+      直其正也，方其义也。君子敬以直内，义以方外，敬义立而德不孤。“直方大，不习无不利。”则不疑其所行也。
+      阴虽有美，含之。以从王事，弗敢成也。地道也，妻道也，臣道也。地道无成，而代有终也。
+      天地变化，草木蕃；天地闭，贤人隐。易曰：“括囊，无咎，无誉。”盖言谨也。
+      君子黄中通理，正位居体，美在其中，而畅于四支，发于事业，美之至也。
+      阴疑于阳必战，为其嫌于无阳也，故称龙焉。犹未离其类也，故称血焉。夫玄黄者，天地之杂也。天玄而地黄。
+    textTrad: |-
+      坤至柔而動也剛，至靜而德方。後得主而有常，含萬物而化光。坤道其順乎！承天而時行。
+      積善之家，必有餘慶；積不善之家，必有餘殃。臣弒其君，子弒其父，非一朝一夕之故，其所由來者漸矣。由辨之不早辨也。易曰：「履霜，堅冰至。」蓋言順也。
+      直其正也，方其義也。君子敬以直內，義以方外，敬義立而德不孤。「直方大，不習无不利。」則不疑其所行也。
+      陰雖有美，含之。以從王事，弗敢成也。地道也，妻道也，臣道也。地道无成，而代有終也。
+      天地變化，草木蕃；天地閉，賢人隱。易曰：「括囊，无咎，无譽。」蓋言謹也。
+      君子黃中通理，正位居體，美在其中，而暢於四支，發於事業，美之至也。
+      陰疑於陽必戰，為其嫌於无陽也，故稱龍焉。猶未離其類也，故稱血焉。夫玄黃者，天地之雜也。天玄而地黃。
+    reviewStatus: imported

@@ -1,0 +1,43 @@
+# 白话注释为自写初稿（authorship: self），须人工审校后改为 reviewed
+hexagram: 1
+entries:
+  - entryId: ZY.01.G
+    vernacular: 乾象征天，代表刚健、不停运行的力量。卦辞说：大为亨通，利于守持正道。放到生活里，是说积极有为的同时，要守住正当的方向。
+    angles: [persevere, advance]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.01.L1
+    vernacular: 龙还潜藏在水下，暂时不宜有所作为。比喻事情还在早期，力量正在积蓄，先做准备，不急着出手。
+    angles: [prepare, wait]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.01.L2
+    vernacular: 龙出现在田野上，开始崭露头角，适合去见能给你指点或机会的人。比喻已经有了初步的能力，可以主动接触、寻求认可与帮助。
+    angles: [probe, cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.01.L3
+    vernacular: 君子整天勤勉不懈，到了晚上仍然警惕反省；处境虽然危险，但不会有灾祸。比喻任务繁重的阶段，要靠持续努力和自我检查渡过。
+    angles: [persevere, caution]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.01.L4
+    vernacular: 龙或者跃起，或者退回深渊，进退可以自己选择，没有过错。比喻面临一次尝试，可以试着跳一跳，同时留好退路。
+    angles: [probe, adjust]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.01.L5
+    vernacular: 龙飞在天上，正当最好的时机，适合与有德有能的人共事。比喻条件成熟，能力可以充分发挥。
+    angles: [advance, cooperate]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.01.L6
+    vernacular: 龙飞得过高，会有懊悔。比喻进到极点、不知收敛，就容易出问题。
+    angles: [restrain, caution]
+    authorship: self
+    reviewStatus: draft
+  - entryId: ZY.01.Y9
+    vernacular: 群龙出现，却没有谁争当首领，吉利。比喻各自发挥所长、不逞强争先，事情反而顺利。
+    angles: [cooperate, restrain]
+    authorship: self
+    reviewStatus: draft

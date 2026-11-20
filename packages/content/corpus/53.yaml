@@ -1,0 +1,113 @@
+# 由 scripts/import-wikisource.ts 生成；人工对勘后把 reviewStatus 改为 reviewed
+number: 53
+name: 渐
+nameTrad: 漸
+upper: xun
+lower: gen
+source:
+  title: 周易/漸
+  url: https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E6%BC%B8
+  revision: 2560535
+  permalink: https://zh.wikisource.org/w/index.php?oldid=2560535
+  edition: 维基文库《周易》
+entries:
+  - id: ZY.53.G
+    kind: gua
+    label: 渐
+    text: 女归吉，利贞。
+    textTrad: 女歸吉，利貞。
+    reviewStatus: imported
+  - id: ZY.53.L1
+    kind: yao
+    line: 1
+    label: 初六
+    text: 鸿渐于干，小子厉，有言，无咎。
+    textTrad: 鴻漸于干，小子厲，有言，无咎。
+    reviewStatus: imported
+  - id: ZY.53.L2
+    kind: yao
+    line: 2
+    label: 六二
+    text: 鸿渐于磐，饮食衎衎，吉。
+    textTrad: 鴻漸于磐，飲食衎衎，吉。
+    reviewStatus: imported
+  - id: ZY.53.L3
+    kind: yao
+    line: 3
+    label: 九三
+    text: 鸿渐于陆，夫征不复，妇孕不育，凶；利御寇。
+    textTrad: 鴻漸于陸，夫征不復，婦孕不育，凶；利禦寇。
+    reviewStatus: imported
+  - id: ZY.53.L4
+    kind: yao
+    line: 4
+    label: 六四
+    text: 鸿渐于木，或得其桷，无咎。
+    textTrad: 鴻漸于木，或得其桷，无咎。
+    reviewStatus: imported
+  - id: ZY.53.L5
+    kind: yao
+    line: 5
+    label: 九五
+    text: 鸿渐于陵，妇三岁不孕，终莫之胜，吉。
+    textTrad: 鴻漸于陵，婦三歲不孕，終莫之勝，吉。
+    reviewStatus: imported
+  - id: ZY.53.L6
+    kind: yao
+    line: 6
+    label: 上九
+    text: 鸿渐于陆，其羽可用为仪，吉。
+    textTrad: 鴻漸于陸，其羽可用為儀，吉。
+    reviewStatus: imported
+  - id: ZY.53.TUAN
+    kind: tuan
+    text: 渐之进也，女归吉也。进得位，往有功也。进以正，可以正邦也。其位刚，得中也。止而巽，动不穷也。
+    textTrad: 漸之進也，女歸吉也。進得位，往有功也。進以正，可以正邦也。其位剛，得中也。止而巽，動不窮也。
+    reviewStatus: imported
+  - id: ZY.53.XIANG
+    kind: xiang
+    text: 山上有木，渐；君子以居贤德，善俗。
+    textTrad: 山上有木，漸；君子以居賢德，善俗。
+    reviewStatus: imported
+  - id: ZY.53.L1.XIANG
+    kind: xiaoxiang
+    line: 1
+    label: 初六
+    text: 小子之厉，义无咎也。
+    textTrad: 小子之厲，義无咎也。
+    reviewStatus: imported
+  - id: ZY.53.L2.XIANG
+    kind: xiaoxiang
+    line: 2
+    label: 六二
+    text: 饮食衎衎，不素饱也。
+    textTrad: 飲食衎衎，不素飽也。
+    reviewStatus: imported
+  - id: ZY.53.L3.XIANG
+    kind: xiaoxiang
+    line: 3
+    label: 九三
+    text: 夫征不复，离群丑也。妇孕不育，失其道也。利用御寇，顺相保也。
+    textTrad: 夫征不復，離群丑也。婦孕不育，失其道也。利用禦寇，順相保也。
+    reviewStatus: imported
+  - id: ZY.53.L4.XIANG
+    kind: xiaoxiang
+    line: 4
+    label: 六四
+    text: 或得其桷，顺以巽也。
+    textTrad: 或得其桷，順以巽也。
+    reviewStatus: imported
+  - id: ZY.53.L5.XIANG
+    kind: xiaoxiang
+    line: 5
+    label: 九五
+    text: 终莫之胜，吉；得所愿也。
+    textTrad: 終莫之勝，吉；得所愿也。
+    reviewStatus: imported
+  - id: ZY.53.L6.XIANG
+    kind: xiaoxiang
+    line: 6
+    label: 上九
+    text: 其羽可用为仪，吉；不可乱也。
+    textTrad: 其羽可用為儀，吉；不可亂也。
+    reviewStatus: imported

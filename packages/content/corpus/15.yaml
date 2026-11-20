@@ -1,0 +1,113 @@
+# 由 scripts/import-wikisource.ts 生成；人工对勘后把 reviewStatus 改为 reviewed
+number: 15
+name: 谦
+nameTrad: 謙
+upper: kun
+lower: gen
+source:
+  title: 周易/謙
+  url: https://zh.wikisource.org/zh-hans/%E5%91%A8%E6%98%93/%E8%AC%99
+  revision: 2106142
+  permalink: https://zh.wikisource.org/w/index.php?oldid=2106142
+  edition: 维基文库《周易》
+entries:
+  - id: ZY.15.G
+    kind: gua
+    label: 谦
+    text: 亨，君子有终。
+    textTrad: 亨，君子有終。
+    reviewStatus: imported
+  - id: ZY.15.L1
+    kind: yao
+    line: 1
+    label: 初六
+    text: 谦谦君子，用涉大川，吉。
+    textTrad: 謙謙君子，用涉大川，吉。
+    reviewStatus: imported
+  - id: ZY.15.L2
+    kind: yao
+    line: 2
+    label: 六二
+    text: 鸣谦，贞吉。
+    textTrad: 鳴謙，貞吉。
+    reviewStatus: imported
+  - id: ZY.15.L3
+    kind: yao
+    line: 3
+    label: 九三
+    text: 劳谦君子，有终吉。
+    textTrad: 勞謙君子，有終吉。
+    reviewStatus: imported
+  - id: ZY.15.L4
+    kind: yao
+    line: 4
+    label: 六四
+    text: 无不利，㧑谦。
+    textTrad: 无不利，撝謙。
+    reviewStatus: imported
+  - id: ZY.15.L5
+    kind: yao
+    line: 5
+    label: 六五
+    text: 不富，以其邻，利用侵伐，无不利。
+    textTrad: 不富，以其鄰，利用侵伐，无不利。
+    reviewStatus: imported
+  - id: ZY.15.L6
+    kind: yao
+    line: 6
+    label: 上六
+    text: 鸣谦，利用行师，征邑国。
+    textTrad: 鳴謙，利用行師，征邑國。
+    reviewStatus: imported
+  - id: ZY.15.TUAN
+    kind: tuan
+    text: 谦，亨，天道下济而光明，地道卑而上行。天道亏盈而益谦，地道变盈而流谦，鬼神害盈而福谦，人道恶盈而好谦。谦尊而光，卑而不可逾，君子之终也。
+    textTrad: 謙，亨，天道下濟而光明，地道卑而上行。天道虧盈而益謙，地道變盈而流謙，鬼神害盈而福謙，人道惡盈而好謙。謙尊而光，卑而不可逾，君子之終也。
+    reviewStatus: imported
+  - id: ZY.15.XIANG
+    kind: xiang
+    text: 地中有山，谦；君子以裒多益寡，称物平施。
+    textTrad: 地中有山，謙；君子以裒多益寡，稱物平施。
+    reviewStatus: imported
+  - id: ZY.15.L1.XIANG
+    kind: xiaoxiang
+    line: 1
+    label: 初六
+    text: 谦谦君子，卑以自牧也。
+    textTrad: 謙謙君子，卑以自牧也。
+    reviewStatus: imported
+  - id: ZY.15.L2.XIANG
+    kind: xiaoxiang
+    line: 2
+    label: 六二
+    text: 鸣谦贞吉，中心得也。
+    textTrad: 鳴謙貞吉，中心得也。
+    reviewStatus: imported
+  - id: ZY.15.L3.XIANG
+    kind: xiaoxiang
+    line: 3
+    label: 九三
+    text: 劳谦君子，万民服也。
+    textTrad: 勞謙君子，萬民服也。
+    reviewStatus: imported
+  - id: ZY.15.L4.XIANG
+    kind: xiaoxiang
+    line: 4
+    label: 六四
+    text: 无不利㧑谦；不违则也。
+    textTrad: 无不利撝謙；不違則也。
+    reviewStatus: imported
+  - id: ZY.15.L5.XIANG
+    kind: xiaoxiang
+    line: 5
+    label: 六五
+    text: 利用侵伐，征不服也。
+    textTrad: 利用侵伐，征不服也。
+    reviewStatus: imported
+  - id: ZY.15.L6.XIANG
+    kind: xiaoxiang
+    line: 6
+    label: 上六
+    text: 鸣谦，志未得也。可用行师，征邑国也。
+    textTrad: 鳴謙，志未得也。可用行師，征邑國也。
+    reviewStatus: imported
