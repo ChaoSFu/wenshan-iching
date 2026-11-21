@@ -15,7 +15,8 @@ import { costSummary, costUsd } from "@/server/llm/usage";
 import { __setMailerForTests, type Mailer } from "@/server/mail";
 import { createOrderForReading, getOrderView, handlePaymentEvent, requestRefundByOps } from "@/server/orders";
 import { getPaymentProvider } from "@/server/payments";
-import { completeFakeCheckout, signFakeEvent } from "@/server/payments/fake";
+import { __fakeExternalRefund, completeFakeCheckout, signFakeEvent } from "@/server/payments/fake";
+import { deliverFakeEvents } from "@/server/refunds";
 import { adoptReframe, uploadReading } from "@/server/readings";
 import { generateReport } from "@/server/report/generate";
 import { getReportView, submitFollowup } from "@/server/report/service";
@@ -62,10 +63,11 @@ async function pay(orderId: string) {
   return handlePaymentEvent(event);
 }
 
+/** 在支付方后台退一笔（独立入账的外部退款），并投递对应回调 */
 async function refundEvent(orderId: string, amount: number) {
   const [o] = await db.select().from(orders).where(eq(orders.id, orderId));
-  const body = JSON.stringify({ id: `evt_${Math.random()}`, type: "refund.succeeded", paymentId: o!.providerPaymentId, amountRefundedMinor: amount, currency: "usd" });
-  return handlePaymentEvent(getPaymentProvider().parseWebhook(body, new Headers({ "x-fake-signature": signFakeEvent(body) })));
+  __fakeExternalRefund(o!.providerPaymentId!, amount);
+  await deliverFakeEvents();
 }
 
 async function boughtAndDelivered(user: { id: string; email: string }) {
@@ -84,8 +86,10 @@ describe("1 · duplicate payment refund keeps the original order intact", () => 
     const r = await reading(user);
     await runTriage(user.id, r.readingId);
     const first = await createOrderForReading(user, await confirmation(r.readingId));
-    await db.update(orders).set({ checkoutExpiresAt: new Date(Date.now() - 1000) }).where(eq(orders.id, first.orderId));
+    // 第二个标签页在报价版本更新后重新确认：另一个确认，另一笔订单（第一个结账页仍可支付）
+    setEnv({ PRICE_VERSION: "price@second-tab" });
     const second = await createOrderForReading(user, await confirmation(r.readingId));
+    setEnv();
     expect(second.orderId).not.toBe(first.orderId);
 
     await pay(first.orderId);
@@ -154,9 +158,10 @@ describe("2 · refunds racing generation, partial refunds, and frozen intent", (
     expect(v.refundedAmountMinor).toBe(300);
     expect(v.reviewReason).toBe("partial_refund");
     expect("deleted" in (await getReportView(user.id, reportId))).toBe(false);
-    await refundEvent(orderId, 990);
+    await refundEvent(orderId, 690);
     v = await getOrderView(user.id, orderId);
     expect(v.status).toBe("refunded");
+    expect(v.refundedAmountMinor).toBe(990);
     expect(await getReportView(user.id, reportId)).toMatchObject({ deleted: true });
   });
 

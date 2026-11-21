@@ -156,13 +156,20 @@ export const orders = pgTable(
     basis: jsonb("basis"),
     /** 这笔订单已经发起的模型调用次数（含后台重试），受上限约束 */
     generationCalls: integer("generation_calls").notNull().default(0),
+    /** 支付方确认的已成功退款合计（只计这笔订单主付款、与实收同币种的退款） */
     refundedAmountMinor: integer("refunded_amount_minor").notNull().default(0),
+    refundedCurrency: text("refunded_currency"),
+    /** 支付方确认的实际收款（与报价 amountMinor/currency 分开存）；迁移前的旧单为空，表示未核实 */
+    paidAmountMinor: integer("paid_amount_minor"),
+    paidCurrency: text("paid_currency"),
     reviewReason: text("review_reason"),
     contentPurgedAt: timestamp("content_purged_at", { withTimezone: true }),
     /** 用户确认的题意修订、分流结果与报价的摘要；同一确认只对应一个待支付尝试 */
     confirmationKey: text("confirmation_key"),
-    /** 交付通知邮件已认领发送（防止租约接管后重复发信） */
+    /** 交付通知：邮件服务已接受（带幂等键发送）的时间 */
     readyNotifiedAt: timestamp("ready_notified_at", { withTimezone: true }),
+    /** 交付通知的发送认领；超过认领期仍未被接受的可以被重新认领（进程中途退出不会留下"已通知"假象） */
+    readyNotifyClaimedAt: timestamp("ready_notify_claimed_at", { withTimezone: true }),
     createdAt: created(),
     updatedAt: updated(),
   },
@@ -179,6 +186,63 @@ export const orders = pgTable(
     uniqueIndex("orders_pending_confirmation")
       .on(t.confirmationKey)
       .where(sql`status = 'pending_payment' and confirmation_key is not null`),
+  ],
+);
+
+export const CHECKOUT_ATTEMPT_STATUSES = [
+  /** 已持久化参数，请求尚未得到明确结果 */
+  "creating",
+  /** 支付方已创建会话，可支付（在实际有效期内） */
+  "open",
+  /** 请求结果不明（网络中断、支付方 5xx 等）：先用同一幂等键重放或对账，不能直接开新尝试 */
+  "unknown",
+  "complete",
+  "expired",
+  /** 已确认支付方没有创建会话（参数校验失败、对账查无此会话） */
+  "failed",
+] as const;
+export type CheckoutAttemptStatus = (typeof CHECKOUT_ATTEMPT_STATUSES)[number];
+
+/**
+ * 付款尝试（第三轮 P0）：第一次请求支付方之前先持久化尝试及其稳定参数，
+ * 同一尝试的幂等键与请求参数一一对应（金额、币种、有效期、回跳地址、描述），重试原样重放。
+ * 支付方返回的会话 ID 与实际有效期写回这里；订单上的 providerSessionId/checkoutUrl 只是最近一次尝试的冗余。
+ */
+export const checkoutAttempts = pgTable(
+  "checkout_attempts",
+  {
+    id: uuid("id").primaryKey(),
+    orderId: uuid("order_id")
+      .notNull()
+      .references(() => orders.id),
+    attemptNo: integer("attempt_no").notNull(),
+    idempotencyKey: text("idempotency_key").notNull().unique(),
+    amountMinor: integer("amount_minor").notNull(),
+    currency: text("currency").notNull(),
+    successUrl: text("success_url").notNull(),
+    cancelUrl: text("cancel_url").notNull(),
+    description: text("description").notNull(),
+    /** 请求里的有效期（稳定参数，重放时原样发送） */
+    requestedExpiresAt: timestamp("requested_expires_at", { withTimezone: true }).notNull(),
+    status: text("status").$type<CheckoutAttemptStatus>().notNull().default("creating"),
+    providerSessionId: text("provider_session_id"),
+    checkoutUrl: text("checkout_url"),
+    /** 支付方返回的实际有效期 */
+    providerExpiresAt: timestamp("provider_expires_at", { withTimezone: true }),
+    providerPaymentId: text("provider_payment_id"),
+    /** 迁移前创建的尝试：请求参数未保存，不能重放，只能按会话 ID 或订单号对账 */
+    legacy: boolean("legacy").notNull().default(false),
+    tries: integer("tries").notNull().default(0),
+    lastError: text("last_error"),
+    createdAt: created(),
+    updatedAt: updated(),
+  },
+  (t) => [
+    uniqueIndex("checkout_attempts_order_no_idx").on(t.orderId, t.attemptNo),
+    uniqueIndex("checkout_attempts_session_idx").on(t.providerSessionId).where(sql`provider_session_id is not null`),
+    // 一笔订单同时只有一个未终结的尝试：确认旧会话不可支付后才能开新尝试
+    uniqueIndex("checkout_attempts_one_live_idx").on(t.orderId).where(sql`status in ('creating','open','unknown')`),
+    index("checkout_attempts_payment_idx").on(t.providerPaymentId),
   ],
 );
 
@@ -316,7 +380,10 @@ export const supportTickets = pgTable(
     questionCt: text("question_ct"),
     status: text("status").$type<TicketStatus>().notNull().default("open"),
     ipHash: text("ip_hash"),
+    /** 邮件服务已接受运营通知的时间 */
     notifiedAt: timestamp("notified_at", { withTimezone: true }),
+    /** 运营通知的发送认领（可回收） */
+    notifyClaimedAt: timestamp("notify_claimed_at", { withTimezone: true }),
     resolvedAt: timestamp("resolved_at", { withTimezone: true }),
     /** 超过保留期后清除描述、联系邮箱与原文的时间 */
     purgedAt: timestamp("purged_at", { withTimezone: true }),
@@ -330,8 +397,10 @@ export const REFUND_STATUSES = ["requested", "pending", "succeeded", "failed", "
 export type RefundStatus = (typeof REFUND_STATUSES)[number];
 
 /**
- * 退款尝试：同一次尝试的自动重试复用同一个支付方幂等键；
- * 支付方确认失败后，只有运营核实上一笔结果才能开新尝试（attempt_no + 1，新幂等键）。
+ * 退款流水：每条是一笔退款（本地发起的尝试，或在支付方后台发起、独立入账的外部退款）。
+ * - 本地尝试的自动重试复用同一条记录与同一个支付方幂等键；支付方确认失败后，
+ *   只有运营核实上一笔结果才能开新尝试（attempt_no + 1，新幂等键）。
+ * - 支付方退款 ID 全表唯一：同一笔退款不会被记两次。
  */
 export const refunds = pgTable(
   "refunds",
@@ -343,12 +412,22 @@ export const refunds = pgTable(
     attemptNo: integer("attempt_no").notNull(),
     idempotencyKey: text("idempotency_key").notNull().unique(),
     providerRefundId: text("provider_refund_id"),
+    /** 被退款的那笔付款（通常是订单的主付款；同一订单的意外第二笔付款单独退） */
+    providerPaymentId: text("provider_payment_id"),
     status: text("status").$type<RefundStatus>().notNull().default("requested"),
     /** 支付方确认的本次退款金额与币种（未确认前为空） */
     amountMinor: integer("amount_minor"),
     currency: text("currency"),
     reason: text("reason").notNull(),
     requestedBy: text("requested_by").notNull(),
+    /** local：本系统发起；external：支付方后台等外部发起，独立入账 */
+    source: text("source").$type<"local" | "external">().notNull().default("local"),
+    /** 迁移前发起的尝试：重放时沿用当时的请求参数（不带尝试标识元数据） */
+    legacyRequest: boolean("legacy_request").notNull().default(false),
+    /** 向支付方发起或查询的次数；结果持续未知达到上限后转人工核实 */
+    tries: integer("tries").notNull().default(0),
+    /** 结果持续未知、已转人工核实的时间（不再自动重试） */
+    escalatedAt: timestamp("escalated_at", { withTimezone: true }),
     failureReason: text("failure_reason"),
     lastCheckedAt: timestamp("last_checked_at", { withTimezone: true }),
     createdAt: created(),
@@ -356,7 +435,8 @@ export const refunds = pgTable(
   },
   (t) => [
     uniqueIndex("refunds_order_attempt_idx").on(t.orderId, t.attemptNo),
-    index("refunds_provider_idx").on(t.providerRefundId),
+    uniqueIndex("refunds_provider_refund_unique").on(t.providerRefundId).where(sql`provider_refund_id is not null`),
+    index("refunds_payment_idx").on(t.providerPaymentId),
     index("refunds_status_idx").on(t.status, t.updatedAt),
   ],
 );

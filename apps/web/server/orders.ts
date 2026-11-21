@@ -2,12 +2,13 @@ import { and, desc, eq, gt, inArray, isNotNull, isNull, lt, ne, notInArray, or, 
 import { z } from "zod";
 import { decryptJson, sha256 } from "./crypto";
 import { getDb, type DB } from "./db/client";
-import { followups, jobs, orders, paymentEvents, readings, reports, supportTickets, triageResults, type OrderStatus } from "./db/schema";
+import { checkoutAttempts, followups, jobs, orders, paymentEvents, readings, reports, supportTickets, triageResults, type OrderStatus } from "./db/schema";
 import { env } from "./env";
 import { HttpError } from "./http";
 import { enqueue } from "./jobs/queue";
 import { assertContentApproved, assertSalesOpen, getOffer } from "./offer";
 import { recordOpsAction } from "./ops";
+import { ensureCheckout, expireAttemptBySession, openCheckoutUrl, reconcileCheckouts, syncOrderCheckouts } from "./checkout";
 import { getPaymentProvider, type CheckoutState, type PaymentEvent } from "./payments";
 import { loadOwnedReading, toPlain } from "./readings";
 import { handleCumulativeRefund, handleRefundUpdated, requestRefund } from "./refunds";
@@ -40,7 +41,12 @@ export interface OrderView {
   deliveredAt: string | null;
   refundDueAt: string | null;
   refundedAt: string | null;
+  /** 支付方确认的实际收款（旧单未核实时为空） */
+  paidAmountMinor: number | null;
+  paidCurrency: string | null;
+  /** 支付方确认的已成功退款合计 */
   refundedAmountMinor: number;
+  refundedCurrency: string | null;
   failureReason: string | null;
   reviewReason: string | null;
   checkoutUrl: string | null;
@@ -96,16 +102,8 @@ export async function createOrderForReading(
     [reading.id, reading.revision, triage.id, offer.priceVersion, offer.amountMinor, offer.currency].join("|"),
   );
 
+  // 同一确认只有一个待支付订单；它的付款尝试（会话过期、响应丢失后的新尝试）都挂在这笔订单下
   let order = await pendingFor(confirmationKey);
-  if (order && order.checkoutExpiresAt && order.checkoutExpiresAt.getTime() <= Date.now()) {
-    // 支付方的结账已经过期（Stripe 会强制失效），作废后新开一次尝试
-    await db.update(orders).set({ status: "expired", updatedAt: new Date() }).where(and(eq(orders.id, order.id), eq(orders.status, "pending_payment")));
-    order = null;
-  }
-  if (order?.checkoutUrl && order.checkoutExpiresAt && order.checkoutExpiresAt.getTime() > Date.now() + 2 * 60_000) {
-    return { orderId: order.id, checkoutUrl: order.checkoutUrl };
-  }
-
   if (!order) {
     const snapshot = buildSnapshot(reading, { id: triage.id, version: TRIAGE_VERSION, output: triage.output }, { includeUnreviewed: !offer.reviewRequired });
     if (snapshot.missing.length) throw new HttpError(409, "content_pending", "这一卦有原文仍在补录，暂时不能购买");
@@ -127,6 +125,7 @@ export async function createOrderForReading(
     order = inserted ?? (await pendingFor(confirmationKey));
     if (!order) throw new HttpError(409, "order_conflict", "请刷新后重试");
   }
+  // 返回 null：旧会话在关闭前被付款，订单已转为已支付，直接去订单页
   return { orderId: order.id, checkoutUrl: await ensureCheckout(order, user.email, reading.clientReadingId) };
 }
 
@@ -140,33 +139,6 @@ async function pendingFor(confirmationKey: string) {
   return o ?? null;
 }
 
-/** 为待支付订单拿到 Checkout。支付方暂时无响应时返回 503，订单保留，重试复用同一幂等键 */
-async function ensureCheckout(order: typeof orders.$inferSelect, email: string, clientReadingId: string): Promise<string> {
-  if (order.checkoutUrl && order.checkoutExpiresAt && order.checkoutExpiresAt.getTime() > Date.now() + 2 * 60_000) return order.checkoutUrl;
-  let session;
-  try {
-    session = await getPaymentProvider().createCheckout({
-      orderId: order.id,
-      amountMinor: order.amountMinor,
-      currency: order.currency,
-      email,
-      description: "问山解读报告（含三次追问）",
-      successUrl: `${env().APP_URL}/orders/${order.id}?from=checkout`,
-      cancelUrl: `${env().APP_URL}/r/${clientReadingId}`,
-      idempotencyKey: `checkout:${order.id}`,
-    });
-  } catch (err) {
-    console.error(`[orders] checkout for ${order.id} failed:`, err instanceof Error ? err.message : err);
-    throw new HttpError(503, "payment_unavailable", "支付服务暂时没有响应，请稍后再点一次（不会重复扣款）");
-  }
-  const db = await getDb();
-  await db
-    .update(orders)
-    .set({ providerSessionId: session.sessionId, checkoutUrl: session.url, checkoutExpiresAt: session.expiresAt, updatedAt: new Date() })
-    .where(and(eq(orders.id, order.id), eq(orders.status, "pending_payment")));
-  return session.url;
-}
-
 class PaymentEventNotReady extends HttpError {
   constructor(what: string) {
     // 503：支付平台会稍后重发；对账任务也会补查
@@ -174,8 +146,12 @@ class PaymentEventNotReady extends HttpError {
   }
 }
 
+const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
+
 /**
- * 收到付款：以支付方数据为准核对金额、币种后把订单置为已支付，并在同一事务里入队生成任务。
+ * 收到付款：以支付方数据为准，分开记下实际收款的金额与币种（与报价分开存），
+ * 核对一致后把订单置为已支付，并在同一事务里入队生成任务。
+ * 先按会话 ID 找付款尝试；会话 ID 还没写回时按支付方元数据里的尝试 ID（迁移前的会话按订单号）关联。
  * 条件更新保证同一笔付款只发一次货；webhook、成功页、对账任务都调用这里。
  * 找不到对应订单时抛出 503，支付平台会重发（不把事件标记为已处理）。
  */
@@ -185,17 +161,66 @@ export async function markPaid(
   if (state.status !== "complete" || !state.paid) return "not_paid";
   const db = await getDb();
   return db.transaction(async (tx) => {
-    let [order] = await tx.select().from(orders).where(eq(orders.providerSessionId, state.sessionId)).for("update").limit(1);
-    if (!order && state.orderId && /^[0-9a-f-]{36}$/.test(state.orderId)) {
-      // 订单已创建、Checkout 已建立，但会话编号还没写回（写回前进程中断）：按支付方元数据里的订单号关联
-      [order] = await tx.select().from(orders).where(eq(orders.id, state.orderId)).for("update").limit(1);
-      if (order && order.providerSessionId && order.providerSessionId !== state.sessionId) order = undefined;
-      if (order) await tx.update(orders).set({ providerSessionId: state.sessionId }).where(eq(orders.id, order.id));
+    let [att] = await tx.select().from(checkoutAttempts).where(eq(checkoutAttempts.providerSessionId, state.sessionId)).limit(1);
+    if (!att && state.attemptId && UUID.test(state.attemptId)) {
+      [att] = await tx.select().from(checkoutAttempts).where(eq(checkoutAttempts.id, state.attemptId)).limit(1);
+      if (att?.providerSessionId && att.providerSessionId !== state.sessionId) att = undefined;
     }
+    let orderId = att?.orderId ?? null;
+    if (!orderId) {
+      // 迁移前的会话：订单上记的会话 ID，或支付方元数据里的订单号（写回前进程中断）
+      const [bySession] = await tx.select({ id: orders.id }).from(orders).where(eq(orders.providerSessionId, state.sessionId)).limit(1);
+      orderId = bySession?.id ?? (state.orderId && UUID.test(state.orderId) ? state.orderId : null);
+    }
+    const [order] = orderId ? await tx.select().from(orders).where(eq(orders.id, orderId)).for("update").limit(1) : [];
     if (!order) throw new PaymentEventNotReady(`checkout ${state.sessionId}`);
-    if (order.status !== "pending_payment" && order.status !== "expired") return "noop";
-    const now = new Date();
-    const paidFields = { paidAt: now, providerPaymentId: state.paymentId, updatedAt: now };
+
+    if (att) {
+      await tx
+        .update(checkoutAttempts)
+        .set({ status: "complete", providerSessionId: state.sessionId, providerPaymentId: state.paymentId, updatedAt: new Date() })
+        .where(eq(checkoutAttempts.id, att.id));
+    } else {
+      // 迁移前、没有尝试记录的会话：补一条 legacy 尝试，之后按会话 ID 就能找到
+      const [m] = await tx.select({ n: sql<number>`coalesce(max(${checkoutAttempts.attemptNo}), 0)::int` }).from(checkoutAttempts).where(eq(checkoutAttempts.orderId, order.id));
+      await tx
+        .insert(checkoutAttempts)
+        .values({
+          id: crypto.randomUUID(),
+          orderId: order.id,
+          attemptNo: (m?.n ?? 0) + 1,
+          idempotencyKey: `legacy-session:${state.sessionId}`,
+          amountMinor: order.amountMinor,
+          currency: order.currency,
+          successUrl: "",
+          cancelUrl: "",
+          description: "",
+          requestedExpiresAt: state.expiresAt ?? new Date(),
+          status: "complete",
+          providerSessionId: state.sessionId,
+          providerPaymentId: state.paymentId,
+          legacy: true,
+        })
+        .onConflictDoNothing();
+    }
+
+    if (order.status !== "pending_payment" && order.status !== "expired") {
+      if (state.paymentId && order.providerPaymentId && state.paymentId !== order.providerPaymentId) {
+        // 同一订单的另一笔付款（开新尝试前已确认旧会话不可支付，理论上不会发生）：这笔单独原路退款，订单本身不受影响
+        console.error(`[orders] second payment ${state.paymentId} for order ${order.id}; refunding it`);
+        await requestRefund(tx, order.id, { reason: "extra_payment_same_order", requestedBy: "system", paymentId: state.paymentId });
+        return "duplicate";
+      }
+      return "noop";
+    }
+    const paidFields = {
+      paidAt: sql`now()`,
+      providerPaymentId: state.paymentId,
+      paidAmountMinor: state.amountMinor,
+      paidCurrency: state.currency?.toLowerCase() ?? null,
+      providerSessionId: state.sessionId,
+      updatedAt: new Date(),
+    };
 
     if (state.amountMinor !== order.amountMinor || state.currency?.toLowerCase() !== order.currency.toLowerCase()) {
       console.error(`[orders] amount/currency mismatch for order ${order.id}`);
@@ -225,37 +250,18 @@ export async function markPaid(
       return "duplicate";
     }
 
+    // 交付期限用数据库时间：交付与超时退款按同一个时钟判断（见 deliver 与 refundOverdueOrders）
     await tx
       .update(orders)
-      .set({ status: "paid", refundDueAt: new Date(now.getTime() + env().REFUND_AFTER_HOURS * 3600_000), ...paidFields })
+      .set({ status: "paid", refundDueAt: sql`now() + make_interval(hours => ${env().REFUND_AFTER_HOURS})`, ...paidFields })
       .where(eq(orders.id, order.id));
     await enqueue(tx, "generate_report", { orderId: order.id }, { dedupeKey: `report:${order.id}` });
     return "paid";
   });
 }
 
-async function expireCheckoutLocally(sessionId: string): Promise<void> {
-  const db = await getDb();
-  await db
-    .update(orders)
-    .set({ status: "expired", updatedAt: new Date() })
-    .where(and(eq(orders.providerSessionId, sessionId), eq(orders.status, "pending_payment")));
-}
-
-/**
- * 任务 expire_checkout：用户删除内容后，关闭这一卦仍可支付的旧 Checkout。
- * 支付方显示已经付过款（在途付款）时，按已支付处理——内容已删，markPaid 会转原路退款。
- */
-export async function expireCheckoutForOrder(orderId: string): Promise<void> {
-  const db = await getDb();
-  const [o] = await db.select().from(orders).where(eq(orders.id, orderId)).limit(1);
-  if (!o?.providerSessionId) return;
-  const provider = getPaymentProvider();
-  const result = await provider.expireCheckout(o.providerSessionId);
-  if (result === "already_complete") {
-    await markPaid(await provider.retrieveCheckout(o.providerSessionId));
-  }
-}
+/** 任务 expire_checkout：见 checkout.ts（订单删除或作废后关闭它所有未终结的会话） */
+export { expireCheckoutForOrder } from "./checkout";
 
 /**
  * 按订单撤回：清除这笔订单的报告、追问、题意快照里的个人内容，
@@ -334,7 +340,7 @@ export async function handlePaymentEvent(event: PaymentEvent): Promise<"processe
       break;
     }
     case "checkout.expired":
-      await expireCheckoutLocally(event.sessionId);
+      await expireAttemptBySession(event.sessionId);
       break;
     case "refund.succeeded":
       orderId = await handleCumulativeRefund(event.paymentId, event.amountRefundedMinor);
@@ -368,7 +374,7 @@ export async function getOrderView(userId: string, orderId: string): Promise<Ord
     .limit(1);
   if (!row) throw new HttpError(404, "not_found");
   const o = row.order;
-  const checkoutOpen = o.status === "pending_payment" && o.checkoutExpiresAt && o.checkoutExpiresAt.getTime() > Date.now();
+  const checkoutUrl = o.status === "pending_payment" ? await openCheckoutUrl(o.id) : null;
   return {
     id: o.id,
     status: o.status,
@@ -379,10 +385,13 @@ export async function getOrderView(userId: string, orderId: string): Promise<Ord
     deliveredAt: o.deliveredAt?.toISOString() ?? null,
     refundDueAt: o.refundDueAt?.toISOString() ?? null,
     refundedAt: o.refundedAt?.toISOString() ?? null,
+    paidAmountMinor: o.paidAmountMinor,
+    paidCurrency: o.paidCurrency,
     refundedAmountMinor: o.refundedAmountMinor,
+    refundedCurrency: o.refundedCurrency,
     failureReason: o.failureReason,
     reviewReason: o.reviewReason,
-    checkoutUrl: checkoutOpen ? o.checkoutUrl : null,
+    checkoutUrl,
     reportId: o.status === "delivered" && row.reportId && !row.reportDeleted ? row.reportId : null,
     clientReadingId: row.clientReadingId,
     followupsRemaining: Math.max(0, o.followupsTotal - o.followupsUsed),
@@ -393,13 +402,7 @@ export async function getOrderView(userId: string, orderId: string): Promise<Ord
 export async function confirmOrder(userId: string, orderId: string): Promise<OrderView> {
   const view = await getOrderView(userId, orderId);
   if (view.status === "pending_payment" || view.status === "expired") {
-    const db = await getDb();
-    const [o] = await db.select().from(orders).where(eq(orders.id, orderId)).limit(1);
-    if (o?.providerSessionId) {
-      const state = await getPaymentProvider().retrieveCheckout(o.providerSessionId);
-      if (state.paid) await markPaid(state);
-      else if (state.status === "expired") await expireCheckoutLocally(o.providerSessionId);
-    }
+    await syncOrderCheckouts(orderId);
     return getOrderView(userId, orderId);
   }
   return view;
@@ -437,7 +440,8 @@ export async function requeueGenerationByOps(orderId: string, actor: string, not
   const db = await getDb();
   const updated = await db
     .update(orders)
-    .set({ status: "paid", reviewReason: null, updatedAt: new Date() })
+    // 运营接手后重新承诺交付期限（否则过期的期限会让生成直接跳过、转退款）
+    .set({ status: "paid", reviewReason: null, refundDueAt: sql`greatest(${orders.refundDueAt}, now() + make_interval(hours => ${env().REFUND_AFTER_HOURS}))`, updatedAt: new Date() })
     .where(
       and(
         eq(orders.id, orderId),
@@ -445,6 +449,8 @@ export async function requeueGenerationByOps(orderId: string, actor: string, not
         isNotNull(orders.basis),
         isNotNull(orders.intentCt),
         sql`coalesce(${orders.reviewReason}, '') <> 'amount_mismatch'`,
+        // 以数据为准，不只看原因文字：支付方确认的实收必须与报价一致（实收未核实的旧单不能直接重新生成）
+        sql`${orders.paidAmountMinor} = ${orders.amountMinor} and lower(${orders.paidCurrency}) = lower(${orders.currency})`,
         lt(orders.generationCalls, env().MAX_REPORT_CALLS_PER_ORDER),
       ),
     )
@@ -454,40 +460,42 @@ export async function requeueGenerationByOps(orderId: string, actor: string, not
   await enqueue(db, "generate_report", { orderId }, { dedupeKey: `report:${orderId}:ops:${Date.now()}` });
 }
 
-/** 超过承诺期限仍未交付的订单启动原路退款（PRD §8，首测 24 小时） */
+/** 尚未交付、交付期限一过就转退款的状态 */
+export const UNDELIVERED: OrderStatus[] = ["paid", "generating", "generation_failed"];
+
+/**
+ * 超过承诺期限仍未交付的订单启动原路退款（PRD §8，首测 24 小时）。约定（附录 F.3）：
+ * - 交付事务在数据库时间 ≤ refund_due_at 时提交 → 已交付，不退款；
+ * - 过了期限仍未交付 → 原路退款；之后完成的报告丢弃（交付事务自己也会发起这笔退款）。
+ * 两边都在订单行锁下、按数据库时间重新校验，竞争时只会得到其中一个结果。
+ */
 export async function refundOverdueOrders(): Promise<number> {
   const db = await getDb();
   const due = await db
     .select({ id: orders.id })
     .from(orders)
-    .where(and(inArray(orders.status, ["paid", "generating", "generation_failed"]), lt(orders.refundDueAt, new Date())));
+    .where(and(inArray(orders.status, UNDELIVERED), sql`${orders.refundDueAt} < now()`));
+  let n = 0;
   for (const { id } of due) {
-    await db.transaction((tx) => requestRefund(tx, id, { reason: "not_delivered_in_time", requestedBy: "system" }));
+    const r = await db.transaction(async (tx) => {
+      // 取得订单锁后重新校验：等锁期间报告可能已经交付
+      const [o] = await tx
+        .select({ id: orders.id })
+        .from(orders)
+        .where(and(eq(orders.id, id), inArray(orders.status, UNDELIVERED), sql`${orders.refundDueAt} < now()`))
+        .for("update")
+        .limit(1);
+      if (!o) return null;
+      return requestRefund(tx, id, { reason: "not_delivered_in_time", requestedBy: "system", fromStatuses: UNDELIVERED });
+    });
+    if (r) n++;
   }
-  return due.length;
+  return n;
 }
 
-/** 补收漏掉的支付回调（包括 Checkout 已建立、会话编号还没写回的订单） */
+/** 补收漏掉的支付回调（包括 Checkout 已建立、会话编号还没写回的付款尝试） */
 export async function reconcilePendingOrders(): Promise<void> {
-  const db = await getDb();
-  const pending = await db
-    .select({ sessionId: orders.providerSessionId })
-    .from(orders)
-    .where(
-      and(
-        inArray(orders.status, ["pending_payment", "expired"]),
-        isNotNull(orders.providerSessionId),
-        lt(orders.createdAt, new Date(Date.now() - 5 * 60_000)),
-        gt(orders.createdAt, new Date(Date.now() - 2 * 24 * 3600_000)),
-      ),
-    )
-    .limit(50);
-  const provider = getPaymentProvider();
-  for (const { sessionId } of pending) {
-    const state = await provider.retrieveCheckout(sessionId!);
-    if (state.paid) await markPaid(state);
-    else if (state.status === "expired") await expireCheckoutLocally(sessionId!);
-  }
+  await reconcileCheckouts();
 }
 
 /**

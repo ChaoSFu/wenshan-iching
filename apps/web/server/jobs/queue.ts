@@ -14,7 +14,8 @@ export type JobKind =
   | "refund_order"
   | "send_report_ready_email"
   | "notify_support_ticket"
-  | "expire_checkout";
+  | "expire_checkout"
+  | "verify_refund";
 
 export interface JobPayloads {
   generate_report: { orderId: string };
@@ -24,9 +25,22 @@ export interface JobPayloads {
   send_report_ready_email: { orderId: string };
   notify_support_ticket: { ticketId: string };
   expire_checkout: { orderId: string };
+  /** 退款回调与本地终态矛盾：主动向支付方核实这一笔 */
+  verify_refund: { refundId: string };
 }
 
 type Executor = Pick<DB, "insert">;
+
+/** 处理函数抛出它表示"现在还不能做，稍后再试"（不计入重试次数），例如通知的发送认领仍被占用 */
+export class DeferJobError extends Error {
+  override name = "DeferJobError";
+  constructor(
+    message: string,
+    readonly delayMs: number,
+  ) {
+    super(message);
+  }
+}
 
 export async function enqueue<K extends JobKind>(
   tx: Executor,

@@ -1,4 +1,4 @@
-import { and, eq, isNull, sql } from "drizzle-orm";
+import { and, eq, isNotNull, isNull, sql } from "drizzle-orm";
 import { z } from "zod";
 import { CastValidationError, SELECTION_RULE_VERSION, castFromTosses, type Cast } from "@wenshan/iching-core";
 import { TOPIC_IDS, type TopicId } from "@wenshan/content";
@@ -162,20 +162,34 @@ export async function changeTopic(userId: string, readingId: string, topicId: To
       revision: sql`${readings.revision} + 1`,
       updatedAt: sql`now()`,
     })
-    .where(eq(readings.id, readingId))
+    .where(stillAt(readingId, reading.revision))
     .returning({ revision: readings.revision });
-  return { revision: row!.revision };
+  if (!row) throw changedElsewhere();
+  return { revision: row.revision };
+}
+
+/**
+ * 写回条件：这一卦没有被删除、修订号没变。读和写之间用户删除了这一卦（或在别处改了题意）时，
+ * 不能用读到的旧内容把已清除的问题、背景重新写回去。
+ */
+function stillAt(readingId: string, revision: number) {
+  return and(eq(readings.id, readingId), isNull(readings.deletedAt), isNotNull(readings.questionCt), eq(readings.revision, revision));
+}
+
+function changedElsewhere(): HttpError {
+  return new HttpError(409, "intent_changed", "这一卦已被删除或题意已在别处更新，请刷新后再试");
 }
 
 /** 用户确认采用建议的改写：问题更新为改写后的问法，修订号 +1，需要重新分流 */
 export async function adoptReframe(userId: string, readingId: string, question: string): Promise<{ revision: number }> {
   const text = z.string().trim().min(4).max(200).parse(question);
-  await loadOwnedReading(userId, readingId);
+  const reading = await loadOwnedReading(userId, readingId);
   const db = await getDb();
   const [row] = await db
     .update(readings)
     .set({ questionCt: encrypt(text), revision: sql`${readings.revision} + 1`, updatedAt: sql`now()` })
-    .where(eq(readings.id, readingId))
+    .where(stillAt(readingId, reading.revision))
     .returning({ revision: readings.revision });
-  return { revision: row!.revision };
+  if (!row) throw changedElsewhere();
+  return { revision: row.revision };
 }

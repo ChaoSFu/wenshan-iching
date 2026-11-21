@@ -31,8 +31,8 @@ export async function setupTestServer(overrides: Partial<Env> = {}): Promise<DB>
   return db;
 }
 
-export async function login(email: string): Promise<{ id: string; email: string }> {
-  await requestOtp(email, "127.0.0.1");
+export async function login(email: string, ip = "127.0.0.1"): Promise<{ id: string; email: string }> {
+  await requestOtp(email, ip);
   const mail = sentMail.filter((m) => m.to === email).at(-1)!;
   const code = mail.subject.match(/(\d{6})/)![1]!;
   const { userId } = await verifyOtp(email, code);

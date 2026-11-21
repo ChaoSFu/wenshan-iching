@@ -5,10 +5,11 @@ import { castFromTosses, lineLabel } from "@wenshan/iching-core";
 import { corpus, topicsBundle } from "../content";
 import { decrypt, decryptJson, encrypt } from "../crypto";
 import { getDb } from "../db/client";
-import { followups, orders, readings, reports, supportTickets, users } from "../db/schema";
+import { followups, jobs, orders, readings, reports, supportTickets, users } from "../db/schema";
 import { env } from "../env";
 import { HttpError } from "../http";
-import { enqueue } from "../jobs/queue";
+import { DeferJobError, enqueue } from "../jobs/queue";
+import { NOTIFY_CLAIM_MS } from "../notify-claim";
 import { getMailer } from "../mail";
 import { purgeReading, releaseReadingIfUnused, revokeOrderContent } from "../orders";
 import { basisCast, readBasis, readIntent } from "../snapshot";
@@ -212,40 +213,84 @@ export async function purgeExpiredReports(): Promise<number> {
   return expired.length;
 }
 
-/** 交付通知邮件：只含链接，不含问题与报告内容 */
+
+/**
+ * 交付通知邮件：只含链接，不含问题与报告内容。
+ * 区分"认领发送"与"邮件服务已接受"（附录 F.4）：
+ * 1. 条件更新认领（尚未被接受，且没有有效认领）；被别的执行者占用时稍后再试；
+ * 2. 带稳定幂等键发送——服务已接受但响应丢失时，重发会被邮件服务去重；
+ * 3. 服务接受后才写 ready_notified_at；发送失败释放认领，交给重试。
+ * 进程在认领后、写回前退出：认领过期后被重新认领、用同一幂等键重发，不会留下"已通知"的假象。
+ */
 export async function sendReportReadyEmail(orderId: string): Promise<void> {
   const db = await getDb();
   const [row] = await db
-    .select({ email: users.email, status: orders.status })
+    .select({ email: users.email, status: orders.status, notified: orders.readyNotifiedAt })
     .from(orders)
     .innerJoin(users, eq(users.id, orders.userId))
     .where(eq(orders.id, orderId))
     .limit(1);
-  if (!row || row.status !== "delivered") return;
+  if (!row || row.status !== "delivered" || row.notified) return;
   requireCapability("mail");
-  // 先认领"已发送"：租约被接管或任务重复执行时不会重复发信；发送失败则释放，交给重试
+  const claimedAt = new Date();
   const claimed = await db
     .update(orders)
-    .set({ readyNotifiedAt: new Date() })
-    .where(and(eq(orders.id, orderId), isNull(orders.readyNotifiedAt)))
+    .set({ readyNotifyClaimedAt: claimedAt })
+    .where(
+      and(
+        eq(orders.id, orderId),
+        isNull(orders.readyNotifiedAt),
+        sql`(${orders.readyNotifyClaimedAt} is null or ${orders.readyNotifyClaimedAt} < now() - make_interval(secs => ${NOTIFY_CLAIM_MS / 1000}))`,
+      ),
+    )
     .returning({ id: orders.id });
-  if (!claimed.length) return;
+  if (!claimed.length) {
+    const [now] = await db.select({ notified: orders.readyNotifiedAt }).from(orders).where(eq(orders.id, orderId));
+    if (now?.notified) return;
+    throw new DeferJobError(`ready email for ${orderId} is claimed by another run`, NOTIFY_CLAIM_MS);
+  }
   const support = env().SUPPORT_EMAIL;
   try {
-  await getMailer().send({
-    to: row.email,
-    subject: "你的问山报告已生成",
-    text: [
-      `你的报告已经生成，可以随时回来查看：\n${env().APP_URL}/orders/${orderId}`,
-      `报告保留 ${env().REPORT_RETENTION_DAYS} 天，到期前可以导出，也可以随时删除。`,
-      `付款或报告有问题，可以在这里反馈：${env().APP_URL}/support?type=paid_not_delivered&order=${orderId}`,
-      support ? `网站无法打开时，请发邮件到 ${support}，并附上订单号 ${orderId}。` : null,
-    ]
-      .filter(Boolean)
-      .join("\n\n"),
-  });
+    await getMailer().send({
+      to: row.email,
+      subject: "你的问山报告已生成",
+      idempotencyKey: `ready-mail:${orderId}`,
+      text: [
+        `你的报告已经生成，可以随时回来查看：\n${env().APP_URL}/orders/${orderId}`,
+        `报告保留 ${env().REPORT_RETENTION_DAYS} 天，到期前可以导出，也可以随时删除。`,
+        `付款或报告有问题，可以在这里反馈：${env().APP_URL}/support?type=paid_not_delivered&order=${orderId}`,
+        support ? `网站无法打开时，请发邮件到 ${support}，并附上订单号 ${orderId}。` : null,
+      ]
+        .filter(Boolean)
+        .join("\n\n"),
+    });
   } catch (err) {
-    await db.update(orders).set({ readyNotifiedAt: null }).where(eq(orders.id, orderId));
+    await db.update(orders).set({ readyNotifyClaimedAt: null }).where(and(eq(orders.id, orderId), eq(orders.readyNotifyClaimedAt, claimedAt)));
     throw err;
   }
+  await db.update(orders).set({ readyNotifiedAt: sql`now()`, readyNotifyClaimedAt: null }).where(eq(orders.id, orderId));
+}
+
+/**
+ * 维护：最近 20 小时内交付（Resend 幂等键 24 小时内有效）、仍未被邮件服务接受的通知，且没有排队或运行中的发送任务（例如重试用尽）：
+ * 每 30 分钟最多补一次（幂等键不变，邮件服务去重）。
+ */
+export async function recoverReadyEmails(): Promise<number> {
+  const db = await getDb();
+  const rows = await db
+    .select({ id: orders.id })
+    .from(orders)
+    .where(
+      and(
+        eq(orders.status, "delivered"),
+        isNull(orders.readyNotifiedAt),
+        sql`${orders.deliveredAt} > now() - interval '20 hours'`,
+        sql`${orders.deliveredAt} < now() - interval '5 minutes'`,
+        sql`not exists (select 1 from ${jobs} j where j.kind = 'send_report_ready_email' and j.payload->>'orderId' = ${orders.id}::text and j.status in ('queued','running'))`,
+      ),
+    )
+    .limit(100);
+  const bucket = Math.floor(Date.now() / (30 * 60_000));
+  for (const { id } of rows) await enqueue(db, "send_report_ready_email", { orderId: id }, { dedupeKey: `ready-mail:${id}:${bucket}` });
+  return rows.length;
 }

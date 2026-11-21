@@ -20,7 +20,8 @@
     "content:build": "npm run build -w @wenshan/content",
     "content:check": "npm run check -w @wenshan/content",
     "content:strict": "npm run check:strict -w @wenshan/content",
-    "release:check": "npm run release:check -w @wenshan/web --"
+    "release:check": "npm run release:check -w @wenshan/web --",
+    "verify": "tsx scripts/verify.ts"
   },
   "devDependencies": {
     "@types/node": "20.19.43",

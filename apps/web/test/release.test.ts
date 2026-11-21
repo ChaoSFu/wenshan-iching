@@ -21,11 +21,14 @@ import { getPaymentProvider, __setPaymentProviderForTests } from "@/server/payme
 import { completeFakeCheckout } from "@/server/payments/fake";
 import { uploadReading } from "@/server/readings";
 import { releaseStatus } from "@/server/release";
+import { spawnSync } from "node:child_process";
+import { fileURLToPath } from "node:url";
 import { submitTicket } from "@/server/support";
 import { runTriage } from "@/server/triage";
 import { confirmation, login, sentMail, setupTestServer, tossesFor } from "./helpers";
 
 const KEY = Buffer.alloc(32, 9).toString("base64");
+const WEB_DIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 /** 看起来像真实服务的占位值：模拟模式下一个都不能被用到 */
 const INHERITED = {
   DATABASE_URL: "postgres://prod-user:secret@db.example.invalid:5432/wenshan",
@@ -227,15 +230,29 @@ describe("P0-4 · help resources follow their review status", () => {
   });
 });
 
-describe("P0-4 · release check makes the strict review result visible", () => {
-  it("free release is ready with a database; sales are blocked by review, help numbers and missing services", () => {
-    const e = parseEnv({ NODE_ENV: "production", DATABASE_URL: "postgres://h/wenshan", DATA_ENCRYPTION_KEY: KEY, OPS_EMAILS: "ops@example.com" });
-    const s = releaseStatus(e);
+describe("release check: three results (config, content review, live acceptance) for two targets", () => {
+  const prodFree = () =>
+    parseEnv({ NODE_ENV: "production", DATABASE_URL: "postgres://h/wenshan", DATA_ENCRYPTION_KEY: KEY, OPS_EMAILS: "ops@example.com", SUPPORT_EMAIL: "help@example.com" });
+  const clean = { basicErrors: [], strictErrors: [], stale: [] };
+
+  it("free release is ready with a database, an ops entry and a public support address; sales are blocked with reasons", () => {
+    const s = releaseStatus(prodFree(), { sources: { basicErrors: [], strictErrors: ["original not reviewed: 1.gua"], stale: [] } });
     expect(s.freeReady).toBe(true);
     expect(s.salesReady).toBe(false);
     const salesBlockers = s.checks.filter((c) => c.sales === "fail").map((c) => c.id);
-    expect(salesBlockers).toEqual(expect.arrayContaining(["content.review", "content.help", "capability.payments", "capability.llm", "capability.mail"]));
+    expect(salesBlockers).toEqual(
+      expect.arrayContaining(["content.review", "content.help", "content.strict", "capability.payments", "capability.llm", "capability.mail", "sales.switch", "live.stripe", "live.openai", "live.resend"]),
+    );
     expect(s.checks.find((c) => c.id === "content.review")!.free).toBe("warn");
+    expect(s.checks.find((c) => c.id === "capability.payments")!.free).toBe("na");
+    expect(s.sections).toMatchObject({ config: { free: "warn", sales: "fail" }, content: { free: "warn", sales: "fail" }, live: { sales: "fail" } });
+  });
+
+  it("free release separately requires the ops entry and the public support address", () => {
+    const e = parseEnv({ NODE_ENV: "production", DATABASE_URL: "postgres://h/wenshan", DATA_ENCRYPTION_KEY: KEY });
+    const s = releaseStatus(e, { sources: clean });
+    expect(s.freeReady).toBe(false);
+    expect(s.checks.filter((c) => c.free === "fail").map((c) => c.id).sort()).toEqual(["ops", "support.email"]);
   });
 
   it("a production config without a database cannot even ship the free experience", () => {
@@ -243,4 +260,53 @@ describe("P0-4 · release check makes the strict review result visible", () => {
     expect(s.freeReady).toBe(false);
     expect(s.checks.find((c) => c.id === "capability.database")!.free).toBe("fail");
   });
+
+  it("generated files out of sync with the sources block both targets; without source checks the panel says to run the CLI", () => {
+    const stale = releaseStatus(prodFree(), { sources: { ...clean, stale: ["generated/corpus.json"] } });
+    expect(stale.checks.find((c) => c.id === "content.consistency")).toMatchObject({ free: "fail", sales: "fail" });
+    const panel = releaseStatus(prodFree());
+    expect(panel.checks.find((c) => c.id === "content.consistency")).toMatchObject({ free: "warn", sales: "fail" });
+    expect(panel.checks.find((c) => c.id === "content.consistency")!.detail).toContain("npm run release:check");
+  });
+
+  it("live acceptance counts only passing records with nothing pending, on a clean commit, for the current config version", async () => {
+    const { configVersion } = await import("@/server/acceptance");
+    const e = prodFree();
+    const ev = (service: "stripe" | "openai" | "resend", over: Record<string, unknown> = {}) => ({
+      service,
+      recordedAt: "2026-11-21T10:00:00Z",
+      commit: "abcdef1234567890",
+      dirty: false,
+      configVersion: configVersion(e, service),
+      environment: "test mode",
+      result: "pass" as const,
+      checks: [{ name: "x", ok: true, detail: "" }],
+      pending: [],
+      ...over,
+    });
+    const s = releaseStatus(e, {
+      sources: clean,
+      evidence: [
+        ev("stripe"),
+        ev("openai", { pending: ["人工评审贴合度"] }),
+        ev("resend", { configVersion: "000000000000" }),
+        // 更早的一条失败记录被最近的通过记录取代
+        ev("stripe", { recordedAt: "2026-11-20T10:00:00Z", result: "fail" }),
+      ],
+    });
+    const live = Object.fromEntries(s.checks.filter((c) => c.section === "live").map((c) => [c.id, c]));
+    expect(live["live.stripe"]!.sales).toBe("pass");
+    expect(live["live.openai"]).toMatchObject({ sales: "fail" });
+    expect(live["live.openai"]!.detail).toContain("待核实");
+    expect(live["live.resend"]!.detail).toContain("配置已改动");
+    expect(live["live.stripe"]!.free).toBe("na");
+  });
+
+  it("the CLI rejects an unknown target or flag instead of guessing", () => {
+    const run = (...args: string[]) => spawnSync("npx", ["tsx", "scripts/release-check.ts", ...args], { cwd: WEB_DIR, encoding: "utf8" });
+    const bad = run("--target=prod");
+    expect(bad.status).toBe(2);
+    expect(bad.stderr).toContain("--target 只能是 free 或 sales");
+    expect(run("--targte=sales").status).toBe(2);
+  }, 60_000);
 });

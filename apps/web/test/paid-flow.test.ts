@@ -12,6 +12,7 @@ import { completeFakeCheckout } from "@/server/payments/fake";
 import { uploadReading } from "@/server/readings";
 import { deleteReport, getReportView, submitFollowup } from "@/server/report/service";
 import { runTriage } from "@/server/triage";
+import { __setEnvForTests } from "@/server/env";
 import { login, sentMail, setupTestServer, tossesFor , confirmation } from "./helpers";
 
 let db: DB;
@@ -150,9 +151,11 @@ describe("paid flow (fake payment + fake model)", () => {
     const readingId = await preparedReading(user);
     await runTriage(user.id, readingId);
     const first = await createOrderForReading(user, await confirmation(readingId));
-    // 模拟第一个结账页过期前又开了一个
-    await db.update(orders).set({ checkoutExpiresAt: new Date(Date.now() - 1000) }).where(eq(orders.id, first.orderId));
+    // 第一个结账页还开着，另一个标签页在报价版本更新后重新确认，开了第二笔订单
+    const env = { PGLITE_DIR: "memory", APP_URL: "http://localhost:3000", SALES_ENABLED: true, ALLOW_UNREVIEWED_CONTENT: true };
+    __setEnvForTests({ ...env, PRICE_VERSION: "price@second-tab" });
     const second = await createOrderForReading(user, await confirmation(readingId));
+    __setEnvForTests(env);
     expect(second.orderId).not.toBe(first.orderId);
 
     await pay(first.orderId);

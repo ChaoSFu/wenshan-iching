@@ -53,7 +53,12 @@ export interface OrderView {
   refundedAt: string | null;
   failureReason: string | null;
   reviewReason: string | null;
+  /** 支付方确认的实收（旧单未核实为空） */
+  paidAmountMinor: number | null;
+  paidCurrency: string | null;
+  /** 支付方确认的已成功退款合计 */
   refundedAmountMinor: number;
+  refundedCurrency: string | null;
   checkoutUrl: string | null;
   reportId: string | null;
   clientReadingId: string;

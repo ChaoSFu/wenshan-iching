@@ -187,3 +187,64 @@ describe("model eval harness (fake provider, no API calls)", () => {
     expect(percentile([5], 0.9)).toBe(5);
   });
 });
+
+describe("round 3 · reviewed-only gating, model selection and budget", () => {
+  it("--reviewed-only uses the checkout content gate: blocked cases are counted apart and zero eligible samples say 'pending review', not 'bad model'", async () => {
+    const { pendingContent } = await import("@/server/offer");
+    const cases = loadCases(CASES).filter((c) => ["sample-career", "sample-love", "refer-legal"].includes(c.id));
+    const rows = await runEval({ llm: getLlm(), cases, ...base, reviewedOnly: true });
+    const gated = rows.filter((r) => r.outcome === "review_pending");
+    // 与下单门槛一致：仓库里的内容都还是初稿，可购买的用例全部被挡住
+    for (const r of gated) {
+      const c = cases.find((x) => x.id === r.caseId)!;
+      const { castFromTosses, tossesFromLines } = await import("@wenshan/iching-core");
+      expect(pendingContent(castFromTosses(tossesFromLines(c.lines)), c.topic).length).toBeGreaterThan(0);
+    }
+    expect(gated.filter((r) => r.route === "report")).toHaveLength(4); // 2 个可购买用例 × 2 个报告模型
+    const summary = summarize(rows);
+    const sol = summary.find((s) => s.route === "report" && s.model === "gpt-6.2-sol")!;
+    expect(sol).toMatchObject({ samples: 0, reviewBlocked: 2, notRun: 0 });
+    const md = toMarkdown(summary, { live: false, date: "t", cases: cases.length, reviewedOnly: true });
+    expect(md).toContain("不能据此判断模型质量");
+    // 不加 --reviewed-only：与模拟流程一致，未审内容也参与
+    const all = summarize(await runEval({ llm: getLlm(), cases, ...base }));
+    expect(all.find((s) => s.route === "report" && s.model.endsWith("gpt-6.2-sol"))).toMatchObject({ samples: 2, reviewBlocked: 0 });
+  });
+
+  it("keeps the current follow-up route unless the candidate is no worse on errors, P90, cost and human fit", async () => {
+    const { followupDecision } = await import("@/server/eval/run");
+    const mk = (model: string, o: Partial<ReturnType<typeof summarize>[number]>) =>
+      ({ route: "followup", model, samples: 10, passRate: 0.9, e2eP90Ms: 3000, knownCostUsd: 0.1, unknownCostShare: 0, ...o }) as ReturnType<typeof summarize>[number];
+    const cur = mk("sol", {});
+    expect(followupDecision([cur, mk("terra", { passRate: 0.8, knownCostUsd: 0.02 })], "sol", "terra").verdict).toBe("keep");
+    expect(followupDecision([cur, mk("terra", { e2eP90Ms: 4000, knownCostUsd: 0.02 })], "sol", "terra").verdict).toBe("keep");
+    expect(followupDecision([cur, mk("terra", { knownCostUsd: 0.02, unknownCostShare: 0.5 })], "sol", "terra").reasons.join()).toContain("成本未知");
+    const better = [cur, mk("terra", { knownCostUsd: 0.02, e2eP90Ms: 2000 })];
+    expect(followupDecision(better, "sol", "terra").verdict).toBe("needs_human_review");
+    expect(followupDecision(better, "sol", "terra", { current: 4.2, candidate: 3.9 }).verdict).toBe("keep");
+    expect(followupDecision(better, "sol", "terra", { current: 4.2, candidate: 4.3 }).verdict).toBe("switch");
+    expect(followupDecision([mk("sol", { samples: 0 }), mk("terra", { samples: 0 })], "sol", "terra").verdict).toBe("insufficient");
+  });
+
+  it("the explicit budget stops before the next call once spent, and refuses to continue after an unknown-cost call", async () => {
+    const { withBudget, BudgetExceededError } = await import("@/server/llm/budget");
+    const fake = getLlm();
+    const priced: LlmProvider = {
+      ...fake,
+      generateStructured: async (req) => ({ ...(await fake.generateStructured(req)), model: "gpt-6.2-sol", usage: { inputTokens: 200_000, cachedTokens: 0, outputTokens: 100_000, reasoningTokens: 0 } }),
+    };
+    const { buildTriageRequest } = await import("@/server/triage");
+    const req = buildTriageRequest({ topicId: "career", question: "要不要接下这个项目？", context: {} }, "eval");
+    const b = withBudget(priced, { budgetUsd: 0.000001 });
+    await b.generateStructured(req);
+    await expect(b.generateStructured(req)).rejects.toBeInstanceOf(BudgetExceededError);
+    expect(b.spent().calls).toBe(1);
+    const unknown = withBudget(fake, { budgetUsd: 10 });
+    await unknown.generateStructured(req); // 替身没有用量：成本未知
+    await expect(unknown.generateStructured(req)).rejects.toThrow(/unknown cost/);
+    const allowed = withBudget(fake, { budgetUsd: 10, allowUnknownCost: true });
+    await allowed.generateStructured(req);
+    await allowed.generateStructured(req);
+    expect(allowed.spent()).toMatchObject({ calls: 2, unknownCalls: 2, knownUsd: 0 });
+  });
+});

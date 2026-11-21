@@ -79,12 +79,19 @@ export async function generateReport(orderId: string): Promise<"delivered" | "fa
   // 履约所需的模型配置先检查：缺配置时任务延后，订单状态与调用次数都不变
   requireCapability("llm");
   const db = await getDb();
+  // 交付期限已过的不再生成（超时退款会接手）；期限用数据库时间，与交付、超时退款同一个时钟
   const [order] = await db
     .update(orders)
     .set({ status: "generating", updatedAt: new Date() })
-    .where(and(eq(orders.id, orderId), inArray(orders.status, ["paid", "generating", "generation_failed"])))
+    .where(
+      and(
+        eq(orders.id, orderId),
+        inArray(orders.status, ["paid", "generating", "generation_failed"]),
+        sql`(${orders.refundDueAt} is null or ${orders.refundDueAt} >= now())`,
+      ),
+    )
     .returning();
-  if (!order) return "skipped"; // 已交付、已退款、拒付、待核实等
+  if (!order) return "skipped"; // 已交付、已退款、拒付、待核实、已过交付期限等
 
   const basis = readBasis(order);
   const intent = readIntent(order);
@@ -139,8 +146,11 @@ export async function generateReport(orderId: string): Promise<"delivered" | "fa
 }
 
 /**
- * 交付：先确认订单仍在生成中（没有被退款、拒付），再在同一事务里写报告、改状态、入队通知。
- * 退款先生效时，晚到的生成结果直接丢弃。
+ * 交付：在订单行锁下确认订单仍在生成中（没有被退款、拒付、删除），并且数据库时间未过交付期限，
+ * 再在同一事务里写报告、改状态、入队通知。约定（附录 F.3）：
+ * - 期限内提交 → 已交付，超时退款取得锁后会看到已交付而跳过；
+ * - 期限已过 → 报告丢弃，同一事务里转原路退款（与超时退款任务竞争时只会发起一笔）；
+ * - 退款、删除先生效 → 晚到的生成结果直接丢弃。
  */
 async function deliver(
   orderId: string,
@@ -154,15 +164,29 @@ async function deliver(
   const cited = [...new Set(content.observations.flatMap((o) => o.citations))];
   const snapshot = basis.passages.filter((p) => cited.includes(p.id)).map((p) => ({ id: p.id, title: p.title, text: p.text }));
   return db.transaction(async (tx) => {
-    const updated = await tx
-      .update(orders)
-      .set({ status: "delivered", deliveredAt: new Date(), failureReason: null, updatedAt: new Date() })
-      .where(and(eq(orders.id, orderId), eq(orders.status, "generating"), isNull(orders.contentPurgedAt)))
-      .returning({ id: orders.id });
-    if (!updated.length) {
+    const [o] = await tx
+      .select({
+        status: orders.status,
+        purged: orders.contentPurgedAt,
+        inTime: sql<boolean>`(${orders.refundDueAt} is null or ${orders.refundDueAt} >= now())`,
+      })
+      .from(orders)
+      .where(eq(orders.id, orderId))
+      .for("update")
+      .limit(1);
+    if (!o || o.status !== "generating" || o.purged) {
       console.warn(`[report] order ${orderId} is no longer deliverable; generated report discarded`);
       return "discarded" as const;
     }
+    if (!o.inTime) {
+      console.warn(`[report] order ${orderId} finished after the delivery deadline; report discarded, refunding`);
+      await requestRefund(tx, orderId, { reason: "not_delivered_in_time", requestedBy: "system", fromStatuses: ["generating"] });
+      return "discarded" as const;
+    }
+    await tx
+      .update(orders)
+      .set({ status: "delivered", deliveredAt: sql`now()`, failureReason: null, updatedAt: new Date() })
+      .where(eq(orders.id, orderId));
     await tx.insert(reports).values({
       orderId,
       userId,

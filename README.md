@@ -16,6 +16,7 @@
 | 付费闭环：邮箱验证码登录、付费前分流、订单与支付、报告生成与校验、三次追问、导出、删除、退款 | 已实现，本地用替身（模拟支付、模拟报告）可走通；**尚未接入真实的 Stripe、OpenAI、邮件服务验证** |
 | 首发改造：题意冻结与订单快照、按订单撤回、交付与退款同一状态机、独立 worker、收款开关与审核门槛、工单、模型分工与成本、评测命令 | 已实现并通过本地验收（见技术方案附录 D）；**收款默认关闭**，内容审核未完成前真实收款会被拒绝 |
 | 第二轮：下单确认绑定题意与报价、退款尝试记录与恢复、运营异常单、追问与删除的原子结算、任务认领令牌、模拟模式测试库隔离、按能力校验配置、发布验收、评测复用线上路径与追问盲测 | 已实现，替身与本机 PostgreSQL 并发测试通过（见技术方案附录 E）；**真实 Stripe、OpenAI、Resend 仍待验收** |
+| 第三轮：付款尝试持久化与幂等重放、报价绑定金额、按支付方资金流水结算退款与交付期限、退款身份与人工核实、通知认领与邮件幂等、删除后迟到写回的保护、发布验收三项结果、真实联调工具与证据记录 | 已实现，替身、契约测试与本机 PostgreSQL 并发及迁移兼容测试通过（见技术方案附录 F）；**真实 Stripe、OpenAI、Resend 联调工具已就绪，尚未运行** |
 
 ## 目录
 
@@ -62,10 +63,16 @@ npm run typecheck
 npm run build
 ```
 
-真实 PostgreSQL 上的并发测试默认跳过，指定一个测试库（库名须含 test，会被清空重建）时运行：
+一键本地验收（类型检查、内容一致性、替身测试与真实 PostgreSQL 并发测试、生产构建、替身评测）。没有设置 `TEST_POSTGRES_URL` 时，若本机装了 PostgreSQL（`initdb`/`pg_ctl`），会在临时目录起一个只监听 127.0.0.1 的集群，跑完删除：
 
 ```bash
-TEST_POSTGRES_URL=postgres://user@127.0.0.1:5432/wenshan_test npx vitest run apps/web/test/postgres-concurrency.test.ts
+npm run verify
+```
+
+也可以指定一个可以建库的 PostgreSQL（测试自己创建并删除临时库 `wenshan_test_*`，不会动连接串里的库）：
+
+```bash
+TEST_POSTGRES_URL=postgres://user@127.0.0.1:5432/postgres npx vitest run apps/web/test/postgres-concurrency.test.ts
 ```
 
 其他命令：
@@ -73,10 +80,11 @@ TEST_POSTGRES_URL=postgres://user@127.0.0.1:5432/wenshan_test npx vitest run app
 ```bash
 npm run worker -w @wenshan/web          # 独立的后台任务进程（Web 设 WORKER_MODE=off 时使用；PGlite 不能与 dev 同时打开）
 npm run worker:test -w @wenshan/web     # 模拟模式下的独立 worker（与 dev:test 用同一个测试库，不能同时打开）
-npm run eval:models -w @wenshan/web     # 模型对照评测与人工评审表，默认走替身；加 -- --live 才调用真实 OpenAI
+npm run eval:models -w @wenshan/web     # 模型对照评测与人工评审表，默认走替身；加 -- --live --budget-usd 5 才调用真实 OpenAI；--reviewed-only 只评测可购买的已审用例
 npm run eval:models -w @wenshan/web -- --blind-followups   # 追问盲测（同一份固定报告与历史，A/B 匿名）
 npm run check:services -w @wenshan/web  # 检查配置；OpenAI 默认完整走一遍三条路由（约 US$0.1），加 -- --quick 只确认参数
-npm run release:check                   # 发布验收：按生产规则给出"免费体验 / 开放收款"能否发布及阻断原因
+npm run release:check                   # 发布验收：配置校验、内容审校、真实联调三项结果，及"免费体验 / 开放收款"能否发布（--target=free|sales，--smoke-url=部署地址）
+npm run acceptance -w @wenshan/web -- --service=stripe --env-file=.env.local --yes   # 真实联调（stripe 测试模式 | openai 需 --budget-usd | resend 测试收件箱），结果记入 apps/web/acceptance/live-evidence.json
 npm run content:strict                  # 发布标准的内容审核检查（当前初稿会全部报出，这是预期行为）
 ```
 

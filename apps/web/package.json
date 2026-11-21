@@ -19,7 +19,8 @@
     "typecheck": "tsc --noEmit -p .",
     "check:services": "tsx scripts/check-services.ts",
     "eval:models": "tsx scripts/eval-models.ts",
-    "release:check": "tsx scripts/release-check.ts"
+    "release:check": "tsx scripts/release-check.ts",
+    "acceptance": "tsx scripts/acceptance.ts"
   },
   "dependencies": {
     "@electric-sql/pglite": "^0.5.17",

@@ -7,10 +7,11 @@ import { emailSchema, type SessionUser } from "./auth";
 import { corpus } from "./content";
 import { decrypt, encrypt, keyedHash } from "./crypto";
 import { getDb } from "./db/client";
-import { opsActions, orders, readings, reports, supportTickets, TICKET_CATEGORIES, TICKET_STATUSES, type TicketCategory, type TicketStatus } from "./db/schema";
+import { jobs, opsActions, orders, readings, reports, supportTickets, TICKET_CATEGORIES, TICKET_STATUSES, type TicketCategory, type TicketStatus } from "./db/schema";
 import { env } from "./env";
 import { HttpError } from "./http";
-import { enqueue } from "./jobs/queue";
+import { DeferJobError, enqueue } from "./jobs/queue";
+import { NOTIFY_CLAIM_MS } from "./notify-claim";
 import { getMailer } from "./mail";
 import { readIntent } from "./snapshot";
 
@@ -93,7 +94,6 @@ export async function submitTicket(
   let orderId: string | null = null;
   let reportId: string | null = null;
   let reportVersions: Record<string, unknown> | null = null;
-  let question: string | null = null;
   if (ctx.user && input.reportId) {
     const [r] = await db
       .select({ id: reports.id, orderId: reports.orderId, versions: reports.versions })
@@ -114,16 +114,9 @@ export async function submitTicket(
       .limit(1);
     if (o) orderId = o.id;
   }
-  // 问卦原文由用户自己决定是否附上
-  if (input.includeQuestion && orderId) {
-    const [o] = await db
-      .select({ intentCt: orders.intentCt, readingQ: readings.questionCt })
-      .from(orders)
-      .innerJoin(readings, eq(readings.id, orders.readingId))
-      .where(eq(orders.id, orderId))
-      .limit(1);
-    question = (o && readIntent(o)?.question) ?? (o?.readingQ ? decrypt(o.readingQ) : null);
-  }
+  // 问卦原文由用户自己决定是否附上；读取与写入放在同一事务、订单行锁下（见下方），
+  // 与删除、退款撤回竞争时，删除完成后不会再把已清除的原文写进工单（附录 F.5）
+  const withQuestion = Boolean(input.includeQuestion && orderId);
 
   const diagnostics = {
     page: cleanPage(input.diagnostics.page),
@@ -136,6 +129,19 @@ export async function submitTicket(
     const no = ticketNo();
     try {
       const created = await db.transaction(async (tx) => {
+        let question: string | null = null;
+        if (withQuestion && orderId) {
+          const [o] = await tx
+            .select({ intentCt: orders.intentCt, purged: orders.contentPurgedAt, readingId: orders.readingId })
+            .from(orders)
+            .where(eq(orders.id, orderId))
+            .for("update")
+            .limit(1);
+          if (o && !o.purged) {
+            const [r] = await tx.select({ q: readings.questionCt, deleted: readings.deletedAt }).from(readings).where(eq(readings.id, o.readingId)).limit(1);
+            question = readIntent(o)?.question ?? (r?.q && !r.deleted ? decrypt(r.q) : null);
+          }
+        }
         const [t] = await tx
           .insert(supportTickets)
           .values({
@@ -172,7 +178,10 @@ export async function submitTicket(
   throw new Error("unreachable");
 }
 
-/** 任务 notify_support_ticket：通知运营邮箱。失败会重试，不影响工单本身 */
+/**
+ * 任务 notify_support_ticket：通知运营邮箱。失败会重试，不影响工单本身。
+ * 与交付通知一样区分认领与"邮件服务已接受"，并带稳定幂等键（附录 F.4）。
+ */
 export async function notifySupportTicket(ticketId: string): Promise<void> {
   const db = await getDb();
   const [t] = await db.select().from(supportTickets).where(eq(supportTickets.id, ticketId)).limit(1);
@@ -182,23 +191,59 @@ export async function notifySupportTicket(ticketId: string): Promise<void> {
   if (!to) return;
   // 通知配置单独校验：邮件不可用时任务延后，工单本身早已受理
   requireCapability("mail");
-  // 先认领再发送：重复执行不会重复发信；发送失败释放认领，交给任务重试，工单本身不受影响
+  const claimedAt = new Date();
   const claimed = await db
     .update(supportTickets)
-    .set({ notifiedAt: new Date() })
-    .where(and(eq(supportTickets.id, ticketId), isNull(supportTickets.notifiedAt)))
+    .set({ notifyClaimedAt: claimedAt })
+    .where(
+      and(
+        eq(supportTickets.id, ticketId),
+        isNull(supportTickets.notifiedAt),
+        sql`(${supportTickets.notifyClaimedAt} is null or ${supportTickets.notifyClaimedAt} < now() - make_interval(secs => ${NOTIFY_CLAIM_MS / 1000}))`,
+      ),
+    )
     .returning({ id: supportTickets.id });
-  if (!claimed.length) return;
+  if (!claimed.length) {
+    const [again] = await db.select({ notified: supportTickets.notifiedAt }).from(supportTickets).where(eq(supportTickets.id, ticketId));
+    if (again?.notified) return;
+    throw new DeferJobError(`ticket notification ${ticketId} is claimed by another run`, NOTIFY_CLAIM_MS);
+  }
   try {
     await getMailer().send({
       to,
       subject: `[问山工单] ${t.ticketNo} · ${CATEGORY_LABEL[t.category]}`,
+      idempotencyKey: `ticket-notify:${t.id}`,
       text: `新工单 ${t.ticketNo}（${CATEGORY_LABEL[t.category]}）。\n处理：${env().APP_URL}/ops?ticket=${t.ticketNo}\n\n为保护隐私，邮件不含用户描述，请在后台查看。`,
     });
   } catch (err) {
-    await db.update(supportTickets).set({ notifiedAt: null }).where(eq(supportTickets.id, ticketId));
+    await db
+      .update(supportTickets)
+      .set({ notifyClaimedAt: null })
+      .where(and(eq(supportTickets.id, ticketId), eq(supportTickets.notifyClaimedAt, claimedAt)));
     throw err;
   }
+  await db.update(supportTickets).set({ notifiedAt: sql`now()`, notifyClaimedAt: null }).where(eq(supportTickets.id, ticketId));
+}
+
+/** 维护：最近 20 小时内（邮件幂等键的有效期内）的工单通知仍未被接受、也没有在途任务的，每 30 分钟补一次 */
+export async function recoverTicketNotifications(): Promise<number> {
+  if (!env().SUPPORT_NOTIFY_EMAIL) return 0;
+  const db = await getDb();
+  const rows = await db
+    .select({ id: supportTickets.id })
+    .from(supportTickets)
+    .where(
+      and(
+        isNull(supportTickets.notifiedAt),
+        sql`${supportTickets.createdAt} > now() - interval '20 hours'`,
+        sql`${supportTickets.createdAt} < now() - interval '5 minutes'`,
+        sql`not exists (select 1 from ${jobs} j where j.kind = 'notify_support_ticket' and j.payload->>'ticketId' = ${supportTickets.id}::text and j.status in ('queued','running'))`,
+      ),
+    )
+    .limit(100);
+  const bucket = Math.floor(Date.now() / (30 * 60_000));
+  for (const { id } of rows) await enqueue(db, "notify_support_ticket", { ticketId: id }, { dedupeKey: `ticket-notify:${id}:${bucket}` });
+  return rows.length;
 }
 
 /**

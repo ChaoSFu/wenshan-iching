@@ -16,6 +16,7 @@ export interface Offer {
   amountMinor: number;
   currency: string;
   priceLabel: string;
+  /** 报价标识（绑定金额与币种），下单时页面原样带回 */
   priceVersion: string;
   provider: "stripe" | "fake";
   /** 是否要求内容已审核（真实收款时一定为 true） */
@@ -27,6 +28,14 @@ export function formatPrice(amountMinor: number, currency: string): string {
   return currency.toLowerCase() === "usd" ? `US$${v}` : `${v} ${currency.toUpperCase()}`;
 }
 
+/**
+ * 服务端报价标识：配置的报价版本 + 实际金额 + 币种。改价时即使忘了改 PRICE_VERSION，
+ * 标识也会变，旧页面带着旧标识下单会被要求确认新价格（第三轮 P0）。
+ */
+export function quoteId(priceVersion: string, amountMinor: number, currency: string): string {
+  return `${priceVersion}:${amountMinor}:${currency.toLowerCase()}`;
+}
+
 export function getOffer(): Offer {
   const e = env();
   return {
@@ -34,7 +43,7 @@ export function getOffer(): Offer {
     amountMinor: e.PRICE_AMOUNT_MINOR,
     currency: e.PRICE_CURRENCY,
     priceLabel: formatPrice(e.PRICE_AMOUNT_MINOR, e.PRICE_CURRENCY),
-    priceVersion: e.PRICE_VERSION,
+    priceVersion: quoteId(e.PRICE_VERSION, e.PRICE_AMOUNT_MINOR, e.PRICE_CURRENCY),
     provider: e.PAYMENT_PROVIDER,
     reviewRequired: !(e.PAYMENT_PROVIDER === "fake" && e.ALLOW_UNREVIEWED_CONTENT),
   };

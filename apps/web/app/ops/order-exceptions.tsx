@@ -10,10 +10,25 @@ interface Exception {
   failureReason: string | null;
   amountMinor: number;
   currency: string;
+  paidAmountMinor: number | null;
+  paidCurrency: string | null;
   refundedAmountMinor: number;
+  refundedCurrency: string | null;
   generationCalls: number;
   updatedAt: string;
-  refunds: { attemptNo: number; status: string; amountMinor: number | null; failureReason: string | null; requestedBy: string; updatedAt: string }[];
+  refunds: {
+    attemptNo: number;
+    status: string;
+    source: string;
+    providerRefundId: string | null;
+    amountMinor: number | null;
+    currency: string | null;
+    failureReason: string | null;
+    requestedBy: string;
+    escalated: boolean;
+    updatedAt: string;
+  }[];
+  checkoutAttempts: { attemptNo: number; status: string; lastError: string | null; createdAt: string }[];
   lastGeneration: { status: string; failureReason: string | null; createdAt: string } | null;
   actions: { actor: string; action: string; result: string; createdAt: string }[];
 }
@@ -47,7 +62,9 @@ export function OrderExceptions() {
   return (
     <section>
       <h2 className="font-serif text-xl text-ink">订单异常</h2>
-      <p className="mt-1 text-xs text-muted">待核实、退款失败、超过 1 小时未完成的退款、生成异常、部分退款。</p>
+      <p className="mt-1 text-xs text-muted">
+        待核实、退款失败或结果未知、超过 1 小时未完成的退款、生成异常、部分退款、旧单实收未核实。金额均以支付方确认的流水为准。
+      </p>
       <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="订单号（前缀即可）" className="mt-3 rounded-lg border border-line bg-card px-3 py-1.5 text-sm" />
       {message && <p className="mt-2 text-sm text-qing">{message}</p>}
       {rows === null ? (
@@ -67,16 +84,30 @@ export function OrderExceptions() {
                 <p className="text-xs text-muted">更新于 {formatDate(o.updatedAt)}</p>
               </div>
               <p className="mt-1 text-xs text-ink-soft">
-                金额 {formatMoney(o.amountMinor, o.currency)} · 已退 {formatMoney(o.refundedAmountMinor, o.currency)} · 生成调用 {o.generationCalls} 次
+                报价 {formatMoney(o.amountMinor, o.currency)} · 实收{" "}
+                {o.paidAmountMinor !== null && o.paidCurrency ? formatMoney(o.paidAmountMinor, o.paidCurrency) : "未核实"} · 已退{" "}
+                {formatMoney(o.refundedAmountMinor, o.refundedCurrency ?? o.paidCurrency ?? o.currency)} · 生成调用 {o.generationCalls} 次
                 {o.failureReason ? ` · 原因 ${o.failureReason}` : ""}
               </p>
               {o.refunds.length > 0 && (
                 <ul className="mt-1 text-xs text-muted">
                   {o.refunds.map((r) => (
                     <li key={r.attemptNo}>
-                      退款第 {r.attemptNo} 次：{r.status}
-                      {r.amountMinor !== null ? ` ${formatMoney(r.amountMinor, o.currency)}` : ""}
+                      {r.source === "external" ? "支付方后台退款" : `退款第 ${r.attemptNo} 次`}：{r.status}
+                      {r.escalated ? "（结果未知，已转人工核实）" : ""}
+                      {r.amountMinor !== null ? ` ${formatMoney(r.amountMinor, r.currency ?? o.currency)}` : ""}
+                      {r.providerRefundId ? ` · ${r.providerRefundId}` : ""}
                       {r.failureReason ? ` · ${r.failureReason}` : ""} · {r.requestedBy} · {formatDate(r.updatedAt)}
+                    </li>
+                  ))}
+                </ul>
+              )}
+              {o.checkoutAttempts.some((a) => a.status === "unknown" || a.status === "failed") && (
+                <ul className="mt-1 text-xs text-muted">
+                  {o.checkoutAttempts.map((a) => (
+                    <li key={a.attemptNo}>
+                      付款尝试第 {a.attemptNo} 次：{a.status}
+                      {a.lastError ? ` · ${a.lastError.slice(0, 80)}` : ""}
                     </li>
                   ))}
                 </ul>
@@ -107,7 +138,10 @@ export function OrderExceptions() {
                     原路退款
                   </button>
                 )}
-                {["needs_review", "generation_failed"].includes(o.status) && o.reviewReason !== "amount_mismatch" && (
+                {["needs_review", "generation_failed"].includes(o.status) &&
+                  o.reviewReason !== "amount_mismatch" &&
+                  o.paidAmountMinor === o.amountMinor &&
+                  o.paidCurrency?.toLowerCase() === o.currency.toLowerCase() && (
                   <button type="button" onClick={() => void act(o.id, "requeue", "重新生成")} className="rounded-full border border-line px-3 py-1 text-xs text-ink-soft">
                     重新生成
                   </button>

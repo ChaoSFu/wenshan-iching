@@ -3,13 +3,16 @@
 import { useEffect, useState } from "react";
 import { api } from "@/lib/api";
 
-type Level = "pass" | "warn" | "fail";
+type Level = "pass" | "warn" | "fail" | "na";
+type Section = "config" | "content" | "live";
 interface Status {
   environment: string;
   salesEnabled: boolean;
+  configVersion: string;
   freeReady: boolean;
   salesReady: boolean;
-  checks: { id: string; label: string; detail: string; free: Level; sales: Level }[];
+  sections: Record<Section, { free: Level; sales: Level }>;
+  checks: { id: string; section: Section; label: string; detail: string; free: Level; sales: Level }[];
   review: { helpUnverified: string[] };
 }
 
@@ -17,7 +20,13 @@ const MARK: Record<Level, { text: string; cls: string }> = {
   pass: { text: "通过", cls: "text-qing" },
   warn: { text: "注意", cls: "text-muted" },
   fail: { text: "阻断", cls: "text-zhu font-medium" },
+  na: { text: "不适用", cls: "text-muted" },
 };
+const SECTIONS: { id: Section; label: string }[] = [
+  { id: "config", label: "配置校验" },
+  { id: "content", label: "内容审校" },
+  { id: "live", label: "真实联调" },
+];
 
 /** 发布验收：严格审核没通过时在这里明确显示"开放收款：不可发布"及原因 */
 export function ReleasePanel() {
@@ -39,6 +48,15 @@ export function ReleasePanel() {
           {s.environment !== "production" ? "；开发环境使用替身服务，配置项按开发规则评估，上线前请运行 npm run release:check" : ""}）
         </span>
       </p>
+      <ul className="mt-2 grid gap-1 text-xs sm:grid-cols-3">
+        {SECTIONS.map(({ id, label }) => (
+          <li key={id} className="rounded-lg border border-line px-2 py-1">
+            <span className="text-ink">{label}</span>
+            <span className="ml-2 text-muted">免费</span> <span className={MARK[s.sections[id].free].cls}>{MARK[s.sections[id].free].text}</span>
+            <span className="ml-2 text-muted">收款</span> <span className={MARK[s.sections[id].sales].cls}>{MARK[s.sections[id].sales].text}</span>
+          </li>
+        ))}
+      </ul>
       <button type="button" onClick={() => setOpen(!open)} className="mt-2 text-xs text-qing underline underline-offset-4">
         {open ? "收起明细" : "查看明细"}
       </button>
@@ -55,7 +73,10 @@ export function ReleasePanel() {
           <tbody>
             {s.checks.map((c) => (
               <tr key={c.id} className="border-t border-line align-top">
-                <td className="py-1.5 pr-3 text-ink">{c.label}</td>
+                <td className="py-1.5 pr-3 text-ink">
+                  <span className="mr-1 text-xs text-muted">{SECTIONS.find((x) => x.id === c.section)?.label}</span>
+                  {c.label}
+                </td>
                 <td className={`py-1.5 pr-3 ${MARK[c.free].cls}`}>{MARK[c.free].text}</td>
                 <td className={`py-1.5 pr-3 ${MARK[c.sales].cls}`}>{MARK[c.sales].text}</td>
                 <td className="py-1.5 text-ink-soft">{c.detail}</td>

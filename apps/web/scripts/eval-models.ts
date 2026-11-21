@@ -1,7 +1,7 @@
 /**
  * 模型对照评测（显式触发；默认本地替身，不花钱）：
  *   npm run eval:models -w @wenshan/web                       # 替身：验证评测流程本身
- *   npm run eval:models -w @wenshan/web -- --live             # 真实 OpenAI API（读取 .env.local 的 OPENAI_API_KEY）
+ *   npm run eval:models -w @wenshan/web -- --live --budget-usd 5   # 真实 OpenAI API（读取 .env.local 的 OPENAI_API_KEY），必须给预算
  *
  * 追问盲测（同一份固定报告与历史，对比追问模型）：
  *   npm run eval:models -w @wenshan/web -- --blind-followups                     # 替身，报告在内存里冻结
@@ -12,7 +12,8 @@
  *   --report-models gpt-6.2-sol,gpt-6.2-astra   报告对照（第一个视为线上配置，追问基于它的报告）
  *   --followup-models gpt-6.2-sol,gpt-6.1-terra 追问对照
  *   --triage-model gpt-6.1-terra  --effort low  --cases sample-career,refer-legal
- *   --reviewed-only  只用已审核内容（与真实收款一致）
+ *   --reviewed-only  只评测真实收款时能买的用例：先过下单所用的内容审核门槛（contentGate），被挡住的单独计数
+ *   --budget-usd N   真实 API 的费用上限（--live 必填）；--allow-unknown-cost 允许价格表里没有的模型继续跑
  * 结果写入 evals/results/：<时间>-<live|fake>.{json,md} 与人工评审表 <时间>-<live|fake>.review.md；
  * 盲测另写 .blind.md（只有 A/B 标签）与 .blind-key.json（标签对应的模型与汇总，评审完再打开）。
  */
@@ -37,8 +38,14 @@ if (live && !process.env.OPENAI_API_KEY) {
   console.error("--live 需要 OPENAI_API_KEY（写在 apps/web/.env.local）");
   process.exit(1);
 }
+const budgetUsd = Number(value("budget-usd", "NaN"));
+if (live && !(budgetUsd > 0)) {
+  console.error("--live 需要显式预算：--budget-usd <美元>（例如 --budget-usd 5）");
+  process.exit(1);
+}
 
 const { getLlm } = await import("../server/llm");
+const { withBudget } = await import("../server/llm/budget");
 const run = await import("../server/eval/run");
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../..");
@@ -50,7 +57,9 @@ const effort = value("effort", "low") as "low";
 const reviewedOnly = flag("reviewed-only");
 const reportModels = value("report-models", "gpt-6.2-sol,gpt-6.2-astra").split(",");
 const followupModels = value("followup-models", "gpt-6.2-sol,gpt-6.1-terra").split(",");
-const llm = getLlm();
+const budgeted = live ? withBudget(getLlm(), { budgetUsd, allowUnknownCost: flag("allow-unknown-cost") }) : null;
+const llm = budgeted ?? getLlm();
+const spent = () => budgeted?.spent() ?? null;
 
 if (flag("blind-followups")) {
   const cases = run.loadBlindCases(path.join(root, "evals/followup-blind.yaml"));
@@ -84,8 +93,16 @@ if (flag("blind-followups")) {
     { blindLabels: labels, caseNotes },
   );
   const summary = run.summarize(items.map((i) => i.row));
+  // 自动指标的选型初判；人工贴合度评完后用 followupDecision 传入人工分数得出最终结论（默认保持现有路由）
+  const decision = followupModels.length >= 2 ? run.followupDecision(summary, followupModels[0]!, followupModels[1]!) : null;
+  const note = run.eligibilityNote(summary, reviewedOnly);
   writeFileSync(`${base}.blind.md`, `${sheet.replace("# 人工评审表", "# 追问盲测评审表（只看 A/B，不看模型）")}\n`);
-  writeFileSync(`${base}.blind-key.json`, JSON.stringify({ live, date, key, frozenFrom: frozen.map((f) => ({ caseId: f.caseId, model: f.model, frozenAt: f.frozenAt })), summary }, null, 1));
+  writeFileSync(
+    `${base}.blind-key.json`,
+    JSON.stringify({ live, date, reviewedOnly, key, frozenFrom: frozen.map((f) => ({ caseId: f.caseId, model: f.model, frozenAt: f.frozenAt })), summary, decision, eligibility: note, spent: spent() }, null, 1),
+  );
+  if (note) console.log(note);
+  if (decision) console.log(`自动指标初判（${followupModels[0]} → ${followupModels[1]}）：${decision.verdict}；${decision.reasons.join("；")}`);
   writeFileSync(`${base}.blind.json`, JSON.stringify({ live, date, items: items.map((i) => ({ ...i.row, followup: i.followup, label: i.label, model: undefined })) }, null, 1));
   console.log(`盲测完成：${items.length} 条回答`);
   console.log(`评审表：${path.relative(process.cwd(), base)}.blind.md`);
@@ -107,11 +124,13 @@ const rows = await run.runEval({
   reviewedOnly,
 });
 const summary = run.summarize(rows);
-const md = run.toMarkdown(summary, { live, date, cases: cases.length });
+const md = run.toMarkdown(summary, { live, date, cases: cases.length, reviewedOnly });
 const base = path.join(dir, `${date}-${mode}`);
-writeFileSync(`${base}.json`, JSON.stringify({ live, date, reviewedOnly, rows, summary }, null, 1));
+writeFileSync(`${base}.json`, JSON.stringify({ live, date, reviewedOnly, rows, summary, spent: spent() }, null, 1));
 writeFileSync(`${base}.md`, `${md}\n`);
 writeFileSync(`${base}.review.md`, `${run.reviewSheet(rows, cases)}\n`);
 console.log(md);
 console.log(`\n明细：${path.relative(process.cwd(), base)}.json`);
 console.log(`人工评审表：${path.relative(process.cwd(), base)}.review.md`);
+const s = spent();
+if (s) console.log(`费用：已知 US$${s.knownUsd.toFixed(4)}（预算 US$${budgetUsd}），成本未知的调用 ${s.unknownCalls} 次`);

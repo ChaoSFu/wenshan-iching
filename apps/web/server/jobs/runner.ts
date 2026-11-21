@@ -2,12 +2,13 @@ import { CapabilityUnavailableError, requireCapability } from "../capabilities";
 import { getDb } from "../db/client";
 import { env } from "../env";
 import { LlmTransientError } from "../llm";
+import { MailRejectedError } from "../mail";
 import { backfillLegacyOrders, expireCheckoutForOrder, reconcilePendingOrders, recoverPaidOrders, refundOverdueOrders } from "../orders";
-import { reconcileRefunds, runRefundAttempt } from "../refunds";
+import { reconcileRefunds, runRefundAttempt, verifyRefund } from "../refunds";
 import { generateFollowup, generateReport, onFollowupJobExhausted, onReportJobExhausted, retryFailedGenerations } from "../report/generate";
-import { purgeExpiredReports, sendReportReadyEmail } from "../report/service";
-import { notifySupportTicket, purgeOldTickets } from "../support";
-import { claimNext, completeJob, deferJob, failJob, renewLease, requeueStale, type ClaimedJob, type JobPayloads } from "./queue";
+import { purgeExpiredReports, recoverReadyEmails, sendReportReadyEmail } from "../report/service";
+import { notifySupportTicket, purgeOldTickets, recoverTicketNotifications } from "../support";
+import { DeferJobError, claimNext, completeJob, deferJob, failJob, renewLease, requeueStale, type ClaimedJob, type JobPayloads } from "./queue";
 
 type Handler<P> = { run: (p: P) => Promise<unknown>; exhausted?: (p: P) => Promise<void> };
 
@@ -20,6 +21,7 @@ const handlers: { [K in keyof JobPayloads]: Handler<JobPayloads[K]> } = {
   send_report_ready_email: { run: (p) => sendReportReadyEmail(p.orderId) },
   notify_support_ticket: { run: (p) => notifySupportTicket(p.ticketId) },
   expire_checkout: { run: (p) => expireCheckoutForOrder(p.orderId) },
+  verify_refund: { run: (p) => verifyRefund(p.refundId) },
 };
 
 let logJobs = false;
@@ -52,8 +54,13 @@ async function runJob(job: ClaimedJob): Promise<void> {
       await deferJob(db, job, `${err.capability} unavailable: ${err.missing.join(", ")}`, DEFER_MS);
       return;
     }
+    if (err instanceof DeferJobError) {
+      await deferJob(db, job, err.message, err.delayMs);
+      return;
+    }
     // 模型、网络、支付平台的临时故障都按可重试处理；数据问题不重试
-    const retryable = err instanceof LlmTransientError || !(err instanceof TypeError || err instanceof SyntaxError);
+    // 邮件服务明确拒绝（发件域名未验证等）不重试
+    const retryable = err instanceof LlmTransientError || !(err instanceof TypeError || err instanceof SyntaxError || err instanceof MailRejectedError);
     const final = await failJob(db, job, err, retryable);
     console.error(`[jobs] ${job.kind} ${job.id} attempt ${job.attempts} failed${final ? " (final)" : ""}:`, err instanceof Error ? err.message : err);
     if (final && handler.exhausted) await handler.exhausted(job.payload).catch(() => {});
@@ -95,6 +102,10 @@ export async function runMaintenance(): Promise<void> {
   await step("retry-failed", () => retryFailedGenerations());
   await step("reconcile", () => reconcilePendingOrders());
   await step("refunds", () => reconcileRefunds());
+  await step("notifications", async () => {
+    await recoverReadyEmails();
+    await recoverTicketNotifications();
+  });
   await step("purge", () => purgeExpiredReports());
   await step("tickets", () => purgeOldTickets());
 }

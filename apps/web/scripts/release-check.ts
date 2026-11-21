@@ -1,21 +1,45 @@
 /**
- * 发布验收：按"生产环境"规则评估给定配置与当前内容，输出可见的发布结论。
+ * 发布验收：按"生产环境"规则评估给定配置、内容源文件与真实联调记录，输出三项结果（配置校验、内容审校、真实联调）
+ * 与两个发布目标的结论。
  *
- *   npm run release:check -w @wenshan/web                          # 评估当前环境变量
- *   npm run release:check -w @wenshan/web -- --env-file=.env.prod  # 先读入某个配置文件
- *   npm run release:check -w @wenshan/web -- --target=sales        # 指定发布目标（默认按 SALES_ENABLED）
- *   npm run release:check -w @wenshan/web -- --json
+ *   npm run release:check                                  # 评估当前环境变量，目标按 SALES_ENABLED
+ *   npm run release:check -- --env-file=.env.production    # 先读入某个配置文件
+ *   npm run release:check -- --target=sales                # 指定目标：free | sales（其他值直接报错）
+ *   npm run release:check -- --smoke-url=https://example.com   # 顺带对部署地址做免费体验冒烟检查
+ *   npm run release:check -- --json
  *
- * 退出码：所选目标可发布为 0，否则为 1。严格审核未通过时，结论会写明"开放收款：不可发布"及原因。
- * 只输出配置项名称，不输出任何密钥的值。
+ * 退出码：所选目标可发布为 0，不可发布为 1，参数错误为 2。只输出配置项名称，不输出任何密钥的值。
  */
-import { loadSources, validateSources } from "@wenshan/content/node";
+import { existsSync, readFileSync } from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import { loadSources, staleBundles, validateSources } from "@wenshan/content/node";
+import type { EvidenceFile } from "../server/acceptance";
 import { parseEnvLenient, type Env } from "../server/env";
-import { releaseStatus, type CheckLevel } from "../server/release";
+import { RELEASE_TARGETS, SECTION_LABEL, releaseStatus, smokeCheck, type CheckLevel, type ReleaseTarget, type Section } from "../server/release";
+import { serverContentJson } from "./lib/server-content";
 
-const arg = (name: string) => process.argv.find((a) => a.startsWith(`--${name}=`))?.split("=").slice(1).join("=");
-const envFile = arg("env-file");
-if (envFile) process.loadEnvFile(envFile);
+const HERE = path.dirname(fileURLToPath(import.meta.url));
+const ALLOWED = new Set(["env-file", "target", "smoke-url", "json"]);
+
+function fail(msg: string): never {
+  console.error(`release:check: ${msg}`);
+  process.exit(2);
+}
+
+const opts = new Map<string, string>();
+for (const a of process.argv.slice(2)) {
+  const m = /^--([a-z-]+)(?:=(.*))?$/.exec(a);
+  if (!m || !ALLOWED.has(m[1]!)) fail(`未知参数 ${a}（可用：--env-file= --target=free|sales --smoke-url= --json）`);
+  opts.set(m[1]!, m[2] ?? "true");
+}
+const envFile = opts.get("env-file");
+if (envFile) {
+  if (!existsSync(envFile)) fail(`找不到配置文件 ${envFile}`);
+  process.loadEnvFile(envFile);
+}
+const targetArg = opts.get("target");
+if (targetArg !== undefined && !(RELEASE_TARGETS as readonly string[]).includes(targetArg)) fail(`--target 只能是 free 或 sales，收到 "${targetArg}"`);
 
 let e: Env;
 let configError: string | undefined;
@@ -25,11 +49,28 @@ try {
   configError = err instanceof Error ? err.message : String(err);
   e = parseEnvLenient({ NODE_ENV: "production" });
 }
-const target = (arg("target") ?? (e.SALES_ENABLED ? "sales" : "free")) as "free" | "sales";
-const status = releaseStatus(e, configError);
+const target = (targetArg ?? (e.SALES_ENABLED ? "sales" : "free")) as ReleaseTarget;
 
-// 严格审核的完整结果（读内容仓库源文件，与 npm run content:strict 一致），按类型汇总
-const strict = validateSources(await loadSources(), { strict: true });
+// 内容源文件：结构校验、严格审校（与 npm run content:strict 一致）、生成文件与源文件是否一致
+const src = await loadSources();
+const basic = validateSources(src);
+const strict = validateSources(src, { strict: true });
+const stale = await staleBundles(src);
+const serverRules = path.resolve(HERE, "../server/generated/report-rules.json");
+if ((existsSync(serverRules) ? readFileSync(serverRules, "utf8") : "") !== serverContentJson(src)) stale.push("apps/web/server/generated/report-rules.json");
+
+const evidencePath = path.resolve(HERE, "../acceptance/live-evidence.json");
+const evidence = existsSync(evidencePath) ? (JSON.parse(readFileSync(evidencePath, "utf8")) as EvidenceFile).entries : [];
+const smokeUrl = opts.get("smoke-url");
+const smoke = smokeUrl ? await smokeCheck(smokeUrl, target) : null;
+
+const status = releaseStatus(e, {
+  configError,
+  sources: { basicErrors: basic.errors, strictErrors: strict.errors, stale },
+  evidence,
+  smoke,
+});
+
 const groups = new Map<string, number>();
 for (const err of strict.errors) {
   const kind = /original not reviewed/.test(err)
@@ -43,27 +84,28 @@ for (const err of strict.errors) {
           : "其他";
   groups.set(kind, (groups.get(kind) ?? 0) + 1);
 }
-
 const ready = target === "sales" ? status.salesReady : status.freeReady;
 
-if (process.argv.includes("--json")) {
+if (opts.has("json")) {
   console.log(JSON.stringify({ target, ready, ...status, strict: { errors: strict.errors.length, groups: Object.fromEntries(groups) } }, null, 2));
 } else {
-  const mark: Record<CheckLevel, string> = { pass: "通过", warn: "注意", fail: "阻断" };
-  console.log(`问山发布验收（按生产环境规则评估${envFile ? `，配置文件 ${envFile}` : ""}）\n`);
-  console.log("检查项".padEnd(8, "　"), "免费体验", "开放收款", "说明");
-  for (const c of status.checks) {
-    console.log(c.label.padEnd(8, "　"), mark[c.free].padEnd(6), mark[c.sales].padEnd(6), c.detail);
+  const mark: Record<CheckLevel, string> = { pass: "通过", warn: "注意", fail: "阻断", na: "不适用" };
+  console.log(`问山发布验收（按生产环境规则评估${envFile ? `，配置文件 ${envFile}` : ""}；配置版本 ${status.configVersion}）`);
+  for (const s of ["config", "content", "live"] as Section[]) {
+    const sec = status.sections[s];
+    console.log(`\n【${SECTION_LABEL[s]}】免费体验：${mark[sec.free]} · 开放收款：${mark[sec.sales]}`);
+    for (const c of status.checks.filter((x) => x.section === s)) {
+      console.log(`  ${c.label.padEnd(12, "　")} ${mark[c.free].padEnd(4, "　")} ${mark[c.sales].padEnd(4, "　")} ${c.detail}`);
+    }
+    if (s === "content" && groups.size) for (const [k, n] of groups) console.log(`    · 严格审校：${k} ${n} 项`);
   }
-  console.log(`\n严格审核（content:strict）：${strict.errors.length ? `${strict.errors.length} 项未通过` : "通过"}`);
-  for (const [k, n] of groups) console.log(`  · ${k} ${n} 项`);
   console.log("\n发布结论");
   console.log(`  免费体验：${status.freeReady ? "可发布" : "不可发布"}`);
   console.log(`  开放收款：${status.salesReady ? "可发布" : "不可发布"}`);
   const blockers = status.checks.filter((c) => (target === "sales" ? c.sales : c.free) === "fail");
   if (blockers.length) {
     console.log(`\n本次目标（${target === "sales" ? "开放收款" : "免费体验"}）的阻断项：`);
-    for (const b of blockers) console.log(`  × ${b.label}：${b.detail}`);
+    for (const b of blockers) console.log(`  × [${SECTION_LABEL[b.section]}] ${b.label}：${b.detail}`);
   }
 }
 process.exit(ready ? 0 : 1);

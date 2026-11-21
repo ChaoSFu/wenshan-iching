@@ -101,7 +101,7 @@ describe("P0-1 · the confirmed intent and price are bound to the checkout", () 
     const r = await triaged(user);
     const seen = await confirmation(r.readingId);
     setEnv({ PRICE_VERSION: "price@2026-12", PRICE_AMOUNT_MINOR: 1290 });
-    await expect(createOrderForReading(user, seen)).rejects.toMatchObject({ status: 409, code: "price_changed", details: { priceVersion: "price@2026-12" } });
+    await expect(createOrderForReading(user, seen)).rejects.toMatchObject({ status: 409, code: "price_changed", details: { priceVersion: "price@2026-12:1290:usd" } });
     const { orderId } = await createOrderForReading(user, await confirmation(r.readingId));
     const [o] = await db.select().from(orders).where(eq(orders.id, orderId));
     expect(o!.amountMinor).toBe(1290);
@@ -167,7 +167,7 @@ describe("P0-1 · the confirmed intent and price are bound to the checkout", () 
     __setPaymentProviderForTests({
       ...provider,
       name: "fake",
-      retrieveCheckout: async () => ({ sessionId: "fake_cs_missing", status: "complete", paid: true, amountMinor: 990, currency: "usd", paymentId: "pi_x", orderId: null }),
+      retrieveCheckout: async () => ({ sessionId: "fake_cs_missing", status: "complete", paid: true, amountMinor: 990, currency: "usd", paymentId: "pi_x", orderId: null, attemptId: null, expiresAt: null, url: null }),
     } as PaymentProvider);
     await expect(handlePaymentEvent(ev)).rejects.toMatchObject({ status: 503 });
     const [row] = await db.select().from(paymentEvents).where(eq(paymentEvents.eventId, "evt_orphan_checkout"));
@@ -184,13 +184,15 @@ describe("P0-2 · refunds can fail, be found, be retried safely and reconciled",
     const user = await login("async-refund@example.com");
     const r = await triaged(user);
     const first = await createOrderForReading(user, await confirmation(r.readingId));
-    await db.update(orders).set({ checkoutExpiresAt: new Date(Date.now() - 1000) }).where(eq(orders.id, first.orderId));
+    // 第二个标签页在报价版本更新后重新确认：另一笔订单
+    setEnv({ PRICE_VERSION: "price@second-tab" });
     const second = await createOrderForReading(user, await confirmation(r.readingId));
+    setEnv();
     await pay(first.orderId);
     await pay(second.orderId);
     await drainJobs();
     const [att] = await db.select().from(refunds).where(eq(refunds.orderId, second.orderId));
-    expect(att).toMatchObject({ attemptNo: 1, status: "succeeded", amountMinor: 990, currency: "usd", idempotencyKey: `refund:${second.orderId}` });
+    expect(att).toMatchObject({ attemptNo: 1, status: "succeeded", amountMinor: 990, currency: "usd", idempotencyKey: `refund:${second.orderId}:${att!.id}` });
     expect(att!.providerRefundId).toMatch(/^fake_re_/);
     const v = await getOrderView(user.id, second.orderId);
     expect(v).toMatchObject({ status: "refunded", refundedAmountMinor: 990 });
@@ -228,7 +230,8 @@ describe("P0-2 · refunds can fail, be found, be retried safely and reconciled",
     expect(msg).toContain("新的退款尝试");
     // 新尝试有自己的幂等键和任务去重键，不会被旧的失败任务挡住
     const atts = await db.select().from(refunds).where(eq(refunds.orderId, orderId));
-    expect(atts.map((a) => a.idempotencyKey).sort()).toEqual([`refund:${orderId}`, `refund:${orderId}:2`]);
+    expect(new Set(atts.map((a) => a.idempotencyKey)).size).toBe(2);
+    for (const a of atts) expect(a.idempotencyKey).toBe(`refund:${orderId}:${a.id}`);
     await drainJobs();
     v = await getOrderView(user.id, orderId);
     expect(v).toMatchObject({ status: "refunded", refundedAmountMinor: 990 });

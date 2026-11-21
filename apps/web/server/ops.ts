@@ -1,6 +1,6 @@
 import { and, desc, eq, inArray, lt, or, sql } from "drizzle-orm";
 import { getDb } from "./db/client";
-import { generationAttempts, opsActions, orders, refunds } from "./db/schema";
+import { checkoutAttempts, generationAttempts, opsActions, orders, refunds } from "./db/schema";
 
 /** 记录运营的人工操作：谁、何时、对哪笔订单或工单、结果 */
 export async function recordOpsAction(input: {
@@ -27,20 +27,48 @@ export interface OrderException {
   status: string;
   reviewReason: string | null;
   failureReason: string | null;
+  /** 报价 */
   amountMinor: number;
   currency: string;
+  /** 支付方确认的实收（旧单未核实为空） */
+  paidAmountMinor: number | null;
+  paidCurrency: string | null;
+  /** 支付方确认的已成功退款合计 */
   refundedAmountMinor: number;
+  refundedCurrency: string | null;
   generationCalls: number;
   createdAt: string;
   updatedAt: string;
-  refunds: { attemptNo: number; status: string; amountMinor: number | null; failureReason: string | null; requestedBy: string; updatedAt: string }[];
+  refunds: {
+    attemptNo: number;
+    status: string;
+    source: string;
+    providerRefundId: string | null;
+    amountMinor: number | null;
+    currency: string | null;
+    failureReason: string | null;
+    requestedBy: string;
+    escalated: boolean;
+    updatedAt: string;
+  }[];
+  checkoutAttempts: { attemptNo: number; status: string; lastError: string | null; createdAt: string }[];
   lastGeneration: { status: string; failureReason: string | null; createdAt: string } | null;
   actions: { actor: string; action: string; result: string; createdAt: string }[];
 }
 
+/** 需要运营核对的标记（与订单状态无关，例如部分退款、退款流水不全、旧单实收未核实） */
+export const REVIEW_FLAGS = [
+  "partial_refund",
+  "refund_unconfirmed",
+  "refund_reversed",
+  "refund_currency_mismatch",
+  "refund_ledger_incomplete",
+  "payment_unverified",
+] as const;
+
 /**
- * 订单异常列表：待核实、退款失败、超过 1 小时仍未完成的退款、生成异常。
- * 异常单自动出现在这里，不需要用户先提工单。
+ * 订单异常列表：待核实、退款失败或结果未知、超过 1 小时仍未完成的退款、生成异常、
+ * 部分退款、旧单实收无法核实、同一订单的意外第二笔付款等。异常单自动出现在这里，不需要用户先提工单。
  */
 export async function listOrderExceptions(q?: string): Promise<OrderException[]> {
   const db = await getDb();
@@ -52,7 +80,8 @@ export async function listOrderExceptions(q?: string): Promise<OrderException[]>
         or(
           inArray(orders.status, ["needs_review", "refund_failed", "generation_failed"]),
           and(eq(orders.status, "refund_pending"), lt(orders.updatedAt, new Date(Date.now() - 3600_000))),
-          eq(orders.reviewReason, "partial_refund"),
+          inArray(orders.reviewReason, [...REVIEW_FLAGS]),
+          sql`exists (select 1 from ${refunds} r where r.order_id = ${orders.id} and r.reason = 'extra_payment_same_order')`,
         ),
         q ? sql`${orders.id}::text like ${`${q.trim()}%`}` : undefined,
       ),
@@ -69,6 +98,7 @@ export async function listOrderExceptions(q?: string): Promise<OrderException[]>
       .orderBy(desc(generationAttempts.createdAt))
       .limit(1);
     const acts = await db.select().from(opsActions).where(eq(opsActions.orderId, o.id)).orderBy(desc(opsActions.createdAt)).limit(5);
+    const cas = await db.select().from(checkoutAttempts).where(eq(checkoutAttempts.orderId, o.id)).orderBy(desc(checkoutAttempts.attemptNo)).limit(5);
     out.push({
       id: o.id,
       status: o.status,
@@ -76,18 +106,26 @@ export async function listOrderExceptions(q?: string): Promise<OrderException[]>
       failureReason: o.failureReason,
       amountMinor: o.amountMinor,
       currency: o.currency,
+      paidAmountMinor: o.paidAmountMinor,
+      paidCurrency: o.paidCurrency,
       refundedAmountMinor: o.refundedAmountMinor,
+      refundedCurrency: o.refundedCurrency,
       generationCalls: o.generationCalls,
       createdAt: o.createdAt.toISOString(),
       updatedAt: o.updatedAt.toISOString(),
       refunds: rs.map((r) => ({
         attemptNo: r.attemptNo,
         status: r.status,
+        source: r.source,
+        providerRefundId: r.providerRefundId,
         amountMinor: r.amountMinor,
+        currency: r.currency,
         failureReason: r.failureReason,
         requestedBy: r.requestedBy,
+        escalated: Boolean(r.escalatedAt),
         updatedAt: r.updatedAt.toISOString(),
       })),
+      checkoutAttempts: cas.map((a) => ({ attemptNo: a.attemptNo, status: a.status, lastError: a.lastError, createdAt: a.createdAt.toISOString() })),
       lastGeneration: gen ? { status: gen.status, failureReason: gen.failureReason, createdAt: gen.createdAt.toISOString() } : null,
       actions: acts.map((a) => ({ actor: a.actor, action: a.action, result: a.result, createdAt: a.createdAt.toISOString() })),
     });

@@ -1,9 +1,9 @@
-import { and, desc, eq } from "drizzle-orm";
+import { and, desc, eq, isNotNull, isNull } from "drizzle-orm";
 import { TOPIC_IDS, runLocalTriage, type TopicId } from "@wenshan/content";
 import { reportRules, topicsBundle } from "./content";
 import { decryptJson, encryptJson, safetyIdentifier } from "./crypto";
 import { getDb } from "./db/client";
-import { triageResults } from "./db/schema";
+import { readings, triageResults } from "./db/schema";
 import { HttpError } from "./http";
 import { getLlm, LlmTransientError, routeConfig, type Effort, type LlmProvider, type StructuredRequest, type StructuredResult } from "./llm";
 import { recordTransportFailures, recordUsage } from "./llm/usage";
@@ -284,22 +284,35 @@ export async function runTriage(userId: string, readingId: string): Promise<Tria
   const { output, model } = decided;
   const moderation = { flagged: decided.moderationFlagged };
 
+  // 模型调用期间用户可能删除了这一卦或改了题意：在阅读行锁下确认源数据仍有效、修订号未变才保存，
+  // 否则丢弃结果——删除完成后，迟到的分流不能把已清除的题意摘要重新写回（附录 F.5）
   const db = await getDb();
-  const [row] = await db
-    .insert(triageResults)
-    .values({
-      readingId,
-      readingRevision: reading.revision,
-      decision: output.decision,
-      riskCategory: output.risk_category,
-      confirmedTopic: output.confirmed_topic,
-      outputCt: encryptJson(output),
-      moderationFlagged: moderation.flagged,
-      triageVersion: TRIAGE_VERSION,
-      model,
-    })
-    .returning({ id: triageResults.id });
-  return toView(row!.id, reading.revision, output, reading.topicId, false);
+  const row = await db.transaction(async (tx) => {
+    const [live] = await tx
+      .select({ id: readings.id })
+      .from(readings)
+      .where(and(eq(readings.id, readingId), isNull(readings.deletedAt), isNotNull(readings.questionCt), eq(readings.revision, reading.revision)))
+      .for("update")
+      .limit(1);
+    if (!live) return null;
+    const [inserted] = await tx
+      .insert(triageResults)
+      .values({
+        readingId,
+        readingRevision: reading.revision,
+        decision: output.decision,
+        riskCategory: output.risk_category,
+        confirmedTopic: output.confirmed_topic,
+        outputCt: encryptJson(output),
+        moderationFlagged: moderation.flagged,
+        triageVersion: TRIAGE_VERSION,
+        model,
+      })
+      .returning({ id: triageResults.id });
+    return inserted ?? null;
+  });
+  if (!row) throw new HttpError(409, "intent_changed", "这一卦已被删除或题意已更新，请刷新后重新确认");
+  return toView(row.id, reading.revision, output, reading.topicId, false);
 }
 
 /** 下单前检查：当前题意修订下、当前规则版本的分流允许付费，返回所用的分流结果 */

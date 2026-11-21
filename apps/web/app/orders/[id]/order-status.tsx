@@ -114,11 +114,18 @@ export function OrderStatus({ orderId }: { orderId: string }) {
           </p>
         )}
         {order.status === "delivered" && <p>报告已生成，正在打开…</p>}
-        {order.status === "refund_pending" && <p>正在原路退款 {formatMoney(order.amountMinor, order.currency)}，到账时间以支付机构为准。</p>}
+        {order.status === "refund_pending" && (
+          <p>
+            正在原路退款
+            {order.paidAmountMinor !== null && order.paidCurrency ? ` ${formatMoney(order.paidAmountMinor - order.refundedAmountMinor, order.paidCurrency)}` : ""}
+            ，到账时间以支付机构为准。
+          </p>
+        )}
         {order.status === "refunded" && (
           <>
             <p>
-              已原路退款 {formatMoney(order.amountMinor, order.currency)}
+              {/* 显示支付方确认的退款金额，而不是报价 */}
+              已原路退款 {formatMoney(order.refundedAmountMinor, order.refundedCurrency ?? order.paidCurrency ?? order.currency)}
               {order.refundedAt ? `（${formatDate(order.refundedAt)}）` : ""}。报告与追问已收回，免费卦象仍可查看。
             </p>
             <div className="mt-3">{back}</div>
@@ -132,7 +139,7 @@ export function OrderStatus({ orderId }: { orderId: string }) {
           <p>我们收到了付款，但需要人工核实这笔订单（例如金额与订单不一致）。核实后会继续交付或原路退款，无需再次付款。</p>
         )}
         {order.refundedAmountMinor > 0 && order.status !== "refunded" && (
-          <p className="mt-2 text-xs text-muted">已部分退款 {formatMoney(order.refundedAmountMinor, order.currency)}。</p>
+          <p className="mt-2 text-xs text-muted">已退款 {formatMoney(order.refundedAmountMinor, order.refundedCurrency ?? order.paidCurrency ?? order.currency)}（支付方已确认）。</p>
         )}
       </section>
 

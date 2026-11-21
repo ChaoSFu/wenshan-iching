@@ -13,6 +13,7 @@ import { situationOf, validationContext } from "../report/generate";
 import type { AllowedPassage } from "../report/passages";
 import type { FollowupContent, ReportContent } from "../report/schema";
 import { allText, validateReport } from "../report/validate";
+import { pendingContent } from "../offer";
 import { buildSnapshot, type OrderBasis, type OrderIntent } from "../snapshot";
 import { TRIAGE_VERSION, decideTriage, type TriageOutput } from "../triage";
 
@@ -51,6 +52,7 @@ export type RunOutcome =
   | "incomplete"
   | "request_error" // 所有发送都失败（网络、429、5xx）
   | "content_missing" // 本卦必需原文缺失，线上同样不会生成
+  | "review_pending" // --reviewed-only：下单所用的内容审核门槛（contentGate）挡住，线上同样不能购买；不计入样本
   | "not_run"; // 报告失败，追问不运行
 
 export interface RunMetrics {
@@ -203,7 +205,10 @@ export interface EvalOptions {
   reportModels: string[];
   followupModels: string[];
   effort: Effort;
-  /** 只用已审核内容（与真实收款一致）；默认 false：与模拟流程一致，未审核内容也参与 */
+  /**
+   * 只评测真实收款时能买的用例：与下单相同，先过 contentGate（本卦必需的原文、白话与主题都已审核），
+   * 被挡住的用例记为 review_pending、单独计数，不计入样本。默认 false：与模拟流程一致，未审核内容也参与。
+   */
   reviewedOnly?: boolean;
 }
 
@@ -253,6 +258,15 @@ export async function runEval(opts: EvalOptions): Promise<RunMetrics[]> {
       });
     }
     if (!triage || !PURCHASABLE.has(triage.decision)) continue; // 转介、需改写或分流失败：线上同样不会生成报告
+
+    // —— 与下单相同的内容审核门槛：真实收款时这一卦买不了，就不生成报告 ——
+    if (opts.reviewedOnly && pendingContent(reading.cast, c.topic).length) {
+      for (const model of opts.reportModels) out.push({ ...fromAttempts(c, "report", { model, effort: opts.effort }, { status: "exhausted", attempts: [] }, 0), outcome: "review_pending" });
+      if (c.followup) {
+        for (const model of opts.followupModels) out.push({ ...fromAttempts(c, "followup", { model, effort: opts.effort }, { status: "exhausted", attempts: [] }, 0), outcome: "review_pending" });
+      }
+      continue;
+    }
 
     // —— 订单快照：与下单时同一套选文 ——
     const snapshot = buildSnapshot(reading, { id: null, version: TRIAGE_VERSION, output: triage }, { includeUnreviewed: !opts.reviewedOnly });
@@ -403,9 +417,15 @@ function blindBasis(c: BlindCase, reviewedOnly: boolean) {
 }
 
 /** 固定报告：为盲测用例生成一次报告并通过业务校验，之后所有模型的追问都基于这一份 */
+/** --reviewed-only：盲测用例也要先过下单所用的内容审核门槛 */
+function blindGated(c: BlindCase, reviewedOnly: boolean): boolean {
+  return reviewedOnly && pendingContent(evalReading({ ...c }).cast, c.topic).length > 0;
+}
+
 export async function freezeBlindReports(opts: { llm: LlmProvider; cases: BlindCase[]; model: string; effort: Effort; reviewedOnly?: boolean }): Promise<FrozenReport[]> {
   const out: FrozenReport[] = [];
   for (const c of opts.cases) {
+    if (blindGated(c, Boolean(opts.reviewedOnly))) continue; // 内容待审：这一例不冻结，盲测里记为 review_pending
     const { basis, intent, cast } = blindBasis(c, Boolean(opts.reviewedOnly));
     const situation = situationOf(basis, intent);
     const run = await attemptReport({
@@ -465,6 +485,15 @@ export async function runBlindFollowups(opts: {
   const key: Record<string, Record<string, string>> = {};
   const caseNotes: Record<string, string> = {};
   for (const c of opts.cases) {
+    if (blindGated(c, Boolean(opts.reviewedOnly))) {
+      for (const f of c.followups) {
+        for (const model of opts.models) {
+          const row = { ...fromAttempts({ id: c.id, category: "blind_followup", topic: c.topic }, "followup", { model, effort: opts.effort }, { status: "exhausted", attempts: [] }, 0), outcome: "review_pending" as const };
+          items.push({ caseId: c.id, followup: f.question, label: "-", row });
+        }
+      }
+      continue;
+    }
     const frozen = opts.frozen.find((f) => f.caseId === c.id);
     if (!frozen) throw new Error(`blind case ${c.id} has no frozen report; run with --freeze-reports first`);
     const { basis, intent, cast } = blindBasis(c, Boolean(opts.reviewedOnly));
@@ -509,9 +538,11 @@ export async function runBlindFollowups(opts: {
 export interface ModelSummary {
   route: string;
   model: string;
-  /** 样本数（不含未运行） */
+  /** 合格样本数（不含未运行、不含被内容审核挡住的用例） */
   samples: number;
   notRun: number;
+  /** --reviewed-only 下被下单内容审核门槛挡住的用例数 */
+  reviewBlocked: number;
   passRate: number;
   /** 最终结果分布：ok / invalid / moderation_flagged / refusal / incomplete / request_error / content_missing */
   outcomes: Record<string, number>;
@@ -537,6 +568,8 @@ export interface ModelSummary {
   unknownCostRuns: number;
   /** 每个样本的平均成本；有未知成本时为 null */
   avgCostUsd: number | null;
+  /** 成本未知的样本占比（合格样本为 0 时为 null） */
+  unknownCostShare: number | null;
 }
 
 export function percentile(xs: number[], p: number): number {
@@ -559,7 +592,8 @@ export function summarize(rows: RunMetrics[]): ModelSummary[] {
   const count = (xs: string[]) => xs.reduce<Record<string, number>>((m, x) => ((m[x] = (m[x] ?? 0) + 1), m), {});
   return [...groups.entries()].map(([k, all]) => {
     const [route, model] = k.split("|") as [string, string];
-    const rs = all.filter((r) => r.outcome !== "not_run");
+    const rs = all.filter((r) => r.outcome !== "not_run" && r.outcome !== "review_pending");
+    const reviewBlocked = all.filter((r) => r.outcome === "review_pending").length;
     const unknown = rs.filter((r) => !r.costKnown).length;
     const known = rs.reduce((s, r) => s + r.costUsd, 0);
     const tok = (f: (r: RunMetrics) => number | null) => sumOrNull(rs.map(f));
@@ -567,7 +601,8 @@ export function summarize(rows: RunMetrics[]): ModelSummary[] {
       route,
       model,
       samples: rs.length,
-      notRun: all.length - rs.length,
+      notRun: all.length - rs.length - reviewBlocked,
+      reviewBlocked,
       passRate: rs.length ? rs.filter((r) => r.passed).length / rs.length : 0,
       outcomes: count(rs.map((r) => r.outcome)),
       attemptFailures: count(rs.flatMap((r) => r.attemptOutcomes.filter((o) => o !== "ok"))),
@@ -587,6 +622,7 @@ export function summarize(rows: RunMetrics[]): ModelSummary[] {
       knownCostUsd: known,
       unknownCostRuns: unknown,
       avgCostUsd: rs.length && unknown === 0 ? known / rs.length : null,
+      unknownCostShare: rs.length ? unknown / rs.length : null,
     };
   });
 }
@@ -598,19 +634,30 @@ const kv = (m: Record<string, number>) =>
     .map(([k, v]) => `${k} ${v}`)
     .join("，") || "—";
 
-export function toMarkdown(summary: ModelSummary[], meta: { live: boolean; date: string; cases: number; title?: string }): string {
+/** 合格样本为 0 的生成环节：只表示内容待审，不能据此判断模型质量 */
+export function eligibilityNote(summary: ModelSummary[], reviewedOnly: boolean): string | null {
+  const gen = summary.filter((s) => s.route !== "triage");
+  if (!reviewedOnly || !gen.length) return null;
+  const empty = gen.filter((s) => s.samples === 0);
+  if (!empty.length) return `合格样本：${gen.map((s) => `${s.route}/${s.model} ${s.samples}（内容待审挡住 ${s.reviewBlocked}）`).join("；")}。`;
+  return `合格样本为 0 的环节：${empty.map((s) => `${s.route}/${s.model}（内容待审挡住 ${s.reviewBlocked}）`).join("；")}。这只表示内容还没审完，不能据此判断模型质量。`;
+}
+
+export function toMarkdown(summary: ModelSummary[], meta: { live: boolean; date: string; cases: number; title?: string; reviewedOnly?: boolean }): string {
   const cost = (s: ModelSummary) =>
     s.unknownCostRuns === s.samples ? "未知" : s.unknownCostRuns ? `${usd(s.knownCostUsd)} + ${s.unknownCostRuns} 个未知` : usd(s.knownCostUsd);
+  const note = eligibilityNote(summary, Boolean(meta.reviewedOnly));
   const lines = [
-    `# ${meta.title ?? "模型对照评测"} ${meta.date}（${meta.live ? "真实 API" : "本地替身"}，${meta.cases} 个用例）`,
+    `# ${meta.title ?? "模型对照评测"} ${meta.date}（${meta.live ? "真实 API" : "本地替身"}，${meta.cases} 个用例${meta.reviewedOnly ? "，只用已审内容" : ""}）`,
     "",
-    "| 环节 | 模型 | 样本 | 未运行 | 通过率 | 原文依据 | 行动可执行 | 含无依据数字 | 符合期望 | 业务调用 | 传输重发 | P50 | P90 | 输入/缓存/输出(推理) token | 平均成本 | 合计成本 |",
-    "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|",
+    ...(note ? [`> ${note}`, ""] : []),
+    "| 环节 | 模型 | 合格样本 | 内容待审 | 未运行 | 通过率 | 原文依据 | 行动可执行 | 含无依据数字 | 符合期望 | 业务调用 | 传输重发 | P50 | P90 | 输入/缓存/输出(推理) token | 平均成本 | 合计成本 | 未知成本占比 |",
+    "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|",
     ...summary.map(
       (s) =>
-        `| ${s.route} | ${s.model} | ${s.samples} | ${s.notRun} | ${pct(s.passRate)} | ${pct(s.groundedRate)} | ${pct(s.actionRate)} | ${s.unsupportedNumberRuns} | ${pct(s.expectationRate)} | ${s.businessAttempts} | ${s.transportFailures} | ${s.e2eP50Ms} ms | ${s.e2eP90Ms} ms | ${
+        `| ${s.route} | ${s.model} | ${s.samples} | ${s.reviewBlocked} | ${s.notRun} | ${pct(s.passRate)} | ${pct(s.groundedRate)} | ${pct(s.actionRate)} | ${s.unsupportedNumberRuns} | ${pct(s.expectationRate)} | ${s.businessAttempts} | ${s.transportFailures} | ${s.e2eP50Ms} ms | ${s.e2eP90Ms} ms | ${
           s.inputTokens === null ? "未知" : `${s.inputTokens}/${s.cachedTokens ?? 0}/${s.outputTokens ?? 0}(${s.reasoningTokens ?? 0})`
-        } | ${s.avgCostUsd === null ? "未知" : usd(s.avgCostUsd)} | ${cost(s)} |`,
+        } | ${s.avgCostUsd === null ? "未知" : usd(s.avgCostUsd)} | ${cost(s)} | ${pct(s.unknownCostShare)} |`,
     ),
     "",
     "## 失败类型",
@@ -620,7 +667,7 @@ export function toMarkdown(summary: ModelSummary[], meta: { live: boolean; date:
     ...summary.map((s) => `| ${s.route} | ${s.model} | ${kv(s.outcomes)} | ${kv(s.attemptFailures)} | ${kv(s.issueCodes)} |`),
     "",
     "- 业务调用：一次完整的生成请求，校验失败后带反馈重试也算一次；传输重发：同一次业务调用里网络、429、5xx 导致的重发，不计入业务调用。",
-    "- moderation_flagged：结构与业务校验都通过、但输出内容审核未通过；request_error：所有发送都失败；not_run：报告没有通过，追问不运行。",
+    "- moderation_flagged：结构与业务校验都通过、但输出内容审核未通过；request_error：所有发送都失败；not_run：报告没有通过，追问不运行；内容待审：--reviewed-only 下被下单所用的内容审核门槛挡住，不计入样本。",
     "- 端到端耗时含重试、输出内容审核与退避等待。成本按 server/llm/usage.ts 的价格表计算，推理 token 已含在输出 token 内；价格表缺该模型或没有用量时显示\"未知\"，不按 0 计。",
     meta.live ? "" : "- 本地替身不产生 token，成本为未知；只验证评测流程本身，不代表模型质量。",
   ];
@@ -673,4 +720,32 @@ export function reviewSheet(
     lines.push("- [ ] 引用支持解释", "- [ ] 没有编造背景", "- [ ] 行动贴合处境", "- 备注：", "");
   }
   return lines.join("\n");
+}
+
+
+/**
+ * 追问模型选型（第三轮 P1）：基于同一份冻结报告的盲测结果。默认保持现有路由（追问继承报告模型），
+ * 只有候选模型在自动指标上全部不差于现有模型——错误率不高、P90 不慢、已知费用更低、未知费用占比为 0——
+ * 并且人工评审的贴合度不低于现有模型时，才建议切换。人工分数由评审表汇总后传入，没传就只给"待人工评审"。
+ */
+export function followupDecision(
+  summary: ModelSummary[],
+  current: string,
+  candidate: string,
+  human?: { current: number; candidate: number } | null,
+): { verdict: "keep" | "switch" | "needs_human_review" | "insufficient"; reasons: string[] } {
+  const cur = summary.find((s) => s.route === "followup" && s.model === current);
+  const cand = summary.find((s) => s.route === "followup" && s.model === candidate);
+  if (!cur || !cand || cur.samples === 0 || cand.samples === 0) return { verdict: "insufficient", reasons: ["合格样本不足（内容待审或未运行），不据此选型"] };
+  const reasons: string[] = [];
+  const errCur = 1 - cur.passRate;
+  const errCand = 1 - cand.passRate;
+  if (errCand > errCur) reasons.push(`错误率更高（${pct(errCand)} > ${pct(errCur)}）`);
+  if (cand.e2eP90Ms > cur.e2eP90Ms) reasons.push(`P90 更慢（${cand.e2eP90Ms} ms > ${cur.e2eP90Ms} ms）`);
+  if ((cand.unknownCostShare ?? 1) > 0 || (cur.unknownCostShare ?? 1) > 0) reasons.push("有成本未知的样本，费用无法比较");
+  else if (cand.knownCostUsd / cand.samples >= cur.knownCostUsd / cur.samples) reasons.push("已知费用没有更低");
+  if (reasons.length) return { verdict: "keep", reasons };
+  if (!human) return { verdict: "needs_human_review", reasons: ["自动指标不差于现有模型，需要人工评审的贴合度结论"] };
+  if (human.candidate < human.current) return { verdict: "keep", reasons: [`人工贴合度更低（${human.candidate} < ${human.current}）`] };
+  return { verdict: "switch", reasons: ["自动指标与人工贴合度都不差于现有模型，且费用更低"] };
 }

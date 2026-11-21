@@ -370,4 +370,16 @@ export function buildBundles(src: ContentSources): {
   };
 }
 
+/** 与源文件不一致的生成文件（content:check 与发布验收共用） */
+export async function staleBundles(src: ContentSources): Promise<string[]> {
+  const { readFile } = await import("node:fs/promises");
+  const stale: string[] = [];
+  for (const [name, data] of Object.entries(buildBundles(src))) {
+    const file = path.join(CONTENT_ROOT, "generated", `${name}.json`);
+    const current = await readFile(file, "utf8").catch(() => "");
+    if (current !== `${JSON.stringify(data, null, 1)}\n`) stale.push(`generated/${name}.json`);
+  }
+  return stale;
+}
+
 export { requiredEntryIds };
