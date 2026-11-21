@@ -70,8 +70,9 @@ describe("model eval harness (fake provider, no API calls)", () => {
     // 人工评审表包含三项人工确认
     const sheet = reviewSheet(rows, cases);
     expect(sheet).toContain("- [ ] 引用支持解释");
-    expect(sheet).toContain("- [ ] 没有编造背景");
-    expect(sheet).toContain("- [ ] 行动贴合处境");
+    expect(sheet).toContain("- [ ] 没有编造现实事实（日期、进展、概率、他人想法）");
+    expect(sheet).toContain("- [ ] 直接回应了问题");
+    expect(sheet).toContain("- [ ] 用户能照着做");
   });
 
   it("marks follow-ups as not run when the baseline report fails, and records post-moderation failures separately", async () => {
@@ -176,7 +177,7 @@ describe("model eval harness (fake provider, no API calls)", () => {
     for (let i = 0; i < prompts.length; i += 2) expect(prompts[i]).toBe(prompts[i + 1]);
     expect(items.every((i) => i.row.passed)).toBe(true);
     // 冻结的报告被改坏时拒绝运行
-    const tampered = frozen.map((f) => ({ ...f, report: { ...f.report, observations: [] } }));
+    const tampered = frozen.map((f) => ({ ...f, report: { ...f.report, basis: [] } }));
     await expect(runBlindFollowups({ llm: fake, cases, frozen: tampered, models: ["gpt-6.2-sol"], effort: "low" })).rejects.toThrow(/no longer passes validation/);
   });
 

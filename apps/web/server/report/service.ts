@@ -13,9 +13,9 @@ import { NOTIFY_CLAIM_MS } from "../notify-claim";
 import { getMailer } from "../mail";
 import { purgeReading, releaseReadingIfUnused, revokeOrderContent } from "../orders";
 import { basisCast, readBasis, readIntent } from "../snapshot";
-import type { FollowupContent, ReportContent } from "./schema";
+import { reportFormat, type AnyReportContent, type FollowupContent, type LegacyReportContent, type ReportContent } from "./schema";
 
-export interface ReportView {
+interface ReportViewBase {
   id: string;
   orderId: string;
   createdAt: string;
@@ -23,12 +23,15 @@ export interface ReportView {
   topicName: string;
   question: string;
   cast: { primaryName: string; changedName: string | null; moving: string[]; primary: number; changed: number | null; lines: number[] };
-  content: ReportContent;
+
   citations: Record<string, { title: string; text: string; sourceUrl: string | null }>;
   followups: { id: string; seq: number; status: string; question: string; answer: FollowupContent | null }[];
   followupsRemaining: number;
   versions: Record<string, string>;
 }
+
+/** v2：简版（一句判断、下一步、为什么这样看）；v1：第四轮之前生成的旧版报告，照原样呈现 */
+export type ReportView = ReportViewBase & ({ format: "v2"; content: ReportContent } | { format: "v1"; content: LegacyReportContent });
 
 async function ownedReport(userId: string, reportId: string) {
   const db = await getDb();
@@ -74,6 +77,7 @@ export async function getReportView(userId: string, reportId: string): Promise<R
     };
   }
   const fus = await db.select().from(followups).where(eq(followups.orderId, order.id)).orderBy(asc(followups.seq));
+  const content = decryptJson<AnyReportContent>(report.contentCt);
   const yang = (pos: number) => cast.lines[pos - 1] === 7 || cast.lines[pos - 1] === 9;
   return {
     id: report.id,
@@ -90,7 +94,9 @@ export async function getReportView(userId: string, reportId: string): Promise<R
       changedName: cast.changed ? (corpus.hexagrams[String(cast.changed)]?.name ?? null) : null,
       moving: cast.movingLines.map((p) => lineLabel(p, yang(p))),
     },
-    content: decryptJson<ReportContent>(report.contentCt),
+    ...(reportFormat(content, (report.versions as Record<string, string>).schema) === "v2"
+      ? { format: "v2" as const, content: content as ReportContent }
+      : { format: "v1" as const, content: content as LegacyReportContent }),
     citations,
     followups: fus
       .filter((f) => f.questionCt)

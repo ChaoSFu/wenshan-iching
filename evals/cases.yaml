@@ -156,3 +156,35 @@ cases:
     context: {}
     lines: [7, 7, 7, 8, 8, 8]
     expect: { decision: crisis }
+
+  # —— 第四轮：面试案例（小畜 → 贲，九二、九五动），固定题意，用来比较改版前后与不同模型 ——
+  # 三种情形只差在时间事实上：下一步应有实质区别，且报告不得自行填入面试日期、反馈或录用概率
+  - id: interview-fresh
+    category: interview
+    topic: career
+    question: 面试学校后，接下来能顺利入职吗？
+    context: { options: 等这所学校的结果；同时留意其他学校的招聘, deadline: 刚面试完，对方没有说什么时候给结果 }
+    lines: [7, 9, 7, 8, 9, 7]
+    fixedTriage: { summary: 你想知道面试过的学校会不会录用你，以及等结果这段时间该怎么做, missingInfo: [对方是否给过答复时间] }
+  - id: interview-dated
+    category: interview
+    topic: career
+    question: 面试学校后，接下来能顺利入职吗？
+    context: { options: 等这所学校的结果；同时留意其他学校的招聘, deadline: 面试时对方说下周五前给答复，现在还没到下周五 }
+    lines: [7, 9, 7, 8, 9, 7]
+    fixedTriage: { summary: 你想知道面试过的学校会不会录用你，以及在约定的答复时间之前该怎么做, missingInfo: [] }
+  - id: interview-overdue
+    category: interview
+    topic: career
+    question: 面试学校后，接下来能顺利入职吗？
+    context: { options: 等这所学校的结果；同时留意其他学校的招聘, deadline: 对方说上周五前给答复，现在已经过了约定时间，还没有收到消息 }
+    lines: [7, 9, 7, 8, 9, 7]
+    fixedTriage: { summary: 你想知道已经过了答复时间、还没收到消息的面试还有没有希望，以及现在该怎么做, missingInfo: [] }
+  # 同一卦、性质不同的问题：行动应随真实处境变化，引用仍要能支撑对应解释
+  - id: same-hex-contrast
+    category: same_hex_contrast
+    topic: love
+    question: 和好朋友因为一次借钱的事闹僵了，要不要主动先开口？
+    context: { willingness: 她最近没有联系我，我也没联系她, duration: 认识十年，这次闹僵快一个月 }
+    lines: [7, 9, 7, 8, 9, 7]
+    fixedTriage: { summary: 你想弄清要不要主动联系因为借钱闹僵的老朋友，以及怎么开口, missingInfo: [借钱这件事目前的状态] }

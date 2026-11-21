@@ -17,6 +17,13 @@ export interface TopicReportRules {
     question: string;
     paid: { situation: string; observation: string; toVerify: string; sevenDayAction: string; followupExample: string } | null;
     nextStep: string | null;
+    /** 简版报告样例（report@2 的示范） */
+    concise: {
+      takeaway: string;
+      basis: { citation: string; text: string }[];
+      nextStep: { trigger: string; action: string; signal: string };
+      artifact: { kind: string; title: string; content: string } | null;
+    } | null;
   } | null;
 }
 

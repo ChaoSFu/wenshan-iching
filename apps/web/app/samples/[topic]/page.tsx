@@ -51,18 +51,65 @@ export default async function SamplePage({ params }: { params: Promise<{ topic: 
       </blockquote>
 
       <h2 className="mt-8 mb-3 text-sm font-medium text-ink">免费可读</h2>
-      <ReadingView reading={reading} topicName={topic.name} />
+      <ReadingView reading={reading} />
 
       <h2 className="mt-10 mb-3 text-sm font-medium text-ink">
-        {sample.paid ? (
+        {sample.concise || sample.paid ? (
           <>
-            解锁后可读<PriceTag prefix="（" suffix="）" />
+            针对这件事的行动方案<PriceTag prefix="（" suffix="）" />
           </>
         ) : (
           "结合主题给出的下一步"
         )}
       </h2>
-      {sample.paid ? (
+      {sample.concise ? (
+        <div className="space-y-3">
+          <p className="font-serif text-xl leading-8 text-ink">{sample.concise.takeaway}</p>
+          <Block title="下一步">
+            <dl className="space-y-2">
+              <div>
+                <dt className="text-xs text-muted">什么时候</dt>
+                <dd>{sample.concise.nextStep.trigger}</dd>
+              </div>
+              <div>
+                <dt className="text-xs text-muted">做什么</dt>
+                <dd>{sample.concise.nextStep.action}</dd>
+              </div>
+              <div>
+                <dt className="text-xs text-muted">怎么判断进展</dt>
+                <dd>{sample.concise.nextStep.signal}</dd>
+              </div>
+            </dl>
+          </Block>
+          {sample.concise.artifact && (
+            <Block title={sample.concise.artifact.title}>
+              <p className="rounded-xl bg-paper/70 p-3">{sample.concise.artifact.content}</p>
+            </Block>
+          )}
+          <Block title="为什么这样看">
+            <ul className="space-y-3">
+              {sample.concise.basis.map((b) => {
+                const e = corpus.entries[b.citation];
+                const hex = e ? corpus.hexagrams[String(e.hexagram)] : null;
+                return (
+                  <li key={b.citation}>
+                    {e && (
+                      <p className="font-serif text-ink">
+                        <span className="mr-2 font-sans text-xs text-muted">
+                          「{hex?.name}」{e.kind === "tuan" ? "彖传" : e.kind === "gua" ? "卦辞" : (e.label ?? "")}
+                        </span>
+                        {e.text}
+                      </p>
+                    )}
+                    <p className="text-sm text-ink-soft">{b.text}</p>
+                  </li>
+                );
+              })}
+            </ul>
+          </Block>
+          {sample.paid && <Block title="一个追问示例">{sample.paid.followupExample}</Block>}
+        </div>
+      ) : sample.paid ? (
         <div className="space-y-3">
           <Block title="处境">{sample.paid.situation}</Block>
           <Block title="结合问题看卦">

@@ -18,7 +18,7 @@ export function serverContentJson(src: ContentSources): string {
             report: t.report,
             boundaryExamples: t.boundaryExamples,
             // 示范取自内容仓库的样例（samples/*.yaml）：完整报告样例，或同一卦在本主题下的"下一步"
-            example: s ? { question: s.question, paid: s.paid ?? null, nextStep: s.nextStep ?? null } : null,
+            example: s ? { question: s.question, paid: s.paid ?? null, nextStep: s.nextStep ?? null, concise: s.concise ?? null } : null,
           },
         ];
       }),

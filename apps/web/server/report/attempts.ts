@@ -3,7 +3,7 @@ import { LlmTransientError, type Effort, type LlmProvider, type StructuredResult
 import { fakeFollowup, fakeReport } from "./fake";
 import { castSummary, type AllowedPassage } from "./passages";
 import { FOLLOWUP_DEVELOPER_SUFFIX, developerPrompt, followupUserPrompt, reportUserPrompt, type UserSituation } from "./prompt";
-import { FOLLOWUP_JSON_SCHEMA, REPORT_JSON_SCHEMA, type FollowupContent, type ReportContent } from "./schema";
+import { FOLLOWUP_JSON_SCHEMA, REPORT_JSON_SCHEMA, type AnyReportContent, type FollowupContent, type ReportContent } from "./schema";
 import { allText, validateFollowup, validateReport, type ValidationContext } from "./validate";
 
 /**
@@ -131,7 +131,7 @@ export function attemptReport(c: Common): Promise<AttemptRun<ReportContent>> {
         override: c.override,
         developer: developerPrompt(c.topicId),
         user: reportUserPrompt({ castSummary: castSummary(c.cast), passages: c.passages, situation: c.situation, feedback }),
-        schemaName: "wenshan_report_v1",
+        schemaName: "wenshan_report_v2",
         jsonSchema: REPORT_JSON_SCHEMA as unknown as Record<string, unknown>,
         maxOutputTokens: 6000,
         safetyIdentifier: c.safetyIdentifier,
@@ -139,12 +139,12 @@ export function attemptReport(c: Common): Promise<AttemptRun<ReportContent>> {
       }),
     (data) => validateReport(data, c.ctx),
     (content) => allText(content),
-    (reason) => `输出不完整（${reason}），请控制篇幅并输出完整 JSON`,
+    (reason) => `输出不完整（${reason}），请把 takeaway 与 next_step 控制在 250 字以内并输出完整 JSON`,
   );
 }
 
 export function attemptFollowup(
-  c: Common & { report: ReportContent; previous: { question: string; answer: string }[]; question: string },
+  c: Common & { report: AnyReportContent; previous: { question: string; answer: string }[]; question: string },
 ): Promise<AttemptRun<FollowupContent>> {
   return loop(
     c,

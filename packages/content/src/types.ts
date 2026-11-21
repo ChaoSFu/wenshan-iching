@@ -149,6 +149,12 @@ export interface Sample {
     sevenDayAction: string;
     followupExample: string;
   };
+  concise?: {
+    takeaway: string;
+    basis: { citation: string; text: string }[];
+    nextStep: { trigger: string; action: string; signal: string };
+    artifact: { kind: "message" | "opener" | "checklist"; title: string; content: string } | null;
+  };
 }
 
 export interface SamplesBundle {

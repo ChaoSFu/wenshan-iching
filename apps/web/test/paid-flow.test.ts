@@ -100,8 +100,11 @@ describe("paid flow (fake payment + fake model)", () => {
     const report = await getReportView(user.id, view.reportId!);
     if ("deleted" in report) throw new Error("report unexpectedly deleted");
     expect(report.cast.primaryName).toBe("乾");
-    expect(report.content.observations.length).toBeGreaterThan(0);
-    for (const o of report.content.observations) for (const c of o.citations) expect(report.citations[c]).toBeTruthy();
+    // 新报告是简版（report@2）：一句判断、下一步、依据；依据的原文按编号从快照渲染
+    expect(report.format).toBe("v2");
+    if (!("takeaway" in report.content)) throw new Error("expected a report@2");
+    expect(report.content.takeaway.length).toBeGreaterThan(0);
+    for (const b of report.content.basis) expect(report.citations[b.citation]).toBeTruthy();
 
     // 问题与报告在库里是密文
     const [r] = await db.select().from(readings).where(eq(readings.id, readingId));

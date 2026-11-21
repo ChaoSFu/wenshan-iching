@@ -14,7 +14,27 @@ interface Action {
   feedback_signal: string;
 }
 
-interface Report {
+/** 旧版报告（report@1，第四轮之前生成） */
+interface LegacyContent {
+  question_summary: string;
+  situation: string;
+  observations: { angle: string; text: string; citations: string[] }[];
+  to_verify: { item: string; how: string }[];
+  seven_day_action: Action;
+  review_condition: string;
+  followup_suggestions: string[];
+}
+
+/** 简版报告（report@2） */
+interface ConciseContent {
+  takeaway: string;
+  next_step: { trigger: string; action: string; signal: string };
+  basis: { citation: string; text: string }[];
+  artifact: { kind: "message" | "opener" | "checklist"; title: string; content: string } | null;
+  followup_suggestions: string[];
+}
+
+type Report = {
   id: string;
   orderId: string;
   createdAt: string;
@@ -22,15 +42,6 @@ interface Report {
   topicName: string;
   question: string;
   cast: { primaryName: string; changedName: string | null; moving: string[]; lines: number[] };
-  content: {
-    question_summary: string;
-    situation: string;
-    observations: { angle: string; text: string; citations: string[] }[];
-    to_verify: { item: string; how: string }[];
-    seven_day_action: Action;
-    review_condition: string;
-    followup_suggestions: string[];
-  };
   citations: Record<string, { title: string; text: string; sourceUrl: string | null }>;
   followups: {
     id: string;
@@ -41,7 +52,7 @@ interface Report {
   }[];
   followupsRemaining: number;
   versions: Record<string, string>;
-}
+} & ({ format: "v2"; content: ConciseContent } | { format: "v1"; content: LegacyContent });
 
 const DELETE_REASON: Record<string, string> = {
   user_deleted: "你已经删除了这份报告。",
@@ -95,6 +106,214 @@ function Citation({ id, c }: { id: string; c: Report["citations"][string] | unde
   );
 }
 
+/** 剪贴板 API 被拒绝（例如页面没有焦点、浏览器权限）时退回"选中 + 复制命令" */
+function legacyCopy(text: string): boolean {
+  const t = document.createElement("textarea");
+  t.value = text;
+  t.setAttribute("readonly", "");
+  t.style.position = "fixed";
+  t.style.opacity = "0";
+  document.body.appendChild(t);
+  t.select();
+  let ok = false;
+  try {
+    ok = document.execCommand("copy");
+  } catch {
+    ok = false;
+  }
+  t.remove();
+  return ok;
+}
+
+/**
+ * 复制按钮：成功时按钮变成"✓ 已复制"并有文字提示；两种复制方式都失败时，
+ * 自动选中材料文字（targetId），提示长按手动复制。
+ */
+function CopyButton({ text, targetId, label = "复制" }: { text: string; targetId?: string; label?: string }) {
+  const [state, setState] = useState<"idle" | "copied" | "failed">("idle");
+  async function copy() {
+    let ok = false;
+    try {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(text);
+        ok = true;
+      }
+    } catch {
+      ok = false;
+    }
+    if (!ok) ok = legacyCopy(text);
+    if (!ok && targetId) {
+      const el = document.getElementById(targetId);
+      const sel = window.getSelection();
+      if (el && sel) {
+        const range = document.createRange();
+        range.selectNodeContents(el);
+        sel.removeAllRanges();
+        sel.addRange(range);
+      }
+    }
+    setState(ok ? "copied" : "failed");
+    window.setTimeout(() => setState("idle"), ok ? 2500 : 6000);
+  }
+  return (
+    <span className="inline-flex flex-wrap items-center gap-2 print:hidden">
+      <button
+        type="button"
+        onClick={() => void copy()}
+        className={`rounded-full border px-4 py-1.5 text-sm ${state === "copied" ? "border-qing bg-qing text-paper" : "border-qing/60 text-qing hover:bg-lu-soft/60"}`}
+      >
+        {state === "copied" ? "✓ 已复制" : label}
+      </button>
+      <span role="status" aria-live="polite" className="text-xs text-muted">
+        {state === "copied" ? "已复制到剪贴板，可以直接粘贴" : state === "failed" ? "没能自动复制，文字已选中，请长按或右键复制" : ""}
+      </span>
+    </span>
+  );
+}
+
+const ARTIFACT_LABEL: Record<NonNullable<ConciseContent["artifact"]>["kind"], string> = {
+  message: "可以直接发的消息",
+  opener: "谈话开场",
+  checklist: "选择清单",
+};
+
+/** 简版报告：一句判断 → 下一步 → 可复制材料 → 为什么这样看（默认折叠） */
+function ConciseBody({ report, c }: { report: Report; c: ConciseContent }) {
+  const bits = report.cast.lines.map((v) => (v === 7 || v === 9 ? 1 : 0)) as (0 | 1)[];
+  const moving = report.cast.lines.flatMap((v, i) => (v === 6 || v === 9 ? [i + 1] : []));
+  return (
+    <>
+      <section aria-label="一句判断">
+        <p className="font-serif text-[22px] leading-9 text-ink">{c.takeaway}</p>
+      </section>
+
+      <section aria-label="下一步" className="rounded-2xl border border-qing/40 bg-card p-5 break-inside-avoid">
+        <h2 className="text-xs tracking-wide text-qing">下一步</h2>
+        <dl className="mt-2 space-y-3 text-[15px] leading-7 text-ink">
+          <div>
+            <dt className="text-xs text-muted">什么时候</dt>
+            <dd>{c.next_step.trigger}</dd>
+          </div>
+          <div>
+            <dt className="text-xs text-muted">做什么</dt>
+            <dd>{c.next_step.action}</dd>
+          </div>
+          <div>
+            <dt className="text-xs text-muted">怎么判断进展</dt>
+            <dd>{c.next_step.signal}</dd>
+          </div>
+        </dl>
+      </section>
+
+      {c.artifact && (
+        <section aria-label={c.artifact.title} className="rounded-2xl border border-line bg-card p-5 break-inside-avoid">
+          <div className="flex items-baseline justify-between gap-3">
+            <h2 className="text-xs tracking-wide text-muted">{c.artifact.title || ARTIFACT_LABEL[c.artifact.kind]}</h2>
+          </div>
+          <p id="report-artifact" className="mt-2 whitespace-pre-wrap rounded-xl bg-paper/70 p-3 text-[15px] leading-7 text-ink select-all">
+            {c.artifact.content}
+          </p>
+          {c.artifact.content.includes("【") && <p className="mt-2 text-xs text-muted">【】里的内容换成你的实际情况再发。</p>}
+          <div className="mt-3">
+            <CopyButton text={c.artifact.content} targetId="report-artifact" />
+          </div>
+        </section>
+      )}
+
+      <details className="group rounded-2xl border border-line bg-card/60 break-inside-avoid" data-print-open>
+        <summary className="flex cursor-pointer list-none items-center justify-between px-5 py-4 text-[15px] text-ink">
+          <span>为什么这样看</span>
+          <span aria-hidden className="text-muted transition-transform group-open:rotate-90">
+            ›
+          </span>
+        </summary>
+        <div className="space-y-4 px-5 pb-5">
+          <div className="flex items-center gap-4">
+            <HexagramFigure bits={bits} moving={moving} size="sm" label={`${report.cast.primaryName}卦`} />
+            <p className="text-sm text-ink-soft">
+              本卦「{report.cast.primaryName}」{report.cast.changedName ? ` → 变卦「${report.cast.changedName}」` : ""}
+              {report.cast.moving.length ? ` · 动爻 ${report.cast.moving.join("、")}` : " · 无动爻"}
+            </p>
+          </div>
+          {c.basis.map((b) => {
+            const src = report.citations[b.citation];
+            return (
+              <div key={b.citation} className="border-l-2 border-lu pl-3">
+                {src && (
+                  <p className="font-serif text-lg leading-8 text-ink">
+                    <span className="mr-2 font-sans text-xs text-muted">{src.title}</span>
+                    {src.text}
+                  </p>
+                )}
+                <p className="mt-1 text-[15px] leading-7 text-ink-soft">{b.text}</p>
+                <p className="mt-1 text-xs text-muted">
+                  {b.citation}
+                  {src?.sourceUrl && (
+                    <>
+                      {" · "}
+                      <a href={src.sourceUrl} target="_blank" rel="noreferrer" className="underline underline-offset-2">
+                        出处
+                      </a>
+                    </>
+                  )}
+                </p>
+              </div>
+            );
+          })}
+        </div>
+      </details>
+    </>
+  );
+}
+
+/** 旧版报告（report@1）：保留原来的呈现，照常可读、可导出、可追问 */
+function LegacyBody({ report, c }: { report: Report; c: LegacyContent }) {
+  const bits = report.cast.lines.map((v) => (v === 7 || v === 9 ? 1 : 0)) as (0 | 1)[];
+  const moving = report.cast.lines.flatMap((v, i) => (v === 6 || v === 9 ? [i + 1] : []));
+  return (
+    <>
+      <div className="flex items-center gap-4">
+        <HexagramFigure bits={bits} moving={moving} size="sm" label={`${report.cast.primaryName}卦`} />
+        <p className="text-sm text-ink-soft">
+          本卦「{report.cast.primaryName}」{report.cast.changedName ? ` → 变卦「${report.cast.changedName}」` : ""}
+          {report.cast.moving.length ? ` · 动爻 ${report.cast.moving.join("、")}` : " · 无动爻"}
+        </p>
+      </div>
+      <Section title="你想弄清的事">{c.question_summary}</Section>
+      <Section title="处境">{c.situation}</Section>
+      <Section title="结合问题看卦">
+        <div className="space-y-4">
+          {c.observations.map((o, i) => (
+            <div key={i}>
+              <p className="font-medium text-qing">{o.angle}</p>
+              <p className="mt-1">{o.text}</p>
+              <div className="mt-2 flex flex-wrap gap-2">
+                {o.citations.map((id) => (
+                  <Citation key={id} id={id} c={report.citations[id]} />
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </Section>
+      <Section title="需要核实">
+        <ul className="space-y-2">
+          {c.to_verify.map((v, i) => (
+            <li key={i}>
+              <p>{v.item}</p>
+              <p className="text-sm text-ink-soft">{v.how}</p>
+            </li>
+          ))}
+        </ul>
+      </Section>
+      <Section title="七天行动">
+        <ActionBlock a={c.seven_day_action} />
+      </Section>
+      <Section title="回看条件">{c.review_condition}</Section>
+    </>
+  );
+}
+
 export function ReportView({ reportId }: { reportId: string }) {
   const [state, setState] = useState<"loading" | "login" | "notfound" | "error" | "ok">("loading");
   const [report, setReport] = useState<Report | null>(null);
@@ -126,6 +345,26 @@ export function ReportView({ reportId }: { reportId: string }) {
   useEffect(() => {
     void load();
   }, [load]);
+
+  // 导出 / 打印时展开"为什么这样看"等折叠内容，打印完恢复
+  useEffect(() => {
+    const opened: HTMLDetailsElement[] = [];
+    const before = () => {
+      document.querySelectorAll<HTMLDetailsElement>("details[data-print-open]").forEach((d) => {
+        if (!d.open) {
+          d.open = true;
+          opened.push(d);
+        }
+      });
+    };
+    const after = () => opened.splice(0).forEach((d) => (d.open = false));
+    window.addEventListener("beforeprint", before);
+    window.addEventListener("afterprint", after);
+    return () => {
+      window.removeEventListener("beforeprint", before);
+      window.removeEventListener("afterprint", after);
+    };
+  }, []);
 
   // 有追问正在生成时轮询
   useEffect(() => {
@@ -186,60 +425,22 @@ export function ReportView({ reportId }: { reportId: string }) {
     );
   }
 
-  const c = report.content;
-  const bits = report.cast.lines.map((v) => (v === 7 || v === 9 ? 1 : 0)) as (0 | 1)[];
-  const moving = report.cast.lines.flatMap((v, i) => (v === 6 || v === 9 ? [i + 1] : []));
+  const suggestions = report.content.followup_suggestions;
 
   return (
     <article className="space-y-5">
-      <header className="space-y-2">
+      <header className="space-y-1">
         <p className="text-xs text-muted">
           {report.topicName} · 生成于 {formatDate(report.createdAt)}
+          {report.format === "v1" ? " · 旧版报告" : ""}
         </p>
-        <h1 className="font-serif text-xl leading-8 text-ink">「{report.question}」</h1>
-        <div className="flex items-center gap-4 pt-1">
-          <HexagramFigure bits={bits} moving={moving} size="sm" label={`${report.cast.primaryName}卦`} />
-          <p className="text-sm text-ink-soft">
-            本卦「{report.cast.primaryName}」{report.cast.changedName ? ` → 变卦「${report.cast.changedName}」` : ""}
-            {report.cast.moving.length ? ` · 动爻 ${report.cast.moving.join("、")}` : " · 无动爻"}
-          </p>
-        </div>
+        <h1 className="font-serif text-lg leading-8 text-ink-soft">「{report.question}」</h1>
       </header>
 
-      <Section title="你想弄清的事">{c.question_summary}</Section>
-      <Section title="处境">{c.situation}</Section>
-      <Section title="结合问题看卦">
-        <div className="space-y-4">
-          {c.observations.map((o, i) => (
-            <div key={i}>
-              <p className="font-medium text-qing">{o.angle}</p>
-              <p className="mt-1">{o.text}</p>
-              <div className="mt-2 flex flex-wrap gap-2">
-                {o.citations.map((id) => (
-                  <Citation key={id} id={id} c={report.citations[id]} />
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </Section>
-      <Section title="需要核实">
-        <ul className="space-y-2">
-          {c.to_verify.map((v, i) => (
-            <li key={i}>
-              <p>{v.item}</p>
-              <p className="text-sm text-ink-soft">{v.how}</p>
-            </li>
-          ))}
-        </ul>
-      </Section>
-      <Section title="七天行动">
-        <ActionBlock a={c.seven_day_action} />
-      </Section>
-      <Section title="回看条件">{c.review_condition}</Section>
+      {report.format === "v2" ? <ConciseBody report={report} c={report.content} /> : <LegacyBody report={report} c={report.content} />}
 
       <section className="space-y-3 print:hidden" aria-label="追问">
-        <h2 className="font-serif text-lg text-ink">同一件事的追问</h2>
+        <h2 className="text-sm text-muted">同一件事的追问</h2>
         {report.followups.map((f) => (
           <div key={f.id} className="rounded-2xl border border-line bg-card p-4 text-[15px] leading-7">
             <p className="text-sm text-muted">第 {f.seq} 次追问</p>
@@ -279,9 +480,9 @@ export function ReportView({ reportId }: { reportId: string }) {
               rows={3}
               className="mt-2 w-full resize-none rounded-xl border border-line bg-paper/60 px-3 py-2 text-base focus:border-qing focus:outline-none"
             />
-            {c.followup_suggestions.length > 0 && (
+            {suggestions.length > 0 && (
               <div className="mt-2 flex flex-wrap gap-2">
-                {c.followup_suggestions.map((s) => (
+                {suggestions.map((s) => (
                   <button key={s} type="button" onClick={() => setQuestion(s)} className="rounded-lg bg-paper-deep/70 px-3 py-1 text-left text-sm text-ink-soft">
                     {s}
                   </button>

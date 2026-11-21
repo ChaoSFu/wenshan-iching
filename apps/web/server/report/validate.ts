@@ -1,10 +1,10 @@
-import { followupZod, reportZod, type FollowupContent, type ReportContent } from "./schema";
+import { MAIN_TEXT_LIMIT, followupZod, mainText, reportZod, type FollowupContent, type ReportContent } from "./schema";
 
 /**
  * 报告复核（技术方案 5.7 校验器，PRD §7「复核与呈现」「积极引导的验收标准」）。
  * 只做确定性检查；内容审核接口的结果由调用方传入。
  */
-export const VALIDATOR_VERSION = "validator@1";
+export const VALIDATOR_VERSION = "validator@2";
 
 export interface ValidationIssue {
   code: string;
@@ -15,6 +15,13 @@ export interface ValidationContext {
   allowedIds: Set<string>;
   /** 允许在「」里出现的原文：原文、白话注释、用户自己的问题与背景 */
   quotableSources: string[];
+  /**
+   * 现实事实的来源：用户的问题、背景、付费前确认的摘要、今天的日期（追问时再加上追问原文）。
+   * 输出里出现的日期、星期不在这些文字里，就是编造的进展或时间（第四轮）。
+   */
+  factSources?: string[];
+  /** 本次重点原文（动爻；没有动爻时为本卦卦辞）：依据里至少要有一条来自这里 */
+  mainIds?: Set<string>;
 }
 
 interface Rule {
@@ -47,6 +54,27 @@ export const FORBIDDEN_RULES: Rule[] = [
   { code: "legal", pattern: /胜诉|败诉|一定能赢|稳赢|判多久/, message: "出现法律结果判断" },
 ];
 
+/** 日期与星期：月日、几号、（下/上/这/本）周几、星期几、礼拜几 */
+const DATE_PATTERN = /\d{1,4}\s*年\s*\d{1,2}\s*月(?:\s*\d{1,2}\s*[日号])?|\d{1,2}\s*月\s*\d{1,2}\s*[日号]?|\d{1,2}\s*号|(?:下|上|这|本)?(?:周|星期|礼拜)[一二三四五六日天]/g;
+/** 录用（成功、通过）概率、百分比、胜算——问山不给概率 */
+const PROBABILITY_PATTERN =
+  /\d+(?:\.\d+)?\s*[%％]|百分之[一二三四五六七八九十百零\d]+|(?:录用|录取|成功|通过|入职|被录取|拿到)(?:的)?(?:概率|几率|可能性|把握)(?:很|较|比较|不|非常)?(?:大|高|小|低)|胜算/;
+
+const squash = (t: string) => t.replace(/\s+/g, "");
+
+/** 现实事实检查：日期只能来自用户的话；不给概率 */
+function checkFacts(text: string, ctx: ValidationContext, issues: ValidationIssue[]): void {
+  if (!ctx.factSources) return;
+  const facts = squash(ctx.factSources.join("\n"));
+  for (const m of text.matchAll(DATE_PATTERN)) {
+    if (!facts.includes(squash(m[0]))) {
+      issues.push({ code: "unsupported_date", message: `出现用户没有提供的日期或时间：「${m[0]}」。没有日期时请写成条件（例如"如果对方给过答复时间……"）` });
+    }
+  }
+  const p = text.match(PROBABILITY_PATTERN);
+  if (p) issues.push({ code: "probability", message: `不要给出概率或可能性高低的判断：「${p[0]}」` });
+}
+
 function collectText(value: unknown, out: string[] = []): string[] {
   if (typeof value === "string") out.push(value);
   else if (Array.isArray(value)) for (const v of value) collectText(v, out);
@@ -73,6 +101,7 @@ function checkCitations(ids: string[], ctx: ValidationContext, issues: Validatio
   }
 }
 
+/** 报告（report@2）：结构、引用、主文篇幅、禁用表述、引号、现实事实 */
 export function validateReport(data: unknown, ctx: ValidationContext): { ok: true; content: ReportContent } | { ok: false; issues: ValidationIssue[] } {
   const parsed = reportZod.safeParse(data);
   if (!parsed.success) {
@@ -81,10 +110,24 @@ export function validateReport(data: unknown, ctx: ValidationContext): { ok: tru
       issues: parsed.error.issues.map((i) => ({ code: "schema", message: `${i.path.join(".")}: ${i.message}` })),
     };
   }
+  const r = parsed.data;
   const issues: ValidationIssue[] = [];
-  for (const o of parsed.data.observations) checkCitations(o.citations, ctx, issues);
-  for (const t of collectText(parsed.data)) checkText(t, ctx, issues);
-  return issues.length ? { ok: false, issues } : { ok: true, content: parsed.data };
+  const cited = r.basis.map((b) => b.citation);
+  checkCitations(cited, ctx, issues);
+  if (new Set(cited).size !== cited.length) issues.push({ code: "duplicate_basis", message: "basis 里同一条原文出现了两次，每条事实只写一次" });
+  if (ctx.mainIds && !cited.some((id) => ctx.mainIds!.has(id))) {
+    issues.push({
+      code: "basis_off_reading",
+      message: `basis 至少要有一条引用本次的重点原文（${[...ctx.mainIds].join("、")}），不能只引用卦辞、彖传或大象`,
+    });
+  }
+  const main = mainText(r).length;
+  if (main > MAIN_TEXT_LIMIT) issues.push({ code: "too_long", message: `takeaway 与 next_step 合计 ${main} 字，请压缩到 250 字左右（不超过 ${MAIN_TEXT_LIMIT}）` });
+  for (const t of collectText(r)) {
+    checkText(t, ctx, issues);
+    checkFacts(t, ctx, issues);
+  }
+  return issues.length ? { ok: false, issues } : { ok: true, content: r };
 }
 
 export function validateFollowup(
@@ -100,7 +143,10 @@ export function validateFollowup(
   }
   const issues: ValidationIssue[] = [];
   checkCitations(parsed.data.citations, ctx, issues);
-  for (const t of collectText(parsed.data)) checkText(t, ctx, issues);
+  for (const t of collectText(parsed.data)) {
+    checkText(t, ctx, issues);
+    checkFacts(t, ctx, issues);
+  }
   return issues.length ? { ok: false, issues } : { ok: true, content: parsed.data };
 }
 

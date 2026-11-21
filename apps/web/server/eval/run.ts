@@ -11,7 +11,7 @@ import type { ReadingPlain } from "../readings";
 import { FOLLOWUP_CALLS_PER_RUN, REPORT_CALLS_PER_RUN, attemptFollowup, attemptReport, type AttemptRun, type BusinessAttempt } from "../report/attempts";
 import { situationOf, validationContext } from "../report/generate";
 import type { AllowedPassage } from "../report/passages";
-import type { FollowupContent, ReportContent } from "../report/schema";
+import { mainText, type FollowupContent, type ReportContent } from "../report/schema";
 import { allText, validateReport } from "../report/validate";
 import { pendingContent } from "../offer";
 import { buildSnapshot, type OrderBasis, type OrderIntent } from "../snapshot";
@@ -35,6 +35,11 @@ const caseSchema = z.object({
   lines: z.array(lineValue).length(6),
   followup: z.string().optional(),
   expect: z.object({ decision: z.string().optional(), sameMatter: z.boolean().optional() }).default({}),
+  /**
+   * 固定的付费前题意（跳过模型分流）：用于比较报告本身——改版前后、不同模型——时让输入完全一致，
+   * 不会因为分流这一次判成"需要改写"而不生成报告。
+   */
+  fixedTriage: z.object({ summary: z.string(), missingInfo: z.array(z.string()).default([]) }).optional(),
 });
 export type EvalCase = z.infer<typeof caseSchema>;
 
@@ -88,6 +93,10 @@ export interface RunMetrics {
   /** 已知部分的成本；costKnown=false 时至少有一次调用的价格或用量未知 */
   costUsd: number;
   costKnown: boolean;
+  /** 报告主文（一句判断 + 下一步）字数；第四轮目标约 250 字 */
+  mainChars?: number | null;
+  /** 报告带了可复制材料（跟进消息、谈话开场、选择清单） */
+  hasArtifact?: boolean | null;
   /** 通过的报告或追问正文，供人工评审 */
   content?: ReportContent | FollowupContent;
   decision?: string;
@@ -104,6 +113,14 @@ export function unsupportedNumbers(output: string, inputs: string[]): string[] {
   const allowed = new Set(inputs.flatMap(numbersIn));
   for (const n of ["1", "2", "3", "4", "5", "6", "7"]) allowed.add(n);
   return numbersIn(output).filter((n) => !allowed.has(n));
+}
+
+/** 空泛的标题或口号：需要换成具体对象、触发条件和反馈信号 */
+export const VAGUE_ACTION = /准备蓄势|蓄势待发|求助合作|保持积极|保持耐心|顺其自然|静观其变|调整心态|积极应对/;
+
+/** 简版报告的下一步可执行：有触发条件、具体动作（不空泛）和判断信号 */
+export function nextStepExecutable(n: ReportContent["next_step"]): boolean {
+  return n.trigger.trim().length >= 4 && n.action.trim().length >= 10 && n.signal.trim().length >= 6 && !VAGUE_ACTION.test(n.action + n.trigger);
 }
 
 function actionExecutable(a: { what: string; by_when: string; feedback_signal: string } | null | undefined): boolean | null {
@@ -220,10 +237,20 @@ export async function runEval(opts: EvalOptions): Promise<RunMetrics[]> {
   for (const c of opts.cases) {
     const reading = evalReading(c);
 
-    // —— 付费前分流（与 runTriage 同一个决策函数）——
+    // —— 付费前分流（与 runTriage 同一个决策函数）；固定题意的用例直接用给定摘要 ——
     const t0 = Date.now();
-    let triage: TriageOutput | null = null;
-    try {
+    let triage: TriageOutput | null = c.fixedTriage
+      ? {
+          confirmed_topic: c.topic,
+          question_summary: c.fixedTriage.summary,
+          controllable_reframe: null,
+          missing_info: c.fixedTriage.missingInfo,
+          risk_category: "none",
+          decision: "proceed",
+          user_message: "",
+        }
+      : null;
+    if (!c.fixedTriage) try {
       const d = await decideTriage(opts.llm, reading, "eval", { model: opts.triageModel, effort: opts.effort });
       triage = d.output;
       const results = d.result ? [d.result] : [];
@@ -279,7 +306,8 @@ export async function runEval(opts: EvalOptions): Promise<RunMetrics[]> {
       }
       continue;
     }
-    const primaryIds = new Set(basis.passages.filter((p) => p.role !== "commentary").map((p) => p.id));
+    // 与校验一致：依据里至少要有一条本次重点原文（动爻；没有动爻时是本卦卦辞）
+    const primaryIds = new Set(basis.passages.filter((p) => p.role === "primary").map((p) => p.id));
     const inputs = [c.question, ...Object.values(c.context), ...basis.passages.map((p: AllowedPassage) => p.text)];
 
     // —— 报告：每个模型各跑一次完整业务流程（含校验重试）——
@@ -305,9 +333,11 @@ export async function runEval(opts: EvalOptions): Promise<RunMetrics[]> {
         const content = run.content;
         if (i === 0) baselineReport = content;
         row.content = content;
-        row.grounded = content.observations.every((o) => o.citations.some((id) => primaryIds.has(id)));
-        row.unsupportedNumbers = unsupportedNumbers(allText({ ...content, observations: content.observations.map((o) => ({ angle: o.angle, text: o.text })) }), inputs);
-        row.actionExecutable = actionExecutable(content.seven_day_action);
+        row.grounded = content.basis.some((b) => primaryIds.has(b.citation));
+        row.unsupportedNumbers = unsupportedNumbers(allText({ ...content, basis: content.basis.map((b) => b.text) }), inputs);
+        row.actionExecutable = nextStepExecutable(content.next_step);
+        row.mainChars = mainText(content).length;
+        row.hasArtifact = content.artifact !== null;
       }
       out.push(row);
     }
@@ -507,9 +537,9 @@ export async function runBlindFollowups(opts: {
     // 评审时要看到两边共同依据的报告与历史
     const r = frozen.report;
     caseNotes[c.id] = [
-      `**固定报告（各模型共用）**：${r.situation}`,
-      ...r.observations.map((o) => `- 观察（${o.angle}）：${o.text}（引用 ${o.citations.join("、")}）`),
-      `- 七天行动：${r.seven_day_action.what}（${r.seven_day_action.by_when}）`,
+      `**固定报告（各模型共用）**：${r.takeaway}`,
+      `- 下一步：${r.next_step.trigger}——${r.next_step.action}（判断：${r.next_step.signal}）`,
+      ...r.basis.map((b) => `- 依据 ${b.citation}：${b.text}`),
       "",
       c.history.length ? `**此前的追问**：\n${c.history.map((h) => `- 问：${h.question}\n  答：${h.answer}`).join("\n")}` : "**此前的追问**：无",
     ].join("\n");
@@ -566,6 +596,10 @@ export interface ModelSummary {
   knownCostUsd: number;
   /** 成本未知的样本数（价格表缺该模型、或替身没有用量）——不按 0 计 */
   unknownCostRuns: number;
+  /** 报告主文平均字数（一句判断 + 下一步） */
+  avgMainChars: number | null;
+  /** 带可复制材料的比例 */
+  artifactRate: number | null;
   /** 每个样本的平均成本；有未知成本时为 null */
   avgCostUsd: number | null;
   /** 成本未知的样本占比（合格样本为 0 时为 null） */
@@ -621,6 +655,11 @@ export function summarize(rows: RunMetrics[]): ModelSummary[] {
       reasoningTokens: tok((r) => r.reasoningTokens),
       knownCostUsd: known,
       unknownCostRuns: unknown,
+      avgMainChars: (() => {
+        const xs = rs.map((r) => r.mainChars).filter((x): x is number => typeof x === "number");
+        return xs.length ? Math.round(xs.reduce((a, b) => a + b, 0) / xs.length) : null;
+      })(),
+      artifactRate: rate(rs.map((r) => r.hasArtifact ?? null)),
       avgCostUsd: rs.length && unknown === 0 ? known / rs.length : null,
       unknownCostShare: rs.length ? unknown / rs.length : null,
     };
@@ -651,11 +690,11 @@ export function toMarkdown(summary: ModelSummary[], meta: { live: boolean; date:
     `# ${meta.title ?? "模型对照评测"} ${meta.date}（${meta.live ? "真实 API" : "本地替身"}，${meta.cases} 个用例${meta.reviewedOnly ? "，只用已审内容" : ""}）`,
     "",
     ...(note ? [`> ${note}`, ""] : []),
-    "| 环节 | 模型 | 合格样本 | 内容待审 | 未运行 | 通过率 | 原文依据 | 行动可执行 | 含无依据数字 | 符合期望 | 业务调用 | 传输重发 | P50 | P90 | 输入/缓存/输出(推理) token | 平均成本 | 合计成本 | 未知成本占比 |",
-    "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|",
+    "| 环节 | 模型 | 合格样本 | 内容待审 | 未运行 | 通过率 | 原文依据 | 行动可执行 | 主文字数 | 附材料 | 含无依据数字 | 符合期望 | 业务调用 | 传输重发 | P50 | P90 | 输入/缓存/输出(推理) token | 平均成本 | 合计成本 | 未知成本占比 |",
+    "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|",
     ...summary.map(
       (s) =>
-        `| ${s.route} | ${s.model} | ${s.samples} | ${s.reviewBlocked} | ${s.notRun} | ${pct(s.passRate)} | ${pct(s.groundedRate)} | ${pct(s.actionRate)} | ${s.unsupportedNumberRuns} | ${pct(s.expectationRate)} | ${s.businessAttempts} | ${s.transportFailures} | ${s.e2eP50Ms} ms | ${s.e2eP90Ms} ms | ${
+        `| ${s.route} | ${s.model} | ${s.samples} | ${s.reviewBlocked} | ${s.notRun} | ${pct(s.passRate)} | ${pct(s.groundedRate)} | ${pct(s.actionRate)} | ${s.avgMainChars ?? "—"} | ${pct(s.artifactRate)} | ${s.unsupportedNumberRuns} | ${pct(s.expectationRate)} | ${s.businessAttempts} | ${s.transportFailures} | ${s.e2eP50Ms} ms | ${s.e2eP90Ms} ms | ${
           s.inputTokens === null ? "未知" : `${s.inputTokens}/${s.cachedTokens ?? 0}/${s.outputTokens ?? 0}(${s.reasoningTokens ?? 0})`
         } | ${s.avgCostUsd === null ? "未知" : usd(s.avgCostUsd)} | ${cost(s)} | ${pct(s.unknownCostShare)} |`,
     ),
@@ -684,9 +723,10 @@ export function reviewSheet(
     "# 人工评审表",
     "",
     "每条请逐项勾选：",
+    "- 直接回应了用户的问题（第一句就回答，不绕弯、不复述）",
+    "- 用户能照着做：下一步写清了在什么情况下、对谁做什么、怎样判断进展",
+    "- 没有编造用户没有给出的现实事实：日期、招聘或沟通进展、概率、他人的想法",
     "- 引用的原文确实支持这条解释（不是牵强附会，不是只引了补充材料）",
-    "- 没有编造用户没有给出的背景、人物、数字或经历",
-    "- 七天行动贴合用户的处境与约束，具体可做、能看到反馈",
     "",
   ];
   const noted = new Set<string>();
@@ -703,12 +743,15 @@ export function reviewSheet(
     if (c) lines.push(`**问题**：${c.question}`, "", `**背景**：${Object.entries(c.context).map(([k, v]) => `${k}=${v}`).join("；") || "（无）"}`, "");
     if (r.route === "report") {
       const rc = r.content as ReportContent;
-      lines.push(`**处境**：${rc.situation}`, "");
-      for (const o of rc.observations) {
-        lines.push(`- 观察（${o.angle}）：${o.text}`);
-        for (const id of o.citations) lines.push(`  - 引用 ${id}：「${corpus.entries[id]?.text ?? "（不在内容包中）"}」`);
+      lines.push(`**一句判断**：${rc.takeaway}`, "");
+      lines.push(`**下一步**：${rc.next_step.trigger}——${rc.next_step.action}`, "", `**怎么判断进展**：${rc.next_step.signal}`, "");
+      lines.push(`主文 ${mainText(rc).length} 字`, "");
+      for (const b of rc.basis) {
+        lines.push(`- 依据：${b.text}`);
+        lines.push(`  - 引用 ${b.citation}：「${corpus.entries[b.citation]?.text ?? "（不在内容包中）"}」`);
       }
-      lines.push("", `**七天行动**：${rc.seven_day_action.what}（${rc.seven_day_action.by_when}；反馈：${rc.seven_day_action.feedback_signal}）`, "");
+      if (rc.artifact) lines.push("", `**${rc.artifact.title}**（${rc.artifact.kind}）：`, "", `> ${rc.artifact.content}`);
+      lines.push("");
     } else {
       const fc = r.content as FollowupContent;
       lines.push(`**同一件事**：${fc.is_same_matter ? "是" : "否"}`, "", `**回答**：${fc.answer}`, "");
@@ -717,7 +760,7 @@ export function reviewSheet(
       lines.push("");
     }
     if (r.unsupportedNumbers.length) lines.push(`> 自动初筛：出现输入里没有的数字 ${r.unsupportedNumbers.join("、")}`, "");
-    lines.push("- [ ] 引用支持解释", "- [ ] 没有编造背景", "- [ ] 行动贴合处境", "- 备注：", "");
+    lines.push("- [ ] 直接回应了问题", "- [ ] 用户能照着做", "- [ ] 没有编造现实事实（日期、进展、概率、他人想法）", "- [ ] 引用支持解释", "- 备注：", "");
   }
   return lines.join("\n");
 }

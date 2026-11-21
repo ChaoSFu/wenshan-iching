@@ -22,9 +22,19 @@ export function assertSameOrigin(req: Request): void {
   const origin = req.headers.get("origin");
   const site = req.headers.get("sec-fetch-site");
   if (site && site !== "same-origin" && site !== "none") throw new HttpError(403, "cross_site");
-  if (origin && origin !== new URL(env().APP_URL).origin && origin !== new URL(req.url).origin) {
+  if (origin && origin !== new URL(env().APP_URL).origin && origin !== new URL(req.url).origin && !devHostMatches(req, origin)) {
     throw new HttpError(403, "bad_origin");
   }
+}
+
+/**
+ * 只在开发环境：Origin 与请求的 Host 一致也算同源（用 127.0.0.1 与 localhost 并行打开时，
+ * Next 开发服务器给的 req.url 总是 localhost）。生产环境只认 APP_URL。
+ */
+function devHostMatches(req: Request, origin: string): boolean {
+  if (env().NODE_ENV === "production") return false;
+  const host = req.headers.get("host");
+  return Boolean(host) && origin === `http://${host}`;
 }
 
 export async function readBody<T extends z.ZodType>(req: Request, schema: T): Promise<z.infer<T>> {

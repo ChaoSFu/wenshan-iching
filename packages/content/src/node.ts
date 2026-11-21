@@ -163,6 +163,15 @@ const sampleFileSchema = z.strictObject({
       followupExample: z.string(),
     })
     .optional(),
+  /** 简版报告样例（第四轮，report@2）：一句判断、依据、下一步、可选的可复制材料 */
+  concise: z
+    .strictObject({
+      takeaway: z.string(),
+      basis: z.array(z.strictObject({ citation: z.string(), text: z.string() })).min(1).max(2),
+      nextStep: z.strictObject({ trigger: z.string(), action: z.string(), signal: z.string() }),
+      artifact: z.strictObject({ kind: z.enum(["message", "opener", "checklist"]), title: z.string(), content: z.string() }).nullable(),
+    })
+    .optional(),
 });
 
 // ---------- 读取 ----------

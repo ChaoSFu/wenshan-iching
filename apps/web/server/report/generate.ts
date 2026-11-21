@@ -12,21 +12,22 @@ import { recordTransportFailures, recordUsage } from "../llm/usage";
 import { basisCast, readBasis, readIntent, type OrderBasis, type OrderIntent } from "../snapshot";
 import { FOLLOWUP_CALLS_PER_RUN, REPORT_CALLS_PER_RUN, attemptFollowup, attemptReport } from "./attempts";
 import { type AllowedPassage } from "./passages";
-import { PROMPT_VERSION, type UserSituation } from "./prompt";
-import { FOLLOWUP_SCHEMA_VERSION, REPORT_SCHEMA_VERSION, type ReportContent } from "./schema";
+import { PROMPT_VERSION, todayStrings, type UserSituation } from "./prompt";
+import { FOLLOWUP_SCHEMA_VERSION, REPORT_SCHEMA_VERSION, reportCitations, type AnyReportContent, type ReportContent } from "./schema";
 import { VALIDATOR_VERSION, type ValidationContext } from "./validate";
 
 const CALLS_PER_RUN = REPORT_CALLS_PER_RUN;
 const FOLLOWUP_CALLS = FOLLOWUP_CALLS_PER_RUN;
 
-/** 订单快照还原成提示词里的用户处境（履约与评测共用） */
-export function situationOf(basis: OrderBasis, intent: OrderIntent): UserSituation {
+/** 订单快照还原成提示词里的用户处境（履约与评测共用）；附上今天的日期 */
+export function situationOf(basis: OrderBasis, intent: OrderIntent, now = new Date()): UserSituation {
   return {
     topicId: basis.topicId,
     question: intent.question,
     context: intent.context,
     summary: intent.summary,
     missingInfo: intent.missingInfo,
+    today: todayStrings(now).iso,
   };
 }
 
@@ -36,8 +37,13 @@ function contentVersion(basis: OrderBasis): string {
 
 export function validationContext(passages: AllowedPassage[], s: UserSituation): ValidationContext {
   const rules = reportRules(s.topicId);
+  const today = s.today ? todayStrings(new Date(`${s.today}T00:00:00Z`)) : null;
   return {
     allowedIds: new Set(passages.map((p) => p.id)),
+    // 本次重点原文（动爻；没有动爻时是本卦卦辞）：依据里至少要有一条
+    mainIds: new Set(passages.filter((p) => p.role === "primary").map((p) => p.id)),
+    // 现实事实只来自用户：问题、背景、付费前确认的摘要与待补信息，以及今天的日期
+    factSources: [s.question, ...Object.values(s.context), s.summary ?? "", ...s.missingInfo, ...(today ? [today.iso, today.zh] : [])],
     quotableSources: [
       ...passages.flatMap((p) => [p.text, p.vernacular ?? ""]),
       s.question,
@@ -161,7 +167,7 @@ async function deliver(
   meta: { model: string; reasoningEffort: string; attempts: number; latencyMs: number },
 ): Promise<"delivered" | "discarded"> {
   const db = await getDb();
-  const cited = [...new Set(content.observations.flatMap((o) => o.citations))];
+  const cited = [...new Set(reportCitations(content))];
   const snapshot = basis.passages.filter((p) => cited.includes(p.id)).map((p) => ({ id: p.id, title: p.title, text: p.text }));
   return db.transaction(async (tx) => {
     const [o] = await tx
@@ -302,6 +308,7 @@ export async function generateFollowup(followupId: string): Promise<unknown> {
   const ctx = validationContext(basis.passages, s);
   const question = decrypt(f.questionCt);
   ctx.quotableSources.push(question);
+  ctx.factSources?.push(question);
   const previousRows = await db
     .select()
     .from(followups)
@@ -310,6 +317,8 @@ export async function generateFollowup(followupId: string): Promise<unknown> {
   const previous = previousRows
     .filter((p) => p.questionCt && p.answerCt)
     .map((p) => ({ question: decrypt(p.questionCt!), answer: decryptJson<{ answer: string }>(p.answerCt!).answer }));
+  // 用户在之前的追问里补充的日期等事实，同样算用户提供的
+  ctx.factSources?.push(...previous.map((p) => p.question));
 
   const usage = { kind: "followup" as const, orderId: f.orderId, readingId: order.readingId, promptVersion: PROMPT_VERSION, contentVersion: contentVersion(basis) };
   const run = await attemptFollowup({
@@ -322,7 +331,7 @@ export async function generateFollowup(followupId: string): Promise<unknown> {
     safetyIdentifier: safetyIdentifier(order.userId),
     calls: FOLLOWUP_CALLS,
     routeHint: routeConfig("followup"),
-    report: decryptJson<ReportContent>(report.contentCt),
+    report: decryptJson<AnyReportContent>(report.contentCt),
     previous,
     question,
     hooks: {
