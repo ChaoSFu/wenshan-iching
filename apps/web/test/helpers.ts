@@ -5,6 +5,11 @@ import { __setMailerForTests, type MailMessage } from "@/server/mail";
 import { __setLlmForTests } from "@/server/llm";
 import { __setPaymentProviderForTests } from "@/server/payments";
 import { requestOtp, verifyOtp } from "@/server/auth";
+import { and, desc, eq } from "drizzle-orm";
+import { getDb } from "@/server/db/client";
+import { readings, triageResults } from "@/server/db/schema";
+import { getOffer } from "@/server/offer";
+import { TRIAGE_VERSION } from "@/server/triage";
 
 export const sentMail: MailMessage[] = [];
 
@@ -36,4 +41,26 @@ export async function login(email: string): Promise<{ id: string; email: string 
 
 export function tossesFor(lines: LineValue[]) {
   return castFromTosses(tossesFromLines(lines)).tosses;
+}
+
+/**
+ * 模拟解锁页提交的确认：当前题意修订、当前修订下最新的分流结果、当前报价版本。
+ * 不主动分流——没有分流结果时用一个占位 id，服务端会按"需要先确认题意"拒绝。
+ */
+export async function confirmation(readingId: string, overrides: Partial<{ readingRevision: number; triageId: string; priceVersion: string }> = {}) {
+  const db = await getDb();
+  const [r] = await db.select({ revision: readings.revision }).from(readings).where(eq(readings.id, readingId));
+  const [t] = await db
+    .select({ id: triageResults.id })
+    .from(triageResults)
+    .where(and(eq(triageResults.readingId, readingId), eq(triageResults.readingRevision, r!.revision), eq(triageResults.triageVersion, TRIAGE_VERSION)))
+    .orderBy(desc(triageResults.createdAt))
+    .limit(1);
+  return {
+    readingId,
+    readingRevision: r!.revision,
+    triageId: t?.id ?? "00000000-0000-4000-8000-000000000000",
+    priceVersion: getOffer().priceVersion,
+    ...overrides,
+  };
 }

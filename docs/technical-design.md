@@ -860,3 +860,91 @@ wenshan-iching/
 4. 内容：完成原文对勘、白话与主题审校、求助号码核实，直到 `npm run content:strict` 通过，再打开 `SALES_ENABLED`。
 5. 生产数据库：`npm run db:migrate` 执行迁移 0000、0001；部署独立 worker 时 Web 设 `WORKER_MODE=off`。
 
+（以上清单已由附录 E.6 更新。）
+
+## 附录 E：第二轮——收款异常恢复与发布验收（2026-11-21，基线 3d6c23f）
+
+### E.1 采纳情况
+
+建议逐条对照代码核实后再动手。确认属实的问题：旧页面可以按改过的题意下单；并发点击会建出多笔待支付订单；找不到订单的已付款回调被标为已处理、不再重发；退款任务按订单去重，失败后无法再次入队；同一笔追问重复结算会多退次数；任务没有认领令牌，被接管后旧 worker 仍能写回；`dev:test` 会跟随 `.env.local` 或继承的 `DATABASE_URL`；关闭收款的生产环境没有 Stripe、OpenAI 凭据就无法启动；未核实的求助号码直接展示在公开页面。
+
+| 建议 | 处理 | 说明 |
+|---|---|---|
+| P0-1 题意、分流、报价绑定 Checkout | 采纳 | 见 E.2 |
+| P0-2 退款可发现、可恢复、可核对 | 采纳 | 见 E.2 |
+| P0-3 并发一致性 | 采纳 | 见 E.2 |
+| P0-4 测试库隔离、按能力校验配置 | 采纳 | 见 E.3 |
+| P0-4 严格审核失败作为可见发布结果 | 调整 | 没有做成构建失败：免费体验在内容审核完成前也要能发布。改为 `npm run release:check` 与 `/ops` 的发布验收面板，分别给出"免费体验 / 开放收款"能否发布及阻断原因；所选目标不可发布时退出码为 1，可直接接进部署流程 |
+| P0-4 未核实求助资源由审核状态控制 | 采纳并收紧 | 未核实的号码在正式环境直接不展示（不是展示后加提示），危机面板只给"联系当地紧急服务"的通用指引；开发与测试环境展示并标"待核实"。错误号码会耽误求助，宁缺勿错 |
+| P1 `check:services` 走三条真实路由 | 采纳，加开关 | 默认完整检查（合成样例，约 US$0.1）；`--quick` 只确认参数被接受 |
+| P1 区分业务调用与 SDK 重试 | 采纳，改法不同 | SDK 自身重试关掉（`maxRetries: 0`），由适配层按 `OPENAI_MAX_RETRIES` 重发并逐次记录为 `attempt_kind = transport`，这样才拿得到每一次失败发送 |
+| P1 Sol 与 Terra 追问盲测 | 只完成工具 | 结论需要真实 API 运行加人工评审，不能在替身上得出；工具、用例与评审表已就绪（E.4），追问暂按原配置继承 Sol |
+
+### E.2 收款、退款与并发（P0-1 至 P0-3）
+
+| 项 | 实现 |
+|---|---|
+| 下单确认 | 解锁页提交 `readingRevision`、`triageId`、`priceVersion`。服务端核对归属、当前修订、当前分流、当前报价，不一致返回 409：`intent_changed`（附当前修订与分流）、`price_changed`（附当前报价）、`triage_required`、`reframe_required`；页面据此重新确认题意或刷新价格 |
+| 并发点击与重试 | 确认键 = 阅读、修订、分流、报价版本、金额、币种的哈希；部分唯一索引 `orders_pending_confirmation` 保证同一确认只有一笔待支付订单。订单先落库再调支付平台，Checkout 幂等键 `checkout:<订单号>`；支付平台超时返回 503 `payment_unavailable`，订单保留，重试复用同一订单与会话 |
+| 对不上订单的付款 | 先按会话号找，再按 metadata 里的订单号找并回写会话号；都找不到时回调返回 503、事件不标为已处理，支付平台会重发；对账任务同时核对待支付与已过期但有会话的订单 |
+| 退款记录 | 新表 `refunds`：每次尝试一行（序号、幂等键、支付平台退款号、状态 requested/pending/succeeded/failed/canceled、金额、币种、原因、发起人、失败原因、最近核对时间）。第一次尝试沿用旧幂等键 `refund:<订单号>`（兼容迁移前已发起的退款），之后为 `refund:<订单号>:<序号>`；任务按退款尝试去重，不再按订单去重 |
+| 退款状态更新 | 处理 `refund.created/updated/failed` 与 `charge.refunded`；以支付平台确认的累计金额结算：全额 → `refunded` 并撤回访问，部分 → 保留访问并标记 `partial_refund`。订单页显示实际退款金额 |
+| 退款失败与重试 | 失败 → 订单 `refund_failed`，订单页显示"退款处理中"并给出反馈入口。超过 15 分钟未完成的尝试由对账任务向支付平台查询或重新执行（同一幂等键，安全重放）。运营"核实后重试"先向支付平台核实上一次结果：已成功则只更新记录；确认失败才建新尝试（新幂等键） |
+| 运营异常单 | `/ops` 订单异常列表：待核实、退款失败、超过 1 小时未完成的退款、生成异常、部分退款，显示状态、原因、最近的退款尝试与运营记录；可原路退款、核实后重试、重新生成。新表 `ops_actions` 记录操作人、时间、动作、结果与备注 |
+| 追问原子化 | 提交：一条条件更新同时检查订单已交付、内容未清除、报告未删除未过期、次数未用完。完成：追问仍是 queued 且订单与报告仍有效才写回答。退还次数：只有从 queued 转出的那一次退还，且订单仍有效。退款、删除、到期之后晚到的结果直接丢弃，不留回答、不改次数 |
+| 删除与在途付款 | 删除报告时同一卦仍可支付的旧 Checkout 本地作废，并入队 `expire_checkout` 关闭支付平台会话；若支付平台显示已付款（在途付款），按已付款处理并因内容已删除原路退款。工单里随附的问卦原文随报告删除一起清除；工单描述与运营备注按 `SUPPORT_RETENTION_DAYS` 单独清除 |
+| 任务认领令牌 | 每次认领生成 `jobs.lock_token`；完成、失败、续租都要带令牌，租约被接管后旧 worker 的写回无效。长任务每 1/3 租约续租一次 |
+| 副作用幂等 | 交付通知先认领 `ready_notified_at` 再发信，失败时释放；工单通知同理；退款靠幂等键；报告调用次数持久化 |
+| 旧报告 | 迁移前交付、无法还原题意的报告照常可读；继续追问返回 `followups_unavailable`，订单标记 `legacy_followups_unavailable` 供运营处理 |
+
+### E.3 测试库隔离与按能力校验配置（P0-4）
+
+- `RUN_MODE=simulation`（`npm run dev:test`、`npm run worker:test`、worker 集成测试）：在连接数据库之前完成校验。支付、模型、邮件一律用替身，真实密钥即使在 `.env.local` 或继承的环境变量里也被清空；忽略 `DATABASE_URL`，只连 `SIMULATION_DATABASE_URL`（库名必须含 test）或 PGlite 测试目录（目录名含 test，默认 `.data/pglite-test`）；生产环境禁止。`ALLOW_UNREVIEWED_CONTENT` 只能在模拟模式下开启。独立 worker 在模拟模式下不读本地配置文件，指向非测试库时直接退出。
+- 按能力校验（`server/capabilities.ts`）：数据库（生产要求 PostgreSQL + 字段加密密钥，不允许落到 PGlite）、支付、模型、邮件各自校验。生产环境只允许真实服务，缺配置就是"不可用"，接口返回 503 `service_unavailable`，绝不退回替身。开放收款的生产环境在启动时要求全部就绪，否则退出（`server/startup.ts`）；关闭收款时只打印哪些能力不可用。
+- 已付款订单的履约与退款在执行前检查各自需要的能力（报告与追问要模型，退款要支付，交付通知与工单通知要邮件）；缺配置时任务延后 10 分钟重试，不消耗重试次数、不改订单状态、不触发自动退款等善后。维护任务缺配置时每种只提示一次。
+- 求助资源：`help.yaml` 改为逐条 `reviewStatus`（核实后须写来源与日期）。正式环境的 `/help` 与危机面板只展示已核实的号码。
+- 发布验收：`npm run release:check`（按生产规则评估当前环境变量，可 `--env-file`、`--target=sales|free`、`--json`）与 `/ops` 的发布验收面板共用 `server/release.ts`，并附 `content:strict` 的分类统计。
+
+### E.4 模型评测与成本（P1）
+
+- 线上与评测共用同一条路径：分流 `decideTriage` → 订单快照 `buildSnapshot`（同一套选文）→ `attemptReport` / `attemptFollowup`（同一套业务校验、输出内容审核、带反馈重试，`server/report/attempts.ts`）。
+- 每次运行记录：最终结果（ok / invalid / moderation_flagged / refusal / incomplete / request_error / content_missing / not_run）、每次业务调用的结果与问题码、传输层重发次数、端到端耗时（含重试、内容审核与退避）、token 与成本。报告没有通过时，追问记为 not_run，不计入样本。
+- 汇总按环节与模型给出样本数、通过率、失败类型分布、P50 / P90、token、已知成本与"成本未知"的样本数。价格表里没有的模型或没有用量的调用，成本显示"未知"，不按 0 计（评测与 `/ops` 成本统计相同）。
+- 线上用量：输出内容审核未通过记为 `moderation_flagged`（不再混入校验失败）；每次失败的发送另记一行 `attempt_kind = transport`、`request_error:<429|5xx|timeout|connection>`，不计入调用次数。
+- 用例：`evals/cases.yaml` 20 个，五个主题各有主场景（都带同题追问）与边界场景（他人心意、预测结果、投资涨跌、一次问多件事），另有信息不足、同卦不同题、同题不同卦、追问换题、健康 / 求子 / 官司 / 危机转介。`sample-love`（"有机会复合吗"）原先与分流规则不一致：`triage.yaml` 补充"复合吗、会回来吗、有可能吗、有戏吗"等取决于他人的问法后，期望与规则一致（替身下全部用例的分流期望 100% 符合）。
+- 人工评审表：每次评测另写 `.review.md`，逐条列出问题、背景、观察与所引原文、七天行动，要求人工确认"引用支持解释、没有编造背景、行动贴合处境"；自动指标只作初筛。
+- 追问盲测：`evals/followup-blind.yaml` 3 个用例、7 个追问（含 2 个换题）。先用报告模型为每个用例冻结一份通过业务校验的报告（真实 API 下写入 `evals/fixtures/blind-reports.json` 并提交），之后各模型基于同一份报告、同一段追问历史回答；评审表只有 A/B 标签（每个用例随机分配），对应关系与汇总另存 `.blind-key.json`。
+- `npm run check:services`：默认用合成样例按线上配置完整走一遍分流、报告、追问，检查完整输出、拒答、截断与业务校验；`--quick` 只确认参数被接受。
+
+### E.5 迁移、环境变量与验证结果
+
+迁移 `0002_recovery_and_release`（只新增，不改旧数据）：新表 `refunds`、`ops_actions`；新列 `generation_attempts.attempt_kind`、`jobs.lock_token`、`orders.confirmation_key`、`orders.ready_notified_at`、`support_tickets.purged_at`；部分唯一索引 `orders_pending_confirmation`。
+
+新增环境变量：`RUN_MODE`、`SIMULATION_DATABASE_URL`、`SUPPORT_RETENTION_DAYS`。含义变化：`OPENAI_MAX_RETRIES` 改为适配层的传输重发次数（SDK 不再自行重试）；`ALLOW_UNREVIEWED_CONTENT` 只能在模拟模式下开启；`PGLITE_DIR` 在模拟模式下默认 `.data/pglite-test` 且必须是测试目录。说明见 `apps/web/.env.example`。
+
+本地验证（支付、模型、邮件均为替身，不产生真实扣款与 token）：
+
+| 检查 | 结果 |
+|---|---|
+| `npm test`（含本机 PostgreSQL 16） | 13 个测试文件、128 个测试全部通过。其中 `round2.test.ts` 19 个（P0-1 至 P0-3）、`release.test.ts` 14 个（P0-4）、`eval.test.ts` 7 个与 `p1-usage.test.ts` 2 个（P1）、`worker-process.test.ts` 2 个（模拟模式下继承占位 `DATABASE_URL` 与密钥仍完成任务并在 SIGTERM 后退出；指向非测试目录时连接前退出） |
+| `postgres-concurrency.test.ts`（真实 PostgreSQL，连续 5 轮） | 7 个测试每轮通过：10 次并发下单只建 1 笔订单与 1 个 Checkout；同一付款回调并发 10 次只入队 1 个报告任务；6 个 worker 并发认领 30 个任务无重复，租约接管后旧 worker 写回无效；剩 3 次追问时并发提交 6 次恰好成功 3 次；删除与追问并发后不留回答；3 个运营同时退款只产生 1 次退款尝试。不设 `TEST_POSTGRES_URL` 时跳过 |
+| `npm run typecheck`、`npm run build`、`npm run content:check` | 通过 |
+| `npm run content:strict` | 915 项未通过（原文未审 450、白话未审 450、主题未审 5、求助号码未核实 10），退出码 1：预期的发布拦截 |
+| `npm run release:check`（本机，无生产配置） | 免费体验、开放收款均不可发布：免费体验的阻断项只有"数据库未配置"（本机环境如此，非业务问题）；开放收款另被内容审核、求助号码、支付 / 模型 / 邮件配置阻断 |
+| 生产模式启动（`next start`，关闭收款，只配本机 PostgreSQL 与加密密钥） | 正常启动，日志列出不可用的支付、模型、邮件各一次；首页显示付费报告暂未开放；`/help` 只显示通用求助指引；游客提交工单成功；支付回调与登录分别返回 503（支付、邮件不可用）。同样配置但 `SALES_ENABLED=true` 时拒绝启动（退出码 1）并列出缺少的配置 |
+| `npm run eval:models`（替身） | 20 个用例：分流 19 次（危机用例由规则直接处理）期望全部符合；两个报告模型各 14 个样本、追问两个模型各 6 个样本全部通过；成本显示"未知"。`--blind-followups`（替身）14 条回答，标签随机分配 |
+| 浏览器 | 开发环境 `/help` 与危机面板显示号码并标"待核实"；`/ops` 发布验收面板在 375 px 宽度下无横向滚动 |
+
+环境问题（非业务失败）：本机 PostgreSQL 临时实例的 Unix socket 路径超长、启动时缺少 locale，改用 TCP 与 `LC_ALL=C` 后正常；`release:check` 在本机因为没有生产配置而判定不可发布。业务失败：无。
+
+### E.6 仍待人工与真实服务验收
+
+人工：原文对勘 450 条、白话审校 450 条、主题审校 5 个、求助号码逐条核实 10 个（直到 `npm run content:strict` 与 `npm run release:check -- --target=sales` 通过）；真实评测后的人工评审表；追问盲测的 A/B 评审。
+
+真实服务（本轮全部使用替身，均未实测）：
+
+1. Stripe 测试模式：真实测试卡付款；整单与部分退款；异步退款失败（Stripe 测试卡可模拟）后 `refund_failed` → 运营核实后重试；退款回调乱序与重放；拒付；删除报告时关闭仍可支付的 Checkout，以及在途付款的原路退款。
+2. OpenAI：`npm run check:services`（完整三条路由，约 US$0.1）；`npm run eval:models -- --live`（按价格表估算约 US$5，其中 Astra 报告对照约占 US$3.5）与人工评审；`--live --blind-followups --freeze-reports` 冻结报告后做 Sol 与 Terra 追问盲测，再决定 `OPENAI_MODEL_FOLLOWUP`。
+3. Resend：验证码、交付通知、工单通知的实际发送，以及发送失败后的重试不重复发信。
+4. 生产 PostgreSQL：`npm run db:migrate` 执行迁移 0002；部署后运行 `npm run release:check` 确认目标可发布。
+

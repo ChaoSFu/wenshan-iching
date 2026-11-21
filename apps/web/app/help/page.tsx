@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { PageShell } from "@/components/site-chrome";
 import Link from "next/link";
+import { visibleHelp } from "@wenshan/content";
+import { SHOW_UNVERIFIED_HELP } from "@/components/notice";
 import { topicsBundle } from "@/lib/content";
 import { env } from "@/server/env";
 
@@ -9,7 +11,8 @@ export const metadata: Metadata = { title: "求助指引" };
 export const dynamic = "force-dynamic";
 
 export default function HelpPage() {
-  const help = topicsBundle.help;
+  // 未核实的号码在正式环境不展示（help.yaml 逐条 reviewStatus）
+  const help = visibleHelp(topicsBundle.help, { includeUnverified: SHOW_UNVERIFIED_HELP });
   const supportEmail = env().SUPPORT_EMAIL;
   return (
     <PageShell>
@@ -24,9 +27,12 @@ export default function HelpPage() {
                 <li key={i.label} className="flex justify-between gap-4">
                   <span>{i.label}</span>
                   {i.number && (
-                    <a href={`tel:${i.number}`} className="font-medium tabular-nums text-qing">
-                      {i.number}
-                    </a>
+                    <span>
+                      <a href={`tel:${i.number}`} className="font-medium tabular-nums text-qing">
+                        {i.number}
+                      </a>
+                      {i.unverified && <span className="ml-1 text-xs text-zhu">（待核实）</span>}
+                    </span>
                   )}
                 </li>
               ))}

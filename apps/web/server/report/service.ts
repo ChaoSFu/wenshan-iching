@@ -1,10 +1,11 @@
-import { and, asc, eq, isNull, lt, sql } from "drizzle-orm";
+import { requireCapability } from "../capabilities";
+import { and, asc, eq, inArray, isNotNull, isNull, lt, sql } from "drizzle-orm";
 import { runLocalTriage } from "@wenshan/content";
 import { castFromTosses, lineLabel } from "@wenshan/iching-core";
 import { corpus, topicsBundle } from "../content";
 import { decrypt, decryptJson, encrypt } from "../crypto";
 import { getDb } from "../db/client";
-import { followups, orders, readings, reports, users } from "../db/schema";
+import { followups, orders, readings, reports, supportTickets, users } from "../db/schema";
 import { env } from "../env";
 import { HttpError } from "../http";
 import { enqueue } from "../jobs/queue";
@@ -114,10 +115,23 @@ export async function deleteReport(userId: string, reportId: string): Promise<vo
   await db.transaction(async (tx) => {
     await revokeOrderContent(tx, order.id, "user_deleted");
     const now = new Date();
-    await tx
+    const sameReading = await tx
       .update(orders)
       .set({ intentCt: null, contentPurgedAt: now, updatedAt: now })
-      .where(eq(orders.readingId, order.readingId));
+      .where(eq(orders.readingId, order.readingId))
+      .returning({ id: orders.id });
+    // 工单里随附的这一卦的问卦原文一并清除；工单描述按工单自己的保留期处理
+    await tx
+      .update(supportTickets)
+      .set({ questionCt: null, updatedAt: now })
+      .where(inArray(supportTickets.orderId, sameReading.map((o) => o.id)));
+    // 仍可支付的旧 Checkout：本地作废，并入队关闭支付方那边的会话；在途付款由任务核对后原路退款
+    const pending = await tx
+      .update(orders)
+      .set({ status: "expired", updatedAt: now })
+      .where(and(eq(orders.readingId, order.readingId), eq(orders.status, "pending_payment"), isNotNull(orders.providerSessionId)))
+      .returning({ id: orders.id });
+    for (const p of pending) await enqueue(tx, "expire_checkout", { orderId: p.id }, { dedupeKey: `expire:${p.id}` });
     await tx
       .update(orders)
       .set({ status: "expired", updatedAt: now })
@@ -135,6 +149,10 @@ export async function submitFollowup(userId: string, reportId: string, question:
   if (report.deletedAt || !report.contentCt || order.status !== "delivered" || report.expiresAt.getTime() < Date.now()) {
     throw new HttpError(409, "report_unavailable", "这份报告已不可追问");
   }
+  if (!order.basis || !order.intentCt) {
+    // 迁移前生成、且无法准确还原当时题意的旧报告：报告可读，但不能继续追问
+    throw new HttpError(409, "followups_unavailable", "这份报告生成于旧版本，暂时不能继续追问。如需帮助，请在报告下方反馈。");
+  }
   const local = runLocalTriage(question, topicsBundle.triage);
   if (local.crisis) return { status: "crisis", message: local.notices[0]?.message ?? "" };
 
@@ -147,13 +165,26 @@ export async function submitFollowup(userId: string, reportId: string, question:
       .limit(1);
     if (existing) return { status: "queued" as const, followupId: existing.id };
 
-    // 先占用一次次数：条件更新保证并发提交也不会超过三次
+    // 先占用一次次数：一条条件更新同时检查订单已交付、内容未清除、报告未删除未过期、次数未用完，
+    // 与删除、退款、到期并发时也不会多扣或留下无主的追问
     const [reserved] = await tx
       .update(orders)
       .set({ followupsUsed: sql`${orders.followupsUsed} + 1`, updatedAt: new Date() })
-      .where(and(eq(orders.id, order.id), eq(orders.status, "delivered"), lt(orders.followupsUsed, orders.followupsTotal)))
+      .where(
+        and(
+          eq(orders.id, order.id),
+          eq(orders.status, "delivered"),
+          isNull(orders.contentPurgedAt),
+          lt(orders.followupsUsed, orders.followupsTotal),
+          sql`exists (select 1 from ${reports} r where r.order_id = ${orders.id} and r.deleted_at is null and r.content_ct is not null and r.expires_at > now())`,
+        ),
+      )
       .returning({ used: orders.followupsUsed });
-    if (!reserved) throw new HttpError(409, "no_followups_left", "三次追问已经用完");
+    if (!reserved) {
+      const [o] = await tx.select({ used: orders.followupsUsed, total: orders.followupsTotal }).from(orders).where(eq(orders.id, order.id));
+      if (o && o.used >= o.total) throw new HttpError(409, "no_followups_left", "三次追问已经用完");
+      throw new HttpError(409, "report_unavailable", "这份报告已不可追问");
+    }
 
     const [f] = await tx
       .insert(followups)
@@ -191,7 +222,16 @@ export async function sendReportReadyEmail(orderId: string): Promise<void> {
     .where(eq(orders.id, orderId))
     .limit(1);
   if (!row || row.status !== "delivered") return;
+  requireCapability("mail");
+  // 先认领"已发送"：租约被接管或任务重复执行时不会重复发信；发送失败则释放，交给重试
+  const claimed = await db
+    .update(orders)
+    .set({ readyNotifiedAt: new Date() })
+    .where(and(eq(orders.id, orderId), isNull(orders.readyNotifiedAt)))
+    .returning({ id: orders.id });
+  if (!claimed.length) return;
   const support = env().SUPPORT_EMAIL;
+  try {
   await getMailer().send({
     to: row.email,
     subject: "你的问山报告已生成",
@@ -204,4 +244,8 @@ export async function sendReportReadyEmail(orderId: string): Promise<void> {
       .filter(Boolean)
       .join("\n\n"),
   });
+  } catch (err) {
+    await db.update(orders).set({ readyNotifiedAt: null }).where(eq(orders.id, orderId));
+    throw err;
+  }
 }

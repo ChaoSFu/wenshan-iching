@@ -5,8 +5,8 @@ import { decryptJson, encryptJson, safetyIdentifier } from "./crypto";
 import { getDb } from "./db/client";
 import { triageResults } from "./db/schema";
 import { HttpError } from "./http";
-import { getLlm, LlmTransientError, type StructuredRequest } from "./llm";
-import { recordUsage } from "./llm/usage";
+import { getLlm, LlmTransientError, routeConfig, type Effort, type LlmProvider, type StructuredRequest, type StructuredResult } from "./llm";
+import { recordTransportFailures, recordUsage } from "./llm/usage";
 import { loadOwnedReading, type ReadingPlain } from "./readings";
 
 /**
@@ -221,41 +221,68 @@ export function buildTriageRequest(
   };
 }
 
+export interface TriageRun {
+  /** 模型输出不完整时为空（业务调用按临时故障重试） */
+  output: TriageOutput | null;
+  model: string;
+  moderationFlagged: boolean;
+  /** 模型调用结果；规则直接判定危机时为空 */
+  result: StructuredResult | null;
+}
+
+/**
+ * 分流决策本身（不读写数据库）：输入审核 → 本地危机规则 → 模型结构化分类 → 规则兜底。
+ * 业务分流与模型评测共用。
+ */
+export async function decideTriage(
+  llm: LlmProvider,
+  reading: Pick<ReadingPlain, "topicId" | "question" | "context">,
+  safetyId: string,
+  override?: { model: string; effort: Effort },
+): Promise<TriageRun> {
+  const texts = [reading.question, ...Object.values(reading.context)];
+  const moderation = await llm.moderate(texts);
+  const moderationCrisis = moderation.categories.some((c) => c.startsWith("self-harm") || c.startsWith("violence"));
+  const localCrisis = runLocalTriage(texts.join("\n"), topicsBundle.triage).crisis;
+  if (moderationCrisis || localCrisis) {
+    return {
+      output: enforceRules({ ...fakeTriage(reading), risk_category: "self_harm" }, { moderationCrisis, localCrisis }),
+      model: "rules",
+      moderationFlagged: moderation.flagged,
+      result: null,
+    };
+  }
+  const result = await llm.generateStructured({ ...buildTriageRequest(reading, safetyId), override });
+  let output: TriageOutput | null;
+  if (result.kind === "refusal") {
+    // 模型拒答：按高风险处理，不进入付费
+    output = { ...fakeTriage(reading), decision: "block_paid", risk_category: "other", user_message: "这个问题暂时无法生成付费报告。" };
+  } else if (result.kind === "incomplete") {
+    output = null;
+  } else {
+    output = enforceRules(result.data as TriageOutput, { moderationCrisis, localCrisis });
+  }
+  return { output, model: result.model, moderationFlagged: moderation.flagged, result };
+}
+
 export async function runTriage(userId: string, readingId: string): Promise<TriageView> {
   const reading = await loadOwnedReading(userId, readingId);
   // 同一题意修订、同一规则版本：复用已有结果，不再调用模型
   const existing = await currentTriage(reading.id, reading.revision);
   if (existing) return toView(existing.id, reading.revision, existing.output, reading.topicId, true);
 
-  const llm = getLlm();
-  const texts = [reading.question, ...Object.values(reading.context)];
-  const moderation = await llm.moderate(texts);
-  const moderationCrisis = moderation.categories.some((c) => c.startsWith("self-harm") || c.startsWith("violence"));
-  const localCrisis = runLocalTriage(texts.join("\n"), topicsBundle.triage).crisis;
-
-  let output: TriageOutput;
-  let model = "rules";
-  if (moderationCrisis || localCrisis) {
-    output = enforceRules({ ...fakeTriage(reading), risk_category: "self_harm" }, { moderationCrisis, localCrisis });
-  } else {
-    const result = await llm.generateStructured(buildTriageRequest(reading, safetyIdentifier(userId)));
-    model = result.model;
-    await recordUsage({
-      kind: "triage",
-      readingId: reading.id,
-      result,
-      promptVersion: TRIAGE_PROMPT_VERSION,
-      contentVersion: `${TRIAGE_VERSION}|${topicsBundle.version}`,
-    });
-    if (result.kind === "refusal") {
-      // 模型拒答：按高风险处理，不进入付费
-      output = { ...fakeTriage(reading), decision: "block_paid", risk_category: "other", user_message: "这个问题暂时无法生成付费报告。" };
-    } else if (result.kind === "incomplete") {
-      throw new LlmTransientError(`triage incomplete: ${result.reason}`);
-    } else {
-      output = enforceRules(result.data as TriageOutput, { moderationCrisis, localCrisis });
-    }
+  const usage = { kind: "triage" as const, readingId: reading.id, promptVersion: TRIAGE_PROMPT_VERSION, contentVersion: `${TRIAGE_VERSION}|${topicsBundle.version}` };
+  let decided: TriageRun;
+  try {
+    decided = await decideTriage(getLlm(), reading, safetyIdentifier(userId));
+  } catch (err) {
+    if (err instanceof LlmTransientError) await recordTransportFailures(usage, routeConfig("triage").model, routeConfig("triage").effort, err.transportFailures);
+    throw err;
   }
+  if (decided.result) await recordUsage({ ...usage, result: decided.result });
+  if (!decided.output) throw new LlmTransientError(`triage incomplete: ${decided.result?.kind === "incomplete" ? decided.result.reason : "unknown"}`);
+  const { output, model } = decided;
+  const moderation = { flagged: decided.moderationFlagged };
 
   const db = await getDb();
   const [row] = await db

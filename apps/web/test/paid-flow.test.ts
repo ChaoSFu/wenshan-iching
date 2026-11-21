@@ -12,7 +12,7 @@ import { completeFakeCheckout } from "@/server/payments/fake";
 import { uploadReading } from "@/server/readings";
 import { deleteReport, getReportView, submitFollowup } from "@/server/report/service";
 import { runTriage } from "@/server/triage";
-import { login, sentMail, setupTestServer, tossesFor } from "./helpers";
+import { login, sentMail, setupTestServer, tossesFor , confirmation } from "./helpers";
 
 let db: DB;
 beforeAll(async () => {
@@ -75,14 +75,14 @@ describe("paid flow (fake payment + fake model)", () => {
     const readingId = await preparedReading(user);
 
     // 没确认题意不能下单
-    await expect(createOrderForReading(user, readingId)).rejects.toMatchObject({ code: "triage_required" });
+    await expect(createOrderForReading(user, await confirmation(readingId))).rejects.toMatchObject({ code: "triage_required" });
     const triage = await runTriage(user.id, readingId);
     expect(triage.decision).toBe("proceed");
 
-    const { orderId, checkoutUrl } = await createOrderForReading(user, readingId);
+    const { orderId, checkoutUrl } = await createOrderForReading(user, await confirmation(readingId));
     expect(checkoutUrl).toContain("/dev/checkout/");
     // 重复下单复用同一个未完成的结账
-    expect((await createOrderForReading(user, readingId)).orderId).toBe(orderId);
+    expect((await createOrderForReading(user, await confirmation(readingId))).orderId).toBe(orderId);
 
     const { event, result } = await pay(orderId);
     expect(result).toBe("processed");
@@ -149,10 +149,10 @@ describe("paid flow (fake payment + fake model)", () => {
     const user = await login("twice@example.com");
     const readingId = await preparedReading(user);
     await runTriage(user.id, readingId);
-    const first = await createOrderForReading(user, readingId);
+    const first = await createOrderForReading(user, await confirmation(readingId));
     // 模拟第一个结账页过期前又开了一个
     await db.update(orders).set({ checkoutExpiresAt: new Date(Date.now() - 1000) }).where(eq(orders.id, first.orderId));
-    const second = await createOrderForReading(user, readingId);
+    const second = await createOrderForReading(user, await confirmation(readingId));
     expect(second.orderId).not.toBe(first.orderId);
 
     await pay(first.orderId);
@@ -167,7 +167,7 @@ describe("paid flow (fake payment + fake model)", () => {
     const user = await login("mismatch@example.com");
     const readingId = await preparedReading(user);
     await runTriage(user.id, readingId);
-    const { orderId } = await createOrderForReading(user, readingId);
+    const { orderId } = await createOrderForReading(user, await confirmation(readingId));
     await db.update(orders).set({ amountMinor: 1990 }).where(eq(orders.id, orderId));
     await pay(orderId);
     const v = await getOrderView(user.id, orderId);
@@ -198,7 +198,7 @@ describe("generation failures", () => {
     const readingId = await preparedReading(user);
     await runTriage(user.id, readingId);
     stubLlm({ question_summary: "x" }); // 不合 schema
-    const { orderId } = await createOrderForReading(user, readingId);
+    const { orderId } = await createOrderForReading(user, await confirmation(readingId));
     await pay(orderId);
     await drainJobs();
     expect((await getOrderView(user.id, orderId)).status).toBe("generation_failed");
@@ -217,7 +217,7 @@ describe("generation failures", () => {
     const readingId = await preparedReading(user);
     await runTriage(user.id, readingId);
     stubLlm({ question_summary: "x" });
-    const { orderId } = await createOrderForReading(user, readingId);
+    const { orderId } = await createOrderForReading(user, await confirmation(readingId));
     await pay(orderId);
     await drainJobs();
     expect((await getOrderView(user.id, orderId)).status).toBe("generation_failed");
@@ -235,7 +235,7 @@ describe("generation failures", () => {
     const readingId = await preparedReading(user);
     await runTriage(user.id, readingId);
     stubLlm(null, "refusal");
-    const { orderId } = await createOrderForReading(user, readingId);
+    const { orderId } = await createOrderForReading(user, await confirmation(readingId));
     await pay(orderId);
     await drainJobs();
     __setLlmForTests(null);
@@ -252,7 +252,7 @@ describe("pre-purchase triage", () => {
     const healthId = await preparedReading(user, "我确诊了，手术后还能回去上班吗？");
     const health = await runTriage(user.id, healthId);
     expect(health.decision).toBe("block_paid");
-    await expect(createOrderForReading(user, healthId)).rejects.toMatchObject({ code: "not_purchasable" });
+    await expect(createOrderForReading(user, await confirmation(healthId))).rejects.toMatchObject({ code: "not_purchasable" });
   });
 
   it("keeps the cast locked once uploaded", async () => {

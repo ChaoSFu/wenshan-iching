@@ -1,31 +1,26 @@
-import { and, asc, eq, inArray, isNull, lt, sql } from "drizzle-orm";
+import { requireCapability } from "../capabilities";
+import { and, asc, eq, gt, inArray, isNull, lt, sql } from "drizzle-orm";
 import { reportRules } from "../content";
 import { decrypt, decryptJson, encryptJson, safetyIdentifier } from "../crypto";
 import { getDb } from "../db/client";
 import { followups, orders, reports } from "../db/schema";
 import { env } from "../env";
 import { enqueue } from "../jobs/queue";
-import { getLlm } from "../llm";
-import { recordUsage } from "../llm/usage";
+import { requestRefund } from "../refunds";
+import { getLlm, routeConfig } from "../llm";
+import { recordTransportFailures, recordUsage } from "../llm/usage";
 import { basisCast, readBasis, readIntent, type OrderBasis, type OrderIntent } from "../snapshot";
-import { fakeFollowup, fakeReport } from "./fake";
-import { castSummary, type AllowedPassage } from "./passages";
-import {
-  FOLLOWUP_DEVELOPER_SUFFIX,
-  PROMPT_VERSION,
-  developerPrompt,
-  followupUserPrompt,
-  reportUserPrompt,
-  type UserSituation,
-} from "./prompt";
-import { FOLLOWUP_JSON_SCHEMA, FOLLOWUP_SCHEMA_VERSION, REPORT_JSON_SCHEMA, REPORT_SCHEMA_VERSION, type ReportContent } from "./schema";
-import { VALIDATOR_VERSION, allText, validateFollowup, validateReport, type ValidationContext } from "./validate";
+import { FOLLOWUP_CALLS_PER_RUN, REPORT_CALLS_PER_RUN, attemptFollowup, attemptReport } from "./attempts";
+import { type AllowedPassage } from "./passages";
+import { PROMPT_VERSION, type UserSituation } from "./prompt";
+import { FOLLOWUP_SCHEMA_VERSION, REPORT_SCHEMA_VERSION, type ReportContent } from "./schema";
+import { VALIDATOR_VERSION, type ValidationContext } from "./validate";
 
-/** 一次生成任务里最多两次模型调用：首次 + 校验失败后重试一次（PRD §7） */
-const CALLS_PER_RUN = 2;
-const FOLLOWUP_CALLS = 2;
+const CALLS_PER_RUN = REPORT_CALLS_PER_RUN;
+const FOLLOWUP_CALLS = FOLLOWUP_CALLS_PER_RUN;
 
-function situation(basis: OrderBasis, intent: OrderIntent): UserSituation {
+/** 订单快照还原成提示词里的用户处境（履约与评测共用） */
+export function situationOf(basis: OrderBasis, intent: OrderIntent): UserSituation {
   return {
     topicId: basis.topicId,
     question: intent.question,
@@ -63,9 +58,7 @@ async function failOrder(orderId: string, reason: string, refundNow: boolean): P
       .set({ status: refundNow ? "refund_pending" : "generation_failed", failureReason: reason, updatedAt: new Date() })
       .where(and(eq(orders.id, orderId), inArray(orders.status, ["paid", "generating", "generation_failed"])))
       .returning({ id: orders.id });
-    if (updated.length && refundNow) {
-      await enqueue(tx, "refund_order", { orderId, reason }, { dedupeKey: `refund:${orderId}` });
-    }
+    if (updated.length && refundNow) await requestRefund(tx, orderId, { reason, requestedBy: "system" });
   });
   console.error(`[report] order ${orderId} failed: ${reason}`);
 }
@@ -83,6 +76,8 @@ async function reserveCall(orderId: string): Promise<boolean> {
 
 /** 任务 generate_report：只读订单快照 → 一次结构化生成 → 校验（失败重试一次）→ 同一事务内交付 */
 export async function generateReport(orderId: string): Promise<"delivered" | "failed" | "skipped" | "discarded"> {
+  // 履约所需的模型配置先检查：缺配置时任务延后，订单状态与调用次数都不变
+  requireCapability("llm");
   const db = await getDb();
   const [order] = await db
     .update(orders)
@@ -102,57 +97,42 @@ export async function generateReport(orderId: string): Promise<"delivered" | "fa
     return "failed";
   }
 
-  const cast = basisCast(basis);
-  const s = situation(basis, intent);
-  const ctx = validationContext(basis.passages, s);
-  const llm = getLlm();
+  const s = situationOf(basis, intent);
   const started = Date.now();
-  let feedback: string[] = [];
+  const usage = { kind: "report" as const, orderId, readingId: order.readingId, promptVersion: PROMPT_VERSION, contentVersion: contentVersion(basis) };
+  const run = await attemptReport({
+    llm: getLlm(),
+    topicId: basis.topicId,
+    cast: basisCast(basis),
+    passages: basis.passages,
+    situation: s,
+    ctx: validationContext(basis.passages, s),
+    safetyIdentifier: safetyIdentifier(order.userId),
+    calls: CALLS_PER_RUN,
+    routeHint: routeConfig("report"),
+    hooks: {
+      reserve: () => reserveCall(orderId),
+      onAttempt: (a) => recordUsage({ ...usage, result: a.result, issues: a.issues, moderationCategories: a.moderationCategories }),
+      onTransportExhausted: (failures, route) => recordTransportFailures(usage, route.model, route.effort, failures),
+    },
+  });
 
-  for (let call = 1; call <= CALLS_PER_RUN; call++) {
-    if (!(await reserveCall(orderId))) {
-      await failOrder(orderId, "call_limit_reached", false);
-      return "failed";
-    }
-    const res = await llm.generateStructured({
-      route: "report",
-      developer: developerPrompt(basis.topicId),
-      user: reportUserPrompt({ castSummary: castSummary(cast), passages: basis.passages, situation: s, feedback }),
-      schemaName: "wenshan_report_v1",
-      jsonSchema: REPORT_JSON_SCHEMA as unknown as Record<string, unknown>,
-      maxOutputTokens: 6000,
-      safetyIdentifier: safetyIdentifier(order.userId),
-      fakeResponse: () => fakeReport(basis.passages, s),
+  if (run.status === "ok") {
+    return deliver(order.id, order.userId, order.readingId, basis, run.content, {
+      model: run.result.model,
+      reasoningEffort: run.result.effort,
+      attempts: order.generationCalls + run.attempts.length,
+      latencyMs: Date.now() - started,
     });
-    const usage = { kind: "report" as const, orderId, readingId: order.readingId, promptVersion: PROMPT_VERSION, contentVersion: contentVersion(basis) };
-
-    if (res.kind === "refusal") {
-      await recordUsage({ ...usage, result: res });
-      // 拒答按分流升级处理：不交付，立即退款（技术方案 5.7）
-      await failOrder(orderId, "model_refusal", true);
-      return "failed";
-    }
-    if (res.kind === "incomplete") {
-      await recordUsage({ ...usage, result: res });
-      feedback = [`输出不完整（${res.reason}），请控制篇幅并输出完整 JSON`];
-      continue;
-    }
-    const checked = validateReport(res.data, ctx);
-    let issues = checked.ok ? [] : checked.issues.map((i) => i.message);
-    if (checked.ok) {
-      const moderation = await llm.moderate([allText(checked.content)]);
-      if (moderation.flagged) issues = [`内容审核未通过：${moderation.categories.join(", ")}`];
-    }
-    await recordUsage({ ...usage, result: res, issues });
-    if (checked.ok && issues.length === 0) {
-      return deliver(order.id, order.userId, order.readingId, basis, checked.content, {
-        model: res.model,
-        reasoningEffort: res.effort,
-        attempts: order.generationCalls + call,
-        latencyMs: Date.now() - started,
-      });
-    }
-    feedback = issues;
+  }
+  if (run.status === "refusal") {
+    // 拒答按分流升级处理：不交付，立即退款（技术方案 5.7）
+    await failOrder(orderId, "model_refusal", true);
+    return "failed";
+  }
+  if (run.status === "call_limit") {
+    await failOrder(orderId, "call_limit_reached", false);
+    return "failed";
   }
   await failOrder(orderId, "validation_failed", false);
   return "failed";
@@ -177,7 +157,7 @@ async function deliver(
     const updated = await tx
       .update(orders)
       .set({ status: "delivered", deliveredAt: new Date(), failureReason: null, updatedAt: new Date() })
-      .where(and(eq(orders.id, orderId), eq(orders.status, "generating")))
+      .where(and(eq(orders.id, orderId), eq(orders.status, "generating"), isNull(orders.contentPurgedAt)))
       .returning({ id: orders.id });
     if (!updated.length) {
       console.warn(`[report] order ${orderId} is no longer deliverable; generated report discarded`);
@@ -246,22 +226,39 @@ export async function retryFailedGenerations(): Promise<number> {
 
 // ---------- 追问 ----------
 
-async function releaseFollowup(followupId: string, orderId: string, status: "rejected" | "failed", answer?: unknown): Promise<void> {
+/** 订单仍可追问：已交付、内容未清除、报告未删除且未过期 */
+function orderStillOpen(orderId: string) {
+  return and(
+    eq(orders.id, orderId),
+    eq(orders.status, "delivered"),
+    isNull(orders.contentPurgedAt),
+    sql`exists (select 1 from ${reports} r where r.order_id = ${orders.id} and r.deleted_at is null and r.content_ct is not null and r.expires_at > now())`,
+  );
+}
+
+/**
+ * 结算一次没有产生回答的追问（不是同一件事、生成失败）并退还次数（技术方案 5.8）。
+ * 只有从 queued 转出的那一次才退还；订单已退款、删除或报告到期时不再改动次数。
+ */
+async function releaseFollowup(followupId: string, orderId: string, status: "rejected" | "failed", answer?: unknown): Promise<boolean> {
   const db = await getDb();
-  await db.transaction(async (tx) => {
-    await tx
+  return db.transaction(async (tx) => {
+    const settled = await tx
       .update(followups)
       .set({ status, answerCt: answer ? encryptJson(answer) : null, updatedAt: new Date() })
-      .where(eq(followups.id, followupId));
-    // 不是同一件事或生成失败时退还这次追问次数（技术方案 5.8）
+      .where(and(eq(followups.id, followupId), eq(followups.status, "queued")))
+      .returning({ id: followups.id });
+    if (!settled.length) return false;
     await tx
       .update(orders)
       .set({ followupsUsed: sql`greatest(${orders.followupsUsed} - 1, 0)`, updatedAt: new Date() })
-      .where(eq(orders.id, orderId));
+      .where(and(orderStillOpen(orderId), gt(orders.followupsUsed, 0)));
+    return true;
   });
 }
 
-export async function generateFollowup(followupId: string): Promise<void> {
+export async function generateFollowup(followupId: string): Promise<unknown> {
+  requireCapability("llm");
   const db = await getDb();
   const [f] = await db.select().from(followups).where(eq(followups.id, followupId)).limit(1);
   if (!f || f.status !== "queued" || !f.questionCt) return;
@@ -277,8 +274,7 @@ export async function generateFollowup(followupId: string): Promise<void> {
     return releaseFollowup(f.id, f.orderId, "failed");
   }
 
-  const cast = basisCast(basis);
-  const s = situation(basis, intent);
+  const s = situationOf(basis, intent);
   const ctx = validationContext(basis.passages, s);
   const question = decrypt(f.questionCt);
   ctx.quotableSources.push(question);
@@ -291,69 +287,45 @@ export async function generateFollowup(followupId: string): Promise<void> {
     .filter((p) => p.questionCt && p.answerCt)
     .map((p) => ({ question: decrypt(p.questionCt!), answer: decryptJson<{ answer: string }>(p.answerCt!).answer }));
 
-  const llm = getLlm();
-  let feedback: string[] = [];
-  for (let call = 1; call <= FOLLOWUP_CALLS; call++) {
-    const res = await llm.generateStructured({
-      route: "followup",
-      developer: developerPrompt(basis.topicId) + FOLLOWUP_DEVELOPER_SUFFIX,
-      user: followupUserPrompt({
-        castSummary: castSummary(cast),
-        passages: basis.passages,
-        situation: s,
-        report: decryptJson<ReportContent>(report.contentCt),
-        previous,
-        question,
-        feedback,
-      }),
-      schemaName: "wenshan_followup_v1",
-      jsonSchema: FOLLOWUP_JSON_SCHEMA as unknown as Record<string, unknown>,
-      maxOutputTokens: 3000,
-      safetyIdentifier: safetyIdentifier(order.userId),
-      fakeResponse: () => fakeFollowup(question),
-    });
-    const usage = { kind: "followup" as const, orderId: f.orderId, readingId: order.readingId, promptVersion: PROMPT_VERSION, contentVersion: contentVersion(basis) };
-    if (res.kind === "refusal") {
-      await recordUsage({ ...usage, result: res });
-      return releaseFollowup(f.id, f.orderId, "failed");
-    }
-    if (res.kind === "incomplete") {
-      await recordUsage({ ...usage, result: res });
-      feedback = ["输出不完整，请缩短回答并输出完整 JSON"];
-      continue;
-    }
-    const checked = validateFollowup(res.data, ctx);
-    let issues = checked.ok ? [] : checked.issues.map((i) => i.message);
-    if (checked.ok) {
-      const moderation = await llm.moderate([allText(checked.content)]);
-      if (moderation.flagged) issues = [`内容审核未通过：${moderation.categories.join(", ")}`];
-    }
-    await recordUsage({ ...usage, result: res, issues });
-    if (checked.ok && issues.length === 0) {
-      if (!checked.content.is_same_matter) return releaseFollowup(f.id, f.orderId, "rejected", checked.content);
-      const content = checked.content;
-      // 写回答前确认订单仍是已交付（期间退款或拒付则丢弃）
-      await db.transaction(async (tx) => {
-        const [o] = await tx.select({ status: orders.status }).from(orders).where(eq(orders.id, f.orderId)).for("update").limit(1);
-        if (o?.status !== "delivered") {
-          await tx.update(followups).set({ status: "failed", updatedAt: new Date() }).where(eq(followups.id, f.id));
-          return;
-        }
-        await tx
-          .update(followups)
-          .set({
-            status: "done",
-            answerCt: encryptJson(content),
-            versions: { prompt: PROMPT_VERSION, schema: FOLLOWUP_SCHEMA_VERSION, validator: VALIDATOR_VERSION, model: res.model, effort: res.effort },
-            updatedAt: new Date(),
-          })
-          .where(eq(followups.id, f.id));
-      });
-      return;
-    }
-    feedback = issues;
-  }
-  await releaseFollowup(f.id, f.orderId, "failed");
+  const usage = { kind: "followup" as const, orderId: f.orderId, readingId: order.readingId, promptVersion: PROMPT_VERSION, contentVersion: contentVersion(basis) };
+  const run = await attemptFollowup({
+    llm: getLlm(),
+    topicId: basis.topicId,
+    cast: basisCast(basis),
+    passages: basis.passages,
+    situation: s,
+    ctx,
+    safetyIdentifier: safetyIdentifier(order.userId),
+    calls: FOLLOWUP_CALLS,
+    routeHint: routeConfig("followup"),
+    report: decryptJson<ReportContent>(report.contentCt),
+    previous,
+    question,
+    hooks: {
+      onAttempt: (a) => recordUsage({ ...usage, result: a.result, issues: a.issues, moderationCategories: a.moderationCategories }),
+      onTransportExhausted: (failures, route) => recordTransportFailures(usage, route.model, route.effort, failures),
+    },
+  });
+  if (run.status !== "ok") return releaseFollowup(f.id, f.orderId, "failed");
+  if (!run.content.is_same_matter) return releaseFollowup(f.id, f.orderId, "rejected", run.content);
+  // 原子结算：追问仍是 queued，且订单仍可追问（未退款、未删除、报告未到期）才写回答；
+  // 否则丢弃结果，不改次数（退款、删除时次数已无意义）
+  await db
+    .update(followups)
+    .set({
+      status: "done",
+      answerCt: encryptJson(run.content),
+      versions: { prompt: PROMPT_VERSION, schema: FOLLOWUP_SCHEMA_VERSION, validator: VALIDATOR_VERSION, model: run.result.model, effort: run.result.effort },
+      updatedAt: new Date(),
+    })
+    .where(
+      and(
+        eq(followups.id, f.id),
+        eq(followups.status, "queued"),
+        sql`exists (select 1 from ${orders} o where o.id = ${followups.orderId} and o.status = 'delivered' and o.content_purged_at is null)`,
+        sql`exists (select 1 from ${reports} r where r.order_id = ${followups.orderId} and r.deleted_at is null and r.content_ct is not null and r.expires_at > now())`,
+      ),
+    );
 }
 
 export async function onFollowupJobExhausted(followupId: string): Promise<void> {

@@ -13,6 +13,7 @@ import { loadReading, saveReading, type StoredReading } from "@/lib/reading-stor
 interface TriageView {
   decision: "proceed" | "reframe_suggested" | "reframe_required" | "block_paid" | "crisis";
   revision: number;
+  triageId: string;
   confirmedTopic: TopicId;
   topicMismatch: boolean;
   summary: string;
@@ -28,7 +29,7 @@ type Step =
   | { kind: "closed" }
   | { kind: "consent" }
   | { kind: "working"; label: string }
-  | { kind: "triage"; readingId: string; triage: TriageView }
+  | { kind: "triage"; readingId: string; triage: TriageView; notice?: string }
   | { kind: "error"; message: string };
 
 const DELIVERABLES = [
@@ -120,16 +121,28 @@ export function UnlockFlow({ clientId }: { clientId: string }) {
     }
   }
 
-  async function checkout(readingId: string) {
+  /**
+   * 去支付：带上用户此刻看到并确认的题意修订、分流结果和报价版本。
+   * 服务端发现任何一项已变（另一个标签页改了问题、价格更新），就退回这里重新确认，不会按新内容直接收款。
+   */
+  async function checkout(readingId: string, triage: TriageView) {
     setPaying(true);
     try {
-      const { orderId, checkoutUrl } = await api<{ orderId: string; checkoutUrl: string | null }>("/api/orders", { body: { readingId } });
+      const { orderId, checkoutUrl } = await api<{ orderId: string; checkoutUrl: string | null }>("/api/orders", {
+        body: { readingId, readingRevision: triage.revision, triageId: triage.triageId, priceVersion: offer?.priceVersion ?? "" },
+      });
       window.location.assign(checkoutUrl ?? `/orders/${orderId}`);
     } catch (err) {
       setPaying(false);
-      if (err instanceof ApiError && (err.code === "triage_required" || err.code === "reframe_required")) {
-        // 题意在别处被改过：重新确认
-        await uploadAndTriage(reading!);
+      if (err instanceof ApiError && (err.code === "intent_changed" || err.code === "triage_required" || err.code === "reframe_required")) {
+        const fresh = await api<TriageView>(`/api/readings/${readingId}/triage`, { body: {} }).catch(() => null);
+        if (fresh) setStep({ kind: "triage", readingId, triage: fresh, notice: "题意在别处更新过（例如另一个页面改了问题）。请看一下下面的最新内容，确认后再支付。" });
+        else await uploadAndTriage(reading!);
+        return;
+      }
+      if (err instanceof ApiError && err.code === "price_changed") {
+        setOffer(await fetchOffer(true));
+        setStep({ kind: "triage", readingId, triage, notice: `${err.message}。确认后再支付。` });
         return;
       }
       setStep({ kind: "error", message: err instanceof ApiError ? err.message : "暂时无法创建订单，请稍后再试" });
@@ -253,6 +266,11 @@ export function UnlockFlow({ clientId }: { clientId: string }) {
 
       {step.kind === "triage" && (step.triage.decision === "proceed" || step.triage.decision === "reframe_suggested") && (
         <>
+          {step.notice && (
+            <Notice tone="warn" title="请重新确认">
+              {step.notice}
+            </Notice>
+          )}
           <section className="rounded-2xl border border-line bg-card p-5">
             <h2 className="text-xs text-muted">我们理解你想问的是</h2>
             <p className="mt-2 font-serif text-lg leading-8 text-ink">{step.triage.summary}</p>
@@ -311,7 +329,7 @@ export function UnlockFlow({ clientId }: { clientId: string }) {
             <button
               type="button"
               disabled={paying}
-              onClick={() => void checkout(step.readingId)}
+              onClick={() => void checkout(step.readingId, step.triage)}
               className="mt-4 rounded-full bg-qing px-6 py-2.5 text-paper transition-colors hover:bg-qing-deep disabled:opacity-60"
             >
               {paying ? "正在前往支付…" : `去支付 ${offer?.priceLabel ?? ""}`}

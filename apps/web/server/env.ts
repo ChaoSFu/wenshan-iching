@@ -1,3 +1,4 @@
+import path from "node:path";
 import { z } from "zod";
 
 /**
@@ -9,9 +10,17 @@ const schema = z.object({
   NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
   APP_URL: z.string().url().default("http://localhost:3000"),
 
+  /**
+   * normal：按配置使用真实服务或本地替身；
+   * simulation：模拟流程（npm run dev:test、worker 集成测试）。外部服务一律用替身，
+   * 忽略 DATABASE_URL 与真实密钥，只连指定的测试库；生产环境禁止。
+   */
+  RUN_MODE: z.enum(["normal", "simulation"]).default("normal"),
   DATABASE_URL: z.string().optional(),
-  /** 未配置 DATABASE_URL 时 PGlite 的数据目录；"memory" 表示只在内存里 */
-  PGLITE_DIR: z.string().default(".data/pglite"),
+  /** 模拟模式专用的 PostgreSQL 测试库（库名必须含 test）；不填用 PGlite 测试目录 */
+  SIMULATION_DATABASE_URL: z.string().optional(),
+  /** 未配置数据库连接串时 PGlite 的数据目录；"memory" 表示只在内存里。模拟模式默认 .data/pglite-test */
+  PGLITE_DIR: z.string().optional(),
   /** inline：在 Web 进程里跑后台任务（开发与单机部署）；off：交给独立 worker 进程 */
   WORKER_MODE: z.enum(["inline", "off"]).default("inline"),
   /** 任务租约：worker 崩溃后，running 任务超过这个时长会被重新认领 */
@@ -45,7 +54,7 @@ const schema = z.object({
   /** 追问默认继承报告的模型与推理档位，可单独覆盖 */
   OPENAI_MODEL_FOLLOWUP: z.string().optional(),
   OPENAI_EFFORT_FOLLOWUP: z.enum(["none", "minimal", "low", "medium", "high"]).optional(),
-  /** SDK 自身的重试次数（429、5xx、网络错误） */
+  /** 同一次业务调用里网络、429、5xx 的重发次数。由适配层逐次重发并记录（SDK 自身不重试），与校验失败后的业务重试分开统计 */
   OPENAI_MAX_RETRIES: z.coerce.number().int().min(0).max(5).default(1),
   /** 一笔订单的报告最多调用模型几次（含校验重试与后台重试） */
   MAX_REPORT_CALLS_PER_ORDER: z.coerce.number().int().min(1).max(20).default(6),
@@ -57,16 +66,51 @@ const schema = z.object({
   SUPPORT_EMAIL: z.string().optional(),
   /** 新工单通知发到这里（运营邮箱）；不填只在后台列表里看 */
   SUPPORT_NOTIFY_EMAIL: z.string().optional(),
+  /** 工单在"已解决"后保留描述与联系方式的天数，之后清除 */
+  SUPPORT_RETENTION_DAYS: z.coerce.number().int().positive().default(365),
   /** 可以访问运营后台的登录邮箱，逗号分隔 */
   OPS_EMAILS: z.string().default(""),
 });
 
-export type Env = z.infer<typeof schema>;
+export type Env = Omit<z.infer<typeof schema>, "PGLITE_DIR"> & { PGLITE_DIR: string };
+
+export type Capability = "database" | "payments" | "llm" | "mail";
+export const CAPABILITIES: Capability[] = ["database", "payments", "llm", "mail"];
+
+export const CAPABILITY_LABEL: Record<Capability, string> = {
+  database: "数据库",
+  payments: "支付",
+  llm: "模型",
+  mail: "邮件",
+};
+
+/** 每项能力缺少的配置名（只有变量名，不含值） */
+export function capabilityGaps(e: Env = env()): Record<Capability, string[]> {
+  const prod = e.NODE_ENV === "production";
+  const gaps: Record<Capability, string[]> = { database: [], payments: [], llm: [], mail: [] };
+  if (prod) {
+    if (!e.DATABASE_URL) gaps.database.push("DATABASE_URL");
+    if (!e.DATA_ENCRYPTION_KEY) gaps.database.push("DATA_ENCRYPTION_KEY");
+  }
+  if (e.PAYMENT_PROVIDER === "stripe") {
+    if (!e.STRIPE_SECRET_KEY) gaps.payments.push("STRIPE_SECRET_KEY");
+    if (prod && !e.STRIPE_WEBHOOK_SECRET) gaps.payments.push("STRIPE_WEBHOOK_SECRET");
+  } else if (prod) gaps.payments.push("PAYMENT_PROVIDER=stripe");
+  if (e.LLM_PROVIDER === "openai") {
+    if (!e.OPENAI_API_KEY) gaps.llm.push("OPENAI_API_KEY");
+  } else if (prod) gaps.llm.push("LLM_PROVIDER=openai");
+  if (e.MAIL_PROVIDER === "resend") {
+    if (!e.RESEND_API_KEY) gaps.mail.push("RESEND_API_KEY");
+    if (prod && e.MAIL_FROM.includes("example.com")) gaps.mail.push("MAIL_FROM（已在 Resend 验证的发件域名）");
+  } else if (prod) gaps.mail.push("MAIL_PROVIDER=resend");
+  return gaps;
+}
+
 
 let cached: Env | null = null;
 
 /** 没有显式指定时：填了密钥就用真实服务，否则用本地替身 */
-function withProviderDefaults(source: NodeJS.ProcessEnv): Record<string, string | undefined> {
+function withProviderDefaults(source: Record<string, string | undefined>): Record<string, string | undefined> {
   const raw: Record<string, string | undefined> = { ...source };
   const has = (k: string) => Boolean(raw[k]?.trim());
   raw.PAYMENT_PROVIDER ||= has("STRIPE_SECRET_KEY") ? "stripe" : undefined;
@@ -77,31 +121,83 @@ function withProviderDefaults(source: NodeJS.ProcessEnv): Record<string, string 
   return raw;
 }
 
+/** 模拟模式只能连测试库：PostgreSQL 库名或 PGlite 目录名必须含 test（或只在内存里） */
+export function isTestDatabaseUrl(url: string): boolean {
+  try {
+    const name = decodeURIComponent(new URL(url).pathname.replace(/^\//, ""));
+    return /test/i.test(name);
+  } catch {
+    return false;
+  }
+}
+
+export function isTestPgliteDir(dir: string): boolean {
+  if (dir === "memory") return true;
+  return /test/i.test(path.basename(path.resolve(dir)));
+}
+
+/**
+ * 模拟模式的隔离：在任何连接之前完成。继承来的 DATABASE_URL、.env.local 里的真实密钥一律不用。
+ */
+function applyRunMode(p: z.infer<typeof schema>): Env {
+  if (p.RUN_MODE !== "simulation") return { ...p, PGLITE_DIR: p.PGLITE_DIR ?? ".data/pglite" };
+  if (p.NODE_ENV === "production") throw new Error("RUN_MODE=simulation 不能在生产环境使用");
+  const dbUrl = p.SIMULATION_DATABASE_URL;
+  if (dbUrl && !isTestDatabaseUrl(dbUrl)) {
+    throw new Error("模拟模式的 SIMULATION_DATABASE_URL 必须指向测试库（库名含 test）");
+  }
+  const pgliteDir = p.PGLITE_DIR ?? ".data/pglite-test";
+  if (!dbUrl && !isTestPgliteDir(pgliteDir)) {
+    throw new Error(`模拟模式的 PGLITE_DIR 必须是测试目录（目录名含 test 或 memory），当前为 ${pgliteDir}`);
+  }
+  return {
+    ...p,
+    DATABASE_URL: dbUrl,
+    PGLITE_DIR: pgliteDir,
+    PAYMENT_PROVIDER: "fake",
+    LLM_PROVIDER: "fake",
+    MAIL_PROVIDER: "console",
+    STRIPE_SECRET_KEY: undefined,
+    STRIPE_WEBHOOK_SECRET: undefined,
+    OPENAI_API_KEY: undefined,
+    RESEND_API_KEY: undefined,
+  };
+}
+
+/** 只解析、不做发布校验（release:check 用它评估给定环境，再逐项列出问题） */
+export function parseEnvLenient(source: Record<string, string | undefined>): Env {
+  return applyRunMode(schema.parse(withProviderDefaults(source)));
+}
+
+/** 解析并校验配置（不缓存） */
+export function parseEnv(source: Record<string, string | undefined>): Env {
+  const parsed = parseEnvLenient(source);
+  if (parsed.ALLOW_UNREVIEWED_CONTENT && parsed.RUN_MODE !== "simulation") {
+    throw new Error("ALLOW_UNREVIEWED_CONTENT 只能在模拟模式（RUN_MODE=simulation，npm run dev:test）下使用");
+  }
+  if (parsed.NODE_ENV === "production" && parsed.SALES_ENABLED) {
+    // 开放收款：支付、模型、邮件、数据库全部就绪才能启动；关闭收款时只在用到的地方各自校验
+    const g = capabilityGaps(parsed);
+    const missing = CAPABILITIES.flatMap((c) => g[c]);
+    if (missing.length) throw new Error(`production config incomplete for SALES_ENABLED=true: ${missing.join(", ")}`);
+  }
+  return parsed;
+}
+
 export function env(): Env {
   if (cached) return cached;
-  const parsed = schema.parse(withProviderDefaults(process.env));
-  if (parsed.NODE_ENV === "production") {
-    const missing: string[] = [];
-    if (!parsed.DATABASE_URL) missing.push("DATABASE_URL");
-    if (!parsed.DATA_ENCRYPTION_KEY) missing.push("DATA_ENCRYPTION_KEY");
-    if (parsed.PAYMENT_PROVIDER !== "stripe") missing.push("PAYMENT_PROVIDER=stripe");
-    if (parsed.PAYMENT_PROVIDER === "stripe" && (!parsed.STRIPE_SECRET_KEY || !parsed.STRIPE_WEBHOOK_SECRET)) {
-      missing.push("STRIPE_SECRET_KEY / STRIPE_WEBHOOK_SECRET");
-    }
-    if (parsed.LLM_PROVIDER !== "openai" || !parsed.OPENAI_API_KEY) missing.push("LLM_PROVIDER=openai + OPENAI_API_KEY");
-    if (parsed.MAIL_PROVIDER !== "resend" || !parsed.RESEND_API_KEY) missing.push("MAIL_PROVIDER=resend + RESEND_API_KEY");
-    if (parsed.MAIL_FROM.includes("example.com")) missing.push("MAIL_FROM（已在 Resend 验证的发件域名）");
-    if (parsed.ALLOW_UNREVIEWED_CONTENT) missing.push("ALLOW_UNREVIEWED_CONTENT 不能在生产环境开启");
-    if (missing.length) throw new Error(`production config incomplete: ${missing.join(", ")}`);
-  }
-  if (parsed.ALLOW_UNREVIEWED_CONTENT && parsed.PAYMENT_PROVIDER !== "fake") {
-    throw new Error("ALLOW_UNREVIEWED_CONTENT 只能和 PAYMENT_PROVIDER=fake 一起使用（模拟流程的测试配置）");
-  }
+  const parsed = parseEnv(process.env);
   cached = parsed;
+  if (parsed.NODE_ENV === "production" && !parsed.SALES_ENABLED) {
+    const g = capabilityGaps(parsed);
+    const off = CAPABILITIES.filter((c) => g[c].length).map((c) => `${c}(${g[c].join(", ")})`);
+    if (off.length) console.warn(`[env] sales closed; unavailable: ${off.join("; ")}`);
+  }
   if (parsed.NODE_ENV === "development") {
     // 密钥也可能来自全局环境变量；启动时说清楚用的是真实服务还是替身
+    const db = parsed.DATABASE_URL ? "postgres" : `pglite(${parsed.PGLITE_DIR})`;
     console.info(
-      `[env] payment=${parsed.PAYMENT_PROVIDER} llm=${parsed.LLM_PROVIDER} mail=${parsed.MAIL_PROVIDER} db=${parsed.DATABASE_URL ? "postgres" : "pglite"} sales=${parsed.SALES_ENABLED ? "on" : "off"}${parsed.ALLOW_UNREVIEWED_CONTENT ? " (unreviewed content allowed: test config)" : ""}`,
+      `[env] mode=${parsed.RUN_MODE} payment=${parsed.PAYMENT_PROVIDER} llm=${parsed.LLM_PROVIDER} mail=${parsed.MAIL_PROVIDER} db=${db} sales=${parsed.SALES_ENABLED ? "on" : "off"}${parsed.ALLOW_UNREVIEWED_CONTENT ? " (unreviewed content allowed: test config)" : ""}`,
     );
   }
   return parsed;
@@ -114,5 +210,5 @@ export function __resetEnvCache(): void {
 
 /** 仅测试使用：覆盖部分配置 */
 export function __setEnvForTests(overrides: Partial<Env>): void {
-  cached = { ...schema.parse({ NODE_ENV: "test" }), ...overrides };
+  cached = { ...applyRunMode(schema.parse({ NODE_ENV: "test" })), ...overrides };
 }

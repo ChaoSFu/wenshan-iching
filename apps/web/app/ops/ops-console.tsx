@@ -2,6 +2,8 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { ApiError, api, formatDate } from "@/lib/api";
+import { OrderExceptions } from "./order-exceptions";
+import { ReleasePanel } from "./release-panel";
 
 interface Ticket {
   id: string;
@@ -23,10 +25,15 @@ interface Ticket {
 
 interface Costs {
   calls: number;
+  transportFailures: number;
   totalUsd: number;
+  unknownCostCalls: number;
   deliveredOrders: number;
   costPerDeliveryUsd: number | null;
-  byKind: Record<string, { calls: number; usd: number; inputTokens: number; cachedTokens: number; outputTokens: number; reasoningTokens: number; avgLatencyMs: number }>;
+  byKind: Record<
+    string,
+    { calls: number; usd: number; unknownCostCalls: number; inputTokens: number; cachedTokens: number; outputTokens: number; reasoningTokens: number; avgLatencyMs: number }
+  >;
   failures: Record<string, number>;
 }
 
@@ -71,6 +78,8 @@ export function OpsConsole({ initialQuery }: { initialQuery: string }) {
 
   return (
     <div className="space-y-8">
+      <ReleasePanel />
+      <OrderExceptions />
       <section>
         <h1 className="font-serif text-2xl text-ink">工单</h1>
         <div className="mt-3 flex flex-wrap gap-2 text-sm">
@@ -174,13 +183,20 @@ export function OpsConsole({ initialQuery }: { initialQuery: string }) {
         ) : (
           <div className="mt-2 text-sm text-ink-soft">
             <p>
-              调用 {costs.calls} 次，合计 ${costs.totalUsd.toFixed(4)}；成功交付 {costs.deliveredOrders} 笔，每笔分摊{" "}
-              {costs.costPerDeliveryUsd === null ? "—" : `$${costs.costPerDeliveryUsd.toFixed(4)}`}（含未购买用户的分流与失败重试）。
+              调用 {costs.calls} 次，已知成本合计 ${costs.totalUsd.toFixed(4)}
+              {costs.unknownCostCalls > 0 ? `，另有 ${costs.unknownCostCalls} 次成本未知（价格表缺该模型或没有用量）` : ""}；成功交付{" "}
+              {costs.deliveredOrders} 笔，每笔分摊{" "}
+              {costs.costPerDeliveryUsd === null
+                ? "—"
+                : `$${costs.costPerDeliveryUsd.toFixed(4)}${costs.unknownCostCalls > 0 ? " 起" : ""}`}
+              （含未购买用户的分流与失败重试）。
+              {costs.transportFailures > 0 ? ` 网络或限流导致的重发 ${costs.transportFailures} 次（不计入调用次数）。` : ""}
             </p>
             <ul className="mt-2 space-y-1 text-xs">
               {Object.entries(costs.byKind).map(([k, v]) => (
                 <li key={k}>
-                  {k}：{v.calls} 次 · ${v.usd.toFixed(4)} · 输入 {v.inputTokens}（缓存 {v.cachedTokens}）· 输出 {v.outputTokens}（含推理 {v.reasoningTokens}）· 平均 {Math.round(v.avgLatencyMs)} ms
+                  {k}：{v.calls} 次 · ${v.usd.toFixed(4)}
+                  {v.unknownCostCalls > 0 ? `（${v.unknownCostCalls} 次成本未知）` : ""} · 输入 {v.inputTokens}（缓存 {v.cachedTokens}）· 输出 {v.outputTokens}（含推理 {v.reasoningTokens}）· 平均 {Math.round(v.avgLatencyMs)} ms
                 </li>
               ))}
             </ul>

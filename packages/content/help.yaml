@@ -1,33 +1,36 @@
-# 求助资源（技术方案 5.6）。上线前必须逐条人工核实号码与服务时间。
-version: 1
-needsVerification: true
+# 求助资源（技术方案 5.6）。带号码的条目必须逐条人工核实号码与服务时间：
+# 核实后把该条改成 reviewStatus: reviewed，并写上 source（官方页面）与 verifiedAt（核实日期），例如
+#   - { label: 警察, number: "999", reviewStatus: reviewed, source: "https://…", verifiedAt: "2026-12-01" }
+# 未核实（draft）的号码不会出现在正式环境的求助页和危机面板上；不带号码的通用指引始终展示。
+# npm run content:strict 与 npm run release:check 会逐条列出未核实的号码。
+version: 2
 intro: 如果你或身边的人正处于危险之中，请立即联系当地紧急服务。你也可以先告诉一个你信任的人，让他陪着你。
 regions:
   - id: sg
     name: 新加坡
     items:
-      - { label: 救护车 / 消防, number: "995" }
-      - { label: 警察, number: "999" }
-      - { label: 新加坡援人协会（SOS）24 小时热线, number: "1767" }
+      - { label: 救护车 / 消防, number: "995", reviewStatus: draft }
+      - { label: 警察, number: "999", reviewStatus: draft }
+      - { label: 新加坡援人协会（SOS）24 小时热线, number: "1767", reviewStatus: draft }
   - id: my
     name: 马来西亚
     items:
-      - { label: 紧急服务, number: "999" }
+      - { label: 紧急服务, number: "999", reviewStatus: draft }
   - id: tw
     name: 台湾
     items:
-      - { label: 警察, number: "110" }
-      - { label: 消防 / 救护, number: "119" }
-      - { label: 安心专线（24 小时）, number: "1925" }
+      - { label: 警察, number: "110", reviewStatus: draft }
+      - { label: 消防 / 救护, number: "119", reviewStatus: draft }
+      - { label: 安心专线（24 小时）, number: "1925", reviewStatus: draft }
   - id: hk
     name: 香港
     items:
-      - { label: 紧急服务, number: "999" }
+      - { label: 紧急服务, number: "999", reviewStatus: draft }
   - id: us
     name: 美国
     items:
-      - { label: 紧急服务, number: "911" }
-      - { label: 自杀与危机热线, number: "988" }
+      - { label: 紧急服务, number: "911", reviewStatus: draft }
+      - { label: 自杀与危机热线, number: "988", reviewStatus: draft }
   - id: other
     name: 其他地区
     items:

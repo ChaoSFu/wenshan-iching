@@ -1,7 +1,7 @@
 # 模型对照评测用例（npm run eval:models -w @wenshan/web）
-# 五个主题的样例 + 信息不足、同卦不同题、同题不同卦、同题追问、应当转介的案例。
-# lines：六爻值，从初爻到上爻。expect.decision：付费前分流应得的决定。
-version: 1
+# 五个主题各有主场景（含同题追问）与边界场景；另有信息不足、同卦不同题、同题不同卦、追问换题、应当转介的案例。
+# lines：六爻值，从初爻到上爻。expect.decision：付费前分流应得的决定（与 triage.yaml 的规则、enforceRules 一致）。
+version: 2
 cases:
   # —— 五个主题的样例（PRD §3、§5，同一卦乾初九动变姤）——
   - id: sample-love
@@ -10,7 +10,9 @@ cases:
     question: 分开了一个月，有机会复合吗？
     context: { willingness: 对方回消息但很冷淡 }
     lines: [9, 7, 7, 7, 7, 7]
-    expect: { decision: reframe_suggested }
+    # "有机会复合吗"取决于对方：建议换成自己能掌握的问法，但可以按原问法购买
+    followup: 如果他这周还是很冷淡，我要不要继续发消息？
+    expect: { decision: reframe_suggested, sameMatter: true }
   - id: sample-career
     category: topic_sample
     topic: career
@@ -25,21 +27,60 @@ cases:
     question: 三周后考试，剩下的时间最该放在哪？
     context: { examDate: 三周后, gap: 模考比目标低 15 分，阅读最弱 }
     lines: [9, 7, 7, 7, 7, 7]
-    expect: { decision: proceed }
+    followup: 阅读每天练多久比较合适？
+    expect: { decision: proceed, sameMatter: true }
   - id: sample-money
     category: topic_sample
     topic: money
     question: 想接一个小副业，怎么先看划不划算？
     context: { budgetCap: 最多 3000 元 }
     lines: [9, 7, 7, 7, 7, 7]
-    expect: { decision: proceed }
+    followup: 如果第一个月亏了 500 元，要停下来吗？
+    expect: { decision: proceed, sameMatter: true }
   - id: sample-other
     category: topic_sample
     topic: other
     question: 该怎么和家里谈搬出去住？
     context: { goal: 搬出去住，但不想和家里闹僵 }
     lines: [9, 7, 7, 7, 7, 7]
-    expect: { decision: proceed }
+    followup: 如果爸妈坚决反对，我该先退一步吗？
+    expect: { decision: proceed, sameMatter: true }
+  # —— 五个主题的边界场景 ——
+  - id: edge-love-mind
+    category: topic_edge
+    topic: love
+    question: 他是不是还喜欢我？
+    context: {}
+    lines: [8, 8, 7, 9, 8, 7]
+    expect: { decision: reframe_suggested }
+  - id: edge-career-boss
+    category: topic_edge
+    topic: career
+    question: 老板是不是故意针对我？
+    context: { options: 找老板谈；先观察两周 }
+    lines: [7, 8, 7, 7, 9, 8]
+    expect: { decision: reframe_suggested }
+  - id: edge-study-outcome
+    category: topic_edge
+    topic: study
+    question: 今年考研能不能上岸？
+    context: { examDate: 12 月 }
+    lines: [9, 8, 8, 7, 7, 8]
+    expect: { decision: reframe_suggested }
+  - id: edge-money-stock
+    category: topic_edge
+    topic: money
+    question: 这只股票下周会涨吗？
+    context: {}
+    lines: [7, 7, 8, 6, 7, 8]
+    expect: { decision: reframe_required }
+  - id: edge-other-multi
+    category: topic_edge
+    topic: other
+    question: 要不要辞职？要不要搬去上海？
+    context: {}
+    lines: [8, 7, 9, 8, 7, 7]
+    expect: { decision: reframe_required }
   # —— 信息不足 ——
   - id: thin-career
     category: insufficient_info
@@ -101,6 +142,13 @@ cases:
     context: {}
     lines: [8, 7, 7, 8, 9, 7]
     expect: { decision: reframe_required }
+  - id: refer-fertility
+    category: referral
+    topic: love
+    question: 我们备孕一年了，今年能怀上吗？
+    context: {}
+    lines: [8, 8, 8, 7, 7, 9]
+    expect: { decision: block_paid }
   - id: refer-crisis
     category: referral
     topic: career

@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 export interface ClientOffer {
   salesEnabled: boolean;
   priceLabel: string;
+  /** 下单时随确认一起提交，服务端核对报价没有变 */
+  priceVersion: string;
   amountMinor: number;
   currency: string;
   reviewRequired: boolean;
@@ -13,8 +15,9 @@ export interface ClientOffer {
 
 let cache: Promise<ClientOffer | null> | null = null;
 
-export function fetchOffer(): Promise<ClientOffer | null> {
-  cache ??= fetch("/api/offer", { credentials: "same-origin" })
+export function fetchOffer(fresh = false): Promise<ClientOffer | null> {
+  if (fresh) cache = null;
+  cache ??= fetch("/api/offer", { credentials: "same-origin", cache: "no-store" })
     .then((r) => (r.ok ? (r.json() as Promise<ClientOffer>) : null))
     .catch(() => null);
   return cache;

@@ -1,6 +1,7 @@
 import { existsSync, mkdirSync } from "node:fs";
 import path from "node:path";
 import type { PgDatabase, PgQueryResultHKT } from "drizzle-orm/pg-core";
+import { requireCapability } from "../capabilities";
 import { env } from "../env";
 import * as schema from "./schema";
 
@@ -24,7 +25,9 @@ export async function createMemoryDb(): Promise<DB> {
 }
 
 async function connect(): Promise<DB> {
+  // env() 先完成配置校验（包括模拟模式只能连测试库），然后才建立任何连接；生产不允许落到 PGlite
   const e = env();
+  requireCapability("database", e);
   if (e.DATABASE_URL) {
     const { default: postgres } = await import("postgres");
     const { drizzle } = await import("drizzle-orm/postgres-js");

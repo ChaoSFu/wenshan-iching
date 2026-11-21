@@ -2,13 +2,14 @@
  * 仅在 Node 中使用：读取内容仓库里的 YAML，校验并生成前端用的 JSON 内容包。
  * 浏览器代码请从 "@wenshan/content" 导入类型与纯函数。
  */
+import { requiredEntryIds } from "./gate";
 import { createHash } from "node:crypto";
 import { readFile, readdir } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { parse } from "yaml";
 import { z } from "zod";
-import { TRIGRAM_IDS, bitsOfHexagram, hexagramByTrigrams, guaId, yaoId, YONG_JIU_ID, YONG_LIU_ID } from "@wenshan/iching-core";
+import { TRIGRAM_IDS, bitsOfHexagram, hexagramByTrigrams } from "@wenshan/iching-core";
 import {
   TOPIC_IDS,
   type AngleId,
@@ -126,17 +127,22 @@ const triageFileSchema = z.strictObject({
   multiQuestion: z.strictObject({ title: z.string(), message: z.string() }),
 });
 
+const helpItemSchema = z
+  .strictObject({
+    label: z.string(),
+    number: z.string().optional(),
+    reviewStatus: z.enum(["draft", "reviewed"]).default("draft"),
+    source: z.url().optional(),
+    verifiedAt: z.iso.date().optional(),
+  })
+  .refine((i) => i.reviewStatus !== "reviewed" || (i.source && i.verifiedAt), {
+    message: "reviewed help items need source and verifiedAt",
+  });
+
 const helpFileSchema = z.strictObject({
   version: z.number().int(),
-  needsVerification: z.boolean(),
   intro: z.string(),
-  regions: z.array(
-    z.strictObject({
-      id: z.string(),
-      name: z.string(),
-      items: z.array(z.strictObject({ label: z.string(), number: z.string().optional() })).min(1),
-    }),
-  ),
+  regions: z.array(z.strictObject({ id: z.string(), name: z.string(), items: z.array(helpItemSchema).min(1) })),
 });
 
 const lineValue = z.union([z.literal(6), z.literal(7), z.literal(8), z.literal(9)]);
@@ -207,16 +213,6 @@ export async function loadSources(): Promise<ContentSources> {
 // ---------- 校验 ----------
 
 /** 选文规则可能用到的全部原文：64 卦辞 + 384 爻辞 + 用九 + 用六 = 450 条 */
-export function requiredEntryIds(): string[] {
-  const ids: string[] = [];
-  for (let n = 1; n <= 64; n++) {
-    ids.push(guaId(n));
-    for (let l = 1; l <= 6; l++) ids.push(yaoId(n, l));
-  }
-  ids.push(YONG_JIU_ID, YONG_LIU_ID);
-  return ids;
-}
-
 export interface ValidationReport {
   errors: string[];
   warnings: string[];
@@ -302,7 +298,12 @@ export function validateSources(src: ContentSources, opts: { strict?: boolean } 
     }
   }
 
-  if (src.help.needsVerification) (opts.strict ? errors : warnings).push("help.yaml: hotline numbers not verified yet");
+  // 求助号码逐条核实；未核实的在正式环境不展示
+  const unverified = src.help.regions.flatMap((r) =>
+    r.items.filter((i) => i.number && i.reviewStatus !== "reviewed").map((i) => `${r.name} ${i.label} ${i.number}`),
+  );
+  if (opts.strict) for (const u of unverified) errors.push(`help.yaml: ${u} not verified`);
+  else if (unverified.length) warnings.push(`help.yaml: ${unverified.length} hotline number(s) not verified (hidden in production)`);
 
   return {
     errors,
@@ -368,3 +369,5 @@ export function buildBundles(src: ContentSources): {
     samples: withVersion(src.version, { samples: src.samples as SamplesBundle["samples"] }),
   };
 }
+
+export { requiredEntryIds };

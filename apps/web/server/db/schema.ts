@@ -116,6 +116,8 @@ export const ORDER_STATUSES = [
   "disputed",
   /** 金额或币种异常、旧订单无法还原题意等，需要运营核实 */
   "needs_review",
+  /** 支付方确认退款失败，等待运营核实后重试 */
+  "refund_failed",
 ] as const;
 export type OrderStatus = (typeof ORDER_STATUSES)[number];
 
@@ -157,6 +159,10 @@ export const orders = pgTable(
     refundedAmountMinor: integer("refunded_amount_minor").notNull().default(0),
     reviewReason: text("review_reason"),
     contentPurgedAt: timestamp("content_purged_at", { withTimezone: true }),
+    /** 用户确认的题意修订、分流结果与报价的摘要；同一确认只对应一个待支付尝试 */
+    confirmationKey: text("confirmation_key"),
+    /** 交付通知邮件已认领发送（防止租约接管后重复发信） */
+    readyNotifiedAt: timestamp("ready_notified_at", { withTimezone: true }),
     createdAt: created(),
     updatedAt: updated(),
   },
@@ -169,6 +175,10 @@ export const orders = pgTable(
     uniqueIndex("orders_one_paid_per_reading")
       .on(t.readingId)
       .where(sql`status in ('paid','generating','delivered','generation_failed')`),
+    // 同一次确认（修订 + 分流 + 报价）只允许一个待支付尝试：并发点击、网络重试都复用它
+    uniqueIndex("orders_pending_confirmation")
+      .on(t.confirmationKey)
+      .where(sql`status = 'pending_payment' and confirmation_key is not null`),
   ],
 );
 
@@ -236,6 +246,8 @@ export const generationAttempts = pgTable("generation_attempts", {
   kind: text("kind").notNull(),
   model: text("model").notNull(),
   effort: text("effort"),
+  /** business：一次业务调用（含校验重试中的每一次）；transport：同一业务调用里网络或限流导致的重发 */
+  attemptKind: text("attempt_kind").notNull().default("business"),
   promptVersion: text("prompt_version"),
   contentVersion: text("content_version"),
   failureReason: text("failure_reason"),
@@ -262,6 +274,8 @@ export const jobs = pgTable(
     maxAttempts: integer("max_attempts").notNull().default(5),
     lastError: text("last_error"),
     lockedAt: timestamp("locked_at", { withTimezone: true }),
+    /** 每次认领生成新的标识；续租、完成、失败都要带上它，租约被接管后旧执行者的更新无效 */
+    lockToken: uuid("lock_token"),
     dedupeKey: text("dedupe_key").unique(),
     createdAt: created(),
     updatedAt: updated(),
@@ -304,8 +318,61 @@ export const supportTickets = pgTable(
     ipHash: text("ip_hash"),
     notifiedAt: timestamp("notified_at", { withTimezone: true }),
     resolvedAt: timestamp("resolved_at", { withTimezone: true }),
+    /** 超过保留期后清除描述、联系邮箱与原文的时间 */
+    purgedAt: timestamp("purged_at", { withTimezone: true }),
     createdAt: created(),
     updatedAt: updated(),
   },
   (t) => [index("tickets_status_idx").on(t.status, t.createdAt), index("tickets_ip_idx").on(t.ipHash, t.createdAt)],
+);
+
+export const REFUND_STATUSES = ["requested", "pending", "succeeded", "failed", "canceled"] as const;
+export type RefundStatus = (typeof REFUND_STATUSES)[number];
+
+/**
+ * 退款尝试：同一次尝试的自动重试复用同一个支付方幂等键；
+ * 支付方确认失败后，只有运营核实上一笔结果才能开新尝试（attempt_no + 1，新幂等键）。
+ */
+export const refunds = pgTable(
+  "refunds",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    orderId: uuid("order_id")
+      .notNull()
+      .references(() => orders.id),
+    attemptNo: integer("attempt_no").notNull(),
+    idempotencyKey: text("idempotency_key").notNull().unique(),
+    providerRefundId: text("provider_refund_id"),
+    status: text("status").$type<RefundStatus>().notNull().default("requested"),
+    /** 支付方确认的本次退款金额与币种（未确认前为空） */
+    amountMinor: integer("amount_minor"),
+    currency: text("currency"),
+    reason: text("reason").notNull(),
+    requestedBy: text("requested_by").notNull(),
+    failureReason: text("failure_reason"),
+    lastCheckedAt: timestamp("last_checked_at", { withTimezone: true }),
+    createdAt: created(),
+    updatedAt: updated(),
+  },
+  (t) => [
+    uniqueIndex("refunds_order_attempt_idx").on(t.orderId, t.attemptNo),
+    index("refunds_provider_idx").on(t.providerRefundId),
+    index("refunds_status_idx").on(t.status, t.updatedAt),
+  ],
+);
+
+/** 运营的人工操作记录：谁、何时、对哪笔订单或工单做了什么、结果如何 */
+export const opsActions = pgTable(
+  "ops_actions",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    actor: text("actor").notNull(),
+    action: text("action").notNull(),
+    orderId: uuid("order_id"),
+    ticketId: uuid("ticket_id"),
+    result: text("result").notNull(),
+    note: text("note"),
+    createdAt: created(),
+  },
+  (t) => [index("ops_actions_order_idx").on(t.orderId, t.createdAt)],
 );

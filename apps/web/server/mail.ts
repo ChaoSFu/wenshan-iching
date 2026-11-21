@@ -1,3 +1,4 @@
+import { requireCapability } from "./capabilities";
 import { env } from "./env";
 
 export interface MailMessage {
@@ -36,6 +37,8 @@ let override: Mailer | null = null;
 
 export function getMailer(): Mailer {
   if (override) return override;
+  // 生产环境没配 Resend 时不可用（登录验证码、交付通知、工单通知各自处理），绝不只打印到控制台
+  requireCapability("mail");
   return env().MAIL_PROVIDER === "resend" ? resendMailer : consoleMailer;
 }
 

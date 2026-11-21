@@ -1,0 +1,41 @@
+# 追问盲测（Sol 与 Terra 等模型对比）：npm run eval:models -w @wenshan/web -- --blind-followups
+# 每个用例先冻结一份通过业务校验的报告（--freeze-reports，真实 API 下写入 evals/fixtures/blind-reports.json），
+# 之后所有参评模型都基于同一份报告、同一段追问历史回答同一组追问；输出按 A/B 标签匿名，对应关系另存。
+# summary：付费前分流给出的题意摘要（固定，避免分流结果不同影响对比）。
+version: 1
+cases:
+  - id: blind-career
+    topic: career
+    question: 我做后端，现岗位稳定，但考虑转产品岗。每周能抽三小时，目前没有面试。我该怎样用接下来四周试一试？
+    context: { options: 留在现岗位；内部转产品岗 }
+    lines: [9, 7, 7, 7, 7, 7]
+    summary: 你想在不离开现岗位的前提下，用四周、每周三小时试探转产品岗是否合适。
+    history:
+      - question: 第一周先找谁聊比较合适？
+        answer: 先找一位你熟悉的产品同事，约半小时，问他最近一个需求从提出到上线经历了什么，你只听、记下他做判断的地方。这一步不需要表态要转岗。
+    followups:
+      - { question: 我没有正式的产品项目，可以拿哪种后端项目当案例？, sameMatter: true }
+      - { question: 如果聊完发现产品岗每天都在开会，我还要继续试吗？, sameMatter: true }
+      - { question: 顺便问一下，要不要搬去另一个城市？, sameMatter: false }
+  - id: blind-love
+    topic: love
+    question: 分开了一个月，我该怎样判断还要不要继续联系？
+    context: { willingness: 对方回消息但很冷淡 }
+    lines: [8, 7, 9, 8, 7, 7]
+    summary: 你想弄清在对方回应冷淡的情况下，自己是否还要继续主动联系。
+    history:
+      - question: 我是不是应该先停几天不发消息？
+        answer: 可以先给自己定一个观察期，比如三天不主动发消息，期间留意自己的情绪起伏和对方是否主动出现，用事实而不是猜测来判断。
+    followups:
+      - { question: 三天后如果他还是没动静，我该怎么开口？, sameMatter: true }
+      - { question: 我同事最近也在闹分手，我该怎么劝她？, sameMatter: false }
+  - id: blind-money
+    topic: money
+    question: 想接一个小副业，怎么先看划不划算？
+    context: { budgetCap: 最多 3000 元 }
+    lines: [7, 9, 8, 8, 7, 8]
+    summary: 你想在最多投入 3000 元的前提下，先验证一个小副业是否值得做。
+    history: []
+    followups:
+      - { question: 如果第一个月亏了 500 元，要停下来吗？, sameMatter: true }
+      - { question: 每周只有周末有空，这样验证够吗？, sameMatter: true }

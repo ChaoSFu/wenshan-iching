@@ -3,3 +3,4 @@ export * from "./types";
 export * from "./free-reading";
 export * from "./triage-local";
 export * from "./gate";
+export * from "./help";

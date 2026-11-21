@@ -7,7 +7,8 @@
     "predev": "npm run server-content",
     "dev": "next dev",
     "predev:test": "npm run server-content",
-    "dev:test": "SALES_ENABLED=true ALLOW_UNREVIEWED_CONTENT=true PAYMENT_PROVIDER=fake LLM_PROVIDER=fake MAIL_PROVIDER=console PGLITE_DIR=.data/pglite-test OPS_EMAILS=${OPS_EMAILS:-ops@example.com} next dev",
+    "dev:test": "RUN_MODE=simulation SALES_ENABLED=true ALLOW_UNREVIEWED_CONTENT=true PGLITE_DIR=.data/pglite-test OPS_EMAILS=${OPS_EMAILS:-ops@example.com} next dev",
+    "worker:test": "RUN_MODE=simulation SALES_ENABLED=true ALLOW_UNREVIEWED_CONTENT=true PGLITE_DIR=.data/pglite-test tsx scripts/worker.ts",
     "prebuild": "npm run server-content",
     "build": "next build",
     "start": "next start",
@@ -17,7 +18,8 @@
     "db:migrate": "tsx scripts/migrate.ts",
     "typecheck": "tsc --noEmit -p .",
     "check:services": "tsx scripts/check-services.ts",
-    "eval:models": "tsx scripts/eval-models.ts"
+    "eval:models": "tsx scripts/eval-models.ts",
+    "release:check": "tsx scripts/release-check.ts"
   },
   "dependencies": {
     "@electric-sql/pglite": "^0.5.17",

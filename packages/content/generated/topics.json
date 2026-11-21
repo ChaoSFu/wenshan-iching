@@ -1,5 +1,5 @@
 {
- "version": "2026.11.0+6748e553",
+ "version": "2026.11.0+ea3372f3",
  "topics": [
   {
    "id": "love",
@@ -674,7 +674,15 @@
     "爱不爱",
     "愛不愛",
     "喜不喜欢",
-    "喜不喜歡"
+    "喜不喜歡",
+    "复合吗",
+    "復合嗎",
+    "会回来吗",
+    "會回來嗎",
+    "有可能吗",
+    "有可能嗎",
+    "有戏吗",
+    "有戲嗎"
    ]
   },
   "multiQuestion": {
@@ -683,8 +691,7 @@
   }
  },
  "help": {
-  "version": 1,
-  "needsVerification": true,
+  "version": 2,
   "intro": "如果你或身边的人正处于危险之中，请立即联系当地紧急服务。你也可以先告诉一个你信任的人，让他陪着你。",
   "regions": [
    {
@@ -693,15 +700,18 @@
     "items": [
      {
       "label": "救护车 / 消防",
-      "number": "995"
+      "number": "995",
+      "reviewStatus": "draft"
      },
      {
       "label": "警察",
-      "number": "999"
+      "number": "999",
+      "reviewStatus": "draft"
      },
      {
       "label": "新加坡援人协会（SOS）24 小时热线",
-      "number": "1767"
+      "number": "1767",
+      "reviewStatus": "draft"
      }
     ]
    },
@@ -711,7 +721,8 @@
     "items": [
      {
       "label": "紧急服务",
-      "number": "999"
+      "number": "999",
+      "reviewStatus": "draft"
      }
     ]
    },
@@ -721,15 +732,18 @@
     "items": [
      {
       "label": "警察",
-      "number": "110"
+      "number": "110",
+      "reviewStatus": "draft"
      },
      {
       "label": "消防 / 救护",
-      "number": "119"
+      "number": "119",
+      "reviewStatus": "draft"
      },
      {
       "label": "安心专线（24 小时）",
-      "number": "1925"
+      "number": "1925",
+      "reviewStatus": "draft"
      }
     ]
    },
@@ -739,7 +753,8 @@
     "items": [
      {
       "label": "紧急服务",
-      "number": "999"
+      "number": "999",
+      "reviewStatus": "draft"
      }
     ]
    },
@@ -749,11 +764,13 @@
     "items": [
      {
       "label": "紧急服务",
-      "number": "911"
+      "number": "911",
+      "reviewStatus": "draft"
      },
      {
       "label": "自杀与危机热线",
-      "number": "988"
+      "number": "988",
+      "reviewStatus": "draft"
      }
     ]
    },
@@ -762,7 +779,8 @@
     "name": "其他地区",
     "items": [
      {
-      "label": "请拨打当地的紧急电话，或联系你信任的人"
+      "label": "请拨打当地的紧急电话，或联系你信任的人",
+      "reviewStatus": "draft"
      }
     ]
    }

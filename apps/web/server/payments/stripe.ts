@@ -2,6 +2,8 @@ import Stripe from "stripe";
 import { env } from "../env";
 import {
   WebhookSignatureError,
+  type ProviderRefund,
+  type ProviderRefundStatus,
   type CheckoutSession,
   type CheckoutState,
   type CreateCheckoutInput,
@@ -11,6 +13,12 @@ import {
 
 // Stripe 要求至少 30 分钟；留 1 分钟余量，避免请求耗时导致被拒
 const CHECKOUT_TTL_MS = 31 * 60_000;
+
+function toRefund(r: Stripe.Refund): ProviderRefund {
+  const status: ProviderRefundStatus =
+    r.status === "succeeded" || r.status === "failed" || r.status === "canceled" || r.status === "requires_action" ? r.status : "pending";
+  return { refundId: r.id, status, amountMinor: r.amount, currency: r.currency, failureReason: r.failure_reason ?? null };
+}
 
 export function createStripeProvider(): PaymentProvider {
   const stripe = new Stripe(env().STRIPE_SECRET_KEY ?? "");
@@ -64,8 +72,19 @@ export function createStripeProvider(): PaymentProvider {
     },
 
     async refund({ paymentId, idempotencyKey }) {
-      const refund = await stripe.refunds.create({ payment_intent: paymentId }, { idempotencyKey });
-      return { status: refund.status === "succeeded" ? "succeeded" : refund.status === "failed" ? "failed" : "pending" };
+      return toRefund(await stripe.refunds.create({ payment_intent: paymentId }, { idempotencyKey }));
+    },
+
+    async retrieveRefund(refundId) {
+      return toRefund(await stripe.refunds.retrieve(refundId));
+    },
+
+    async expireCheckout(sessionId) {
+      const s = await stripe.checkout.sessions.retrieve(sessionId);
+      if (s.status === "complete") return "already_complete";
+      if (s.status === "expired") return "already_expired";
+      await stripe.checkout.sessions.expire(sessionId);
+      return "expired";
     },
 
     parseWebhook(rawBody: string, headers: Headers): PaymentEvent {
@@ -90,6 +109,16 @@ export function createStripeProvider(): PaymentProvider {
           return paymentId
             ? { id: event.id, type: "refund.succeeded", paymentId, amountRefundedMinor: charge.amount_refunded, currency: charge.currency }
             : { id: event.id, type: "ignored", rawType: event.type };
+        }
+        case "refund.created":
+        case "refund.updated":
+        case "refund.failed": {
+          const r = event.data.object;
+          const pi = r.payment_intent;
+          const paymentId = typeof pi === "string" ? pi : pi?.id;
+          if (!paymentId) return { id: event.id, type: "ignored", rawType: event.type };
+          const t = toRefund(r);
+          return { id: event.id, type: "refund.updated", refundId: t.refundId, paymentId, status: t.status, amountMinor: t.amountMinor, currency: t.currency, failureReason: t.failureReason };
         }
         case "charge.dispute.created": {
           const pi = event.data.object.payment_intent;

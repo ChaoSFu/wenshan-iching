@@ -104,11 +104,24 @@ export interface TriageRules {
   multiQuestion: { title: string; message: string };
 }
 
+/**
+ * 求助资源的一条。带号码的条目必须逐条人工核实（reviewStatus: reviewed，并写明核实来源与日期）；
+ * 未核实的号码不会出现在正式环境的公开页面和危机面板上。
+ */
+export interface HelpItem {
+  label: string;
+  number?: string;
+  reviewStatus: "draft" | "reviewed";
+  /** 核实时依据的官方页面 */
+  source?: string;
+  /** 核实日期 YYYY-MM-DD */
+  verifiedAt?: string;
+}
+
 export interface HelpResources {
   version: number;
-  needsVerification: boolean;
   intro: string;
-  regions: { id: string; name: string; items: { label: string; number?: string }[] }[];
+  regions: { id: string; name: string; items: HelpItem[] }[];
 }
 
 export interface TopicsBundle {

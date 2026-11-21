@@ -12,9 +12,10 @@
 | 免费闭环：写问题 → 三币起卦 → 卦象、原文、白话简读、反思问题 | 已实现，可本地运行 |
 | 典籍：64 卦卦辞、384 爻辞、用九用六、彖传、象传 | 已从维基文库导入，**待人工对勘** |
 | 白话注释 | 450/450 条初稿，**待人工审校** |
-| 主题配置、分流词表、求助资源 | 初稿，**待审校**；求助号码上线前须逐条核实 |
+| 主题配置、分流词表、求助资源 | 初稿，**待审校**；求助号码逐条标注审核状态，未核实的号码不在正式环境展示 |
 | 付费闭环：邮箱验证码登录、付费前分流、订单与支付、报告生成与校验、三次追问、导出、删除、退款 | 已实现，本地用替身（模拟支付、模拟报告）可走通；**尚未接入真实的 Stripe、OpenAI、邮件服务验证** |
 | 首发改造：题意冻结与订单快照、按订单撤回、交付与退款同一状态机、独立 worker、收款开关与审核门槛、工单、模型分工与成本、评测命令 | 已实现并通过本地验收（见技术方案附录 D）；**收款默认关闭**，内容审核未完成前真实收款会被拒绝 |
+| 第二轮：下单确认绑定题意与报价、退款尝试记录与恢复、运营异常单、追问与删除的原子结算、任务认领令牌、模拟模式测试库隔离、按能力校验配置、发布验收、评测复用线上路径与追问盲测 | 已实现，替身与本机 PostgreSQL 并发测试通过（见技术方案附录 E）；**真实 Stripe、OpenAI、Resend 仍待验收** |
 
 ## 目录
 
@@ -39,8 +40,10 @@ npm run dev          # http://localhost:3000
 收款默认关闭（`SALES_ENABLED=false`），仓库里的原文与注释也都还是待审状态，所以 `npm run dev` 只能走免费流程。要在本地走通付费流程，用独立的测试配置：
 
 ```bash
-npm run dev:test     # 开放收款 + 允许未审核内容进入模拟支付，使用独立数据库 .data/pglite-test；运营后台账号 ops@example.com
+npm run dev:test     # 模拟模式：开放收款 + 允许未审核内容进入模拟支付；运营后台账号 ops@example.com
 ```
+
+模拟模式（`RUN_MODE=simulation`）在连接数据库之前就锁定测试库：支付、模型、邮件一律用替身，`.env.local` 或环境变量里的真实密钥与 `DATABASE_URL` 都不会被使用，只连 `.data/pglite-test`（或库名含 test 的 `SIMULATION_DATABASE_URL`）。
 
 不需要任何外部账号即可走通付费流程（配置见 `apps/web/.env.example`）：
 
@@ -49,7 +52,9 @@ npm run dev:test     # 开放收款 + 允许未审核内容进入模拟支付，
 - 支付：跳到 `/dev/checkout/...` 模拟支付页，可模拟成功、取消、超时。
 - 报告：生成标有「演示内容」的模拟报告，走同一套校验与交付流程。
 
-接入真实服务时，在 `apps/web/.env.local` 里填入 Stripe、OpenAI、Resend 的密钥（填了就自动改用真实服务，留空继续用替身），然后运行 `npm run check:services -w @wenshan/web` 检查配置；生产环境必须配置 `DATABASE_URL` 与 `DATA_ENCRYPTION_KEY`，并先运行 `npm run db:migrate -w @wenshan/web`。Stripe 的 webhook 地址为 `/api/webhooks/payment`。
+接入真实服务时，在 `apps/web/.env.local` 里填入 Stripe、OpenAI、Resend 的密钥（填了就自动改用真实服务，留空继续用替身），然后运行 `npm run check:services -w @wenshan/web` 检查配置；Stripe 的 webhook 地址为 `/api/webhooks/payment`。
+
+生产环境按能力校验：关闭收款时只需 `DATABASE_URL` 与 `DATA_ENCRYPTION_KEY` 就能提供免费体验与工单，没配的支付、模型、邮件在用到时返回 503（绝不退回替身）；开放收款时缺任何一项都拒绝启动。上线前先运行 `npm run db:migrate -w @wenshan/web`，再用 `npm run release:check` 看发布结论。
 
 ```bash
 npm test             # 单元测试（含 4,096 种爻值组合的遍历）、服务端集成测试、独立 worker 进程测试
@@ -57,12 +62,21 @@ npm run typecheck
 npm run build
 ```
 
+真实 PostgreSQL 上的并发测试默认跳过，指定一个测试库（库名须含 test，会被清空重建）时运行：
+
+```bash
+TEST_POSTGRES_URL=postgres://user@127.0.0.1:5432/wenshan_test npx vitest run apps/web/test/postgres-concurrency.test.ts
+```
+
 其他命令：
 
 ```bash
 npm run worker -w @wenshan/web          # 独立的后台任务进程（Web 设 WORKER_MODE=off 时使用；PGlite 不能与 dev 同时打开）
-npm run eval:models -w @wenshan/web     # 模型对照评测，默认走替身；加 -- --live 才调用真实 OpenAI
-npm run check:services -w @wenshan/web  # 检查 Stripe、OpenAI、Resend、PostgreSQL 配置
+npm run worker:test -w @wenshan/web     # 模拟模式下的独立 worker（与 dev:test 用同一个测试库，不能同时打开）
+npm run eval:models -w @wenshan/web     # 模型对照评测与人工评审表，默认走替身；加 -- --live 才调用真实 OpenAI
+npm run eval:models -w @wenshan/web -- --blind-followups   # 追问盲测（同一份固定报告与历史，A/B 匿名）
+npm run check:services -w @wenshan/web  # 检查配置；OpenAI 默认完整走一遍三条路由（约 US$0.1），加 -- --quick 只确认参数
+npm run release:check                   # 发布验收：按生产规则给出"免费体验 / 开放收款"能否发布及阻断原因
 npm run content:strict                  # 发布标准的内容审核检查（当前初稿会全部报出，这是预期行为）
 ```
 

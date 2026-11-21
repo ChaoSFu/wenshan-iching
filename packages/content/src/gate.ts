@@ -1,4 +1,4 @@
-import { selectPassages, tuanId, xiangId, type Cast } from "@wenshan/iching-core";
+import { YONG_JIU_ID, YONG_LIU_ID, guaId, selectPassages, tuanId, xiangId, yaoId, type Cast } from "@wenshan/iching-core";
 import type { CorpusBundle, TopicId, TopicsBundle } from "./types";
 
 /**
@@ -43,4 +43,46 @@ export function supplementaryIds(cast: Pick<Cast, "primary" | "changed">, corpus
     }
   }
   return ids;
+}
+
+/** 付费报告可能用到的全部原文：64 卦卦辞、384 爻辞与用九、用六 */
+export function requiredEntryIds(): string[] {
+  const ids: string[] = [];
+  for (let n = 1; n <= 64; n++) {
+    ids.push(guaId(n));
+    for (let l = 1; l <= 6; l++) ids.push(yaoId(n, l));
+  }
+  ids.push(YONG_JIU_ID, YONG_LIU_ID);
+  return ids;
+}
+
+export interface ReviewSummary {
+  required: number;
+  originalsReviewed: number;
+  vernacularReviewed: number;
+  topics: { id: TopicId; reviewStatus: string }[];
+  /** 未核实的求助号码（"地区 名称 号码"） */
+  helpUnverified: string[];
+  /** 全部可售：所有必需原文、白话、主题都已审核 */
+  allReviewed: boolean;
+}
+
+/** 内容审核进度（运营后台与 release:check 共用，读生成后的内容包） */
+export function reviewSummary(corpus: CorpusBundle, topics: TopicsBundle): ReviewSummary {
+  const required = requiredEntryIds();
+  const originalsReviewed = required.filter((id) => corpus.entries[id]?.reviewStatus === "reviewed").length;
+  const vernacularReviewed = required.filter((id) => corpus.annotations[id]?.reviewStatus === "reviewed").length;
+  const topicRows = topics.topics.map((t) => ({ id: t.id, reviewStatus: t.reviewStatus }));
+  const helpUnverified = topics.help.regions.flatMap((r) =>
+    r.items.filter((i) => i.number && i.reviewStatus !== "reviewed").map((i) => `${r.name} ${i.label} ${i.number}`),
+  );
+  return {
+    required: required.length,
+    originalsReviewed,
+    vernacularReviewed,
+    topics: topicRows,
+    helpUnverified,
+    allReviewed:
+      originalsReviewed === required.length && vernacularReviewed === required.length && topicRows.every((t) => t.reviewStatus === "reviewed"),
+  };
 }

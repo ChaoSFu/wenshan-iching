@@ -38,7 +38,8 @@ export type OrderStatus =
   | "refund_pending"
   | "refunded"
   | "disputed"
-  | "needs_review";
+  | "needs_review"
+  | "refund_failed";
 
 export interface OrderView {
   id: string;
@@ -70,6 +71,7 @@ export const STATUS_LABEL: Record<OrderStatus, string> = {
   refunded: "已退款",
   disputed: "支付争议",
   needs_review: "正在核实",
+  refund_failed: "退款处理中",
 };
 
 export function formatMoney(amountMinor: number, currency: string): string {

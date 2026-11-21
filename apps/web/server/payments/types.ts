@@ -36,8 +36,20 @@ export type PaymentEvent =
   | { id: string; type: "checkout.expired"; sessionId: string }
   /** amountRefundedMinor 是这笔付款累计已退金额，用来区分部分退款与整单退款 */
   | { id: string; type: "refund.succeeded"; paymentId: string; amountRefundedMinor: number; currency: string }
+  /** 单笔退款的状态变化（含失败） */
+  | { id: string; type: "refund.updated"; refundId: string; paymentId: string; status: ProviderRefundStatus; amountMinor: number; currency: string; failureReason: string | null }
   | { id: string; type: "dispute.created"; paymentId: string }
   | { id: string; type: "ignored"; rawType: string };
+
+export type ProviderRefundStatus = "pending" | "succeeded" | "failed" | "canceled" | "requires_action";
+
+export interface ProviderRefund {
+  refundId: string;
+  status: ProviderRefundStatus;
+  amountMinor: number;
+  currency: string;
+  failureReason: string | null;
+}
 
 export class WebhookSignatureError extends Error {
   override name = "WebhookSignatureError";
@@ -47,8 +59,11 @@ export interface PaymentProvider {
   readonly name: "stripe" | "fake";
   createCheckout(input: CreateCheckoutInput): Promise<CheckoutSession>;
   retrieveCheckout(sessionId: string): Promise<CheckoutState>;
-  /** 发起原路退款；succeeded 表示支付平台已确认，pending 表示等待回调 */
-  refund(input: { paymentId: string; idempotencyKey: string }): Promise<{ status: "succeeded" | "pending" | "failed" }>;
+  /** 发起原路退款（整单剩余金额）。同一幂等键重复调用返回同一笔退款 */
+  refund(input: { paymentId: string; idempotencyKey: string }): Promise<ProviderRefund>;
+  retrieveRefund(refundId: string): Promise<ProviderRefund>;
+  /** 关闭仍可支付的结账；已经完成付款时返回 "already_complete" */
+  expireCheckout(sessionId: string): Promise<"expired" | "already_complete" | "already_expired">;
   /** 校验签名并解析回调；签名不对时抛 WebhookSignatureError */
   parseWebhook(rawBody: string, headers: Headers): PaymentEvent;
 }

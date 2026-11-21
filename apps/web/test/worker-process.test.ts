@@ -3,7 +3,7 @@
  * PGlite 只能被一个进程打开：测试进程先写入数据并关闭，再启动 worker 子进程，结束后重新打开核对。
  */
 import { spawn } from "node:child_process";
-import { mkdtempSync } from "node:fs";
+import { existsSync, mkdtempSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -21,11 +21,21 @@ import { getPaymentProvider } from "@/server/payments";
 import { completeFakeCheckout } from "@/server/payments/fake";
 import { uploadReading } from "@/server/readings";
 import { runTriage } from "@/server/triage";
-import { login, sentMail, tossesFor } from "./helpers";
+import { login, sentMail, tossesFor , confirmation } from "./helpers";
 
 const WEB_DIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const TSX = path.resolve(WEB_DIR, "../../node_modules/.bin/tsx");
 const KEY = Buffer.alloc(32, 7).toString("base64");
+/**
+ * 继承来的真实服务配置（shell 里的 DATABASE_URL、.env.local 里的密钥）：模拟模式必须一个都不用。
+ * 这里故意给不可达的占位值——worker 如果连了它们，任务不可能完成。
+ */
+const INHERITED = {
+  DATABASE_URL: "postgres://prod-user:secret@db.example.invalid:5432/wenshan",
+  STRIPE_SECRET_KEY: "sk_live_placeholder",
+  OPENAI_API_KEY: "sk-placeholder",
+  RESEND_API_KEY: "re_placeholder",
+};
 
 async function open(dir: string) {
   const client = new PGlite(dir);
@@ -36,7 +46,8 @@ async function open(dir: string) {
 
 describe("standalone worker process", () => {
   it("keeps running, resumes a paid order left behind by a crashed worker, and stops on SIGTERM", async () => {
-    const dir = mkdtempSync(path.join(tmpdir(), "wenshan-worker-"));
+    // 模拟模式只接受目录名含 test 的 PGlite 目录
+    const dir = mkdtempSync(path.join(tmpdir(), "wenshan-worker-test-"));
     __setEnvForTests({ PGLITE_DIR: dir, SALES_ENABLED: true, ALLOW_UNREVIEWED_CONTENT: true, DATA_ENCRYPTION_KEY: KEY });
     __setMailerForTests({ send: async (m) => void sentMail.push(m) });
     const first = await open(dir);
@@ -53,7 +64,7 @@ describe("standalone worker process", () => {
       consent: true,
     });
     await runTriage(user.id, readingId);
-    const { orderId } = await createOrderForReading(user, readingId);
+    const { orderId } = await createOrderForReading(user, await confirmation(readingId));
     const [o] = await first.db.select().from(schema.orders).where(eq(schema.orders.id, orderId));
     const { body, signature } = completeFakeCheckout(o!.providerSessionId!);
     await handlePaymentEvent(getPaymentProvider().parseWebhook(body, new Headers({ "x-fake-signature": signature })));
@@ -69,12 +80,11 @@ describe("standalone worker process", () => {
       cwd: WEB_DIR,
       env: {
         ...process.env,
+        ...INHERITED,
         NODE_ENV: "test",
+        RUN_MODE: "simulation",
         PGLITE_DIR: dir,
         DATA_ENCRYPTION_KEY: KEY,
-        LLM_PROVIDER: "fake",
-        PAYMENT_PROVIDER: "fake",
-        MAIL_PROVIDER: "console",
         JOB_LEASE_MS: "500",
         WORKER_POLL_MS: "200",
       },
@@ -107,4 +117,21 @@ describe("standalone worker process", () => {
     expect(await second.db.select().from(schema.reports).where(eq(schema.reports.orderId, orderId))).toHaveLength(1);
     await second.client.close();
   }, 60_000);
+
+  it("refuses to start in simulation mode when pointed at a non-test database, before connecting", async () => {
+    const dir = path.join(tmpdir(), `wenshan-real-${process.pid}-${Date.now()}`);
+    const child = spawn(TSX, ["scripts/worker.ts"], {
+      cwd: WEB_DIR,
+      env: { ...process.env, ...INHERITED, NODE_ENV: "test", RUN_MODE: "simulation", PGLITE_DIR: dir },
+      stdio: ["ignore", "pipe", "pipe"],
+    });
+    let out = "";
+    child.stdout.on("data", (d) => (out += String(d)));
+    child.stderr.on("data", (d) => (out += String(d)));
+    const code = await new Promise<number | null>((resolve) => child.on("exit", (c) => resolve(c)));
+    expect(code).toBe(1);
+    expect(out).toContain("worker cannot start");
+    expect(out).toContain("PGLITE_DIR 必须是测试目录");
+    expect(existsSync(dir)).toBe(false);
+  }, 30_000);
 });

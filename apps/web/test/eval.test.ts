@@ -2,55 +2,188 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { beforeAll, describe, expect, it } from "vitest";
 import { __setEnvForTests } from "@/server/env";
-import { __setLlmForTests, getLlm } from "@/server/llm";
-import { loadCases, runEval, summarize, toMarkdown, unsupportedNumbers } from "@/server/eval/run";
+import { LlmTransientError, __setLlmForTests, getLlm, withTransportRetry, type LlmProvider } from "@/server/llm";
+import {
+  freezeBlindReports,
+  loadBlindCases,
+  loadCases,
+  percentile,
+  reviewSheet,
+  runBlindFollowups,
+  runEval,
+  summarize,
+  toMarkdown,
+  unsupportedNumbers,
+} from "@/server/eval/run";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../..");
+const CASES = path.join(root, "evals/cases.yaml");
 
 beforeAll(() => {
   __setEnvForTests({ LLM_PROVIDER: "fake" });
   __setLlmForTests(null);
 });
 
+const base = { triageModel: "gpt-6.1-terra", reportModels: ["gpt-6.2-sol", "gpt-6.2-astra"], followupModels: ["gpt-6.2-sol", "gpt-6.1-terra"], effort: "low" as const };
+
 describe("model eval harness (fake provider, no API calls)", () => {
-  it("covers the five topics plus thin-info, same-hexagram, same-question, follow-up and referral cases", () => {
-    const cases = loadCases(path.join(root, "evals/cases.yaml"));
+  it("covers main and boundary cases for all five topics, plus thin-info, same-hexagram, same-question, follow-up and referral cases", () => {
+    const cases = loadCases(CASES);
     const cats = new Set(cases.map((c) => c.category));
-    for (const c of ["topic_sample", "insufficient_info", "same_hex_diff_question", "same_question_diff_hex", "followup", "referral"]) {
+    for (const c of ["topic_sample", "topic_edge", "insufficient_info", "same_hex_diff_question", "same_question_diff_hex", "followup", "referral"]) {
       expect(cats.has(c), c).toBe(true);
     }
-    expect(new Set(cases.filter((c) => c.category === "topic_sample").map((c) => c.topic)).size).toBe(5);
+    for (const cat of ["topic_sample", "topic_edge"]) {
+      expect(new Set(cases.filter((c) => c.category === cat).map((c) => c.topic)).size, cat).toBe(5);
+    }
+    // 五个主题的主场景都带同题追问
+    expect(cases.filter((c) => c.category === "topic_sample" && c.followup).length).toBe(5);
   });
 
-  it("runs every route against each configured model and stops at referrals", async () => {
-    const cases = loadCases(path.join(root, "evals/cases.yaml"));
-    const rows = await runEval({
-      llm: getLlm(),
-      cases,
-      triageModel: "gpt-6.1-terra",
-      reportModels: ["gpt-6.2-sol", "gpt-6.2-astra"],
-      followupModels: ["gpt-6.2-sol", "gpt-6.1-terra"],
-      effort: "low",
-    });
-    const reportModels = new Set(rows.filter((r) => r.route === "report").map((r) => r.model));
-    expect(reportModels).toEqual(new Set(["fake:gpt-6.2-sol", "fake:gpt-6.2-astra"]));
+  it("runs every route through the production pipeline; triage expectations match the rules for every case", async () => {
+    const cases = loadCases(CASES);
+    const rows = await runEval({ llm: getLlm(), cases, ...base });
+    expect(new Set(rows.filter((r) => r.route === "report").map((r) => r.model))).toEqual(new Set(["fake:gpt-6.2-sol", "fake:gpt-6.2-astra"]));
     expect(new Set(rows.filter((r) => r.route === "followup").map((r) => r.model))).toEqual(new Set(["fake:gpt-6.2-sol", "fake:gpt-6.1-terra"]));
-    // 转介用例不生成报告，且分流结果符合期望
-    for (const id of ["refer-health", "refer-legal", "refer-crisis"]) {
-      expect(rows.some((r) => r.caseId === id && r.route === "report")).toBe(false);
-      expect(rows.filter((r) => r.caseId === id && r.route === "triage").some((r) => r.matchesExpectation === true)).toBe(true);
+    // 分流期望与 triage.yaml、enforceRules 一致（包括 sample-love：有机会复合吗 → 建议改问法）
+    const mismatched = rows.filter((r) => r.route === "triage" && r.matchesExpectation === false).map((r) => `${r.caseId}:${r.decision}`);
+    expect(mismatched).toEqual([]);
+    expect(rows.find((r) => r.caseId === "sample-love" && r.route === "triage")!.decision).toBe("reframe_suggested");
+    // 转介、必须改写的用例不生成报告
+    for (const id of ["refer-health", "refer-legal", "refer-crisis", "refer-fertility", "edge-money-stock", "edge-other-multi"]) {
+      expect(rows.some((r) => r.caseId === id && r.route === "report"), id).toBe(false);
     }
-    // 替身产出的报告通过校验、有原文依据、行动可执行
     for (const r of rows.filter((x) => x.route === "report")) {
-      expect(r.passed, `${r.caseId} ${r.issues.join(",")}`).toBe(true);
+      expect(r.passed, `${r.caseId} ${r.issueCodes.join(",")}`).toBe(true);
       expect(r.grounded).toBe(true);
+      expect(r.businessAttempts).toBe(1);
     }
-    const md = toMarkdown(summarize(rows), { live: false, date: "test", cases: cases.length });
+    // 替身没有用量：成本未知，而不是 0
+    const summary = summarize(rows);
+    const sol = summary.find((s) => s.route === "report" && s.model === "fake:gpt-6.2-sol")!;
+    expect(sol.unknownCostRuns).toBe(sol.samples);
+    expect(sol.avgCostUsd).toBeNull();
+    const md = toMarkdown(summary, { live: false, date: "test", cases: cases.length });
     expect(md).toContain("| report | fake:gpt-6.2-sol |");
+    expect(md).toContain("未知");
+    expect(md).toContain("## 失败类型");
+    // 人工评审表包含三项人工确认
+    const sheet = reviewSheet(rows, cases);
+    expect(sheet).toContain("- [ ] 引用支持解释");
+    expect(sheet).toContain("- [ ] 没有编造背景");
+    expect(sheet).toContain("- [ ] 行动贴合处境");
   });
 
-  it("flags numbers the user never gave", () => {
+  it("marks follow-ups as not run when the baseline report fails, and records post-moderation failures separately", async () => {
+    const fake = getLlm();
+    // 报告：结构不合格（业务校验失败）；追问不应运行
+    const broken: LlmProvider = {
+      ...fake,
+      async generateStructured(req) {
+        const res = await fake.generateStructured(req);
+        return req.route === "report" && res.kind === "ok" ? { ...res, data: { nope: true } } : res;
+      },
+    };
+    const cases = loadCases(CASES).filter((c) => c.id === "sample-career");
+    const rows = await runEval({ llm: broken, cases, ...base, reportModels: ["gpt-6.2-sol"] });
+    const report = rows.find((r) => r.route === "report")!;
+    expect(report.outcome).toBe("invalid");
+    expect(report.businessAttempts).toBe(2);
+    const followups = rows.filter((r) => r.route === "followup");
+    expect(followups.map((r) => r.outcome)).toEqual(["not_run", "not_run"]);
+    const s = summarize(rows).find((x) => x.route === "followup")!;
+    expect(s.samples).toBe(0);
+    expect(s.notRun).toBe(1);
+
+    // 输出内容审核未通过：单独计为 moderation_flagged
+    let calls = 0;
+    const flagged: LlmProvider = {
+      ...fake,
+      async moderate(texts) {
+        calls++;
+        return calls === 1 ? fake.moderate(texts) : { flagged: true, categories: ["harassment"] };
+      },
+    };
+    const rows2 = await runEval({ llm: flagged, cases, ...base, reportModels: ["gpt-6.2-sol"], followupModels: [] });
+    const r2 = rows2.find((r) => r.route === "report")!;
+    expect(r2.outcome).toBe("moderation_flagged");
+    expect(r2.attemptOutcomes).toEqual(["moderation_flagged", "moderation_flagged"]);
+    expect(summarize(rows2).find((x) => x.route === "report")!.outcomes).toEqual({ moderation_flagged: 1 });
+  });
+
+  it("separates transport failures from business attempts, and records request errors", async () => {
+    const fake = getLlm();
+    let n = 0;
+    const flaky: LlmProvider = {
+      ...fake,
+      async generateStructured(req) {
+        if (req.route !== "report") return fake.generateStructured(req);
+        n++;
+        if (n === 1) throw new LlmTransientError("429", [{ error: "429", latencyMs: 5 }, { error: "503", latencyMs: 5 }]);
+        const res = await fake.generateStructured(req);
+        return { ...res, transportFailures: [{ error: "timeout", latencyMs: 5 }] };
+      },
+    };
+    const cases = loadCases(CASES).filter((c) => c.id === "sample-study");
+    const rows = await runEval({ llm: flaky, cases, ...base, followupModels: [] });
+    const [first, second] = rows.filter((r) => r.route === "report");
+    expect(first).toMatchObject({ outcome: "request_error", businessAttempts: 0, transportFailures: 2 });
+    expect(second).toMatchObject({ outcome: "ok", businessAttempts: 1, transportFailures: 1 });
+  });
+
+  it("transport retry resends only transient errors and reports every failed send", async () => {
+    let n = 0;
+    const sleep = async () => {};
+    const ok = await withTransportRetry(
+      async () => {
+        if (++n < 3) throw new Error("503");
+        return "done";
+      },
+      { retries: 2, classify: (e) => (e instanceof Error ? e.message : null), sleep },
+    );
+    expect(ok.value).toBe("done");
+    expect(ok.failures.map((f) => f.error)).toEqual(["503", "503"]);
+    await expect(withTransportRetry(async () => Promise.reject(new Error("429")), { retries: 1, classify: () => "429", sleep })).rejects.toMatchObject({
+      transportFailures: [{ error: "429" }, { error: "429" }],
+    });
+    await expect(withTransportRetry(async () => Promise.reject(new Error("bad request")), { retries: 3, classify: () => null, sleep })).rejects.toThrow("bad request");
+  });
+
+  it("blind follow-up test: every model answers on the same frozen report and history, labels hide the model", async () => {
+    const cases = loadBlindCases(path.join(root, "evals/followup-blind.yaml"));
+    const frozen = await freezeBlindReports({ llm: getLlm(), cases, model: "gpt-6.2-sol", effort: "low" });
+    expect(frozen).toHaveLength(cases.length);
+    const prompts: string[] = [];
+    const fake = getLlm();
+    const spy: LlmProvider = {
+      ...fake,
+      async generateStructured(req) {
+        if (req.route === "followup") prompts.push(req.user);
+        return fake.generateStructured(req);
+      },
+    };
+    const { items, key } = await runBlindFollowups({ llm: spy, cases, frozen, models: ["gpt-6.2-sol", "gpt-6.1-terra"], effort: "low", seed: 42 });
+    const totalFollowups = cases.reduce((s, c) => s + c.followups.length, 0);
+    expect(items).toHaveLength(totalFollowups * 2);
+    for (const c of cases) {
+      expect(new Set(Object.values(key[c.id]!))).toEqual(new Set(["gpt-6.2-sol", "gpt-6.1-terra"]));
+      // 两个模型拿到的提示词完全相同（同一份报告、同一段历史、同一个问题）
+      for (const f of c.followups) {
+        const same = items.filter((i) => i.caseId === c.id && i.followup === f.question);
+        expect(same.map((i) => i.label).sort()).toEqual(["A", "B"]);
+      }
+    }
+    for (let i = 0; i < prompts.length; i += 2) expect(prompts[i]).toBe(prompts[i + 1]);
+    expect(items.every((i) => i.row.passed)).toBe(true);
+    // 冻结的报告被改坏时拒绝运行
+    const tampered = frozen.map((f) => ({ ...f, report: { ...f.report, observations: [] } }));
+    await expect(runBlindFollowups({ llm: fake, cases, frozen: tampered, models: ["gpt-6.2-sol"], effort: "low" })).rejects.toThrow(/no longer passes validation/);
+  });
+
+  it("flags numbers the user never gave; P90 uses nearest rank", () => {
     expect(unsupportedNumbers("预算 3000 元，回报 5 万元，第 3 天前完成", ["最多 3000 元"])).toEqual([]);
     expect(unsupportedNumbers("预计收益 12000 元", ["最多 3000 元"])).toEqual(["12000"]);
+    expect(percentile([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 0.9)).toBe(9);
+    expect(percentile([5], 0.9)).toBe(5);
   });
 });

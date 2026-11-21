@@ -9,10 +9,21 @@
  */
 import { existsSync } from "node:fs";
 
-for (const f of [".env.local", ".env"]) if (existsSync(f)) process.loadEnvFile(f);
+// 模拟模式（集成测试、dev:test）不读本地配置文件：里面可能有真实数据库与密钥。
+// 正常模式读取 .env.local / .env，已存在的环境变量优先。
+if (process.env.RUN_MODE !== "simulation") {
+  for (const f of [".env.local", ".env"]) if (existsSync(f)) process.loadEnvFile(f);
+}
 
 const { startWorker } = await import("../server/jobs/runner");
-const worker = startWorker({ mode: "standalone" });
+let worker: Awaited<ReturnType<typeof startWorker>>;
+try {
+  // 配置校验（含模拟模式只能连测试库）在这里完成，之后才会连接数据库
+  worker = startWorker({ mode: "standalone" });
+} catch (err) {
+  console.error(`[jobs] worker cannot start: ${err instanceof Error ? err.message : err}`);
+  process.exit(1);
+}
 
 let stopping = false;
 async function shutdown(signal: string) {

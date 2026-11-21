@@ -7,6 +7,7 @@ import { LoginForm } from "@/components/login-form";
 import { ApiError, STATUS_LABEL, api, formatDate, formatMoney, type OrderView } from "@/lib/api";
 
 const POLLING: OrderView["status"][] = ["pending_payment", "paid", "generating", "refund_pending"];
+// refund_failed 对用户显示为"处理中"：支付方退款失败后由运营核实重试，用户无需操作
 
 /** 订单状态页（PRD §8「收款与交付」）：付款后在这里等报告，可关闭页面稍后回来 */
 export function OrderStatus({ orderId }: { orderId: string }) {
@@ -124,6 +125,9 @@ export function OrderStatus({ orderId }: { orderId: string }) {
           </>
         )}
         {order.status === "disputed" && <p>这笔付款存在支付争议，报告暂停访问。如有疑问请联系我们，并附上订单号。</p>}
+        {order.status === "refund_failed" && (
+          <p>退款在支付机构那边没有成功，我们正在人工核实并重新处理，无需你再操作。如有疑问请附上订单号反馈。</p>
+        )}
         {order.status === "needs_review" && (
           <p>我们收到了付款，但需要人工核实这笔订单（例如金额与订单不一致）。核实后会继续交付或原路退款，无需再次付款。</p>
         )}

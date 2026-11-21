@@ -21,7 +21,7 @@ import { generateReport } from "@/server/report/generate";
 import { getReportView, submitFollowup } from "@/server/report/service";
 import { listTickets, requireOps, submitTicket, updateTicketStatus } from "@/server/support";
 import { runTriage } from "@/server/triage";
-import { login, sentMail, setupTestServer, tossesFor } from "./helpers";
+import { login, sentMail, setupTestServer, tossesFor , confirmation } from "./helpers";
 
 const BASE: Partial<Env> = {
   PGLITE_DIR: "memory",
@@ -71,7 +71,7 @@ async function refundEvent(orderId: string, amount: number) {
 async function boughtAndDelivered(user: { id: string; email: string }) {
   const r = await reading(user);
   await runTriage(user.id, r.readingId);
-  const { orderId } = await createOrderForReading(user, r.readingId);
+  const { orderId } = await createOrderForReading(user, await confirmation(r.readingId));
   await pay(orderId);
   await drainJobs();
   const view = await getOrderView(user.id, orderId);
@@ -83,9 +83,9 @@ describe("1 · duplicate payment refund keeps the original order intact", () => 
     const user = await login("dup@example.com");
     const r = await reading(user);
     await runTriage(user.id, r.readingId);
-    const first = await createOrderForReading(user, r.readingId);
+    const first = await createOrderForReading(user, await confirmation(r.readingId));
     await db.update(orders).set({ checkoutExpiresAt: new Date(Date.now() - 1000) }).where(eq(orders.id, first.orderId));
-    const second = await createOrderForReading(user, r.readingId);
+    const second = await createOrderForReading(user, await confirmation(r.readingId));
     expect(second.orderId).not.toBe(first.orderId);
 
     await pay(first.orderId);
@@ -125,7 +125,7 @@ describe("2 · refunds racing generation, partial refunds, and frozen intent", (
     const user = await login("race@example.com");
     const r = await reading(user);
     await runTriage(user.id, r.readingId);
-    const { orderId } = await createOrderForReading(user, r.readingId);
+    const { orderId } = await createOrderForReading(user, await confirmation(r.readingId));
     await pay(orderId);
     // 生成进行中，退款回调先到并生效
     const base = getLlm();
@@ -181,10 +181,10 @@ describe("2 · refunds racing generation, partial refunds, and frozen intent", (
       consent: true,
     });
     expect(edited.revision).toBe(r.revision + 1);
-    await expect(createOrderForReading(user, r.readingId)).rejects.toMatchObject({ code: "triage_required" });
+    await expect(createOrderForReading(user, await confirmation(r.readingId))).rejects.toMatchObject({ code: "triage_required" });
     const t = await runTriage(user.id, r.readingId);
     expect(t.revision).toBe(edited.revision);
-    expect((await createOrderForReading(user, r.readingId)).checkoutUrl).toBeTruthy();
+    expect((await createOrderForReading(user, await confirmation(r.readingId))).checkoutUrl).toBeTruthy();
   });
 
   it("requires adopting the rewrite for outcome questions, then freezes the adopted wording", async () => {
@@ -192,12 +192,12 @@ describe("2 · refunds racing generation, partial refunds, and frozen intent", (
     const r = await reading(user, "这场官司能不能赢？");
     const t1 = await runTriage(user.id, r.readingId);
     expect(t1.decision).toBe("reframe_required");
-    await expect(createOrderForReading(user, r.readingId)).rejects.toMatchObject({ code: "reframe_required" });
+    await expect(createOrderForReading(user, await confirmation(r.readingId))).rejects.toMatchObject({ code: "reframe_required" });
 
     await adoptReframe(user.id, r.readingId, t1.reframe!);
     const t2 = await runTriage(user.id, r.readingId);
     expect(t2.decision).toBe("proceed");
-    const { orderId } = await createOrderForReading(user, r.readingId);
+    const { orderId } = await createOrderForReading(user, await confirmation(r.readingId));
     await pay(orderId);
     // 付款后用户又改了问题：报告仍按下单时冻结的题意生成
     await uploadReading(user.id, {
@@ -234,7 +234,7 @@ describe("3 · sales switch and release review gate", () => {
     const user = await login("closed@example.com");
     const r = await reading(user);
     await runTriage(user.id, r.readingId);
-    await expect(createOrderForReading(user, r.readingId)).rejects.toMatchObject({ status: 403, code: "sales_closed" });
+    await expect(createOrderForReading(user, await confirmation(r.readingId))).rejects.toMatchObject({ status: 403, code: "sales_closed" });
     // 免费起卦与选文是纯前端计算，不受影响
     expect(castFromTosses(tossesFromLines([9, 7, 7, 7, 7, 7])).primary).toBe(1);
     setEnv();
@@ -245,7 +245,7 @@ describe("3 · sales switch and release review gate", () => {
     const user = await login("strict@example.com");
     const r = await reading(user);
     await runTriage(user.id, r.readingId);
-    const err = await createOrderForReading(user, r.readingId).catch((e: unknown) => e);
+    const err = await createOrderForReading(user, await confirmation(r.readingId)).catch((e: unknown) => e);
     expect(err).toMatchObject({ status: 409, code: "content_pending" });
     expect((err as { details: { pending: unknown[] } }).details.pending.length).toBeGreaterThan(0);
     setEnv();
@@ -279,7 +279,7 @@ describe("4 · worker limits, recovery and leases", () => {
         return { kind: "ok", data: { bad: true }, model: "stub", effort: "low", latencyMs: 1, usage: { inputTokens: 1, cachedTokens: 0, outputTokens: 1, reasoningTokens: 0 } };
       },
     } as LlmProvider);
-    const { orderId } = await createOrderForReading(user, r.readingId);
+    const { orderId } = await createOrderForReading(user, await confirmation(r.readingId));
     await pay(orderId);
     await drainJobs(); // 2 次调用
     await generateReport(orderId); // 第 3 次后达到上限
@@ -297,7 +297,7 @@ describe("4 · worker limits, recovery and leases", () => {
     const user = await login("recover@example.com");
     const r = await reading(user);
     await runTriage(user.id, r.readingId);
-    const { orderId } = await createOrderForReading(user, r.readingId);
+    const { orderId } = await createOrderForReading(user, await confirmation(r.readingId));
     await pay(orderId);
     // 模拟 worker 在认领任务后崩溃：任务停在 running，租约已过期
     await db.update(jobs).set({ status: "running", lockedAt: new Date(Date.now() - 60_000) }).where(eq(jobs.kind, "generate_report"));
@@ -308,7 +308,7 @@ describe("4 · worker limits, recovery and leases", () => {
     // 任务彻底丢失（例如被标为失败）的已付款订单
     const r2 = await reading(user);
     await runTriage(user.id, r2.readingId);
-    const o2 = await createOrderForReading(user, r2.readingId);
+    const o2 = await createOrderForReading(user, await confirmation(r2.readingId));
     await pay(o2.orderId);
     await db.delete(jobs).where(eq(jobs.kind, "generate_report"));
     await db.update(orders).set({ paidAt: new Date(Date.now() - 5 * 60_000) }).where(eq(orders.id, o2.orderId));
@@ -322,7 +322,7 @@ describe("4 · worker limits, recovery and leases", () => {
     const user = await login("legacy@example.com");
     const r = await reading(user);
     await runTriage(user.id, r.readingId);
-    const { orderId } = await createOrderForReading(user, r.readingId);
+    const { orderId } = await createOrderForReading(user, await confirmation(r.readingId));
     // 模拟迁移前的订单：没有快照
     await db.update(orders).set({ basis: null, intentCt: null, createdAt: new Date(Date.now() + 1000) }).where(eq(orders.id, orderId));
     await runMaintenance();
@@ -331,7 +331,7 @@ describe("4 · worker limits, recovery and leases", () => {
 
     const r2 = await reading(user);
     await runTriage(user.id, r2.readingId);
-    const o2 = await createOrderForReading(user, r2.readingId);
+    const o2 = await createOrderForReading(user, await confirmation(r2.readingId));
     await pay(o2.orderId);
     await db
       .update(orders)
@@ -486,7 +486,9 @@ describe("6 · model routing and cost accounting", () => {
     // sol：10,000 输入（其中 2,000 命中缓存）+ 3,000 输出（含 1,000 推理）
     expect(costUsd("gpt-6.2-sol", { inputTokens: 10_000, cachedTokens: 2_000, outputTokens: 3_000 })).toBeCloseTo(0.0462, 6);
     expect(costUsd("gpt-6.2-sol-2026-10-01", { inputTokens: 1_000_000, cachedTokens: 0, outputTokens: 0 })).toBeCloseTo(2, 6);
-    expect(costUsd("fake:gpt-6.2-sol", { inputTokens: null, cachedTokens: null, outputTokens: null })).toBe(0);
+    // 价格或用量未知：如实返回未知，不按 0 计
+    expect(costUsd("fake:gpt-6.2-sol", { inputTokens: null, cachedTokens: null, outputTokens: null })).toBeNull();
+    expect(costUsd("gpt-7-unpriced", { inputTokens: 1000, cachedTokens: 0, outputTokens: 10 })).toBeNull();
 
     const from = new Date(Date.now() + 10 * 24 * 3600_000);
     const at = new Date(from.getTime() + 1000);
@@ -506,7 +508,18 @@ describe("6 · model routing and cost accounting", () => {
       row("triage", "gpt-6.1-terra", 2_500, 0, 600),
       row("report", "gpt-6.2-sol", 8_000, 0, 4_000, "validation"), // 失败重试
       row("report", "gpt-6.2-sol", 8_000, 2_000, 4_000),
+      row("followup", "gpt-7-unpriced", 3_000, 0, 500), // 价格表里没有：成本未知
     ]);
+    // 一次 429 后重发成功：传输层失败单独计数，不算业务调用
+    await db.insert(generationAttempts).values({
+      kind: "report",
+      model: "gpt-6.2-sol",
+      attemptKind: "transport",
+      status: "request_error",
+      failureReason: "request_error:429",
+      latencyMs: 300,
+      createdAt: at,
+    });
     const user = await login("cost@example.com");
     const { orderId } = await boughtAndDelivered(user);
     await db.update(orders).set({ deliveredAt: at }).where(eq(orders.id, orderId));
@@ -519,5 +532,10 @@ describe("6 · model routing and cost accounting", () => {
     expect(s.costPerDeliveryUsd).toBeCloseTo(expected, 8);
     expect(s.byKind.triage?.calls).toBe(2);
     expect(s.failures.validation).toBe(1);
+    expect(s.calls).toBe(5);
+    expect(s.unknownCostCalls).toBe(1);
+    expect(s.byModel["gpt-7-unpriced"]).toMatchObject({ calls: 1, usd: 0, unknownCostCalls: 1 });
+    expect(s.transportFailures).toBe(1);
+    expect(s.failures["request_error:429"]).toBe(1);
   });
 });

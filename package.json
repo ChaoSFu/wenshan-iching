@@ -19,7 +19,8 @@
     "content:import": "npm run import -w @wenshan/content",
     "content:build": "npm run build -w @wenshan/content",
     "content:check": "npm run check -w @wenshan/content",
-    "content:strict": "npm run check:strict -w @wenshan/content"
+    "content:strict": "npm run check:strict -w @wenshan/content",
+    "release:check": "npm run release:check -w @wenshan/web --"
   },
   "devDependencies": {
     "@types/node": "20.19.43",

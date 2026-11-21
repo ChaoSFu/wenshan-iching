@@ -1,12 +1,13 @@
+import { requireCapability } from "./capabilities";
 import { randomInt } from "node:crypto";
-import { and, desc, eq, gt, ilike, or, sql, type SQL } from "drizzle-orm";
+import { and, desc, eq, gt, ilike, isNull, lt, or, sql, type SQL } from "drizzle-orm";
 import { z } from "zod";
 import pkg from "../package.json";
 import { emailSchema, type SessionUser } from "./auth";
 import { corpus } from "./content";
 import { decrypt, encrypt, keyedHash } from "./crypto";
 import { getDb } from "./db/client";
-import { orders, readings, reports, supportTickets, TICKET_CATEGORIES, TICKET_STATUSES, type TicketCategory, type TicketStatus } from "./db/schema";
+import { opsActions, orders, readings, reports, supportTickets, TICKET_CATEGORIES, TICKET_STATUSES, type TicketCategory, type TicketStatus } from "./db/schema";
 import { env } from "./env";
 import { HttpError } from "./http";
 import { enqueue } from "./jobs/queue";
@@ -177,16 +178,43 @@ export async function notifySupportTicket(ticketId: string): Promise<void> {
   const [t] = await db.select().from(supportTickets).where(eq(supportTickets.id, ticketId)).limit(1);
   if (!t || t.notifiedAt) return;
   const to = env().SUPPORT_NOTIFY_EMAIL;
-  // 没配置运营邮箱：不发通知，工单只在后台列表里看（notifiedAt 保持为空，如实显示"未通知"）
+  // 没配置运营邮箱：不发通知，工单只在后台列表里看（notifiedAt 保持为空，如实显示"未发通知"）
   if (!to) return;
-  {
+  // 通知配置单独校验：邮件不可用时任务延后，工单本身早已受理
+  requireCapability("mail");
+  // 先认领再发送：重复执行不会重复发信；发送失败释放认领，交给任务重试，工单本身不受影响
+  const claimed = await db
+    .update(supportTickets)
+    .set({ notifiedAt: new Date() })
+    .where(and(eq(supportTickets.id, ticketId), isNull(supportTickets.notifiedAt)))
+    .returning({ id: supportTickets.id });
+  if (!claimed.length) return;
+  try {
     await getMailer().send({
       to,
       subject: `[问山工单] ${t.ticketNo} · ${CATEGORY_LABEL[t.category]}`,
       text: `新工单 ${t.ticketNo}（${CATEGORY_LABEL[t.category]}）。\n处理：${env().APP_URL}/ops?ticket=${t.ticketNo}\n\n为保护隐私，邮件不含用户描述，请在后台查看。`,
     });
+  } catch (err) {
+    await db.update(supportTickets).set({ notifiedAt: null }).where(eq(supportTickets.id, ticketId));
+    throw err;
   }
-  await db.update(supportTickets).set({ notifiedAt: new Date() }).where(eq(supportTickets.id, ticketId));
+}
+
+/**
+ * 工单的保留规则（与报告的 90 天分开）：已解决超过 SUPPORT_RETENTION_DAYS 的工单，
+ * 清除描述、联系邮箱和随附原文，只留编号、类型、状态和时间；运营操作记录的备注同期清除。
+ */
+export async function purgeOldTickets(): Promise<number> {
+  const db = await getDb();
+  const cutoff = new Date(Date.now() - env().SUPPORT_RETENTION_DAYS * 24 * 3600_000);
+  const rows = await db
+    .update(supportTickets)
+    .set({ descriptionCt: null, contactEmailCt: null, questionCt: null, purgedAt: new Date() })
+    .where(and(eq(supportTickets.status, "resolved"), lt(supportTickets.resolvedAt, cutoff), isNull(supportTickets.purgedAt)))
+    .returning({ id: supportTickets.id });
+  await db.update(opsActions).set({ note: null }).where(and(lt(opsActions.createdAt, cutoff), sql`${opsActions.note} is not null`));
+  return rows.length;
 }
 
 export const CATEGORY_LABEL: Record<TicketCategory, string> = {
@@ -272,12 +300,14 @@ export async function listTickets(filter: { q?: string; category?: string; statu
   }));
 }
 
-export async function updateTicketStatus(ticketId: string, status: TicketStatus): Promise<void> {
+export async function updateTicketStatus(ticketId: string, status: TicketStatus, actor = "ops"): Promise<void> {
   const db = await getDb();
   const rows = await db
     .update(supportTickets)
     .set({ status, resolvedAt: status === "resolved" ? new Date() : null, updatedAt: new Date() })
     .where(eq(supportTickets.id, ticketId))
-    .returning({ id: supportTickets.id });
+    .returning({ id: supportTickets.id, orderId: supportTickets.orderId });
   if (!rows.length) throw new HttpError(404, "not_found");
+  const { recordOpsAction } = await import("./ops");
+  await recordOpsAction({ actor, action: "ticket_status", ticketId, orderId: rows[0]!.orderId, result: status });
 }

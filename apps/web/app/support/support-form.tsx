@@ -77,7 +77,10 @@ export function SupportForm({ supportEmail }: { supportEmail: string | null }) {
       });
       setDone({ ticketNo: res.ticketNo, linked: res.linkedOrder || res.linkedReport });
     } catch (err) {
-      setError(err instanceof ApiError ? err.message : "提交失败，请稍后再试");
+      if (err instanceof ApiError && err.code === "service_unavailable") {
+        // 工单系统未就绪（例如数据库维护中）：给出备用邮箱，不让用户白填
+        setError(supportEmail ? `暂时无法在线提交，请发邮件到 ${supportEmail} 说明情况。` : "暂时无法在线提交，请稍后再试。");
+      } else setError(err instanceof ApiError ? err.message : "提交失败，请稍后再试");
     } finally {
       setBusy(false);
     }

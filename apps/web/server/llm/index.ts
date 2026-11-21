@@ -1,3 +1,4 @@
+import { requireCapability } from "../capabilities";
 import OpenAI from "openai";
 import { env } from "../env";
 
@@ -33,11 +34,21 @@ export interface StructuredRequest {
   override?: { model: string; effort: Effort };
 }
 
+/** 同一次业务调用里，网络、限流、5xx 导致的失败发送（之后由适配层自己重发） */
+export interface TransportFailure {
+  /** 错误类别与状态码，不含请求内容 */
+  error: string;
+  latencyMs: number;
+}
+
 interface Meta {
   model: string;
   effort: string;
+  /** 最后一次（成功）发送的耗时 */
   latencyMs: number;
   usage: Usage;
+  /** 这次业务调用之前失败的发送；没有重发时为空 */
+  transportFailures?: TransportFailure[];
 }
 
 export type StructuredResult =
@@ -56,9 +67,40 @@ export interface LlmProvider {
   moderate(texts: string[]): Promise<ModerationResult>;
 }
 
-/** 429、5xx、网络超时等可以重试的错误 */
+/** 429、5xx、网络超时等可以重试的错误；transportFailures 是这次业务调用里所有失败的发送 */
 export class LlmTransientError extends Error {
   override name = "LlmTransientError";
+  constructor(
+    message: string,
+    readonly transportFailures: TransportFailure[] = [],
+  ) {
+    super(message);
+  }
+}
+
+/**
+ * 传输层重发：只针对网络、429、5xx，最多 retries 次，指数退避。
+ * SDK 自身的重试关掉（maxRetries: 0），重发都在这里发生，才能逐次记录、和业务重试（校验失败后重新生成）分开统计。
+ */
+export async function withTransportRetry<T>(
+  send: () => Promise<T>,
+  opts: { retries: number; classify: (err: unknown) => string | null; sleep?: (ms: number) => Promise<void> },
+): Promise<{ value: T; failures: TransportFailure[]; latencyMs: number }> {
+  const sleep = opts.sleep ?? ((ms) => new Promise((r) => setTimeout(r, ms)));
+  const failures: TransportFailure[] = [];
+  for (let i = 0; ; i++) {
+    const started = Date.now();
+    try {
+      const value = await send();
+      return { value, failures, latencyMs: Date.now() - started };
+    } catch (err) {
+      const transient = opts.classify(err);
+      if (!transient) throw err;
+      failures.push({ error: transient, latencyMs: Date.now() - started });
+      if (i >= opts.retries) throw new LlmTransientError(transient, failures);
+      await sleep(Math.min(8000, 500 * 2 ** i));
+    }
+  }
 }
 
 /**
@@ -93,14 +135,15 @@ export function buildResponsesRequest(req: StructuredRequest): OpenAI.Responses.
 }
 
 function createOpenAiProvider(): LlmProvider {
-  const client = new OpenAI({ apiKey: env().OPENAI_API_KEY, timeout: 60_000, maxRetries: env().OPENAI_MAX_RETRIES });
+  const client = new OpenAI({ apiKey: env().OPENAI_API_KEY, timeout: 60_000, maxRetries: 0 });
+  const retries = env().OPENAI_MAX_RETRIES;
 
-  function wrapError(err: unknown): never {
-    if (err instanceof OpenAI.APIConnectionError) throw new LlmTransientError(err.message);
-    if (err instanceof OpenAI.APIError && (err.status === 429 || (err.status ?? 0) >= 500)) {
-      throw new LlmTransientError(`${err.status} ${err.message}`);
-    }
-    throw err;
+  /** 可重发的错误返回类别（如 "429"、"timeout"），其他错误返回 null */
+  function classify(err: unknown): string | null {
+    if (err instanceof OpenAI.APIConnectionTimeoutError) return "timeout";
+    if (err instanceof OpenAI.APIConnectionError) return "connection";
+    if (err instanceof OpenAI.APIError && (err.status === 429 || (err.status ?? 0) >= 500)) return String(err.status);
+    return null;
   }
 
   return {
@@ -108,17 +151,13 @@ function createOpenAiProvider(): LlmProvider {
 
     async generateStructured(req) {
       const body = buildResponsesRequest(req);
-      const started = Date.now();
-      let res: OpenAI.Responses.Response;
-      try {
-        res = await client.responses.create(body);
-      } catch (err) {
-        wrapError(err);
-      }
+      const sent = await withTransportRetry(() => client.responses.create(body), { retries, classify });
+      const res = sent.value;
       const meta: Meta = {
         model: res.model ?? body.model,
         effort: String(body.reasoning?.effort ?? ""),
-        latencyMs: Date.now() - started,
+        latencyMs: sent.latencyMs,
+        transportFailures: sent.failures,
         usage: {
           inputTokens: res.usage?.input_tokens ?? null,
           cachedTokens: res.usage?.input_tokens_details?.cached_tokens ?? null,
@@ -143,18 +182,17 @@ function createOpenAiProvider(): LlmProvider {
     },
 
     async moderate(texts) {
-      try {
-        const res = await client.moderations.create({ model: "omni-moderation-latest", input: texts });
-        const categories = new Set<string>();
-        let flagged = false;
-        for (const r of res.results) {
-          flagged ||= r.flagged;
-          for (const [name, hit] of Object.entries(r.categories)) if (hit) categories.add(name);
-        }
-        return { flagged, categories: [...categories] };
-      } catch (err) {
-        wrapError(err);
+      const { value: res } = await withTransportRetry(() => client.moderations.create({ model: "omni-moderation-latest", input: texts }), {
+        retries,
+        classify,
+      });
+      const categories = new Set<string>();
+      let flagged = false;
+      for (const r of res.results) {
+        flagged ||= r.flagged;
+        for (const [name, hit] of Object.entries(r.categories)) if (hit) categories.add(name);
       }
+      return { flagged, categories: [...categories] };
     },
   };
 }
@@ -191,8 +229,11 @@ function createFakeProvider(): LlmProvider {
 
 let provider: LlmProvider | null = null;
 
+/** 生产环境没配 OpenAI 时抛 CapabilityUnavailableError，绝不退回模拟报告 */
 export function getLlm(): LlmProvider {
-  provider ??= env().LLM_PROVIDER === "openai" ? createOpenAiProvider() : createFakeProvider();
+  if (provider) return provider;
+  requireCapability("llm");
+  provider = env().LLM_PROVIDER === "openai" ? createOpenAiProvider() : createFakeProvider();
   return provider;
 }
 
