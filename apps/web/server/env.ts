@@ -19,6 +19,11 @@ const schema = z.object({
   DATABASE_URL: z.string().optional(),
   /** 模拟模式专用的 PostgreSQL 测试库（库名必须含 test）；不填用 PGlite 测试目录 */
   SIMULATION_DATABASE_URL: z.string().optional(),
+  /**
+   * 模拟模式下的模型：fake（默认，模拟报告）或 openai（用 OPENAI_API_KEY 调真实模型，会计费）。
+   * 只放开模型这一项：支付仍是模拟支付页、邮件仍打印在终端、只连测试库（npm run dev:test:llm）。
+   */
+  SIMULATION_LLM: z.enum(["fake", "openai"]).default("fake"),
   /** 未配置数据库连接串时 PGlite 的数据目录；"memory" 表示只在内存里。模拟模式默认 .data/pglite-test */
   PGLITE_DIR: z.string().optional(),
   /** inline：在 Web 进程里跑后台任务（开发与单机部署）；off：交给独立 worker 进程 */
@@ -150,16 +155,21 @@ function applyRunMode(p: z.infer<typeof schema>): Env {
   if (!dbUrl && !isTestPgliteDir(pgliteDir)) {
     throw new Error(`模拟模式的 PGLITE_DIR 必须是测试目录（目录名含 test 或 memory），当前为 ${pgliteDir}`);
   }
+  // 显式选择真实模型时只保留 OpenAI 密钥；支付与邮件的密钥照样清空
+  const realLlm = p.SIMULATION_LLM === "openai";
+  if (realLlm && !p.OPENAI_API_KEY) {
+    throw new Error("SIMULATION_LLM=openai 需要 OPENAI_API_KEY：请在 apps/web/.env.local 里填写后重启");
+  }
   return {
     ...p,
     DATABASE_URL: dbUrl,
     PGLITE_DIR: pgliteDir,
     PAYMENT_PROVIDER: "fake",
-    LLM_PROVIDER: "fake",
+    LLM_PROVIDER: realLlm ? "openai" : "fake",
     MAIL_PROVIDER: "console",
     STRIPE_SECRET_KEY: undefined,
     STRIPE_WEBHOOK_SECRET: undefined,
-    OPENAI_API_KEY: undefined,
+    OPENAI_API_KEY: realLlm ? p.OPENAI_API_KEY : undefined,
     RESEND_API_KEY: undefined,
   };
 }
@@ -199,6 +209,11 @@ export function env(): Env {
     console.info(
       `[env] mode=${parsed.RUN_MODE} payment=${parsed.PAYMENT_PROVIDER} llm=${parsed.LLM_PROVIDER} mail=${parsed.MAIL_PROVIDER} db=${db} sales=${parsed.SALES_ENABLED ? "on" : "off"}${parsed.ALLOW_UNREVIEWED_CONTENT ? " (unreviewed content allowed: test config)" : ""}`,
     );
+    if (parsed.RUN_MODE === "simulation" && parsed.LLM_PROVIDER === "openai") {
+      console.warn(
+        `[env] simulation with the REAL OpenAI model (billed): triage ${parsed.OPENAI_MODEL_TRIAGE}, report ${parsed.OPENAI_MODEL_REPORT}; at most ${parsed.MAX_REPORT_CALLS_PER_ORDER} report calls per order. Payment is simulated, mail goes to this terminal.`,
+      );
+    }
   }
   return parsed;
 }

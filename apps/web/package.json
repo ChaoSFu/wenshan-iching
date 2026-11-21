@@ -8,6 +8,7 @@
     "dev": "next dev",
     "predev:test": "npm run server-content",
     "dev:test": "RUN_MODE=simulation SALES_ENABLED=true ALLOW_UNREVIEWED_CONTENT=true PGLITE_DIR=.data/pglite-test OPS_EMAILS=${OPS_EMAILS:-ops@example.com} next dev",
+    "dev:test:llm": "SIMULATION_LLM=openai npm run dev:test",
     "worker:test": "RUN_MODE=simulation SALES_ENABLED=true ALLOW_UNREVIEWED_CONTENT=true PGLITE_DIR=.data/pglite-test tsx scripts/worker.ts",
     "prebuild": "npm run server-content",
     "build": "next build",

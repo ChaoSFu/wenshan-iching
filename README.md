@@ -44,6 +44,12 @@ npm run dev          # http://localhost:3000
 npm run dev:test     # 模拟模式：开放收款 + 允许未审核内容进入模拟支付；运营后台账号 ops@example.com
 ```
 
+想用真实模型试一遍、但不经过真实支付：在 `apps/web/.env.local` 填 `OPENAI_API_KEY`，然后
+
+```bash
+npm run dev:test:llm # 模拟模式 + 真实 OpenAI 模型（会计费）；支付仍是模拟支付页，邮件仍打印在终端
+```
+
 模拟模式（`RUN_MODE=simulation`）在连接数据库之前就锁定测试库：支付、模型、邮件一律用替身，`.env.local` 或环境变量里的真实密钥与 `DATABASE_URL` 都不会被使用，只连 `.data/pglite-test`（或库名含 test 的 `SIMULATION_DATABASE_URL`）。
 
 不需要任何外部账号即可走通付费流程（配置见 `apps/web/.env.example`）：

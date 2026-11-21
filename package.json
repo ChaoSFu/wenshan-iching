@@ -12,6 +12,7 @@
   "scripts": {
     "dev": "npm run dev -w @wenshan/web",
     "dev:test": "npm run dev:test -w @wenshan/web",
+    "dev:test:llm": "npm run dev:test:llm -w @wenshan/web",
     "build": "npm run content:build && npm run build -w @wenshan/web",
     "start": "npm run start -w @wenshan/web",
     "test": "vitest run",

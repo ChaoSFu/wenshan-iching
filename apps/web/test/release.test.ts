@@ -71,6 +71,18 @@ describe("P0-4 · simulation mode only ever touches a test database", () => {
     }
   });
 
+  it("SIMULATION_LLM=openai opens only the model: payment stays simulated, mail stays local, other keys and DATABASE_URL are still dropped", () => {
+    const e = parseEnv({ NODE_ENV: "development", RUN_MODE: "simulation", SIMULATION_LLM: "openai", ALLOW_UNREVIEWED_CONTENT: "true", ...INHERITED });
+    expect([e.PAYMENT_PROVIDER, e.LLM_PROVIDER, e.MAIL_PROVIDER]).toEqual(["fake", "openai", "console"]);
+    expect(e.OPENAI_API_KEY).toBe(INHERITED.OPENAI_API_KEY);
+    expect([e.STRIPE_SECRET_KEY, e.STRIPE_WEBHOOK_SECRET, e.RESEND_API_KEY, e.DATABASE_URL]).toEqual([undefined, undefined, undefined, undefined]);
+    expect(e.PGLITE_DIR).toBe(".data/pglite-test");
+    // 未审内容只配模拟支付：报价不要求审核
+    expect(capabilityGaps(e).llm).toEqual([]);
+    expect(() => parseEnv({ RUN_MODE: "simulation", SIMULATION_LLM: "openai" })).toThrow(/OPENAI_API_KEY/);
+    expect(() => parseEnv({ NODE_ENV: "production", RUN_MODE: "simulation", SIMULATION_LLM: "openai", ...INHERITED })).toThrow(/生产环境/);
+  });
+
   it("is forbidden in production, and unreviewed content requires simulation mode", () => {
     expect(() => parseEnv({ NODE_ENV: "production", RUN_MODE: "simulation" })).toThrow(/生产环境/);
     expect(() => parseEnv({ ALLOW_UNREVIEWED_CONTENT: "true" })).toThrow(/模拟模式/);

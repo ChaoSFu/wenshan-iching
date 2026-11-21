@@ -18,6 +18,15 @@
         "dev:test"
       ],
       "port": 3000
+    },
+    {
+      "name": "web-test-llm",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "dev:test:llm"
+      ],
+      "port": 3000
     }
   ]
 }
