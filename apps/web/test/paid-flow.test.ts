@@ -152,7 +152,7 @@ describe("paid flow (fake payment + fake model)", () => {
     await runTriage(user.id, readingId);
     const first = await createOrderForReading(user, await confirmation(readingId));
     // 第一个结账页还开着，另一个标签页在报价版本更新后重新确认，开了第二笔订单
-    const env = { PGLITE_DIR: "memory", APP_URL: "http://localhost:3000", SALES_ENABLED: true, ALLOW_UNREVIEWED_CONTENT: true };
+    const env = { PGLITE_DIR: "memory", APP_URL: "http://localhost:3000", SALES_ENABLED: true, ALLOW_UNREVIEWED_CONTENT: true, PRICE_AMOUNT_MINOR: 990 };
     __setEnvForTests({ ...env, PRICE_VERSION: "price@second-tab" });
     const second = await createOrderForReading(user, await confirmation(readingId));
     __setEnvForTests(env);

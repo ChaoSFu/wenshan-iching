@@ -21,6 +21,8 @@ export async function setupTestServer(overrides: Partial<Env> = {}): Promise<DB>
     // 测试配置：开放收款，并允许模拟支付使用未审核内容（仓库里的初稿保持真实审核状态）
     SALES_ENABLED: true,
     ALLOW_UNREVIEWED_CONTENT: true,
+    // 测试固定用 990 的价格：退款金额等断言不随产品定价（默认 99）变化
+    PRICE_AMOUNT_MINOR: 990,
     ...overrides,
   });
   __setMailerForTests({ send: async (m) => void sentMail.push(m) });

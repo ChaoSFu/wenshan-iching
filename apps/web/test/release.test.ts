@@ -83,6 +83,14 @@ describe("P0-4 · simulation mode only ever touches a test database", () => {
     expect(() => parseEnv({ NODE_ENV: "production", RUN_MODE: "simulation", SIMULATION_LLM: "openai", ...INHERITED })).toThrow(/生产环境/);
   });
 
+  it("the default one-time price is US$0.99, and the quote id carries it", async () => {
+    const e = parseEnv({});
+    expect([e.PRICE_AMOUNT_MINOR, e.PRICE_CURRENCY]).toEqual([99, "usd"]);
+    const { formatPrice, quoteId } = await import("@/server/offer");
+    expect(formatPrice(e.PRICE_AMOUNT_MINOR, e.PRICE_CURRENCY)).toBe("US$0.99");
+    expect(quoteId(e.PRICE_VERSION, e.PRICE_AMOUNT_MINOR, e.PRICE_CURRENCY)).toBe("price@2026-11:99:usd");
+  });
+
   it("is forbidden in production, and unreviewed content requires simulation mode", () => {
     expect(() => parseEnv({ NODE_ENV: "production", RUN_MODE: "simulation" })).toThrow(/生产环境/);
     expect(() => parseEnv({ ALLOW_UNREVIEWED_CONTENT: "true" })).toThrow(/模拟模式/);

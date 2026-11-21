@@ -23,7 +23,7 @@ import { submitTicket } from "@/server/support";
 import { runTriage } from "@/server/triage";
 import { confirmation, login, sentMail, setupTestServer, tossesFor } from "./helpers";
 
-const BASE: Partial<Env> = { PGLITE_DIR: "memory", APP_URL: "http://localhost:3000", SALES_ENABLED: true, ALLOW_UNREVIEWED_CONTENT: true };
+const BASE: Partial<Env> = { PGLITE_DIR: "memory", APP_URL: "http://localhost:3000", SALES_ENABLED: true, ALLOW_UNREVIEWED_CONTENT: true, PRICE_AMOUNT_MINOR: 990 };
 const setEnv = (o: Partial<Env> = {}) => __setEnvForTests({ ...BASE, ...o });
 
 let db: DB;

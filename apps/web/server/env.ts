@@ -42,7 +42,8 @@ const schema = z.object({
   PAYMENT_PROVIDER: z.enum(["fake", "stripe"]).default("fake"),
   STRIPE_SECRET_KEY: z.string().optional(),
   STRIPE_WEBHOOK_SECRET: z.string().optional(),
-  PRICE_AMOUNT_MINOR: z.coerce.number().int().positive().default(990),
+  /** 一次付款的金额（最小货币单位）：首发 US$0.99 */
+  PRICE_AMOUNT_MINOR: z.coerce.number().int().positive().default(99),
   PRICE_CURRENCY: z.string().length(3).default("usd"),
   PRICE_VERSION: z.string().default("price@2026-11"),
   /** 收款开关：默认关闭。关闭时页面显示"暂未开放"，下单接口拒绝 */

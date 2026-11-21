@@ -58,7 +58,7 @@ describe.skipIf(!enabled)("PostgreSQL concurrency (real connections, real row lo
     client = postgres(urlFor(dbName), { max: 10, onnotice: () => {} });
     db = drizzle(client, { schema }) as unknown as DB;
     await migrate(db as never, { migrationsFolder: migrationsDir() });
-    __setEnvForTests({ APP_URL: "http://localhost:3000", SALES_ENABLED: true, ALLOW_UNREVIEWED_CONTENT: true, PGLITE_DIR: "memory" });
+    __setEnvForTests({ APP_URL: "http://localhost:3000", SALES_ENABLED: true, ALLOW_UNREVIEWED_CONTENT: true, PGLITE_DIR: "memory", PRICE_AMOUNT_MINOR: 990 });
     __setMailerForTests({ send: async (m) => void sentMail.push(m) });
     __setLlmForTests(null);
     __setPaymentProviderForTests(null);

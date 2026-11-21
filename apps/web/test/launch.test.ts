@@ -30,6 +30,7 @@ const BASE: Partial<Env> = {
   SALES_ENABLED: true,
   ALLOW_UNREVIEWED_CONTENT: true,
   OPS_EMAILS: "ops@example.com",
+  PRICE_AMOUNT_MINOR: 990,
 };
 /** 只改配置，不重建数据库 */
 function setEnv(overrides: Partial<Env> = {}): void {

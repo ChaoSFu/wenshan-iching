@@ -47,6 +47,7 @@ const BASE: Partial<Env> = {
   SALES_ENABLED: true,
   ALLOW_UNREVIEWED_CONTENT: true,
   SUPPORT_NOTIFY_EMAIL: "ops-inbox@example.com",
+  PRICE_AMOUNT_MINOR: 990,
 };
 const setEnv = (o: Partial<Env> = {}) => __setEnvForTests({ ...BASE, ...o });
 const defaultMailer: Mailer = { send: async (m) => void sentMail.push(m) };
